@@ -1,8 +1,5 @@
 package core.manager.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import core.manager.domain.assembler.EntitySnapshotAssembler;
 import core.manager.domain.assembler.ProblemSnapshotAssembler;
 import core.manager.loader.LoadTarget;
@@ -28,17 +25,6 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
 
     public void putDTO(String id, DTO dto) {
         activityRepository.register(id, (ActivityDTO)dto);
-    }
-
-    @Override
-    public List<ActivitySnapshot> from(List<String> ids) {
-        List<ActivitySnapshot> result = new ArrayList<>();
-
-        for(String id : ids) {
-            result.add(this.from(id));
-        }
-
-        return result;
     }
 
     @Override
