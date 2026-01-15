@@ -1,0 +1,18 @@
+# Block the big zip files
+gradle/*.zip
+*.zip
+app/bin/
+bin/
+
+# Block the heavy portable folders
+jdk/
+local_gradle_cache/
+.gradle/
+build/
+bin/
+
+# Block IDE settings
+.idea/
+.vscode/
+.settings/
+.project

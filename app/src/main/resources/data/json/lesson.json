@@ -1,0 +1,38 @@
+{
+    "L-001" : {
+        "contents": [
+            {
+                "type": "TEXT",
+                "text": "Welcome to Lesson 1! In this lesson, we will cover the basics of our subject."
+            },
+            {
+                "type": "IMAGE",
+                "url": "https://example.com/images/lesson1_intro.png"
+            },
+            {
+                "type": "TEXT",
+                "text": "Let's get started with the first topic."
+            }
+        ]
+    },
+    "L-002" : {
+        "contents": [
+            {
+                "type": "TEXT",
+                "text": "Welcome to Lesson 2! In this lesson, we will dive deeper into the subject."
+            },
+            {
+                "type": "IMAGE",
+                "url": "https://example.com/images/lesson2_intro.png"
+            },
+            {
+                "type": "TEXT",
+                "text": "Let's explore the advanced topics."
+            },
+            {
+                "type": "VIDEO",
+                "url": "https://example.com/videos/lesson2_advanced.mp4"
+            }
+        ]
+    }
+}

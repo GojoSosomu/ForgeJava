@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+    <SplitPane dividerPositions="0.3" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+            <AnchorPane>
+                <TabPane fx:id="contentTabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                        <Tab fx:id="infoTab" text="Info">
+                            <AnchorPane>
+                                <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <Label maxWidth="300.0" style="-fx-font-size: 14px; -fx-padding: 10;" text="Problem #1: Add the two numbers." wrapText="true" />
+                                </ScrollPane>
+                            </AnchorPane>
+                        </Tab>
+
+                        <Tab fx:id="outputTab" text="Output">
+                            <AnchorPane>
+                                <TextArea fx:id="outputArea" editable="false" maxWidth="300.0" promptText="Program output will appear here..." wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                            </AnchorPane>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </AnchorPane>
+
+            <AnchorPane>
+                <TextArea fx:id="codeArea" maxWidth="300.0" promptText="Write the code..." style="-fx-font-family: 'Consolas'; -fx-font-size: 14px;" wrapText="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </AnchorPane>
+        </items>
+    </SplitPane>
+
+    <HBox alignment="CENTER_RIGHT" spacing="10" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <Region HBox.hgrow="ALWAYS" />
+        <Button fx:id="runButton" text="Run" />
+        <Button fx:id="testButton"  text="Test" />
+        <Button fx:id="submitButton" text="Submit" />
+    </HBox>
+</AnchorPane>

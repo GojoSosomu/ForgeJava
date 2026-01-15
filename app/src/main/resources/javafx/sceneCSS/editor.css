@@ -1,0 +1,114 @@
+/* ROOT */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #232323, #1e1b1a);
+    -fx-text-fill: #e8e6e3;
+    -fx-font-family: "Segoe UI", "Consolas";
+}
+
+/* SplitPane */
+.split-pane-divider {
+    -fx-background-color: #2d2b2b;
+}
+
+/* TAB PANE */
+/* TAB PANE */
+.tab-pane {
+    -fx-background-color: #1f1d1b;
+    -fx-border-color: #3b3a39;
+}
+
+/* make sure the whole top area uses your dark color */
+.tab-pane > .tab-header-area {
+    -fx-background-color: linear-gradient(to bottom, #2b2928, #201e1d);
+}
+
+/* container around the tabs */
+.tab-pane > .tab-header-area > .headers-region {
+    -fx-background-color: linear-gradient(to bottom, #2b2928, #201e1d);
+}
+
+/* actual tab button */
+.tab {
+    -fx-background-color: #2a2726;
+    -fx-text-base-color: #d3cfc9;
+}
+
+/* selected tab */
+.tab:selected {
+    -fx-background-color: linear-gradient(to bottom, #3d3a39, #2b2928);
+    -fx-text-base-color: #ffffff;
+}
+
+/* optional: remove the white highlight line under tabs */
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+
+/* LABEL */
+.label {
+    -fx-text-fill: #dfdbd6;
+}
+
+/* TEXT AREA */
+.text-area {
+    -fx-control-inner-background: #1f1d1b;
+    -fx-text-fill: #eae6e1;
+    -fx-border-color: #3a3734;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-highlight-fill: #444b4d;
+    -fx-highlight-text-fill: white;
+    -fx-prompt-text-fill: #948f89;
+}
+
+/* ScrollPane */
+.scroll-pane {
+    -fx-background: #1f1d1b;
+}
+.scroll-bar {
+    -fx-background-color: #262423;
+}
+.thumb {
+    -fx-background-color: #3f3b38;
+    -fx-background-radius: 3;
+}
+
+/* BUTTONS */
+.button {
+    -fx-background-radius: 6;
+    -fx-background-color: linear-gradient(to bottom, #4d3b2f, #3d3028);
+    -fx-border-color: #5e4a3c;
+    -fx-text-fill: #f5f2ee;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 6 14;
+}
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #5a4638, #46372d);
+}
+.button:pressed {
+    -fx-background-color: #2e211a;
+}
+
+/* OUTPUT AREA (like console) */
+#outputArea {
+    -fx-control-inner-background: #181614;
+    -fx-text-fill: #b0f78f;
+    -fx-font-family: "Consolas";
+    -fx-border-color: #3a3836;
+}
+
+/* TOOLBAR */
+.button-bar, .tool-bar {
+    -fx-background-color: linear-gradient(to bottom, #2d2b2a, #22201f);
+    -fx-border-color: #3b3938;
+}
+
+/* TOOLTIP */
+.tooltip {
+    -fx-background-color: #3a3836;
+    -fx-text-fill: #f1ede9;
+    -fx-font-size: 12px;
+}

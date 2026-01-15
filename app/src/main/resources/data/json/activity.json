@@ -1,0 +1,53 @@
+{
+    "A-001" : {
+        "problem" : {
+            "type" : "QUESTIONNAIRE",
+            "instructions": [
+                {
+                    "type": "TEXT",
+                    "text" : "Choose the correct answer from the options provided."
+                },
+                {
+                    "type": "TEXT",
+                    "text" : "Read each question carefully before answering."
+                }
+            ],
+            "questions" : [
+                {
+                    "type" : "MULTIPLE_CHOICE",
+                    "question" : [
+                        {
+                            "type": "TEXT",
+                            "text" : "What is the capital of France?"
+                        },
+                        {
+                            "type": "IMAGE",
+                            "url" : "http://example.com/images/france_map.png"
+                        }
+                    ],
+                    "values" : {
+                        "options" : [
+                            {
+                                "type" : "TEXT",
+                                "text" : "A. Berlin"
+                            },
+                            {
+                                "type": "TEXT",
+                                "text" : "B. Madrid"
+                            },
+                            {
+                                "type": "TEXT",
+                                "text" : "C. Paris"
+                            },
+                            {
+                                "type": "TEXT",
+                                "text" : "D. Rome"
+                            }
+                        ],
+                        "correctAnswerIndex" : 2
+                    }
+                }
+            ]
+        }
+    }
+}
