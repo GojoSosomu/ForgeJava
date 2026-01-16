@@ -31,13 +31,17 @@ public class LessonManager implements LoadTarget, EntitySnapshotAssembler<Lesson
         lessonRepository.register(id, (LessonDTO)dto);
     }
 
+    public boolean isExist(String id) {
+        return lessonRepository.isExist(id);
+    }
+
     @Override
     public LessonSnapshot from(String id) {
         LessonDTO dto = lessonRepository.get(id);
-
+        
         return new LessonSnapshot(
             id,
             pageSnapshotAssembler.from(dto.pages())
-            );
+        );
     }
 }

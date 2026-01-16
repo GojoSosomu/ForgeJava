@@ -27,6 +27,10 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
         activityRepository.register(id, (ActivityDTO)dto);
     }
 
+    public boolean isExist(String id) {
+        return activityRepository.isExist(id);
+    }
+
     @Override
     public ActivitySnapshot from(String id) {
        ActivityDTO dto = activityRepository.get(id);

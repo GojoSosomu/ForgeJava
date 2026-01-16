@@ -35,15 +35,14 @@ public class ContentSnapshotAssembler implements ValueSnapshotAssembler<Content,
                 break;
             case IMAGE:
                 ImageContent image = (ImageContent) object;
-                values.put("imageURL", image.url());
+                values.put("url", image.url());
                 break;
             case VIDEO:
                 VideoContent video = (VideoContent) object;
-                values.put("videoURL", video.url());
+                values.put("url", video.url());
                 break;
         }
 
         return new ContentSnapshot(object.type(), values);
     }
-
 }

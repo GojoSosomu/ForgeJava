@@ -1,6 +1,6 @@
 package core.repository;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.Map;
 
 public abstract class AbstractRepository<V> {
@@ -8,7 +8,7 @@ public abstract class AbstractRepository<V> {
     protected final Map<String, V> store;
 
     protected AbstractRepository() {
-        this.store = new HashMap<>();
+        this.store = new ConcurrentHashMap<>();
     }
 
     public V get(String id) {

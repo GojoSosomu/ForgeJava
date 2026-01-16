@@ -11,7 +11,6 @@ import infrastructure.event.receiver.LoadingReceiver;
 import presentation.outside.channel.OutsideChannel;
 import presentation.outside.swing.*;
 import presentation.outside.swing.assembler.SwingChapterCardAssembler;
-import presentation.service.ChapterService;
 import presentation.service.assembler.ViewAssembler;
 
 public class SwingLauncher extends Launcher {
@@ -42,9 +41,9 @@ public class SwingLauncher extends Launcher {
 
         SwingChapterCoveragePanel chapterCoveragePanel = new SwingChapterCoveragePanel(
             new SwingChapterCardAssembler().assemble(
-                null
+                chapterService.getAllChapters()
             ),
-            new ChapterService()
+            chapterService
         );
         
         chapterCoveragePanel.getBackButton().addActionListener(e -> switchPanel(maiPanel));

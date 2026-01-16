@@ -1,11 +1,13 @@
 package core.engine;
 
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
 import core.manager.domain.*;
 import core.manager.loader.*;
 import core.model.dto.DTO;
+import core.model.snapshot.chapter.*;
 
 public class Engine {
     private Map<LoadType, LoadTarget> loadTargets = new HashMap<>();
@@ -40,5 +42,11 @@ public class Engine {
     public void register(LoadType type, String id, DTO dto) {
         LoadTarget target = loadTargets.get(type);
         target.putDTO(id, dto);
+    }
+
+    public Map<String, ChapterSnapshot> getChapters() {
+        List<String> ids = chapterManager.findAll();
+
+        return chapterManager.from(ids);
     }
 }

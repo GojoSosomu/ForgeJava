@@ -15,9 +15,9 @@ public class LessonMapper implements Mapper<Map<String, Object>, LessonDTO> {
     }
 
     @Override
-    public LessonDTO single(Map<String, Object> raw) {
+    public LessonDTO single(Map<String, Object> raw, String id) {
         if (raw == null || raw.isEmpty()) return null;
         
-        return maker.make(raw);
+        return maker.make(raw, id);
     }
 }

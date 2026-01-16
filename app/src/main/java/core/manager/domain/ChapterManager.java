@@ -1,5 +1,7 @@
 package core.manager.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import core.manager.domain.assembler.EntitySnapshotAssembler;
@@ -31,6 +33,18 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
         });
     }
 
+    public List<String> findAll() {
+        Map<String, ChapterDTO> chapters = chapterRepository.getAll();
+
+        List<String> ids = new ArrayList<>();
+
+        for(String id : chapters.keySet()) {
+            ids.add(id);
+        }
+
+        return ids;
+    }
+
     public void putDTO(String id, DTO dto) {
         chapterRepository.register(id, (ChapterDTO) dto);
     }
@@ -38,16 +52,37 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
     @Override
     public ChapterSnapshot from(String id) {
         ChapterDTO dto = chapterRepository.get(id);
+        List<String> lessonIds = new ArrayList<>();
+        List<String> activityIds = new ArrayList<>();
 
-       return new ChapterSnapshot(
+        for(String sequenceId : dto.sequences()) {
+            if(lessonManager.isExist(id))
+                lessonIds.add(sequenceId);
+            else if(activityManager.isExist(id))
+                activityIds.add(sequenceId);
+        }
+        return new ChapterSnapshot(
         dto.id(),
         Map.of(
-            "card", dto.chapterCard(),
-            "intro", dto.chapterIntro(),
+            "card", Map.of(
+                "title", dto.chapterCard().title(),
+                "subTitle", dto.chapterCard().subTitle(),
+                "message", dto.chapterCard().message()
+            ),
+            "intro", Map.of(
+                "title", dto.chapterIntro().title(),
+                "description", dto.chapterIntro().description(),
+                "objectives", dto.chapterIntro().objectives()
+            ),
             "sequence", dto.sequences(),
-                "lessons", lessonManager.from(id),
-                "activities", activityManager.from(id),
-            "outro", dto.chapterOutro()
+            "lessons", lessonManager.from(lessonIds),
+            "activities", activityManager.from(activityIds),
+            "outro", Map.of(
+                "title", dto.chapterOutro().title(),
+                "description", dto.chapterOutro().description(),
+                "sneakPeaks", dto.chapterOutro().sneakPeaks(),
+                "conclusion", dto.chapterOutro().conclusion()
+            )
         )
        );
     }
