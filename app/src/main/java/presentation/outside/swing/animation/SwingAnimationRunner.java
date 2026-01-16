@@ -12,6 +12,7 @@ public class SwingAnimationRunner {
 
     private Timer timer;
     private List<SwingAnimator> animators = new ArrayList<>();
+    private List<SwingAnimator> pendinAnimators = new ArrayList<>();
 
     public SwingAnimationRunner(int fps) {
         int delay = 1000 / fps;
@@ -19,8 +20,7 @@ public class SwingAnimationRunner {
     }
 
     public void add(SwingAnimator animator) {
-        animators.add(animator);
-        animator.start();
+        pendinAnimators.add(animator);
     }
 
     public void start() {
@@ -32,6 +32,13 @@ public class SwingAnimationRunner {
     }
 
     private void tick() {
+        if(!pendinAnimators.isEmpty()) {
+            for(SwingAnimator animator : pendinAnimators) {
+                animators.add(animator);
+                animator.start();
+            }
+            pendinAnimators.clear();
+        }
         for (Iterator<SwingAnimator> it = animators.iterator(); it.hasNext();) {
             SwingAnimator animator = it.next();
             animator.animate();

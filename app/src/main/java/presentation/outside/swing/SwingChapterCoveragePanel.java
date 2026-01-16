@@ -20,12 +20,15 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
 
     private int currentIndex = 0;
     private int nextIndex = 0;
+    private int direction = 0;
     private int offsetX = 0;
     private int offsetY = 0;
     private Point dragStart;
     private boolean isAnimating = false;
-    private int heldDirection = 0; 
-    
+
+    private Timer holdTimer;
+    private static final int HOLD_DELAY = 1000;
+    private static final int HOLD_INTERVAL = 70;
     private static final int DRAG_THRESHOLD = 50;
     private static final int CARD_WIDTH = 600;
     private static final int CARD_HEIGHT = 400;
@@ -72,14 +75,7 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
             currentIndex = nextIndex;
             isAnimating = false;
             offsetX = 0;
-            
-            if (heldDirection != 0) {
-                SwingUtilities.invokeLater(() -> {
-                    if (heldDirection != 0 && !isAnimating) {
-                        navigate(heldDirection);
-                    }
-                });
-            }
+            direction = 0;
         }
         repaint();
     }
@@ -132,25 +128,16 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
         KeyAdapter keyAdapter = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                int code = e.getKeyCode();
-                if (code == KeyEvent.VK_LEFT) {
-                    if (heldDirection != -1) {
-                        heldDirection = -1;
-                        if (!isAnimating) navigate(-1);
-                    }
-                } else if (code == KeyEvent.VK_RIGHT) {
-                    if (heldDirection != 1) {
-                        heldDirection = 1;
-                        if (!isAnimating) navigate(1);
-                    }
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_LEFT -> startHold(-1);
+                    case KeyEvent.VK_RIGHT -> startHold(1);
                 }
             }
 
             @Override
             public void keyReleased(KeyEvent e) {
                 int code = e.getKeyCode();
-                if (code == KeyEvent.VK_LEFT && heldDirection == -1) heldDirection = 0;
-                if (code == KeyEvent.VK_RIGHT && heldDirection == 1) heldDirection = 0;
+                if (code == KeyEvent.VK_LEFT || code == KeyEvent.VK_RIGHT) stopHold();
             }
         };
 
@@ -159,17 +146,40 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
         addMouseMotionListener(mouseAdapter);
     }
 
+    private void startHold(int direction) {
+        if(holdTimer != null && holdTimer.isRunning()) return;
+
+        navigate(direction);
+
+        holdTimer = new Timer(HOLD_INTERVAL, e -> {
+            if(!isAnimating) {
+                navigate(direction);
+            }
+        });
+
+        holdTimer.setInitialDelay(HOLD_DELAY);
+        holdTimer.start();
+    }
+
+    private void stopHold() {
+        if(holdTimer != null) {
+            holdTimer.stop();
+            holdTimer = null;
+        }
+    }
+
     private void navigate(int direction) {
         if (cards.isEmpty() || isAnimating) return;
         
         isAnimating = true;
+        this.direction = direction;
         nextIndex = (currentIndex + direction + cards.size()) % cards.size();
         
-        int startX = direction * getWidth();
+        int startX = -direction * getWidth();
         Point from = new Point(startX, 0);
         Point to = new Point(0, 0);
         
-        animationRunner.add(new SwingSlideAnimator(this, this, from, to, 250, LibraryOfEasing.EASING_IN));
+        animationRunner.add(new SwingSlideAnimator(this, this, from, to, 250, LibraryOfEasing.SMOOTH_STEP));
     }
 
     @Override
@@ -181,13 +191,7 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         if (isAnimating) {
-            int currentDrawX = (nextIndex > currentIndex || (currentIndex == cards.size()-1 && nextIndex == 0)) 
-                ? offsetX - getWidth() : offsetX + getWidth();
-            
-            if (Math.abs(offsetX) > getWidth()) {
-                g2.dispose();
-                return;
-            }
+            int currentDrawX = offsetX + (direction * getWidth());
 
             g2.translate(currentDrawX, 0);
             cards.get(currentIndex).paint(g2);
