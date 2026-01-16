@@ -17,6 +17,7 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
     private LessonManager lessonManager;
     private ActivityManager activityManager;
     private ContentSnapshotAssembler contentSnapshotAssembler;
+    private int i = 0;
 
     public ChapterManager(
         ChapterRepository chapterRepository,
@@ -69,7 +70,7 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
         dto.id(),
         Map.of(
             "card", Map.of(
-                "title", dto.chapterCard().title(),
+                "title",  "Chapter " + ++i + ": " + dto.chapterCard().title(),
                 "subTitle", dto.chapterCard().subTitle(),
                 "message", contentSnapshotAssembler.from(dto.chapterCard().message())
             ),

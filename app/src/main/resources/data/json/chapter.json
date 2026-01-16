@@ -46,5 +46,53 @@
                 }
             ]
         }
+    },
+    "C-002" : {
+        "chapterCard" : {
+            "title" : "Botion to Programming",
+            "subTitle" : "OOP learning",
+            "message" : {
+                "type" : "TEXT",
+                "text" : "Emcapsulated the boiboi"
+            }
+        },
+        "chapterIntro" : {
+            "title" : "Welcome to the Introduction to Programming",
+            "description" : "This chapter will introduce you to the fundamental concepts of programming. You will learn about different programming languages, how to write simple programs, and understand basic programming constructs.",
+            "objectives" : [
+                {
+                    "type" : "TEXT",
+                    "text" : "Understand what programming is"
+                },
+                {
+                    "type" : "TEXT",
+                    "text" : "Learn about different programming languages"
+                },
+                {
+                    "type" : "TEXT",
+                    "text" : "Write your first simple program"
+                }
+            ]
+        },
+        "sequences" : [
+            "L-001",
+            "A-001"
+        ],
+        "chapterOutro" : {
+            "title" : "Chapter Completed!",
+            "description" : "Congratulations on completing the Introduction to Programming chapter. You have taken the first step in your programming journey.",
+            "sneakPeaks" : [
+                {
+                    "type" : "TEXT",
+                    "text" : "In the next chapter, we will explore data structures and algorithms."
+                }
+            ],
+            "conclusion" : [
+                {
+                    "type" : "TEXT",    
+                    "text" : "Well done! Keep up the great work and continue learning."
+                }
+            ]
+        }
     }
 }

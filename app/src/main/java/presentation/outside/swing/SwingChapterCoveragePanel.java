@@ -68,16 +68,12 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
         this.offsetX = x;
         this.offsetY = y;
         
-        // Time Accumulator/State Correction:
-        // We check if the animation has reached the target (x == 0)
         if (isAnimating && x == 0) {
             currentIndex = nextIndex;
             isAnimating = false;
             offsetX = 0;
             
-            // Check if a direction key is still held down to chain the next animation
             if (heldDirection != 0) {
-                // We use invokeLater to ensure the state is fully cleared before triggering the next cycle
                 SwingUtilities.invokeLater(() -> {
                     if (heldDirection != 0 && !isAnimating) {
                         navigate(heldDirection);

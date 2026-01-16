@@ -72,9 +72,9 @@ public final class SwingMainPanel extends JPanel {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        startButton = createStyledButton("START", FORGE_ORANGE);
-        settingsButton = createStyledButton("SETTING", new Color(44, 62, 80));
-        quitButton = createStyledButton("QUIT", new Color(192, 57, 43));
+        startButton = createStyledButton("LESSON", FORGE_ORANGE);
+        settingsButton = createStyledButton("CUSTOMIZE", new Color(44, 62, 80));
+        quitButton = createStyledButton("EXIT", new Color(192, 57, 43));
 
         panel.add(startButton);
         panel.add(Box.createRigidArea(new Dimension(0, 20)));

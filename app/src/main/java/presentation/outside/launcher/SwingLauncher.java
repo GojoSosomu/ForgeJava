@@ -15,7 +15,7 @@ import presentation.service.assembler.ViewAssembler;
 
 public class SwingLauncher extends Launcher {
 
-    private final JFrame frame = new JFrame("The Ahas LarongGame");
+    private final JFrame frame = new JFrame("ForgeJava");
     private static final int DEFAULT_WIDTH = 1200;
     private static final int DEFAULT_HEIGHT = 800;
 
