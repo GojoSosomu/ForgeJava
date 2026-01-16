@@ -13,10 +13,11 @@ import core.repository.LessonRepository;
 public class EngineSetUp {
 
     public static Engine create() {
-        
+        ContentSnapshotAssembler contentSnapshotAssembler = new ContentSnapshotAssembler();
+
         LessonManager lessonManager = new LessonManager(
             new LessonRepository(),
-            new LessonPageSnapshotAssembler(new ContentSnapshotAssembler())
+            new LessonPageSnapshotAssembler(contentSnapshotAssembler)
         );
 
         ActivityManager activityManager = new ActivityManager(
@@ -26,7 +27,8 @@ public class EngineSetUp {
         ChapterManager chapterManager = new ChapterManager(
             new ChapterRepository(),
             lessonManager,
-            activityManager
+            activityManager,
+            contentSnapshotAssembler
         );
 
         Engine engine = new Engine(lessonManager, activityManager, chapterManager);

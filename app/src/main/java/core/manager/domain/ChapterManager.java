@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import core.manager.domain.assembler.ContentSnapshotAssembler;
 import core.manager.domain.assembler.EntitySnapshotAssembler;
 import core.manager.loader.LoadTarget;
 import core.model.dto.DTO;
@@ -15,15 +16,18 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
     private ChapterRepository chapterRepository;
     private LessonManager lessonManager;
     private ActivityManager activityManager;
+    private ContentSnapshotAssembler contentSnapshotAssembler;
 
     public ChapterManager(
         ChapterRepository chapterRepository,
         LessonManager lessonManager,
-        ActivityManager activityManager
+        ActivityManager activityManager,
+        ContentSnapshotAssembler contentSnapshotAssembler
     ) {
         this.chapterRepository = chapterRepository;
         this.lessonManager = lessonManager;
         this.activityManager = activityManager;
+        this.contentSnapshotAssembler = contentSnapshotAssembler;
     }
 
     public void printAllChapters() {
@@ -67,12 +71,12 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
             "card", Map.of(
                 "title", dto.chapterCard().title(),
                 "subTitle", dto.chapterCard().subTitle(),
-                "message", dto.chapterCard().message()
+                "message", contentSnapshotAssembler.from(dto.chapterCard().message())
             ),
             "intro", Map.of(
                 "title", dto.chapterIntro().title(),
-                "description", dto.chapterIntro().description(),
-                "objectives", dto.chapterIntro().objectives()
+                "description", contentSnapshotAssembler.from(dto.chapterIntro().description()),
+                "objectives", contentSnapshotAssembler.from(dto.chapterIntro().objectives())
             ),
             "sequence", dto.sequences(),
             "lessons", lessonManager.from(lessonIds),
@@ -80,8 +84,8 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
             "outro", Map.of(
                 "title", dto.chapterOutro().title(),
                 "description", dto.chapterOutro().description(),
-                "sneakPeaks", dto.chapterOutro().sneakPeaks(),
-                "conclusion", dto.chapterOutro().conclusion()
+                "sneakPeaks", contentSnapshotAssembler.from(dto.chapterOutro().sneakPeaks()),
+                "conclusion", contentSnapshotAssembler.from(dto.chapterOutro().conclusion())
             )
         )
        );
