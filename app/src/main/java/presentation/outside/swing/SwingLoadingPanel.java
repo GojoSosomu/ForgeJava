@@ -12,7 +12,7 @@ import java.awt.geom.RoundRectangle2D;
 public final class SwingLoadingPanel extends JPanel implements OutsideChannel<LoadingView> {
 
     private static final Color DEEP_BLUE = new Color(15, 25, 45);
-    private static final Color FORGE_ORANGE = new Color(230, 126, 34);
+    private static final Color FORGE_ORANGE = new Color(249, 115, 22);
     private static final Color GLOW_YELLOW = new Color(241, 196, 15);
     private static final Color TRACK_COLOR = new Color(30, 35, 50);
     private static final Color SUBTITLE_COLOR = new Color(150, 160, 180);

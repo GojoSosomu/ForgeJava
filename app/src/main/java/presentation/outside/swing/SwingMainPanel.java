@@ -8,7 +8,7 @@ import java.awt.geom.RoundRectangle2D;
 public final class SwingMainPanel extends JPanel {
 
     private final Color DEEP_BLUE = new Color(15, 25, 45);
-    private final Color FORGE_ORANGE = new Color(230, 126, 34);
+    private final Color FORGE_ORANGE = new Color(249, 115, 22);
     private final Color GLOW_YELLOW = new Color(241, 196, 15);
     private final Color TEXT_WHITE = new Color(245, 245, 245);
 

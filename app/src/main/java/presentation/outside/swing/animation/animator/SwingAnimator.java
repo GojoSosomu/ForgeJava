@@ -12,6 +12,10 @@ public abstract class SwingAnimator {
     protected boolean finished;
     protected Easing easing = LibraryOfEasing.LINEAR;
 
+    public SwingAnimator() {
+        
+    }
+
     public SwingAnimator(
         JComponent component,
         long durationMs,
