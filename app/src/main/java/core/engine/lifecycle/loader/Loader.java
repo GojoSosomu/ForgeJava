@@ -25,7 +25,11 @@ public class Loader<T extends DTO> {
         this.engine = engine;
     }
 
-    public LoadingSnapshot load(LoadingRequest loadingRequest, Pulse<LoadingSnapshot> loadingReceiver, LoadingSnapshot oldSnapshot) {
+    public LoadingSnapshot load(
+        LoadingRequest loadingRequest,
+        Pulse<LoadingSnapshot> loadingReceiver,
+        LoadingSnapshot oldSnapshot
+    ) {
         Map<String, Map<String, Object>> rawInfo = reader.read(loadingRequest.path());
 
         LoadingSnapshot newSnapshot = oldSnapshot.withName(

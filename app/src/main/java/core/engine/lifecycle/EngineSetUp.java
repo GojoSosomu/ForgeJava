@@ -1,14 +1,10 @@
 package core.engine.lifecycle;
 
 import core.engine.Engine;
-import core.manager.domain.ActivityManager;
-import core.manager.domain.ChapterManager;
-import core.manager.domain.LessonManager;
+import core.manager.domain.*;
 import core.manager.domain.assembler.ContentSnapshotAssembler;
 import core.manager.domain.assembler.LessonPageSnapshotAssembler;
-import core.repository.ActivityRepository;
-import core.repository.ChapterRepository;
-import core.repository.LessonRepository;
+import core.repository.*;
 
 public class EngineSetUp {
 
@@ -31,7 +27,11 @@ public class EngineSetUp {
             contentSnapshotAssembler
         );
 
-        Engine engine = new Engine(lessonManager, activityManager, chapterManager);
+        UserProgressManager userProgressManager = new UserProgressManager(
+            new UserProgressRepository()
+        );
+
+        Engine engine = new Engine(lessonManager, activityManager, chapterManager, userProgressManager);
         return engine;
     } 
 }

@@ -1,12 +1,12 @@
 package presentation.outside.swing.template;
 
 import javax.swing.*;
-
 import core.model.view.content.TextContentView;
-
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+
+import static presentation.outside.color.LibraryOfColor.*;
 
 public final class SwingChapterCardTemplate {
 
@@ -16,14 +16,6 @@ public final class SwingChapterCardTemplate {
     private TextContentView message;
     private boolean isHovered = false;
     private JComponent parent;
-
-    private static final Color PAGE_BASE = new Color(245, 235, 215);
-    private static final Color PAGE_HOVER = new Color(220, 211, 193);
-    private static final Color INK_DARK = new Color(60, 50, 40);
-    private static final Color INK_MEDIUM = new Color(90, 75, 60);
-    private static final Color INK_FADED = new Color(130, 115, 100);
-    private static final Color BORDER_NORMAL = new Color(210, 190, 160);
-    private static final Color BORDER_HOVER = new Color(126, 114, 96);
 
     public SwingChapterCardTemplate(
             String title,
@@ -51,21 +43,27 @@ public final class SwingChapterCardTemplate {
 
     public void setBounds(Rectangle2D bounds) {
         this.bounds = bounds;
+        triggerRepaint();
     }
 
     public boolean hoverTest(Point p) {
         boolean previouslyHovered = this.isHovered;
         this.isHovered = (p != null && bounds.contains(p));
         
-        if (previouslyHovered != this.isHovered && parent != null) {
-            parent.repaint((int)bounds.getX(), (int)bounds.getY(), 
-                           (int)bounds.getWidth(), (int)bounds.getHeight());
+        if (previouslyHovered != this.isHovered) {
+            triggerRepaint();
         }
         return previouslyHovered != this.isHovered;
     }
 
     public boolean hitTest(Point p) {
         return p != null && bounds.contains(p);
+    }
+
+    private void triggerRepaint() {
+        if (parent != null) {
+            parent.repaint();
+        }
     }
 
     public void paint(Graphics2D g) {

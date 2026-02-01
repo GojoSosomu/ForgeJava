@@ -1,17 +1,14 @@
 package presentation.outside.swing;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
+import static presentation.outside.color.LibraryOfColor.*;
+
 public final class SwingMainPanel extends JPanel {
-
-    private final Color DEEP_BLUE = new Color(15, 25, 45);
-    private final Color FORGE_ORANGE = new Color(249, 115, 22);
-    private final Color GLOW_YELLOW = new Color(241, 196, 15);
-    private final Color TEXT_WHITE = new Color(245, 245, 245);
-
     private JButton startButton;
     private JButton settingsButton;
     private JButton quitButton;
@@ -19,11 +16,10 @@ public final class SwingMainPanel extends JPanel {
     public SwingMainPanel() {
         setOpaque(false);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        setBorder(new EmptyBorder(50, 0, 50, 0));
 
         add(Box.createVerticalGlue());
         add(createTitlePanel());
-        add(Box.createRigidArea(new Dimension(0, 60)));
+        add(Box.createRigidArea(new Dimension(0, 80)));
         add(createButtonPanel());
         add(Box.createVerticalGlue());
     }
@@ -39,7 +35,7 @@ public final class SwingMainPanel extends JPanel {
             protected void paintComponent(Graphics g) {
                 Graphics2D g2d = (Graphics2D) g.create();
                 g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-                GradientPaint gp = new GradientPaint(0, 0, GLOW_YELLOW, 0, getHeight(), FORGE_ORANGE);
+                GradientPaint gp = new GradientPaint(0, 0, GLOW_YELLOW, 0, getHeight(), ORANGE_BASED);
                 g2d.setPaint(gp);
                 FontMetrics fm = g2d.getFontMetrics(getFont());
                 int x = (getWidth() - fm.stringWidth(getText())) / 2;
@@ -51,12 +47,12 @@ public final class SwingMainPanel extends JPanel {
         };
         
         mainTitle.setFont(new Font("Segoe UI", Font.BOLD, 48));
-        mainTitle.setPreferredSize(new Dimension(400, 60));
+        mainTitle.setMaximumSize(new Dimension(600, 90));
         mainTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel tagline = new JLabel("Where freedom is forged, structure helps you grow");
-        tagline.setFont(new Font("Segoe UI", Font.ITALIC, 16));
-        tagline.setForeground(new Color(180, 190, 210));
+        tagline.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+        tagline.setForeground(new Color(180, 190, 210, 180));
         tagline.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         panel.add(mainTitle);
@@ -72,55 +68,63 @@ public final class SwingMainPanel extends JPanel {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        startButton = createStyledButton("LESSON", FORGE_ORANGE);
-        settingsButton = createStyledButton("CUSTOMIZE", new Color(44, 62, 80));
-        quitButton = createStyledButton("EXIT", new Color(192, 57, 43));
+        startButton = createModernButton("START LESSON", ORANGE_BASED);
+        settingsButton = createModernButton("CUSTOMIZE INTERFACE", COOL_GRAY);
+        quitButton = createModernButton("EXIT APPLICATION", SCORCH_RED);
 
         panel.add(startButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        panel.add(Box.createRigidArea(new Dimension(0, 25)));
         panel.add(settingsButton);
-        panel.add(Box.createRigidArea(new Dimension(0, 20)));
+        panel.add(Box.createRigidArea(new Dimension(0, 25)));
         panel.add(quitButton);
 
         return panel;
     }
 
-    private JButton createStyledButton(String text, Color baseColor) {
+    private JButton createModernButton(String text, Color baseColor) {
         JButton button = new JButton(text) {
+            private boolean isHovered = false;
+
+            {
+                setContentAreaFilled(false);
+                setFocusPainted(false);
+                setBorderPainted(false);
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+                setForeground(TEXT_ON_WHITE);
+                setFont(new Font("Segoe UI", Font.BOLD, 22));
+
+                addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseEntered(MouseEvent e) { isHovered = true; repaint(); }
+                    @Override
+                    public void mouseExited(MouseEvent e) { isHovered = false; repaint(); }
+                });
+            }
+
             @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2d = (Graphics2D) g.create();
                 g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                Color drawColor = isHovered ? baseColor.brighter() : baseColor;
                 
-                if (getModel().isPressed()) {
-                    g2d.setColor(baseColor.darker());
-                } else if (getModel().isRollover()) {
-                    g2d.setColor(baseColor.brighter());
-                } else {
-                    g2d.setColor(baseColor);
-                }
-                
-                g2d.fill(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 15, 15));
-                
-                g2d.setColor(Color.WHITE);
+                g2d.setColor(drawColor);
+                g2d.fill(new RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 25, 25));
+
                 FontMetrics fm = g2d.getFontMetrics();
                 int x = (getWidth() - fm.stringWidth(getText())) / 2;
-                int y = (getHeight() + fm.getAscent()) / 2 - 2;
+                int y = (getHeight() + fm.getAscent() - fm.getDescent()) / 2;
+                g2d.setColor(getForeground());
                 g2d.drawString(getText(), x, y);
-                
+
                 g2d.dispose();
             }
         };
 
-        button.setPreferredSize(new Dimension(220, 45));
-        button.setMaximumSize(new Dimension(220, 45));
-        button.setFocusPainted(false);
-        button.setBorderPainted(false);
-        button.setContentAreaFilled(false);
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        button.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        button.setForeground(TEXT_WHITE);
-        
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setMinimumSize(new Dimension(350, 70));
+        button.setPreferredSize(new Dimension(350, 70));
+        button.setMaximumSize(new Dimension(400, 80));
         return button;
     }
 
@@ -130,10 +134,11 @@ public final class SwingMainPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        GradientPaint gp = new GradientPaint(0, 0, DEEP_BLUE, 0, getHeight(), Color.BLACK);
+        Graphics2D g2d = (Graphics2D) g.create();
+        GradientPaint gp = new GradientPaint(0, 0, DARK_BLUE_BASE, 0, getHeight(), DARK_BLUE_DEEP);
         g2d.setPaint(gp);
         g2d.fillRect(0, 0, getWidth(), getHeight());
+        g2d.dispose();
         super.paintComponent(g);
     }
 }

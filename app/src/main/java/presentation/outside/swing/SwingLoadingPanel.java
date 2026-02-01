@@ -9,13 +9,9 @@ import presentation.outside.channel.OutsideChannel;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
-public final class SwingLoadingPanel extends JPanel implements OutsideChannel<LoadingView> {
+import static presentation.outside.color.LibraryOfColor.*;
 
-    private static final Color DEEP_BLUE = new Color(15, 25, 45);
-    private static final Color FORGE_ORANGE = new Color(249, 115, 22);
-    private static final Color GLOW_YELLOW = new Color(241, 196, 15);
-    private static final Color TRACK_COLOR = new Color(30, 35, 50);
-    private static final Color SUBTITLE_COLOR = new Color(150, 160, 180);
+public final class SwingLoadingPanel extends JPanel implements OutsideChannel<LoadingView> {
 
     private final JLabel statusLabel;
     private final JProgressBar progressBar;
@@ -32,7 +28,7 @@ public final class SwingLoadingPanel extends JPanel implements OutsideChannel<Lo
                 g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
                 
                 // Vertical Gradient for the text
-                GradientPaint gp = new GradientPaint(0, 0, GLOW_YELLOW, 0, getHeight(), FORGE_ORANGE);
+                GradientPaint gp = new GradientPaint(0, 0, GLOW_YELLOW, 0, getHeight(), ORANGE_BASED);
                 g2d.setPaint(gp);
                 
                 FontMetrics fm = g2d.getFontMetrics(getFont());
@@ -59,13 +55,13 @@ public final class SwingLoadingPanel extends JPanel implements OutsideChannel<Lo
                 int h = getHeight();
                 int arc = 15;
 
-                g2d.setColor(TRACK_COLOR);
+                g2d.setColor(DEEP_SLATE);
                 g2d.fill(new RoundRectangle2D.Double(0, 0, w, h, arc, arc));
                 
                 double percent = getPercentComplete();
                 if (percent > 0) {
                     int progressWidth = (int) (w * percent);
-                    GradientPaint gp = new GradientPaint(0, 0, FORGE_ORANGE, progressWidth, 0, GLOW_YELLOW);
+                    GradientPaint gp = new GradientPaint(0, 0, ORANGE_BASED, progressWidth, 0, GLOW_YELLOW);
                     g2d.setPaint(gp);
                     g2d.fill(new RoundRectangle2D.Double(0, 0, progressWidth, h, arc, arc));
                 }
@@ -81,7 +77,7 @@ public final class SwingLoadingPanel extends JPanel implements OutsideChannel<Lo
 
         statusLabel = new JLabel("INITIALIZING SYSTEM...");
         statusLabel.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
-        statusLabel.setForeground(SUBTITLE_COLOR);
+        statusLabel.setForeground(COOL_GRAY);
         statusLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         add(Box.createVerticalGlue());
@@ -106,14 +102,14 @@ public final class SwingLoadingPanel extends JPanel implements OutsideChannel<Lo
     protected void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g.create();
         GradientPaint background = new GradientPaint(
-            0, 0, DEEP_BLUE, 
+            0, 0, DARK_BLUE_BASE, 
             0, getHeight(), Color.BLACK
         );
         g2d.setPaint(background);
         g2d.fillRect(0, 0, getWidth(), getHeight());
         
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2d.setColor(new Color(230, 126, 34, 20)); // Faint Orange Glow
+        g2d.setColor(new Color(230, 126, 34, 20));
         g2d.fillOval(getWidth()/2 - 150, getHeight()/2 - 150, 300, 300);
         
         g2d.dispose();

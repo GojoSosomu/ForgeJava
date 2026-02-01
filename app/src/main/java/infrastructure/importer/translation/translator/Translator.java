@@ -2,6 +2,8 @@ package infrastructure.importer.translation.translator;
 
 import java.util.Map;
 
-public interface Translator<DATA> {
+import core.model.dto.DTO;
+
+public interface Translator<DATA extends DTO> {
     DATA translate(Map<String, Object> raw, String id);
 }

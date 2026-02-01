@@ -13,6 +13,7 @@ public class DefaultLoadingOrder implements LoadingOrder {
         String lessonPath;
         String activityPath;
         String chapterPath;
+        String userProgressPath;
         try {
             lessonPath = Paths.get(
                 DefaultLoadingOrder
@@ -30,6 +31,12 @@ public class DefaultLoadingOrder implements LoadingOrder {
                 DefaultLoadingOrder
                 .class
                 .getResource("/data/json/chapter.json").toURI())
+                .toString()
+            ;
+            userProgressPath = Paths.get(
+                DefaultLoadingOrder
+                .class
+                .getResource("/data/json/user_progress.json").toURI())
                 .toString()
             ;
         } catch (Exception e) {
@@ -51,6 +58,11 @@ public class DefaultLoadingOrder implements LoadingOrder {
                 "Chapter",
                 chapterPath,
                 LoadType.CHAPTER
+            ),
+            new LoadingRequest(
+                "User Progress",
+                userProgressPath,
+                LoadType.USER_PROGRESS
             )
         );
     }
