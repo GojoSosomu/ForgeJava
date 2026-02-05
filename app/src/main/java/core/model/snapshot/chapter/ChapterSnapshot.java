@@ -7,6 +7,10 @@ import core.model.snapshot.Snapshot;
 public record ChapterSnapshot(
     String id,
     Map<String, Object> values
-) implements Snapshot{
+) implements Snapshot, Comparable<ChapterSnapshot> {
 
+    @Override
+    public int compareTo(ChapterSnapshot o) {
+        return this.id.compareTo(o.id);
+    }
 }

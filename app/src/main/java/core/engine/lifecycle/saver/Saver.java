@@ -30,10 +30,6 @@ public class Saver<T extends DTO> {
         Map<String, Map<String, Object>> rawListInfo = reconstruction.reconstructMap(
             engine.getAll(savingRequest.type())
         );
-
-        rawListInfo.forEach((key, value) -> {
-            System.out.println(key + ": " + value);
-        });
         
         writer.write(savingRequest.path(), rawListInfo);
     }

@@ -1,96 +1,210 @@
 {
-    "C-001" : {
-        "chapterCard" : {
-            "title" : "Introduction to Programming",
-            "subTitle" : "Learn the basics of programming and start coding!",
-            "message" : {
-                "type" : "TEXT",
-                "text" : "Understand what programming is"
+    "C-001": {
+        "chapterCard": {
+            "title": "Introduction to Java",
+            "subTitle": "Basic Syntax and Structure",
+            "message": {
+                "type": "TEXT",
+                "text": "Discover your first steps using Main methods and Terminators. These elements form the basic entry point and syntax of every program."
             }
         },
-        "chapterIntro" : {
-            "title" : "Welcome to the Introduction to Programming",
-            "description" : "This chapter will introduce you to the fundamental concepts of programming. You will learn about different programming languages, how to write simple programs, and understand basic programming constructs.",
-            "objectives" : [
-                {
-                    "type" : "TEXT",
-                    "text" : "Understand what programming is"
+        "chapterIntro": {
+            "title": "Welcome to Java Programming",
+            "description": "This chapter introduces the structural backbone of any Java application. You will learn about the entry point of programs and how to output information to the console.",
+            "objectives": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Understand the structure of the Main Method"
                 },
-                {
-                    "type" : "TEXT",
-                    "text" : "Learn about different programming languages"
+                { 
+                    "type": "TEXT", 
+                    "text": "Learn the role of the semicolon as a statement terminator" 
                 },
-                {
-                    "type" : "TEXT",
-                    "text" : "Write your first simple program"
+                { 
+                    "type": "TEXT", 
+                    "text": "Execute your first Java program" 
                 }
             ]
         },
-        "sequences" : [
-            "L-001",
-            "A-001"
-        ],
-        "chapterOutro" : {
-            "title" : "Chapter Completed!",
-            "description" : "Congratulations on completing the Introduction to Programming chapter. You have taken the first step in your programming journey.",
-            "sneakPeaks" : [
-                {
-                    "type" : "TEXT",
-                    "text" : "In the next chapter, we will explore data structures and algorithms."
+        "sequences": ["L-001", "A-001"],
+        "chapterOutro": {
+            "title": "Syntax Success!",
+            "description": "You can now write valid Java statements and execute a basic program. This fundamental skill is the requirement for all future coding tasks.",
+            "sneakPeaks": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Next, we explore storing data using Variables and Data Types. You will learn how to keep information saved in memory." 
                 }
             ],
-            "conclusion" : [
-                {
-                    "type" : "TEXT",    
-                    "text" : "Well done! Keep up the great work and continue learning."
+            "conclusion": [
+                { 
+                    "type": "TEXT", 
+                    "text": "The foundation is built and you are ready to start handling data. Your journey into professional development starts here." 
                 }
             ]
         }
     },
-    "C-002" : {
-        "chapterCard" : {
-            "title" : "Botion to Programming",
-            "subTitle" : "OOP learning",
-            "message" : {
-                "type" : "TEXT",
-                "text" : "Emcapsulated the boiboi"
+    "C-002": {
+        "chapterCard": {
+            "title": "Data and Memory",
+            "subTitle": "Variables and Types",
+            "message": {
+                "type": "TEXT",
+                "text": "Master the difference between Primitive and Reference variables. Understanding memory allocation is key to writing efficient software."
             }
         },
-        "chapterIntro" : {
-            "title" : "Welcome to the Introduction to Programming",
-            "description" : "This chapter will introduce you to the fundamental concepts of programming. You will learn about different programming languages, how to write simple programs, and understand basic programming constructs.",
-            "objectives" : [
-                {
-                    "type" : "TEXT",
-                    "text" : "Understand what programming is"
+        "chapterIntro": {
+            "title": "Variables and Data Types",
+            "description": "Learn how Java stores information in memory using various data sizes. We will explore how objects are referenced and how primitives behave differently.",
+            "objectives": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Master primitive types and reference variables" 
                 },
-                {
-                    "type" : "TEXT",
-                    "text" : "Learn about different programming languages"
+                { 
+                    "type": "TEXT", 
+                    "text": "Declare and initialize variables properly" 
                 },
-                {
-                    "type" : "TEXT",
-                    "text" : "Write your first simple program"
+                { 
+                    "type": "TEXT", 
+                    "text": "Understand memory allocation for data" 
                 }
             ]
         },
-        "sequences" : [
-            "L-001",
-            "A-001"
-        ],
-        "chapterOutro" : {
-            "title" : "Chapter Completed!",
-            "description" : "Congratulations on completing the Introduction to Programming chapter. You have taken the first step in your programming journey.",
-            "sneakPeaks" : [
-                {
-                    "type" : "TEXT",
-                    "text" : "In the next chapter, we will explore data structures and algorithms."
+        "sequences": ["L-002", "A-002"],
+        "chapterOutro": {
+            "title": "Data Mastery!",
+            "description": "You now understand how to define the state of your application using variables. Storing information correctly is the first step toward complex logic.",
+            "sneakPeaks": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Up next, we will be making decisions with If-Else and Switch statements. This will allow your code to choose different paths." 
                 }
             ],
-            "conclusion" : [
-                {
-                    "type" : "TEXT",    
-                    "text" : "Well done! Keep up the great work and continue learning."
+            "conclusion": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Data is the core of software and you have learned how to store it safely. You are now prepared to build functional programs." 
+                }
+            ]
+        }
+    },
+    "C-003": {
+        "chapterCard": {
+            "title": "Control Structure I",
+            "subTitle": "Conditional Logic",
+            "message": {
+                "type": "TEXT",
+                "text": "Start making decisions within your code using If and Switch blocks. These tools allow your program to react differently to various inputs."
+            }
+        },
+        "chapterIntro": {
+            "title": "Decision Making in Code",
+            "description": "Programs need to act differently under different conditions to be useful. This chapter focuses on branching logic and logical evaluation.",
+            "objectives": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Implement If-Else and Else-If ladders" 
+                },
+                { 
+                    "type": "TEXT", 
+                    "text": "Use Switch-Case for multi-way branching" 
+                },
+                { 
+                    "type": "TEXT", 
+                    "text": "Apply boolean logic to control flow" 
+                }
+            ]
+        },
+        "sequences": ["L-003", "A-003"],
+        "chapterOutro": {
+            "title": "Logic Unlocked!",
+            "description": "Your programs are no longer linear and can now branch based on data. This logic forms the 'brain' of your entire application.",
+            "sneakPeaks": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Next, we will cover automation using various types of Loops. You will learn to repeat tasks without writing extra code." 
+                }
+            ],
+            "conclusion": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Control structures are the core logic of your code and you did a great job. Dynamic programming is now within your reach."
+                }
+            ]
+        }
+    },
+    "C-004": {
+        "chapterCard": {
+            "title": "Control Structure II",
+            "subTitle": "Iteration and Loops",
+            "message": {
+                "type": "TEXT",
+                "text": "Automate repetitive tasks using For, While, and Do-While loops. Efficiency in coding comes from mastering these iterative structures."
+            }
+        },
+        "chapterIntro": {
+            "title": "Repetitive Tasks",
+            "description": "Instead of writing the same code twice, learn to use loops to automate repetitive logic. This chapter covers the syntax and control of all major loop types.",
+            "objectives": [
+                { "type": "TEXT", "text": "Write efficient For loops for known iterations" },
+                { "type": "TEXT", "text": "Use While and Do-While for conditional repetition" },
+                { "type": "TEXT", "text": "Control loop execution with break and continue" }
+            ]
+        },
+        "sequences": ["L-004", "A-004"],
+        "chapterOutro": {
+            "title": "Automation Mastered!",
+            "description": "You can now handle large-scale tasks with just a few lines of code. This level of automation is what makes computers so powerful.",
+            "sneakPeaks": [
+                { "type": "TEXT", "text": "The final step involves communicating via Input and Output streams. You will learn to make your programs fully interactive." }
+            ],
+            "conclusion": [
+                { "type": "TEXT", "text": "Loops allow you to harness the true speed of a computer processor. You have successfully scaled your programming capabilities." }
+            ]
+        }
+    },
+    "C-005": {
+        "chapterCard": {
+            "title": "Input/Output",
+            "subTitle": "Streams and Scanners",
+            "message": {
+                "type": "TEXT",
+                "text": "Learn to read from users and write to streams to make interactive programs. This bridges the gap between the code and the end user."
+            }
+        },
+        "chapterIntro": {
+            "title": "The Outside World",
+            "description": "Make your programs interactive by capturing user input and managing data streams. We will focus on the Scanner class and PrintStream management.",
+            "objectives": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Capture user input with the Scanner class" 
+                },
+                { 
+                    "type": "TEXT", 
+                    "text": "Understand PrintStream for console output" 
+                },
+                { 
+                    "type": "TEXT", 
+                    "text": "Manage basic stream resources" 
+                }
+            ]
+        },
+        "sequences": ["L-005", "A-005"],
+        "chapterOutro": {
+            "title": "Course Completed!",
+            "description": "You have transitioned from basic syntax to interactive program handling. Your skills now cover the entire basic lifecycle of a Java application.",
+            "sneakPeaks": [
+                { 
+                    "type": "TEXT", 
+                    "text": "The next level involves Advanced Data Structures and GUI development. You are ready to build full-scale desktop applications." 
+                }
+            ],
+            "conclusion": [
+                { 
+                    "type": "TEXT", 
+                    "text": "Congratulations on mastering the core foundations of Java programming. You have built a solid base for a career in software development." 
                 }
             ]
         }

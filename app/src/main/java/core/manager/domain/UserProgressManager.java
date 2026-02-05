@@ -3,8 +3,8 @@ package core.manager.domain;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import core.manager.domain.assembler.EntitySnapshotAssembler;
 import core.manager.loader.LoadTarget;
@@ -39,13 +39,13 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
                 salt
             ),
             new LessonProgress(
-                Set.of()
+                List.of()
             ),
             new ChapterProgress(
-                Set.of()
+                List.of()
             ),
             new ActivityProgress(
-                Set.of()
+                List.of()
             ),
             1
         );

@@ -15,7 +15,6 @@ public interface ViewAssembler<T extends Snapshot,R extends View> {
         for(T snapshot : snapshots) {
             result.add(this.from(snapshot));
         }
-
         return result;
     }
 

@@ -3,7 +3,6 @@ package core.manager.saver.order;
 import java.nio.file.Paths;
 import java.util.List;
 
-import core.manager.loader.order.DefaultLoadingOrder;
 import core.manager.saver.SavingRequest;
 
 public class DefaultSavingOrder implements SavingOrder {
@@ -12,9 +11,9 @@ public class DefaultSavingOrder implements SavingOrder {
         String userProgressPath;
         try {
             userProgressPath = Paths.get(
-                DefaultLoadingOrder
-                .class
-                .getResource("/data/json/user_progress.json").toURI())
+                System.getProperty("user.dir"),
+                "user_datas",
+                "user_progress.json")
                 .toString()
             ;
         } catch (Exception e) {

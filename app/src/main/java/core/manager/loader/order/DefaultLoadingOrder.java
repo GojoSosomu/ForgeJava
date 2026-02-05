@@ -34,9 +34,9 @@ public class DefaultLoadingOrder implements LoadingOrder {
                 .toString()
             ;
             userProgressPath = Paths.get(
-                DefaultLoadingOrder
-                .class
-                .getResource("/data/json/user_progress.json").toURI())
+                System.getProperty("user.dir"),
+                "user_datas",
+                "user_progress.json")
                 .toString()
             ;
         } catch (Exception e) {

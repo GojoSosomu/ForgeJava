@@ -6,7 +6,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
-import static presentation.outside.color.LibraryOfColor.*;
+import static presentation.outside.library.LibraryOfColor.*;
+import static presentation.outside.library.LibraryOfProjectInfo.*;
 
 public final class SwingMainPanel extends JPanel {
     private JButton startButton;
@@ -30,7 +31,7 @@ public final class SwingMainPanel extends JPanel {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel mainTitle = new JLabel("FORGE JAVA") {
+        JLabel mainTitle = new JLabel(PROJECT_NAME) {
             @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2d = (Graphics2D) g.create();
@@ -50,7 +51,7 @@ public final class SwingMainPanel extends JPanel {
         mainTitle.setMaximumSize(new Dimension(600, 90));
         mainTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        JLabel tagline = new JLabel("Where freedom is forged, structure helps you grow");
+        JLabel tagline = new JLabel(QOUTE);
         tagline.setFont(new Font("Segoe UI", Font.PLAIN, 18));
         tagline.setForeground(new Color(180, 190, 210, 180));
         tagline.setAlignmentX(Component.CENTER_ALIGNMENT);

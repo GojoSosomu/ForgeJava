@@ -7,7 +7,7 @@ public class App {
         if(args.length == 0) {
             printHelperAndExits();
         }
-        // Launch GUI Application if not in no-gui mode
+
         var options = args[0].toLowerCase();
 
         switch (options) {

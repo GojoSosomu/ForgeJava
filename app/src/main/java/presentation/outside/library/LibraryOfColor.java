@@ -1,4 +1,4 @@
-package presentation.outside.color;
+package presentation.outside.library;
 
 import java.awt.Color;
 
@@ -12,7 +12,7 @@ public class LibraryOfColor {
     public static final Color TEXT_OFF_WHITE = new Color(248, 250, 252);
     public static final Color DEEP_SLATE = new Color(30, 35, 50);
     public static final Color COOL_GRAY = new Color(150, 160, 180);
-    public static final Color SCORCH_RED = new Color(220, 38, 38);
+    public static final Color SCORCH_RED = new Color(255, 38, 38);
     public static final Color TRANSPARENT = new Color(0, 0, 0, 0);
 
     public static final Color PAGE_BASE = new Color(245, 235, 215);

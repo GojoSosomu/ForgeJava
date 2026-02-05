@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
-import static presentation.outside.color.LibraryOfColor.*;
+import static presentation.outside.library.LibraryOfColor.*;
 
 public final class SwingChapterCardTemplate {
 

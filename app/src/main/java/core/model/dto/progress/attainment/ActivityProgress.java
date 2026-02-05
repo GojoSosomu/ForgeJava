@@ -1,9 +1,9 @@
 package core.model.dto.progress.attainment;
 
-import java.util.Set;
+import java.util.List;
 
 public record ActivityProgress(
-    Set<String> completedActivities
+    List<String> completedActivities
 ) {
 
 }

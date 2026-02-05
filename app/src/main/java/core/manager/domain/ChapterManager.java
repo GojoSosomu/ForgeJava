@@ -41,11 +41,7 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
     public List<String> findAll() {
         Map<String, ChapterDTO> chapters = chapterRepository.getAll();
 
-        List<String> ids = new ArrayList<>();
-
-        for(String id : chapters.keySet()) {
-            ids.add(id);
-        }
+        List<String> ids = new ArrayList<>(chapters.keySet());
 
         return ids;
     }

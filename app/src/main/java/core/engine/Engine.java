@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Collections;
 
 import core.manager.domain.*;
 import core.manager.loader.*;
@@ -75,6 +76,8 @@ public class Engine {
 
     public Map<String, ChapterSnapshot> getChapters() {
         List<String> ids = chapterManager.findAll();
+
+        Collections.sort(ids);
 
         return chapterManager.from(ids);
     }

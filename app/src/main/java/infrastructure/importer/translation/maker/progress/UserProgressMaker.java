@@ -1,7 +1,7 @@
 package infrastructure.importer.translation.maker.progress;
 
 import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 import core.model.dto.progress.UserProgressDTO;
 import infrastructure.importer.translation.maker.Maker;
@@ -29,19 +29,19 @@ public class UserProgressMaker implements Maker<Map<String, Object>, UserProgres
 
     private LessonProgress makeLessonProgress(Map<String, Object> raw) {
         return new LessonProgress(
-            (Set<String>) raw.get("completedLessons")
+            (List<String>) raw.get("completedLessons")
         );
     }
 
     private ChapterProgress makeChapterProgress(Map<String, Object> raw) {
         return new ChapterProgress(
-            (Set<String>) raw.get("completedChapters")
+            (List<String>) raw.get("completedChapters")
         );
     }
 
     private ActivityProgress makeActivityProgress(Map<String, Object> raw) {
         return new ActivityProgress(
-            (Set<String>) raw.get("completedActivities")
+            (List<String>) raw.get("completedActivities")
         );
     }
 }

@@ -15,7 +15,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static presentation.outside.color.LibraryOfColor.*;
+import static presentation.outside.library.LibraryOfColor.*;
 
 public final class SwingChapterCoveragePanel extends JPanel implements SwingSlideAnimator.SlideTarget {
 

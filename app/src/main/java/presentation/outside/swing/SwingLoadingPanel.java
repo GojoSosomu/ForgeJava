@@ -9,7 +9,8 @@ import presentation.outside.channel.OutsideChannel;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
-import static presentation.outside.color.LibraryOfColor.*;
+import static presentation.outside.library.LibraryOfColor.*;
+import static presentation.outside.library.LibraryOfProjectInfo.*;
 
 public final class SwingLoadingPanel extends JPanel implements OutsideChannel<LoadingView> {
 
@@ -21,7 +22,7 @@ public final class SwingLoadingPanel extends JPanel implements OutsideChannel<Lo
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBorder(new EmptyBorder(60, 60, 60, 60));
 
-        JLabel mainTitle = new JLabel("FORGE JAVA") {
+        JLabel mainTitle = new JLabel(PROJECT_NAME) {
             @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2d = (Graphics2D) g.create();

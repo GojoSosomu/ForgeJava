@@ -1,19 +1,32 @@
 package presentation.outside.swing;
+
 import javax.swing.*;
-
-import static presentation.outside.color.LibraryOfColor.*;
-
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import presentation.outside.launcher.SwingLauncher;
+import presentation.outside.library.LibraryOfColor;
+
+import static presentation.outside.library.LibraryOfColor.*;
+
 public class SwingLogInPanel extends JPanel {
+    private SwingLauncher swingLauncher;
+
     private JButton logInButton;
     private JButton switchToSignInButton;
     private JTextField usernameField;
     private JPasswordField passwordField;
+    private JLabel errorLabel;
 
-    public SwingLogInPanel() {
+    public SwingLogInPanel(
+        SwingLauncher swingLauncher
+    ) {
         setBackground(DARK_BLUE_BASE);
         setLayout(new GridBagLayout());
-        
+
+        this.swingLauncher = swingLauncher;
+
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -26,39 +39,67 @@ public class SwingLogInPanel extends JPanel {
         gbc.insets = new Insets(0, 10, 30, 10);
         add(titleLabel, gbc);
 
+        errorLabel = new JLabel(" ");
+        errorLabel.setForeground(LibraryOfColor.SCORCH_RED);
+        errorLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
+        errorLabel.setPreferredSize(new Dimension(200, 20));
+        add(errorLabel, setGbc(0, 1, gbc));
+
         gbc.gridwidth = 1;
         gbc.insets = new Insets(5, 10, 5, 10);
 
-        add(createLabel("Username"), setGbc(0, 1, gbc));
+        add(createLabel("Username"), setGbc(0, 2, gbc));
         usernameField = createStyledTextField(15);
-        add(usernameField, setGbc(1, 1, gbc));
+        add(usernameField, setGbc(1, 2, gbc));
 
-        add(createLabel("Password"), setGbc(0, 2, gbc));
+        add(createLabel("Password"), setGbc(0, 3, gbc));
         passwordField = createStyledPasswordField(15);
-        add(passwordField, setGbc(1, 2, gbc));
+        add(passwordField, setGbc(1, 3, gbc));
 
         logInButton = new JButton("Login");
-        gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2;
+        gbc.gridx = 0; gbc.gridy = 4; gbc.gridwidth = 2;
         gbc.insets = new Insets(30, 10, 10, 10);
         add(logInButton, gbc);
 
         switchToSignInButton = new JButton("Don't have an account? Sign In");
-        gbc.gridx = 0; gbc.gridy = 4;
+        gbc.gridx = 0; gbc.gridy = 5;
         gbc.insets = new Insets(5, 10, 10, 10);
         add(switchToSignInButton, gbc);
+
+        setUpListeners();
+
     }
 
-    public void clearFields() {
+    public void reset() {
         usernameField.setText("");
         passwordField.setText("");
+        errorLabel.setText(" ");
+    }
+
+    public void start() {
+        usernameField.requestFocusInWindow();
     }
 
     public String getUsername() {
-        return usernameField.getText();
+        return usernameField.getText().trim();
     }
 
     public String getPassword() {
-        return new String(passwordField.getPassword());
+        return new String(passwordField.getPassword()).trim();
+    }
+
+    private void setUpListeners() {
+        KeyAdapter enterListener = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    logIn();
+                }
+            }
+        };
+
+        usernameField.addKeyListener(enterListener);
+        passwordField.addKeyListener(enterListener);
     }
 
     private JLabel createLabel(String text) {
@@ -91,8 +132,18 @@ public class SwingLogInPanel extends JPanel {
         ));
     }
 
+    private void logIn() {
+        swingLauncher.loginSuccessToMainPanel(this);
+    }
+
     public JButton getLogInButton() { return logInButton; }
     public JButton getSwitchToSignInButton() { return switchToSignInButton; }
+
+    public void updateErrorLabelText(String text) {
+        errorLabel.setText(text);
+        errorLabel.revalidate();
+        errorLabel.repaint();
+    }
 
     private GridBagConstraints setGbc(int x, int y, GridBagConstraints gbc) {
         gbc.gridx = x; gbc.gridy = y;
