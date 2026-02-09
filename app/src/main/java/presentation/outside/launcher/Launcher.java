@@ -6,6 +6,7 @@ import core.model.snapshot.loader.LoadingSnapshot;
 import core.model.view.loader.LoadingView;
 import presentation.service.*;
 import presentation.service.assembler.*;
+import presentation.utility.IconPathImporter;
 
 public abstract class Launcher {
     protected Engine engine = EngineSetUp.create();
@@ -20,6 +21,7 @@ public abstract class Launcher {
     protected ChapterService chapterService = new ChapterService(chapterViewAssembler, engine);
     protected LogInSignInService logInSignInService = new LogInSignInService(engine);
 
+    protected IconPathImporter iconPathImporter = new IconPathImporter();
 
     public abstract void start(ViewAssembler<LoadingSnapshot, LoadingView> viewAssembler);
 }

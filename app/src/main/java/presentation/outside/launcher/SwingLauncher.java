@@ -1,6 +1,8 @@
 package presentation.outside.launcher;
 
 import javax.swing.*;
+import javax.imageio.ImageIO;
+import java.io.IOException;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -33,6 +35,14 @@ public class SwingLauncher extends Launcher {
                 handleExit(frame, bootService);
             }
         });
+
+        try {
+            // Path must start with / to look in the resources root
+            Image icon = ImageIO.read(iconPathImporter.getIconPath());
+            frame.setIconImage(icon);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         loadingPanel = new SwingLoadingPanel();
         switchPanel(loadingPanel, 700, 340);

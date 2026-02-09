@@ -1,58 +1,35 @@
 package infrastructure.exporter.writer;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.*;
+import java.nio.file.*;
 import java.util.Map;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class JsonWriter implements Writer {
-    private final ObjectMapper mapper;
-
-    public JsonWriter() {
-        this.mapper = new ObjectMapper();
-    }
+    private final ObjectMapper mapper = new ObjectMapper();
 
     @Override
-    public void write(String path, Map<String, Map<String, Object>> rawListInfo) {
-        File targetFile = new File(path);
-        File tempFile = new File(path + ".tmp");
-
-        if (targetFile.getParentFile() != null) {
-            targetFile.getParentFile().mkdirs();
-        }
-
-        try (FileOutputStream fos = new FileOutputStream(tempFile);
-             BufferedOutputStream bos = new BufferedOutputStream(fos)) {
-            
-            mapper.writerWithDefaultPrettyPrinter().writeValue(bos, rawListInfo);
-            bos.flush();
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (tempFile.exists()) tempFile.delete();
-            return; 
-        }
+    public void write(String pathString, Map<String, Map<String, Object>> rawListInfo) {
+        Path targetPath = Paths.get(pathString);
+        Path tempPath = targetPath.resolveSibling(targetPath.getFileName() + ".tmp");
 
         try {
-            if (targetFile.exists())
-                if (!targetFile.delete())
-                    throw new Exception("Could not delete existing target file: " + path);
-            
-
-            boolean renamed = tempFile.renameTo(targetFile);
-
-            if (!renamed) 
-                throw new Exception("Rename operation failed.");
-            
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (tempFile.exists()) {
-                tempFile.delete();
+            if (targetPath.getParent() != null) {
+                Files.createDirectories(targetPath.getParent());
             }
+
+            try (OutputStream os = Files.newOutputStream(tempPath);
+                 BufferedOutputStream bos = new BufferedOutputStream(os)) {
+                mapper.writerWithDefaultPrettyPrinter().writeValue(bos, rawListInfo);
+            }
+
+            Files.move(tempPath, targetPath, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.ATOMIC_MOVE);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            try {
+                Files.deleteIfExists(tempPath);
+            } catch (IOException ignored) {}
         }
     }
 }
