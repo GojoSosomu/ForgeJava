@@ -7,7 +7,7 @@ plugins {
     id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
-version = "1.0"
+version = "1.0.1-Beta"
 
 repositories {
     mavenCentral()
@@ -85,7 +85,7 @@ tasks.register<Exec>("jpackage") {
         jpackageBin,
         "--type", "app-image",
         "--dest", outputDir.absolutePath,
-        "--name", "JLearning",
+        "--name", "JLearning-${project.version}",
         "--input", tempLibsDir.absolutePath,
         "--main-jar", "${project.name}-${project.version}.jar",
         "--main-class", "App",
