@@ -1,6 +1,9 @@
 package presentation.outside.swing;
 
 import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+
 import presentation.outside.launcher.SwingLauncher;
 import presentation.outside.library.LibraryOfColor;
 
@@ -86,6 +89,14 @@ public class SwingSignInPanel extends JPanel {
         usernameField.addKeyListener(enterListener);
         passwordField.addKeyListener(enterListener);
         confirmPasswordField.addKeyListener(enterListener);
+        addAncestorListener(new AncestorListener() {
+            @Override
+            public void ancestorAdded(AncestorEvent event) {
+                requestFocusInWindow(); 
+            }
+            @Override public void ancestorRemoved(AncestorEvent e) {}
+            @Override public void ancestorMoved(AncestorEvent e) {}
+        });
     }
 
     public void reset() {

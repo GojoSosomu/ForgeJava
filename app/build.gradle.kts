@@ -89,8 +89,8 @@ tasks.register<Exec>("jpackage") {
         "--input", tempLibsDir.absolutePath,
         "--main-jar", "${project.name}-${project.version}.jar",
         "--main-class", "App",
-        // ADD THIS: Comma-separated list of extra files/folders
-        "--app-content", "${file("src/main/resources/data").absolutePath},${file("user_datas").absolutePath}" 
+        "--app-content", "${file("src/main/resources/data").absolutePath},${file("user_datas").absolutePath},${file("src/main/resources/images").absolutePath}", 
+        "--icon", file("src/main/resources/images/icon/Icon.ico").absolutePath
     )
 
 }

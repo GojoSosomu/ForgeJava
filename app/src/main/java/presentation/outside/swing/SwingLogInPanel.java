@@ -1,6 +1,9 @@
 package presentation.outside.swing;
 
 import javax.swing.*;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -100,6 +103,14 @@ public class SwingLogInPanel extends JPanel {
 
         usernameField.addKeyListener(enterListener);
         passwordField.addKeyListener(enterListener);
+        addAncestorListener(new AncestorListener() {
+            @Override
+            public void ancestorAdded(AncestorEvent event) {
+                requestFocusInWindow(); 
+            }
+            @Override public void ancestorRemoved(AncestorEvent e) {}
+            @Override public void ancestorMoved(AncestorEvent e) {}
+        });
     }
 
     private JLabel createLabel(String text) {

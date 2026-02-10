@@ -1,6 +1,7 @@
 package presentation.outside.swing;
 
 import javax.swing.*;
+import javax.swing.event.*;
 import presentation.outside.swing.animation.SwingAnimationRunner;
 import presentation.outside.swing.animation.animator.*;
 import presentation.outside.swing.animation.animator.easing.LibraryOfEasing;
@@ -65,7 +66,6 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
         setupLayout();
         setupGestureListeners();
         updateCardBounds();
-
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
@@ -223,11 +223,11 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
 
         JPanel nav = new JPanel(new BorderLayout()); 
         nav.setOpaque(false);
-        JButton prev = createNavBtn("<"); JButton next = createNavBtn(">");
-        prev.addActionListener(e -> navigate(-1, true)); 
-        next.addActionListener(e -> navigate(1, true));
-        nav.add(prev, BorderLayout.WEST); 
-        nav.add(next, BorderLayout.EAST); 
+        JButton prevButton = createNavBtn("<"), nextButton = createNavBtn(">");
+        prevButton.addActionListener(e -> navigate(-1, true)); 
+        nextButton.addActionListener(e -> navigate(1, true));
+        nav.add(prevButton, BorderLayout.WEST); 
+        nav.add(nextButton, BorderLayout.EAST); 
         add(nav, BorderLayout.CENTER);
     }
 
@@ -239,6 +239,7 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
         b.setForeground(GLOW_YELLOW);
         b.setBorderPainted(false);
         b.setContentAreaFilled(false);
+        b.setFocusable(false);
         return b;
     }
 
@@ -249,6 +250,7 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
         b.setForeground(GLOW_YELLOW); 
         b.setBorderPainted(false); 
         b.setContentAreaFilled(false);
+        b.setFocusable(false);
         return b;
     }
 
@@ -270,16 +272,26 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
             }
             @Override public void mouseMoved(MouseEvent e) { handleCardHover(e.getPoint()); }
         };
-        addMouseListener(ma);
-        addMouseMotionListener(ma);
-        addKeyListener(new KeyAdapter() {
+        KeyAdapter ka = new KeyAdapter() {
             @Override public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT) startHold(-1);
-                else if (e.getKeyCode() == KeyEvent.VK_RIGHT) startHold(1);
+                if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_A) startHold(-1);
+                else if (e.getKeyCode() == KeyEvent.VK_RIGHT || e.getKeyCode() == KeyEvent.VK_D) startHold(1);
             }
             @Override public void keyReleased(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) stopHold();
+                if (e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT || 
+                    e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_D) stopHold();
             }
+        };
+        addMouseListener(ma);
+        addMouseMotionListener(ma);
+        addKeyListener(ka);
+        addAncestorListener(new AncestorListener() {
+            @Override
+            public void ancestorAdded(AncestorEvent event) {
+                requestFocusInWindow(); 
+            }
+            @Override public void ancestorRemoved(AncestorEvent e) {}
+            @Override public void ancestorMoved(AncestorEvent e) {}
         });
     }
 
