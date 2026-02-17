@@ -1,20 +1,20 @@
 {
   "ho" : {
-    "chapterProgress" : {
-      "currentChapter" : 1,
-      "completedChapters" : [ ]
+    "activityProgress" : {
+      "completedActivities" : [ ]
     },
-    "id" : "ho",
-    "version" : 1,
+    "userAccount" : {
+      "password" : "7ba73e7d77b22b762c43bc5d7f2754f647e74f12c95b258688c0caf8e1fff31e",
+      "salt" : "fNZLMXti6uVCg9FFDK1Crg=="
+    },
     "lessonProgress" : {
       "completedLessons" : [ ]
     },
-    "userAccount" : {
-      "salt" : "fNZLMXti6uVCg9FFDK1Crg==",
-      "password" : "7ba73e7d77b22b762c43bc5d7f2754f647e74f12c95b258688c0caf8e1fff31e"
-    },
-    "activityProgress" : {
-      "completedActivities" : [ ]
+    "version" : 1,
+    "id" : "ho",
+    "chapterProgress" : {
+      "completedChapters" : [ ],
+      "currentChapter" : 1
     }
   }
 }

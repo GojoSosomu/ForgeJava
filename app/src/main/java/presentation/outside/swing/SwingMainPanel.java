@@ -13,16 +13,38 @@ public final class SwingMainPanel extends JPanel {
     private JButton startButton;
     private JButton settingsButton;
     private JButton quitButton;
+    private JButton logoutButton;
 
     public SwingMainPanel() {
         setOpaque(false);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(new BorderLayout());
 
-        add(Box.createVerticalGlue());
-        add(createTitlePanel());
-        add(Box.createRigidArea(new Dimension(0, 80)));
-        add(createButtonPanel());
-        add(Box.createVerticalGlue());
+        JPanel menuContainer = new JPanel();
+        menuContainer.setOpaque(false);
+        menuContainer.setLayout(new BoxLayout(menuContainer, BoxLayout.Y_AXIS));
+
+        menuContainer.add(Box.createVerticalGlue());
+        menuContainer.add(createTitlePanel());
+        menuContainer.add(Box.createRigidArea(new Dimension(0, 80)));
+        menuContainer.add(createButtonPanel());
+        menuContainer.add(Box.createVerticalGlue());
+
+        add(menuContainer, BorderLayout.CENTER);
+        add(createFooterPanel(), BorderLayout.SOUTH);
+    }
+
+    private JPanel createFooterPanel() {
+        JPanel footer = new JPanel(new FlowLayout(FlowLayout.LEFT, 25, 25));
+        footer.setOpaque(false);
+        
+        logoutButton = createModernButton("LOGOUT", DEEP_SLATE);
+        logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        logoutButton.setPreferredSize(new Dimension(120, 45));
+        logoutButton.setMinimumSize(new Dimension(120, 45));
+        logoutButton.setMaximumSize(new Dimension(120, 45));
+        
+        footer.add(logoutButton);
+        return footer;
     }
 
     private JPanel createTitlePanel() {
@@ -132,6 +154,7 @@ public final class SwingMainPanel extends JPanel {
     public JButton getStartButton() { return startButton; }
     public JButton getSettingsButton() { return settingsButton; }
     public JButton getQuitButton() { return quitButton; }
+    public JButton getLogoutButton() { return logoutButton; }
 
     @Override
     protected void paintComponent(Graphics g) {

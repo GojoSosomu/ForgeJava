@@ -31,7 +31,7 @@ public class SwingChapterBoundaryAssembler {
         ));
 
         return new SwingChapterIntroTemplate(
-            pages
+            
         );
     }
 
