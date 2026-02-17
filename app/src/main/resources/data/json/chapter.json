@@ -26,7 +26,7 @@
                 }
             ]
         },
-        "sequences": ["L-001", "A-001"],
+        "sequences": ["L-001"],
         "chapterOutro": {
             "title": "Syntax Success!",
             "description": "You can now write valid Java statements and execute a basic program. This fundamental skill is the requirement for all future coding tasks.",
@@ -71,7 +71,7 @@
                 }
             ]
         },
-        "sequences": ["L-002", "A-002"],
+        "sequences": ["L-002"],
         "chapterOutro": {
             "title": "Data Mastery!",
             "description": "You now understand how to define the state of your application using variables. Storing information correctly is the first step toward complex logic.",
@@ -116,7 +116,7 @@
                 }
             ]
         },
-        "sequences": ["L-003", "A-003"],
+        "sequences": ["L-003"],
         "chapterOutro": {
             "title": "Logic Unlocked!",
             "description": "Your programs are no longer linear and can now branch based on data. This logic forms the 'brain' of your entire application.",
@@ -152,7 +152,7 @@
                 { "type": "TEXT", "text": "Control loop execution with break and continue" }
             ]
         },
-        "sequences": ["L-004", "A-004"],
+        "sequences": ["L-004"],
         "chapterOutro": {
             "title": "Automation Mastered!",
             "description": "You can now handle large-scale tasks with just a few lines of code. This level of automation is what makes computers so powerful.",
@@ -191,7 +191,7 @@
                 }
             ]
         },
-        "sequences": ["L-005", "A-005"],
+        "sequences": ["L-005"],
         "chapterOutro": {
             "title": "Course Completed!",
             "description": "You have transitioned from basic syntax to interactive program handling. Your skills now cover the entire basic lifecycle of a Java application.",

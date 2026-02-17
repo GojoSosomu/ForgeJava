@@ -12,6 +12,7 @@ import infrastructure.event.receiver.LoadingReceiver;
 import presentation.enums.SuccessType;
 import presentation.outside.channel.OutsideChannel;
 import presentation.outside.swing.*;
+import presentation.outside.swing.animation.SwingAnimationRunner;
 import presentation.outside.swing.assembler.SwingChapterCardAssembler;
 import presentation.service.BootService;
 import presentation.service.assembler.ViewAssembler;
@@ -37,7 +38,6 @@ public class SwingLauncher extends Launcher {
         });
 
         try {
-            // Path must start with / to look in the resources root
             Image icon = ImageIO.read(iconPathImporter.getIconPath());
             frame.setIconImage(icon);
         } catch (IOException e) {
@@ -57,6 +57,8 @@ public class SwingLauncher extends Launcher {
         );
 
         bootService.boot(loadingReceiver);
+
+        SwingAnimationRunner animationRunner = new SwingAnimationRunner(60);
 
         maiPanel = new SwingMainPanel();
         SwingSignInPanel signInPanel = new SwingSignInPanel(this);
@@ -78,11 +80,15 @@ public class SwingLauncher extends Launcher {
 
         SwingChapterCoveragePanel chapterCoveragePanel = new SwingChapterCoveragePanel(
             new SwingChapterCardAssembler().assemble(chapterService.getAllChapters()),
-            chapterService
+            chapterService,
+            animationRunner
         );
         
         chapterCoveragePanel.getBackButton().addActionListener(e -> switchPanel(maiPanel));
-        maiPanel.getStartButton().addActionListener(e -> switchPanel(chapterCoveragePanel, 1000, 600));
+        maiPanel.getStartButton().addActionListener(e -> {
+            switchPanel(chapterCoveragePanel, 1000, 600);
+            chapterCoveragePanel.setUpLocked();
+        });
         maiPanel.getQuitButton().addActionListener(e -> handleExit(frame, bootService));
 
         switchPanel(logInPanel, 340, 340);

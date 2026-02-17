@@ -17,8 +17,10 @@ public abstract class Launcher {
         new LessonViewAssembler(contentViewAssembler), 
         new ActivityViewAssembler(new ProblemViewAssembler(contentViewAssembler)));
 
+    protected UserProgressAssembler userProgressAssembler = new UserProgressAssembler();
+
     protected BootService bootService = new BootService(engine);
-    protected ChapterService chapterService = new ChapterService(chapterViewAssembler, engine);
+    protected ChapterService chapterService = new ChapterService(chapterViewAssembler, userProgressAssembler, engine);
     protected LogInSignInService logInSignInService = new LogInSignInService(engine);
 
     protected IconPathImporter iconPathImporter = new IconPathImporter();

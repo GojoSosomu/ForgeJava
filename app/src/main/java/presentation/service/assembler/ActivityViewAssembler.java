@@ -15,6 +15,7 @@ public class ActivityViewAssembler implements ViewAssembler<ActivitySnapshot, Ac
     @Override
     public ActivityView from(ActivitySnapshot snapshot) {
         return new ActivityView(
+            snapshot.id(),
             problemViewAssembler.from(snapshot.problem())
         );
     }

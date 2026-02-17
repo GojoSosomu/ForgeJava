@@ -15,6 +15,17 @@ public record UserProgressDTO(
     int version
 ) implements DTO{
 
+    public UserProgressDTO(UserProgressDTO user) {
+        this(
+            user.id,
+            user.userAccount,
+            user.lessonProgress,
+            user.chapterProgress,
+            user.activityProgress,
+            user.version
+        );
+    }
+
     public UserProgressDTO updateProgress(
         LessonProgress lessonProgress
     ) {

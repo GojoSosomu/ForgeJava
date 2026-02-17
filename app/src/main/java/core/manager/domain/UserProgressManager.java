@@ -42,7 +42,8 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
                 List.of()
             ),
             new ChapterProgress(
-                List.of()
+                List.of(),
+                (byte)1
             ),
             new ActivityProgress(
                 List.of()
@@ -51,10 +52,19 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
         );
 
         userProgressRepository.register(userName, userProgressDTO);
+        userProgressRepository.setCurrentUser(userProgressDTO);
+    }
+
+    public byte getCurrentChapter(String userName) {
+        if(userExists(userName)) {
+            UserProgressDTO existingProgress = userProgressRepository.get(userName);
+            return existingProgress.chapterProgress().currentChapter();
+        }
+        return 1;
     }
 
     public void updateProgress(String userName, LessonProgress progress) {
-        if (userProgressRepository.isExist(userName)) {
+        if (userExists(userName)) {
             UserProgressDTO existingProgress = userProgressRepository.get(userName);
             UserProgressDTO updatedProgress = existingProgress.updateProgress(progress);
             userProgressRepository.register(userName, updatedProgress);
@@ -62,7 +72,7 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
     }
 
     public void updateProgress(String userName, ChapterProgress progress) {
-        if (userProgressRepository.isExist(userName)) {
+        if (userExists(userName)) {
             UserProgressDTO existingProgress = userProgressRepository.get(userName);
             UserProgressDTO updatedProgress = existingProgress.updateProgress(progress);
             userProgressRepository.register(userName, updatedProgress);
@@ -70,7 +80,7 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
     }
 
     public void updateProgress(String userName, ActivityProgress progress) {
-        if (userProgressRepository.isExist(userName)) {
+        if (userExists(userName)) {
             UserProgressDTO existingProgress = userProgressRepository.get(userName);
             UserProgressDTO updatedProgress = existingProgress.updateProgress(progress);
             userProgressRepository.register(userName, updatedProgress);
@@ -87,10 +97,20 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
         return new UserProgressSnapshot(
             Map.of(
                 "userName", dto.id(),
-                "userAccount", dto.userAccount(),
-                "lessonProgress", dto.lessonProgress(),
-                "chapterProgress", dto.chapterProgress(),
-                "activityProgress", dto.activityProgress(),
+                "userAccount", Map.of(
+                    "password", dto.userAccount().password(),
+                    "salt", dto.userAccount().salt()
+                ),
+                "lessonProgress", Map.of(
+                    "completedLessons", dto.lessonProgress().completedLessons()
+                ),
+                "chapterProgress", Map.of(
+                    "completedChapters", dto.chapterProgress().completedChapters(),
+                    "currentChapter", dto.chapterProgress().currentChapter()
+                ),
+                "activityProgress", Map.of(
+                    "completedActivities", dto.activityProgress().completedActivities()
+                ),
                 "version", dto.version()
         ));
     }
@@ -127,6 +147,7 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
         UserAccount userAccount = userProgressRepository.get(userName).userAccount();
         if(hashPassword.equals(userAccount.password())) {
             System.out.println("Authentication successful for user: " + userName);
+            userProgressRepository.setCurrentUser(userProgressRepository.get(userName));
         } else {
             System.out.println("Authentication failed for user: " + userName);
         }
@@ -142,12 +163,12 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
         return userAccount.salt();
     }
 
-    public Map<String, UserProgressDTO> getAll() {
-        return userProgressRepository.getAll();
-    }
-
     @Override
     public <T extends DTO> Map<String, T> getAllDTO() {
         return (Map<String, T>) userProgressRepository.getAll();
+    }
+
+    public UserProgressDTO getCurrentUser() {
+        return userProgressRepository.getCurrentUser();
     }
 }

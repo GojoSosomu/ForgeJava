@@ -34,11 +34,11 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
             snapshot.id(),
             assembleCard((Map<String, Object>) values.get("card")),
             assembleIntro((Map<String, Object>) values.get("intro")),
-            assembleSequence(
+            (assembleSequence(
                 (List<String>) values.get("sequence"),
                 (Map<String, LessonSnapshot>) values.get("lessons"),
                 (Map<String, ActivitySnapshot>) values.get("activities")
-            ),
+            )),
             assembleOutro((Map<String, Object>) values.get("outro")));
     }
 

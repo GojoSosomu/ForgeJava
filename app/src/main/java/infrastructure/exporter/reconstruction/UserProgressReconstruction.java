@@ -18,7 +18,8 @@ public class UserProgressReconstruction implements Reconstruction<Map<String, Ob
                 "completedLessons", rawData.lessonProgress().completedLessons()
             ),
             "chapterProgress", Map.of(
-                "completedChapters", rawData.chapterProgress().completedChapters()
+                "completedChapters", rawData.chapterProgress().completedChapters(),
+                "currentChapter", rawData.chapterProgress().currentChapter()
             ),
             "activityProgress", Map.of(
                 "completedActivities", rawData.activityProgress().completedActivities()

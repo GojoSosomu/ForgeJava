@@ -7,7 +7,7 @@ plugins {
     id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
-version = "1.0.1-Beta"
+version = "1.0.2-Beta"
 
 repositories {
     mavenCentral()

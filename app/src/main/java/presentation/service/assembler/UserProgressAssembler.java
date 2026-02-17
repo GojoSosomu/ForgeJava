@@ -1,7 +1,7 @@
 package presentation.service.assembler;
 
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import core.model.snapshot.progress.UserProgressSnapshot;
 import core.model.view.progress.UserProgressView;
@@ -29,9 +29,10 @@ public class UserProgressAssembler implements ViewAssembler<UserProgressSnapshot
 
     private ProgressInfo makeProgressInfo(Map<String, Object> data) {
         return new ProgressInfo(
-            (Set<String>) data.get("lessonProgress"),
-            (Set<String>) data.get("chapterProgress"),
-            (Set<String>) data.get("activityProgress")
+            (List<String>) ((Map<String, Object>) data.get("lessonProgress")).get("completedLessons"),
+            (List<String>) ((Map<String, Object>) data.get("chapterProgress")).get("completedChapters"),
+            (List<String>) ((Map<String, Object>) data.get("activityProgress")).get("completedActivities"),
+            (byte) ((Map<String, Object>)data.get("chapterProgress")).get("currentChapter")
         );
     }
 }

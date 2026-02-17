@@ -1,11 +1,12 @@
 package core.model.view.progress.info;
 
-import java.util.Set;
+import java.util.List;
 
 public record ProgressInfo(
-    Set<String> completedLessons,
-    Set<String> completedChapters,
-    Set<String> completedActivities
+    List<String> completedLessons,
+    List<String> completedChapters,
+    List<String> completedActivities,
+    byte currentChapter
 ) {
 
 }

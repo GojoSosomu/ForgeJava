@@ -19,10 +19,8 @@ public final class SwingChapterCardAssembler {
 
         for (ChapterView view : views) {
             result.add(new SwingChapterCardTemplate(
-                    view.chapterCardView().title(),
-                    view.chapterCardView().description(),
-                    view.chapterCardView().message(),
-                    new Rectangle(x, y, 320, 180)
+                view,
+                new Rectangle(x, y, 320, 180)
             ));
         }
 

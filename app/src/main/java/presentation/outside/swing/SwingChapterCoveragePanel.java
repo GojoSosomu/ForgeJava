@@ -7,14 +7,14 @@ import presentation.outside.swing.animation.animator.*;
 import presentation.outside.swing.animation.animator.easing.LibraryOfEasing;
 import presentation.outside.swing.template.SwingChapterCardTemplate;
 import presentation.service.ChapterService;
-import presentation.utility.ChapterCarouselUtility;
+import presentation.utility.CarouselUtility;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import static presentation.outside.library.LibraryOfColor.*;
 
@@ -24,7 +24,7 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
     private final ChapterService service;
     private final JButton backButton;
     private final SwingAnimationRunner animationRunner;
-    private final ChapterCarouselUtility carousel;
+    private final CarouselUtility<String> carousel;
 
     private int animationNextIndex = 0;
     private int animationDirection = 0;
@@ -46,16 +46,15 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
     private static final int CARD_HEIGHT = 400;
     private Point dragStart;
 
-    public SwingChapterCoveragePanel(List<SwingChapterCardTemplate> cards, ChapterService service) {
+    public SwingChapterCoveragePanel(List<SwingChapterCardTemplate> cards, ChapterService service, SwingAnimationRunner swingAnimationRunner) {
         this.cards = cards;
         this.service = service;
         
-        List<String> ids = cards.stream().map(SwingChapterCardTemplate::getTitle).collect(Collectors.toList());
-        this.carousel = new ChapterCarouselUtility(ids);
+        this.carousel = new CarouselUtility<>(service.getAllChapterID());
         this.indicatorPosition = carousel.getCurrentIndex();
 
         this.backButton = createTopBackButton();
-        this.animationRunner = new SwingAnimationRunner(60);
+        this.animationRunner = swingAnimationRunner;
         this.animationRunner.start();
 
         setLayout(new BorderLayout());
@@ -85,6 +84,14 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
             animationDirection = 0;
         }
         repaint();
+    }
+
+    public void setUpLocked() {
+        Set<String> available = service.availableChapterId();
+
+        for (SwingChapterCardTemplate template : cards) {
+            template.lockedTest(available);
+        }
     }
 
     public void navigate(int step, boolean animate) {
@@ -173,7 +180,7 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
         if (cards.isEmpty() || isAnimating) return;
         Point p = getRelativeCardPoint(point);
         if (cards.get(carousel.getCurrentIndex()).hitTest(p)) {
-            service.onChapterSelected(carousel.getCurrentChapterId());
+            service.onChapterSelected(carousel.getCurrentItem(), cards.get(carousel.getCurrentIndex()).isLocked());
         }
     }
 

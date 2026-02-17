@@ -1,3 +1,20 @@
 {
-
+  "ho" : {
+    "chapterProgress" : {
+      "currentChapter" : 1,
+      "completedChapters" : [ ]
+    },
+    "id" : "ho",
+    "version" : 1,
+    "lessonProgress" : {
+      "completedLessons" : [ ]
+    },
+    "userAccount" : {
+      "salt" : "fNZLMXti6uVCg9FFDK1Crg==",
+      "password" : "7ba73e7d77b22b762c43bc5d7f2754f647e74f12c95b258688c0caf8e1fff31e"
+    },
+    "activityProgress" : {
+      "completedActivities" : [ ]
+    }
+  }
 }

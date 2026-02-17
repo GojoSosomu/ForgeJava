@@ -11,6 +11,7 @@ import core.manager.loader.*;
 import core.manager.saver.*;
 import core.model.dto.DTO;
 import core.model.snapshot.chapter.*;
+import core.model.snapshot.progress.UserProgressSnapshot;
 
 public class Engine {
     private Map<LoadType, LoadTarget> loadTargets = new HashMap<>();
@@ -91,5 +92,11 @@ public class Engine {
 
     public boolean userAlreadyExists(String userName) {
         return userProgressManager.userExists(userName);
+    }
+
+    public UserProgressSnapshot getCurrentUser() {
+        String id = userProgressManager.getCurrentUser().id();
+        
+        return userProgressManager.from(id);
     }
 }
