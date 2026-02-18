@@ -35,9 +35,9 @@ public class Engine {
         registerLoadTarget(LoadType.CHAPTER, chapterManager);
         registerLoadTarget(LoadType.LESSON, lessonManager);
         registerLoadTarget(LoadType.ACTIVITY, activityManager);
-        registerLoadTarget(LoadType.USER_PROGRESS, userProgressManager);
+        registerLoadTarget(LoadType.USER_DATABASE, userProgressManager);
 
-        registerSaveTarget(SaveType.USER_PROGRESS, userProgressManager);
+        registerSaveTarget(SaveType.USER_DATABASE, userProgressManager);
     }
 
     public void initialize() {
@@ -98,5 +98,9 @@ public class Engine {
         String id = userProgressManager.getCurrentUser().id();
         
         return userProgressManager.from(id);
+    }
+
+    public void setCurrentUser(String userName) {
+        userProgressManager.setCurrentUser(userName);
     }
 }

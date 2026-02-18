@@ -81,8 +81,8 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
 
     private ChapterCardView assembleCard(Map<String, Object> part) {
         return new ChapterCardView(
-            (String) part.get("title"), 
-            (String) part.get("subTitle"), 
+            (TextContentView) contentViewAssembler.from((String)part.get("title")), 
+            (TextContentView) contentViewAssembler.from((String)part.get("subTitle")), 
             (TextContentView) contentViewAssembler.from((ContentSnapshot) part.get("message")));
     }
 

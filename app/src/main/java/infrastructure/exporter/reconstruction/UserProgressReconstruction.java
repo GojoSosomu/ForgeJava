@@ -27,5 +27,4 @@ public class UserProgressReconstruction implements Reconstruction<Map<String, Ob
             "version", rawData.version()
         );
     }
-
 }

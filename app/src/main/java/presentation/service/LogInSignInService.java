@@ -40,4 +40,16 @@ public class LogInSignInService extends AService{
 
 		return SuccessType.LOG_IN_SUCCESS;
 	}
+
+    public void resetCurrentUser() {
+        engine.setCurrentUser("");
+    }
+
+    public SuccessType logInCurrentUser() {
+       if(engine.getCurrentUser() != null) {
+			return SuccessType.LOG_IN_SUCCESS;
+	   } else {
+			return SuccessType.FAULIER_CURRENT_USER_NOT_EXIST;
+	   }
+    }
 }

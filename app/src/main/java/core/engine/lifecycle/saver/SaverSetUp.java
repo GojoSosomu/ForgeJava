@@ -5,8 +5,9 @@ import java.util.Map;
 import core.engine.Engine;
 import core.manager.saver.SaveType;
 import core.manager.saver.order.DefaultSavingOrder;
-import core.model.dto.progress.UserProgressDTO;
+import core.model.dto.progress.UserDatabaseDTO;
 import infrastructure.exporter.reconstruction.Reconstruction;
+import infrastructure.exporter.reconstruction.UserDatabaseReconstruction;
 import infrastructure.exporter.reconstruction.UserProgressReconstruction;
 import infrastructure.exporter.writer.*;
 
@@ -19,18 +20,18 @@ public class SaverSetUp {
         Writer jsonWriter = new JsonWriter();
 
         // Initialize Reconstructions
-        Reconstruction<Map<String, Object>, UserProgressDTO> userProgressReconstruction = new UserProgressReconstruction();
-        
+        UserProgressReconstruction userProgressReconstruction = new UserProgressReconstruction();
+        Reconstruction<Map<String, Object>, UserDatabaseDTO> userDatabaseReconstruction = new UserDatabaseReconstruction(userProgressReconstruction);
         // Setup Savers
-        Saver<UserProgressDTO> userProgressSaver = new Saver<>(
+        Saver<UserDatabaseDTO> userDatabasSaver = new Saver<>(
             jsonWriter,
-            userProgressReconstruction,
+            userDatabaseReconstruction,
             engine
         );
 
         Map<SaveType, Saver<?>> savers = Map.of(
-            SaveType.USER_PROGRESS,
-            userProgressSaver
+            SaveType.USER_DATABASE,
+            userDatabasSaver
         );
 
         // Create and return the SaverExecutor

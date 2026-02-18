@@ -12,6 +12,7 @@ import core.manager.saver.SaveTarget;
 import core.model.dto.DTO;
 import core.model.dto.progress.attainment.*;
 import core.model.snapshot.progress.UserProgressSnapshot;
+import core.model.dto.progress.UserDatabaseDTO;
 import core.model.dto.progress.UserProgressDTO;
 import core.repository.UserProgressRepository;
 
@@ -29,6 +30,8 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
             System.out.println("User Progress ID: " + id);
             System.out.println("User Progress Data: " + progress +"\n");
         });
+
+        System.out.println("Current User: " + userProgressRepository.getCurrentUsername() + "\n");
     }
 
     public void newUserProgress(String userName, String password, String salt) {
@@ -52,7 +55,7 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
         );
 
         userProgressRepository.register(userName, userProgressDTO);
-        userProgressRepository.setCurrentUser(userProgressDTO);
+        userProgressRepository.setCurrentUser(userName);
     }
 
     public byte getCurrentChapter(String userName) {
@@ -88,7 +91,10 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
     }
 
     public void putDTO(String id, DTO dto) {
-        userProgressRepository.register(id, (UserProgressDTO) dto);
+        UserDatabaseDTO userDatabaseDTO = (UserDatabaseDTO) dto;
+        userProgressRepository.setCurrentUser(id);
+        for(UserProgressDTO user : userDatabaseDTO.users())
+            userProgressRepository.register(user.id(), user);
     }
 
     @Override
@@ -147,7 +153,7 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
         UserAccount userAccount = userProgressRepository.get(userName).userAccount();
         if(hashPassword.equals(userAccount.password())) {
             System.out.println("Authentication successful for user: " + userName);
-            userProgressRepository.setCurrentUser(userProgressRepository.get(userName));
+            userProgressRepository.setCurrentUser(userName);
         } else {
             System.out.println("Authentication failed for user: " + userName);
         }
@@ -164,11 +170,16 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
     }
 
     @Override
-    public <T extends DTO> Map<String, T> getAllDTO() {
-        return (Map<String, T>) userProgressRepository.getAll();
+    public <T extends DTO> Map<String, T> getAllDTO() { 
+        System.out.println(Map.of("USER_DATABASE", userProgressRepository.getUserDatabase()));       
+        return (Map<String, T>) Map.of("USER_DATABASE", userProgressRepository.getUserDatabase());
     }
 
     public UserProgressDTO getCurrentUser() {
         return userProgressRepository.getCurrentUser();
+    }
+
+    public void setCurrentUser(String userName) {
+        userProgressRepository.setCurrentUser(userName);
     }
 }

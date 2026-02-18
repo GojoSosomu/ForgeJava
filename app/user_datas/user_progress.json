@@ -1,20 +1,40 @@
 {
-  "ho" : {
-    "activityProgress" : {
-      "completedActivities" : [ ]
-    },
-    "userAccount" : {
-      "password" : "7ba73e7d77b22b762c43bc5d7f2754f647e74f12c95b258688c0caf8e1fff31e",
-      "salt" : "fNZLMXti6uVCg9FFDK1Crg=="
-    },
-    "lessonProgress" : {
-      "completedLessons" : [ ]
-    },
-    "version" : 1,
-    "id" : "ho",
-    "chapterProgress" : {
-      "completedChapters" : [ ],
-      "currentChapter" : 1
-    }
+  "you" : {
+    "users" : [ {
+      "activityProgress" : {
+        "completedActivities" : [ ]
+      },
+      "userAccount" : {
+        "password" : "039a014770aef0baccbabce68087d67db152523d30c9c3971ccd91a694f05236",
+        "salt" : "LmlUagY89+DtpFONGoTahA=="
+      },
+      "lessonProgress" : {
+        "completedLessons" : [ ]
+      },
+      "version" : 1,
+      "id" : "ho",
+      "chapterProgress" : {
+        "completedChapters" : [ ],
+        "currentChapter" : 1
+      }
+    }, {
+      "activityProgress" : {
+        "completedActivities" : [ ]
+      },
+      "userAccount" : {
+        "password" : "33529f221245a600492b6921c198eeae4db463f1c690d5cefbefd987f5af4c01",
+        "salt" : "Fz9iJ0me3PMHOZBpZJWonw=="
+      },
+      "lessonProgress" : {
+        "completedLessons" : [ ]
+      },
+      "version" : 1,
+      "id" : "you",
+      "chapterProgress" : {
+        "completedChapters" : [ ],
+        "currentChapter" : 1
+      }
+    } ],
+    "id" : "you"
   }
 }

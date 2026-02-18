@@ -16,8 +16,8 @@ import static presentation.outside.library.LibraryOfColor.*;
 public final class SwingChapterCardTemplate {
 
     private Rectangle2D bounds;
-    private String title;
-    private String description;
+    private TextContentView title;
+    private TextContentView description;
     private String id;
     private TextContentView message;
     private boolean isHovered = false;
@@ -38,10 +38,6 @@ public final class SwingChapterCardTemplate {
 
     public void setParent(JComponent parent) {
         this.parent = parent;
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public Rectangle2D getBounds() {
@@ -98,7 +94,7 @@ public final class SwingChapterCardTemplate {
         final int SHADOW_ALPHA_BASE = 20;
         final int SHADOW_ALPHA_HOVER = 45;
         final int TITLE_BASELINE_Y = 18;
-        final int DESC_TOP_MARGIN = 48;
+        final int DESC_TOP_MARGIN = 15;
         final int MSG_TOP_MARGIN = 15;
         final int GLASS_INSET = 10;
         final int FOOTER_BOTTOM_MARGIN = 25;
@@ -134,12 +130,12 @@ public final class SwingChapterCardTemplate {
         
         g2.setFont(new Font("Segoe UI", Font.BOLD, 18)); 
         g2.setColor(isLocked ? withAdjust(INK_DARK, 1.4) : INK_DARK);
-        g2.drawString(title.toUpperCase(), textX, cardY + OFFSET_Y + TITLE_BASELINE_Y);
+        g2.drawString(title.text().toUpperCase(), textX, cardY + OFFSET_Y + TITLE_BASELINE_Y);
 
-        int descY = cardY + OFFSET_Y + DESC_TOP_MARGIN;
+        int descY = cardY + OFFSET_Y + TITLE_BASELINE_Y + DESC_TOP_MARGIN;
         g2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         g2.setColor(isLocked ? INK_FADED : INK_MEDIUM);
-        int nextY = renderer.drawText(description, textX, descY, contentWidth - 20, 0, 0, 0);
+        int nextY = renderer.drawText(description.text(), textX, descY, contentWidth - 20, 0, 0, 0);
 
         if (!isLocked) {
             int msgY = nextY + MSG_TOP_MARGIN;

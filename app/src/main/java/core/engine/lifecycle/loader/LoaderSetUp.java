@@ -11,7 +11,7 @@ import core.model.dto.activity.problem.*;
 import core.model.dto.chapter.ChapterDTO;
 import core.model.dto.content.ContentType;
 import core.model.dto.lesson.LessonDTO;
-import core.model.dto.progress.UserProgressDTO;
+import core.model.dto.progress.UserDatabaseDTO;
 import infrastructure.event.receiver.LoadingReceiver;
 import infrastructure.importer.DataSizer;
 import infrastructure.importer.reader.*;
@@ -55,6 +55,9 @@ public class LoaderSetUp {
         UserProgressMaker userProgressMaker = new UserProgressMaker();
         UserProgressMapper userProgressMapper = new UserProgressMapper(userProgressMaker);
 
+        UserDatabaseMaker userDatabaseMaker = new UserDatabaseMaker(userProgressMapper);
+        UserDatabaseMapper userDatabaseMapper = new UserDatabaseMapper(userProgressMapper, userDatabaseMaker);
+
         // Initialize JsonImporter
         Reader jsonReader = new JsonReader();
 
@@ -89,10 +92,10 @@ public class LoaderSetUp {
             engine
         );
 
-        Translator<UserProgressDTO> userProgressTranslator = new UserProgressTranslator(userProgressMapper);
+        Translator<UserDatabaseDTO> userDatabaseTranslator = new UserDatabaseranslator(userDatabaseMapper);
 
-        Loader<UserProgressDTO> userProgressLoader = new Loader<>(
-            userProgressTranslator,
+        Loader<UserDatabaseDTO> userDatabaseLoader = new Loader<>(
+            userDatabaseTranslator,
             jsonReader,
             engine
         );
@@ -102,7 +105,7 @@ public class LoaderSetUp {
             LoadType.LESSON, lessonLoader,
             LoadType.ACTIVITY, activityLoader,
             LoadType.CHAPTER, chapterLoader,
-            LoadType.USER_PROGRESS, userProgressLoader
+            LoadType.USER_DATABASE, userDatabaseLoader
         );
 
         LoaderExecutor loaderExecutor = new LoaderExecutor(

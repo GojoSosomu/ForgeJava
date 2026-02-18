@@ -22,7 +22,7 @@ public class DefaultLoadingOrder implements LoadingOrder {
             new LoadingRequest("Lesson", lessonPath, LoadType.LESSON),
             new LoadingRequest("Activity", activityPath, LoadType.ACTIVITY),
             new LoadingRequest("Chapter", chapterPath, LoadType.CHAPTER),
-            new LoadingRequest("User Progress", userProgressPath, LoadType.USER_PROGRESS)
+            new LoadingRequest("User Progress", userProgressPath, LoadType.USER_DATABASE)
         );
     }
 
@@ -33,7 +33,6 @@ public class DefaultLoadingOrder implements LoadingOrder {
     }
 
     private String resolveUserProgressPath() {
-        // In jpackage, this points to the folder with your .exe
         Path rootPath = Paths.get(System.getProperty("user.dir"));
         Path userDir = rootPath.resolve("user_datas");
         

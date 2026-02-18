@@ -19,7 +19,7 @@ public class JsonWriter implements Writer {
             }
 
             try (OutputStream os = Files.newOutputStream(tempPath);
-                 BufferedOutputStream bos = new BufferedOutputStream(os)) {
+                BufferedOutputStream bos = new BufferedOutputStream(os)) {
                 mapper.writerWithDefaultPrettyPrinter().writeValue(bos, rawListInfo);
             }
 

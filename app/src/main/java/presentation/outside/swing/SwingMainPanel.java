@@ -10,10 +10,7 @@ import static presentation.outside.library.LibraryOfColor.*;
 import static presentation.outside.library.LibraryOfProjectInfo.*;
 
 public final class SwingMainPanel extends JPanel {
-    private JButton startButton;
-    private JButton settingsButton;
-    private JButton quitButton;
-    private JButton logoutButton;
+    private JButton startButton, settingsButton, quitButton, logoutButton, creditButton;
 
     public SwingMainPanel() {
         setOpaque(false);
@@ -23,11 +20,13 @@ public final class SwingMainPanel extends JPanel {
         menuContainer.setOpaque(false);
         menuContainer.setLayout(new BoxLayout(menuContainer, BoxLayout.Y_AXIS));
 
-        menuContainer.add(Box.createVerticalGlue());
+        menuContainer.add(Box.createRigidArea(new Dimension(0, 0)));
         menuContainer.add(createTitlePanel());
         menuContainer.add(Box.createRigidArea(new Dimension(0, 80)));
         menuContainer.add(createButtonPanel());
-        menuContainer.add(Box.createVerticalGlue());
+
+        menuContainer.add(Box.createVerticalGlue()); 
+        menuContainer.add(Box.createVerticalGlue()); 
 
         add(menuContainer, BorderLayout.CENTER);
         add(createFooterPanel(), BorderLayout.SOUTH);
@@ -43,7 +42,14 @@ public final class SwingMainPanel extends JPanel {
         logoutButton.setMinimumSize(new Dimension(120, 45));
         logoutButton.setMaximumSize(new Dimension(120, 45));
         
+        creditButton = createModernButton("CREDIT", GLASS_WHITE);
+        creditButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        creditButton.setPreferredSize(new Dimension(120, 45));
+        creditButton.setMinimumSize(new Dimension(120, 45));
+        creditButton.setMaximumSize(new Dimension(120, 45));
+
         footer.add(logoutButton);
+        footer.add(creditButton);
         return footer;
     }
 
@@ -74,7 +80,7 @@ public final class SwingMainPanel extends JPanel {
         mainTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel tagline = new JLabel(QOUTE);
-        tagline.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+        tagline.setFont(new Font("Segoe UI", Font.ITALIC, 18));
         tagline.setForeground(new Color(180, 190, 210, 180));
         tagline.setAlignmentX(Component.CENTER_ALIGNMENT);
 
@@ -155,6 +161,7 @@ public final class SwingMainPanel extends JPanel {
     public JButton getSettingsButton() { return settingsButton; }
     public JButton getQuitButton() { return quitButton; }
     public JButton getLogoutButton() { return logoutButton; }
+    public JButton getCreditButton() { return creditButton; }
 
     @Override
     protected void paintComponent(Graphics g) {

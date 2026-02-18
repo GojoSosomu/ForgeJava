@@ -16,6 +16,10 @@ public class ContentViewAssembler implements ViewAssembler<ContentSnapshot, Cont
         };
     }
 
+    public TextContentView from(String text) {
+        return new TextContentView(text);
+    }
+
     private VideoContentView assembleVideoView(Map<String,Object> values) {
         return new VideoContentView(
             (String) values.get("url")

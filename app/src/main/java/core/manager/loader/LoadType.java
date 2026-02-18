@@ -4,5 +4,5 @@ public enum LoadType {
     LESSON,
     ACTIVITY,
     CHAPTER,
-    USER_PROGRESS
+    USER_DATABASE
 }

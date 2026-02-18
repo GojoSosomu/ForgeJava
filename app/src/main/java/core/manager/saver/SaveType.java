@@ -1,5 +1,5 @@
 package core.manager.saver;
 
 public enum SaveType {
-    USER_PROGRESS
+    USER_DATABASE
 }

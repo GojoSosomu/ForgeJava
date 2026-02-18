@@ -1,5 +1,7 @@
 package infrastructure.importer.translation.mapper;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import core.model.dto.progress.UserProgressDTO;
@@ -19,5 +21,18 @@ public class UserProgressMapper implements Mapper<Map<String, Object>, UserProgr
         if (raw == null || raw.isEmpty()) return null;
 
         return maker.make(raw, id);
+    }
+
+    @Override
+    public List<UserProgressDTO> list(List<Map<String, Object>> rawList) {
+        if (rawList == null) return List.of();
+
+        List<UserProgressDTO> users = new ArrayList<>();
+
+        for(Map<String, Object> user : rawList) {
+            users.add(this.single(user, (String) user.get("id")));
+        }
+
+        return users;
     }
 }

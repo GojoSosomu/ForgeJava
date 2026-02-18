@@ -23,9 +23,9 @@ public class SwingLauncher extends Launcher {
 
     private final JFrame frame = new JFrame(PROJECT_NAME);
     private JPanel loadingPanel;
-    private SwingMainPanel maiPanel;
+    private SwingMainPanel mainPanel;
     private static final int DEFAULT_WIDTH = 1200;
-    private static final int DEFAULT_HEIGHT = 800;
+    private static final int DEFAULT_HEIGHT = 700;
 
     @Override
     public void start(ViewAssembler<LoadingSnapshot, LoadingView> viewAssembler) {
@@ -60,7 +60,7 @@ public class SwingLauncher extends Launcher {
 
         SwingAnimationRunner animationRunner = new SwingAnimationRunner(60);
 
-        maiPanel = new SwingMainPanel();
+        mainPanel = new SwingMainPanel();
         SwingSignInPanel signInPanel = new SwingSignInPanel(this);
         SwingLogInPanel logInPanel = new SwingLogInPanel(this);
 
@@ -74,24 +74,38 @@ public class SwingLauncher extends Launcher {
         signInPanel.getSignInButton().addActionListener(e -> signInSuccessToMainPanel(signInPanel));
         signInPanel.getSwitchToLoginButton().addActionListener(e -> {
             signInPanel.reset();
-            switchPanel(logInPanel, 340, 340);
+            switchPanel(logInPanel, 380, 340);
             logInPanel.start();
         });
 
+        SwingCreditPanel creditPanel = new SwingCreditPanel();
+        creditPanel.getBackButton().addActionListener(e -> switchPanel(mainPanel));
+        
         SwingChapterCoveragePanel chapterCoveragePanel = new SwingChapterCoveragePanel(
             new SwingChapterCardAssembler().assemble(chapterService.getAllChapters()),
             chapterService,
             animationRunner
         );
         
-        chapterCoveragePanel.getBackButton().addActionListener(e -> switchPanel(maiPanel));
-        maiPanel.getStartButton().addActionListener(e -> {
+        chapterCoveragePanel.getBackButton().addActionListener(e -> switchPanel(mainPanel));
+        mainPanel.getStartButton().addActionListener(e -> {
             switchPanel(chapterCoveragePanel, 1000, 600);
             chapterCoveragePanel.setUpLocked();
         });
-        maiPanel.getQuitButton().addActionListener(e -> handleExit(frame, bootService));
+        mainPanel.getQuitButton().addActionListener(e -> handleExit(frame, bootService));
+        mainPanel.getLogoutButton().addActionListener(e -> {
+            logInSignInService.resetCurrentUser();
+            logInPanel.reset();
+            switchPanel(logInPanel, 400, 370);
+            logInPanel.start();
+        });
+        mainPanel.getCreditButton().addActionListener(e -> switchPanel(creditPanel));
 
-        switchPanel(logInPanel, 340, 340);
+        SuccessType result = logInSignInService.logInCurrentUser();
+        if(result == SuccessType.LOG_IN_SUCCESS)
+            switchPanel(mainPanel);
+        else if(result == SuccessType.FAULIER_CURRENT_USER_NOT_EXIST)
+            switchPanel(logInPanel, 380, 340);
     }
 
     public void switchPanel(JPanel panel, int width, int height) {
@@ -118,7 +132,7 @@ public class SwingLauncher extends Launcher {
         );
         switch (result) {
             case LOG_IN_SUCCESS -> {
-                switchPanel(maiPanel);
+                switchPanel(mainPanel);
             }
             case FAILURE_INCORRECT_PASSWORD -> {
                 logInPanel.updateErrorLabelText("Incorrected Password");
@@ -143,7 +157,7 @@ public class SwingLauncher extends Launcher {
         );
         switch(result) {
             case SIGN_IN_SUCCESS -> {
-                switchPanel(maiPanel);
+                switchPanel(mainPanel);
             }
             case FAILURE_MISSING_FIELDS -> {
                 signInPanel.updateErrorLabelText("Please complete all required fields.");

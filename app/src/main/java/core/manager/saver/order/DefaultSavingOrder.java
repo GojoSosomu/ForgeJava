@@ -15,10 +15,8 @@ public class DefaultSavingOrder implements SavingOrder {
     public List<SavingRequest> orders() {
         String userProgressPath;
         try {
-            // 1. Get the directory where the JAR or EXE is located
             Path appDir = Paths.get(System.getProperty("user.dir")); 
             
-            // 2. Define the storage directory relative to the app location
             Path storageDir = appDir.resolve("user_datas");
 
             if (Files.notExists(storageDir)) {
@@ -34,7 +32,7 @@ public class DefaultSavingOrder implements SavingOrder {
         }
 
         return List.of(
-            new SavingRequest("User Progress", userProgressPath, SaveType.USER_PROGRESS)
+            new SavingRequest("User Progress", userProgressPath, SaveType.USER_DATABASE)
         );
     }
 }
