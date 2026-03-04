@@ -9,8 +9,8 @@ import core.model.dto.chapter.ChapterDTO;
 import core.model.dto.chapter.ChapterIntro;
 import core.model.dto.chapter.ChapterOutro;
 import core.model.dto.content.Content;
-import core.model.dto.content.ContentType;
 import core.model.dto.content.TextContent;
+import core.model.dto.content.enums.ContentType;
 import infrastructure.importer.translation.filter.ContentFilter;
 import infrastructure.importer.translation.maker.Maker;
 import infrastructure.importer.translation.mapper.ContentMapper;
@@ -33,15 +33,15 @@ public class ChapterMaker implements Maker<Map<String, Object>, ChapterDTO> {
         return new ChapterDTO(
                 id,
                 new ChapterCard(
-                    (String) chapterCard.get("title"),
-                    (String) chapterCard.get("subTitle"),
+                    (TextContent) mapper.single((Map<String, Object>) chapterCard.get("title")  ),
+                    (TextContent) mapper.single((Map<String, Object>) chapterCard.get("subTitle")),
                     (TextContent) mapper.single((Map<String, Object>) chapterCard.get("message"))
                 ),
                 makChapterIntro(chapterIntro),
                 sequences,
                 new ChapterOutro(
-                    (String) chapterOutro.get("title"),
-                    (String) chapterOutro.get("description"),
+                    (TextContent) mapper.single((Map<String, Object>) chapterOutro.get("title")),
+                    (TextContent) mapper.single((Map<String, Object>) chapterOutro.get("description")),
                     mapper.list((List<Map<String, Object>>) chapterOutro.get("sneakPeaks")),
                     mapper.list((List<Map<String, Object>>) chapterOutro.get("conclusion"))
                 )
@@ -75,9 +75,9 @@ public class ChapterMaker implements Maker<Map<String, Object>, ChapterDTO> {
         }
 
         return new ChapterIntro(
-                    (String) data.get("title"),
-                    descriptiTextContents,
-                    objectivTextContents
+            (TextContent) mapper.single((Map<String, Object>) data.get("title")),
+            descriptiTextContents,
+            objectivTextContents
         );
     }
 

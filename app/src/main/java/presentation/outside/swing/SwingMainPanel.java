@@ -1,9 +1,10 @@
 package presentation.outside.swing;
 
 import javax.swing.*;
+import javax.swing.event.*;
+
+import java.awt.event.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
 import static presentation.outside.library.LibraryOfColor.*;
@@ -11,6 +12,7 @@ import static presentation.outside.library.LibraryOfProjectInfo.*;
 
 public final class SwingMainPanel extends JPanel {
     private JButton startButton, settingsButton, quitButton, logoutButton, creditButton;
+    private JLabel nameLabel;
 
     public SwingMainPanel() {
         setOpaque(false);
@@ -28,8 +30,11 @@ public final class SwingMainPanel extends JPanel {
         menuContainer.add(Box.createVerticalGlue()); 
         menuContainer.add(Box.createVerticalGlue()); 
 
+        add(createProfileHeader(), BorderLayout.NORTH);
         add(menuContainer, BorderLayout.CENTER);
         add(createFooterPanel(), BorderLayout.SOUTH);
+
+        setupGestureListeners();
     }
 
     private JPanel createFooterPanel() {
@@ -89,6 +94,69 @@ public final class SwingMainPanel extends JPanel {
         panel.add(tagline);
 
         return panel;
+    }
+
+    public JPanel createProfileHeader() {
+        JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 25, 25));
+        headerPanel.setOpaque(false);
+
+        JPanel gridBagPanel = new JPanel(new GridBagLayout()) {
+            @Override
+            public Dimension getPreferredSize() {
+                Dimension d = super.getPreferredSize();
+                int calculatedWidth = d.width; 
+                return new Dimension(Math.min(300, calculatedWidth), 40);
+            }
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2d.setColor(withAlpha(GLASS_WHITE, 40)); 
+                g2d.fill(new java.awt.geom.RoundRectangle2D.Float(0, 0, getWidth(), getHeight(), 20, 20));
+                g2d.dispose();
+            }
+        };
+        gridBagPanel.setOpaque(false);
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        nameLabel = new JLabel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                
+                FontMetrics fm = g2d.getFontMetrics(getFont());
+                Rectangle viewR = new Rectangle(0, 0, getWidth(), getHeight());
+                Rectangle iconR = new Rectangle();
+                Rectangle textR = new Rectangle();
+
+                String clippedText = SwingUtilities.layoutCompoundLabel(
+                    this, fm, getText(), null, 
+                    getVerticalAlignment(), getHorizontalAlignment(),
+                    getVerticalTextPosition(), getHorizontalTextPosition(),
+                    viewR, iconR, textR, 0
+                );
+
+                GradientPaint gp = new GradientPaint(0, 0, GLOW_YELLOW, 0, getHeight(), ORANGE_BASED);
+                g2d.setPaint(gp);
+                g2d.setFont(getFont());
+                
+                int y = ((getHeight() - fm.getHeight()) / 2) + fm.getAscent();
+                g2d.drawString(clippedText, 0, y);
+                g2d.dispose();
+            }
+        };
+        nameLabel.setFont(new Font("Segoe UI", Font.ITALIC, 15));
+
+        gbCoord(gbc, 0, 0);
+        gbc.anchor = GridBagConstraints.WEST; 
+        gbc.weightx = 1.0; 
+        gbc.insets = new Insets(0, 8, 0, 14); 
+        gridBagPanel.add(nameLabel, gbc);
+
+        headerPanel.add(gridBagPanel);
+        return headerPanel;
     }
 
     private JPanel createButtonPanel() {
@@ -154,7 +222,13 @@ public final class SwingMainPanel extends JPanel {
         button.setMinimumSize(new Dimension(350, 70));
         button.setPreferredSize(new Dimension(350, 70));
         button.setMaximumSize(new Dimension(400, 80));
+        button.setFocusable(false);
         return button;
+    }
+
+    private void gbCoord(GridBagConstraints gbc, int x, int y) {
+        gbc.gridx = x;
+        gbc.gridy = y;
     }
 
     public JButton getStartButton() { return startButton; }
@@ -162,6 +236,8 @@ public final class SwingMainPanel extends JPanel {
     public JButton getQuitButton() { return quitButton; }
     public JButton getLogoutButton() { return logoutButton; }
     public JButton getCreditButton() { return creditButton; }
+
+    public JLabel getNameLabel() { return nameLabel; }
 
     @Override
     protected void paintComponent(Graphics g) {
@@ -171,5 +247,25 @@ public final class SwingMainPanel extends JPanel {
         g2d.fillRect(0, 0, getWidth(), getHeight());
         g2d.dispose();
         super.paintComponent(g);
+    }
+
+    private void setupGestureListeners() {
+        KeyAdapter ka = new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER) startButton.doClick();
+                else if(e.getKeyCode() == KeyEvent.VK_S) settingsButton.doClick();
+                else if(e.getKeyCode() == KeyEvent.VK_Q) quitButton.doClick();
+                else if(e.getKeyCode() == KeyEvent.VK_ESCAPE) logoutButton.doClick();
+            }
+        };
+
+        addAncestorListener(new AncestorListener() {
+            @Override public void ancestorAdded(AncestorEvent e) { requestFocusInWindow(); }
+            @Override public void ancestorRemoved(AncestorEvent e) {}
+            @Override public void ancestorMoved(AncestorEvent e) {}
+        });
+
+        addKeyListener(ka);
     }
 }

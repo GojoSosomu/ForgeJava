@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import core.model.dto.activity.problem.question.QuestionType;
-import core.model.dto.content.ContentType;
+import core.model.dto.content.enums.ContentType;
 import core.model.snapshot.activity.problem.ProblemSnapshot;
 import core.model.snapshot.content.ContentSnapshot;
 import core.model.view.activity.problem.ProblemView;

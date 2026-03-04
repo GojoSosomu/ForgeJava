@@ -2,6 +2,7 @@ package presentation.service.assembler;
 
 import java.util.Map;
 
+import core.model.dto.content.enums.text.*;
 import core.model.snapshot.content.ContentSnapshot;
 import core.model.view.content.*;
 
@@ -17,7 +18,13 @@ public class ContentViewAssembler implements ViewAssembler<ContentSnapshot, Cont
     }
 
     public TextContentView from(String text) {
-        return new TextContentView(text);
+        return new TextContentView(
+            text,
+            new TextStyle(
+                TextEmphasize.BODY,
+                TextSize.MEDIUM
+            )
+        );
     }
 
     private VideoContentView assembleVideoView(Map<String,Object> values) {
@@ -34,7 +41,8 @@ public class ContentViewAssembler implements ViewAssembler<ContentSnapshot, Cont
 
     private TextContentView assembleTextView(Map<String,Object> values) {
         return new TextContentView(
-            (String) values.get("text")
+            (String) values.get("text"),
+            (TextStyle) values.get("style")
         );
     }
 

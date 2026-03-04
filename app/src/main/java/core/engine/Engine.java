@@ -95,11 +95,16 @@ public class Engine {
     }
 
     public UserProgressSnapshot getCurrentUser() {
+        if(userProgressManager.getCurrentUser() == null) return null;
         String id = userProgressManager.getCurrentUser().id();
         
         return userProgressManager.from(id);
     }
 
+    public String getCurrentUserName() {
+        return userProgressManager.getCurrentUser().id();
+    }
+    
     public void setCurrentUser(String userName) {
         userProgressManager.setCurrentUser(userName);
     }

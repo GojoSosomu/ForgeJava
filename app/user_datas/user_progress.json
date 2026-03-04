@@ -1,40 +1,57 @@
 {
-  "you" : {
+  "" : {
     "users" : [ {
       "activityProgress" : {
         "completedActivities" : [ ]
       },
-      "userAccount" : {
-        "password" : "039a014770aef0baccbabce68087d67db152523d30c9c3971ccd91a694f05236",
-        "salt" : "LmlUagY89+DtpFONGoTahA=="
+      "chapterProgress" : {
+        "currentChapter" : 1,
+        "completedChapters" : [ ]
       },
+      "id" : "howtodo",
+      "version" : 1,
       "lessonProgress" : {
         "completedLessons" : [ ]
       },
-      "version" : 1,
-      "id" : "ho",
-      "chapterProgress" : {
-        "completedChapters" : [ ],
-        "currentChapter" : 1
+      "userAccount" : {
+        "salt" : "Xy4rqmS7oTER5onJ9LWTwQ==",
+        "password" : "f116628ce6a6ef8d62563a658f6ae6ad932d1b140cfbf1855a84fc9eefc9ca2c"
       }
     }, {
       "activityProgress" : {
         "completedActivities" : [ ]
       },
-      "userAccount" : {
-        "password" : "33529f221245a600492b6921c198eeae4db463f1c690d5cefbefd987f5af4c01",
-        "salt" : "Fz9iJ0me3PMHOZBpZJWonw=="
+      "chapterProgress" : {
+        "currentChapter" : 1,
+        "completedChapters" : [ ]
       },
+      "id" : "ho",
+      "version" : 1,
       "lessonProgress" : {
         "completedLessons" : [ ]
       },
-      "version" : 1,
-      "id" : "you",
+      "userAccount" : {
+        "salt" : "LmlUagY89+DtpFONGoTahA==",
+        "password" : "039a014770aef0baccbabce68087d67db152523d30c9c3971ccd91a694f05236"
+      }
+    }, {
+      "activityProgress" : {
+        "completedActivities" : [ ]
+      },
       "chapterProgress" : {
-        "completedChapters" : [ ],
-        "currentChapter" : 1
+        "currentChapter" : 1,
+        "completedChapters" : [ ]
+      },
+      "id" : "you",
+      "version" : 1,
+      "lessonProgress" : {
+        "completedLessons" : [ ]
+      },
+      "userAccount" : {
+        "salt" : "Fz9iJ0me3PMHOZBpZJWonw==",
+        "password" : "33529f221245a600492b6921c198eeae4db463f1c690d5cefbefd987f5af4c01"
       }
     } ],
-    "id" : "you"
+    "id" : ""
   }
 }

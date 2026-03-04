@@ -1,53 +1,97 @@
 {
-    "A-001" : {
-        "problem" : {
-            "type" : "QUESTIONNAIRE",
-            "instructions": [
-                {
-                    "type": "TEXT",
-                    "text" : "Choose the correct answer from the options provided."
-                },
-                {
-                    "type": "TEXT",
-                    "text" : "Read each question carefully before answering."
-                }
-            ],
-            "questions" : [
-                {
-                    "type" : "MULTIPLE_CHOICE",
-                    "question" : [
-                        {
-                            "type": "TEXT",
-                            "text" : "What is the capital of France?"
-                        },
-                        {
-                            "type": "IMAGE",
-                            "url" : "http://example.com/images/france_map.png"
-                        }
-                    ],
-                    "values" : {
-                        "options" : [
-                            {
-                                "type" : "TEXT",
-                                "text" : "A. Berlin"
-                            },
-                            {
-                                "type": "TEXT",
-                                "text" : "B. Madrid"
-                            },
-                            {
-                                "type": "TEXT",
-                                "text" : "C. Paris"
-                            },
-                            {
-                                "type": "TEXT",
-                                "text" : "D. Rome"
-                            }
-                        ],
-                        "correctAnswerIndex" : 2
-                    }
-                }
-            ]
+  "A-001": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [
+        {
+          "type": "TEXT",
+          "text": "Final Chapter Assessment",
+          "style": { "emphasis": "LABEL", "size": "SMALL" }
+        },
+        {
+          "type": "TEXT",
+          "text": "Complete all questions to unlock the next chapter. Good luck!",
+          "style": { "emphasis": "INFO", "size": "TINY" }
         }
+      ],
+      "questions": [
+        {
+          "type": "MULTIPLE_CHOICE",
+          "question": [
+            {
+              "type": "TEXT",
+              "text": "1. What is the entry point of every Java application?",
+              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
+            }
+          ],
+          "values": {
+            "options": [
+              { "type": "TEXT", "text": "A. start()", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "B. main()", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "C. run()", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "D. execute()", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+            ],
+            "correctAnswerIndex": 1
+          }
+        },
+        {
+          "type": "MULTIPLE_CHOICE",
+          "question": [
+            {
+              "type": "TEXT",
+              "text": "2. Which data type is used to store a single character, like 'A'?",
+              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
+            }
+          ],
+          "values": {
+            "options": [
+              { "type": "TEXT", "text": "A. String", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "B. char", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "C. byte", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "D. Letter", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+            ],
+            "correctAnswerIndex": 1
+          }
+        },
+        {
+          "type": "MULTIPLE_CHOICE",
+          "question": [
+            {
+              "type": "TEXT",
+              "text": "3. What is the correct way to declare a constant value that cannot be changed?",
+              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
+            }
+          ],
+          "values": {
+            "options": [
+              { "type": "TEXT", "text": "A. static int x = 10;", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "B. const int x = 10;", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "C. final int x = 10;", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "D. fixed int x = 10;", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+            ],
+            "correctAnswerIndex": 2
+          }
+        },
+        {
+          "type": "MULTIPLE_CHOICE",
+          "question": [
+            {
+              "type": "TEXT",
+              "text": "4. Which symbol is used to end a Java statement?",
+              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
+            }
+          ],
+          "values": {
+            "options": [
+              { "type": "TEXT", "text": "A. : (Colon)", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "B. . (Period)", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "C. , (Comma)", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+              { "type": "TEXT", "text": "D. ; (Semicolon)", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+            ],
+            "correctAnswerIndex": 3
+          }
+        }
+      ]
     }
+  }
 }

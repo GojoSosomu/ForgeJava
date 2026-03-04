@@ -10,13 +10,13 @@ import java.util.TreeMap;
 import core.model.view.chapter.*;
 import core.engine.Engine;
 import core.model.snapshot.chapter.*;
-import core.model.snapshot.progress.UserProgressSnapshot;
 import presentation.service.assembler.ChapterViewAssembler;
 import presentation.service.assembler.UserProgressAssembler;
 
 public class ChapterService extends AService {
     private ChapterViewAssembler chapterViewAssembler;
     private UserProgressAssembler userProgressAssembler;
+    private Set<String> availableChapterId;
 
     public ChapterService(
         ChapterViewAssembler chapterViewAssembler,
@@ -53,25 +53,19 @@ public class ChapterService extends AService {
         return chapterViewAssembler.from(result);
     }
 
-    public Set<String> availableChapterId() {
+    public void setUpAvailableChapters() {
+        this.availableChapterId = availableChapterId();
+    }
+
+    private Set<String> availableChapterId() {
         List<String> allIds = getAllChapterID();
 
+        if(engine.getCurrentUser() == null) return new HashSet<>();
         int limit = Math.min(userProgressAssembler.from(engine.getCurrentUser()).progressInfo().currentChapter(), allIds.size());
         return new HashSet<>(allIds.subList(0, limit));
     }
 
-    private boolean checkAvailableChapterId(UserProgressSnapshot info, String id) {
-        Set<String> availableChapters = availableChapterId(info);
-        return availableChapters.contains(id);
-    }
-
-    private Set<String> availableChapterId(UserProgressSnapshot info) {
-        List<String> allIds = getAllChapterID();
-        
-        Map<String, Object> progress = (Map<String, Object>) info.value().get("chapterProgress");
-        byte currentChapterCount = ((Number) progress.get("currentChapter")).byteValue();
-
-        int limit = Math.min((int) currentChapterCount, allIds.size());
-        return new HashSet<>(allIds.subList(0, limit));
+    public boolean isChapterAvailable(String chapterId) {
+        return availableChapterId.contains(chapterId);
     }
 }

@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 
 import presentation.outside.launcher.SwingLauncher;
-import presentation.outside.library.LibraryOfColor;
 
 import static presentation.outside.library.LibraryOfColor.*;
 
@@ -21,7 +20,6 @@ public class SwingLogInPanel extends JPanel {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JToggleButton toggleButton;
-    private JLabel errorLabel;
 
     public SwingLogInPanel(
         SwingLauncher swingLauncher
@@ -42,12 +40,6 @@ public class SwingLogInPanel extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 10, 10, 10);
         add(titleLabel, gbc);
-
-        errorLabel = new JLabel(" ");
-        errorLabel.setForeground(LibraryOfColor.SCORCH_RED);
-        errorLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        errorLabel.setPreferredSize(new Dimension(200, 20));
-        add(errorLabel, setGbc(0, 1, gbc));
 
         gbc.gridwidth = 1;
         gbc.insets = new Insets(0, 10, 5, 10);
@@ -151,7 +143,6 @@ public class SwingLogInPanel extends JPanel {
     public void reset() {
         usernameField.setText("");
         passwordField.setText("");
-        errorLabel.setText("");
     }
 
     public void start() {
@@ -218,10 +209,13 @@ public class SwingLogInPanel extends JPanel {
     public JButton getLogInButton() { return logInButton; }
     public JButton getSwitchToSignInButton() { return switchToSignInButton; }
 
-    public void updateErrorLabelText(String text) {
-        errorLabel.setText(text);
-        errorLabel.revalidate();
-        errorLabel.repaint();
+    public void errorShowMessage(String text) {
+        JOptionPane.showMessageDialog(
+            this, 
+            text, 
+            "Error", 
+            JOptionPane.ERROR_MESSAGE
+        );
     }
 
     private GridBagConstraints setGbc(int x, int y, GridBagConstraints gbc) {

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.model.dto.content.Content;
-import core.model.dto.content.ContentType;
+import core.model.dto.content.enums.ContentType;
 
 public class ContentFilter implements LoadFilter<ContentType, Content, Content> {
 

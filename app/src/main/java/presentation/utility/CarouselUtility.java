@@ -6,12 +6,9 @@ public class CarouselUtility<T> {
 
     private final List<T> items;
     private int currentIndex = 0;
-    private boolean wrapAround = true; // Optional: toggle for Intro/Outro
+    private boolean wrapAround = true;
 
     public CarouselUtility(List<T> items) {
-        if (items == null || items.isEmpty()) {
-            throw new IllegalArgumentException("Carousel cannot be empty");
-        }
         this.items = items;
     }
 

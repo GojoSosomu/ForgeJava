@@ -10,8 +10,8 @@ import core.model.dto.activity.problem.Questionnaire;
 import core.model.dto.activity.problem.question.Question;
 import core.model.dto.activity.problem.question.QuestionType;
 import core.model.dto.content.Content;
-import core.model.dto.content.ContentType;
 import core.model.dto.content.TextContent;
+import core.model.dto.content.enums.ContentType;
 import infrastructure.importer.translation.filter.ContentFilter;
 import infrastructure.importer.translation.mapper.ContentMapper;
 

@@ -6,7 +6,7 @@ import core.model.dto.DTO;
 
 public record LessonDTO(
     String id,
-    List<LessonPart> pages
+    List<LessonPage> pages
 ) implements DTO {
     
 }

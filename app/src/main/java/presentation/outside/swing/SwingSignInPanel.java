@@ -21,7 +21,6 @@ public class SwingSignInPanel extends JPanel {
 
     private JButton signInButton;
     private JButton switchToLoginButton;
-    private JLabel errorLabel;
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JPasswordField confirmPasswordField;
@@ -46,14 +45,8 @@ public class SwingSignInPanel extends JPanel {
         gbc.insets = new Insets(0, 10, 10, 10);
         add(titleLabel, gbc);
 
-        errorLabel = new JLabel(" "); 
-        errorLabel.setForeground(LibraryOfColor.SCORCH_RED);
-        errorLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        errorLabel.setHorizontalAlignment(SwingConstants.LEFT);
         gbc.gridx = 0; gbc.gridy = 1; gbc.gridwidth = 2;
         gbc.insets = new Insets(0, 10, 5, 10);
-        add(errorLabel, gbc);
-
         gbc.gridwidth = 1;
 
         add(createLabel("Username"), setGbc(0, 2, gbc));
@@ -188,7 +181,6 @@ public class SwingSignInPanel extends JPanel {
         usernameField.setText("");
         passwordField.setText("");
         confirmPasswordField.setText("");
-        errorLabel.setText(" ");
     }
 
     public String getUsername() { return usernameField.getText().trim(); }
@@ -227,7 +219,7 @@ public class SwingSignInPanel extends JPanel {
 
     private void signIn() {
         if (getUsername().isEmpty() || getPassword().isEmpty() || getConfirmPassword().isEmpty()) {
-            updateErrorLabelText("Please complete all required fields.");
+            errorShowMessage("Please complete all required fields.");
             return;
         }
         swingLauncher.signInSuccessToMainPanel(this);
@@ -235,12 +227,14 @@ public class SwingSignInPanel extends JPanel {
 
     public JButton getSignInButton() { return signInButton; }
     public JButton getSwitchToLoginButton() { return switchToLoginButton; }
-    public JLabel getErrorLabel() { return errorLabel; }
 
-    public void updateErrorLabelText(String text) {
-        errorLabel.setText(text);
-        this.revalidate(); 
-        this.repaint();
+    public void errorShowMessage(String text) {
+        JOptionPane.showMessageDialog(
+            this, 
+            text, 
+            "Error", 
+            JOptionPane.ERROR_MESSAGE
+        );
     }
 
     public void start() {

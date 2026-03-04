@@ -13,7 +13,7 @@ import presentation.enums.SuccessType;
 import presentation.outside.channel.OutsideChannel;
 import presentation.outside.swing.*;
 import presentation.outside.swing.animation.SwingAnimationRunner;
-import presentation.outside.swing.assembler.SwingChapterCardAssembler;
+import presentation.outside.swing.assembler.*;
 import presentation.service.BootService;
 import presentation.service.assembler.ViewAssembler;
 
@@ -83,11 +83,13 @@ public class SwingLauncher extends Launcher {
         
         SwingChapterCoveragePanel chapterCoveragePanel = new SwingChapterCoveragePanel(
             new SwingChapterCardAssembler().assemble(chapterService.getAllChapters()),
+            new SwingChapterBoundaryAssembler().assembleIntroTemplates(chapterService.getAllChapters()),
             chapterService,
-            animationRunner
+            animationRunner,
+            this
         );
-        
         chapterCoveragePanel.getBackButton().addActionListener(e -> switchPanel(mainPanel));
+
         mainPanel.getStartButton().addActionListener(e -> {
             switchPanel(chapterCoveragePanel, 1000, 600);
             chapterCoveragePanel.setUpLocked();
@@ -102,8 +104,10 @@ public class SwingLauncher extends Launcher {
         mainPanel.getCreditButton().addActionListener(e -> switchPanel(creditPanel));
 
         SuccessType result = logInSignInService.logInCurrentUser();
-        if(result == SuccessType.LOG_IN_SUCCESS)
+        if(result == SuccessType.LOG_IN_SUCCESS) {
             switchPanel(mainPanel);
+            mainPanel.getNameLabel().setText("Welcome, " + logInSignInService.getCurrentUserName());
+        }
         else if(result == SuccessType.FAULIER_CURRENT_USER_NOT_EXIST)
             switchPanel(logInPanel, 380, 340);
     }
@@ -133,18 +137,19 @@ public class SwingLauncher extends Launcher {
         switch (result) {
             case LOG_IN_SUCCESS -> {
                 switchPanel(mainPanel);
+                mainPanel.getNameLabel().setText("Welcome, " + logInSignInService.getCurrentUserName());
             }
             case FAILURE_INCORRECT_PASSWORD -> {
-                logInPanel.updateErrorLabelText("Incorrected Password");
+                logInPanel.errorShowMessage("Incorrect password. Please try again.");
             }
             case FAILURE_USER_NOT_FOUND -> {
-                logInPanel.updateErrorLabelText("User don't exists");
+                logInPanel.errorShowMessage("User not found. Please check your credentials.");
             }
             case FAILURE_MISSING_FIELDS -> {
-                logInPanel.updateErrorLabelText("Completed the format");
+                logInPanel.errorShowMessage("Please complete all required fields.");
             }
             default -> {
-                logInPanel.updateErrorLabelText("An unexpected error occurred. Please try again.");
+                logInPanel.errorShowMessage("An unexpected error occurred. Please try again.");
             }
         }
     }
@@ -155,24 +160,29 @@ public class SwingLauncher extends Launcher {
             signInPanel.getPassword().trim(),
             signInPanel.getConfirmPassword().trim()
         );
+        System.out.println("Sign-in result: " + result);
         switch(result) {
             case SIGN_IN_SUCCESS -> {
                 switchPanel(mainPanel);
+                mainPanel.getNameLabel().setText("Welcome, " + logInSignInService.getCurrentUserName());
             }
             case FAILURE_MISSING_FIELDS -> {
-                signInPanel.updateErrorLabelText("Please complete all required fields.");
+                signInPanel.errorShowMessage("Please complete all required fields.");
             }
             case FAILURE_PASSWORD_MISMATCH -> {
-                signInPanel.updateErrorLabelText("Passwords do not match. Please try again.");
+                signInPanel.errorShowMessage("Passwords do not match. Please try again.");
             }
             case FAILURE_USER_EXISTS -> {
-                signInPanel.updateErrorLabelText("An account with this email or username already exists.");
+                signInPanel.errorShowMessage("An account with this email or username already exists.");
             }
             case FAILURE_PASSWORD_TOO_SHORT ->  {
-                signInPanel.updateErrorLabelText("The Passwords are too short");
+                signInPanel.errorShowMessage("The passwords are too short. Please enter at least 8 characters.");
+            }
+            case FAILURE_PASSWORD_MISSING_SYMBOL -> {
+                signInPanel.errorShowMessage("Must contain one uppercase letter, number, and special character.");
             }
             default -> {
-                signInPanel.updateErrorLabelText("An unexpected error occurred. Please try again.");
+                signInPanel.errorShowMessage("An unexpected error occurred. Please try again.");
             }
         }
     }
@@ -189,5 +199,9 @@ public class SwingLauncher extends Launcher {
         } 
         frame.dispose();
         System.exit(0);
+    }
+
+    public void startChapter(String currentItem) {
+        
     }
 }

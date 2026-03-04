@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import core.model.dto.content.*;
+import core.model.dto.content.enums.ContentType;
 import infrastructure.importer.translation.maker.content.*;
 
 public final class ContentMapper implements Mapper<Map<String, Object>, Content> {

@@ -1,7 +1,11 @@
 package core.model.dto.content;
 
+import core.model.dto.content.enums.ContentType;
+import core.model.dto.content.enums.text.TextStyle;
+
 public record TextContent(
-    String text
+    String text,
+    TextStyle style
 ) implements Content {
     
     @Override

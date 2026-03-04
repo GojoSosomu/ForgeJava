@@ -1,4 +1,4 @@
-package core.model.dto.content;
+package core.model.dto.content.enums;
 
 public enum ContentType {
     TEXT,

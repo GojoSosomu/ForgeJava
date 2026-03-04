@@ -32,6 +32,7 @@ public class ContentSnapshotAssembler implements ValueSnapshotAssembler<Content,
             case TEXT:
                 TextContent text = (TextContent) object;
                 values.put("text" , text.text()); 
+                values.put("style", text.style());
                 break;
             case IMAGE:
                 ImageContent image = (ImageContent) object;

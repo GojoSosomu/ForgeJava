@@ -1,21 +1,18 @@
 package presentation.outside.swing.template;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
 
 import core.model.view.chapter.ChapterView;
 import core.model.view.content.TextContentView;
-import presentation.outside.swing.renderer.SwingRenderer;
-
-import java.awt.*;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
-import java.util.Set;
+import presentation.outside.renderer.SwingRenderer;
+import presentation.outside.swing.animation.animator.SwingSlideAnimator;
 
 import static presentation.outside.library.LibraryOfColor.*;
 
-public final class SwingChapterCardTemplate {
+public final class SwingChapterCardTemplate extends JPanel implements SwingSlideAnimator.SlideTarget {
 
-    private Rectangle2D bounds;
     private TextContentView title;
     private TextContentView description;
     private String id;
@@ -24,48 +21,48 @@ public final class SwingChapterCardTemplate {
     private boolean isLocked = false;
     private JComponent parent;
     private SwingRenderer renderer = new SwingRenderer();
+    
+    private final Rectangle localBounds = new Rectangle(0, 0, 320, 180);
 
-    public SwingChapterCardTemplate(
-            ChapterView view,
-            Rectangle2D bounds
-    ) {
+    public SwingChapterCardTemplate(ChapterView view) {
         this.id = view.id();
         this.title = view.chapterCardView().title();
         this.description = view.chapterCardView().description();
         this.message = view.chapterCardView().message();
-        this.bounds = bounds;
+
+        this.setPreferredSize(new Dimension(320, 180));
+        this.setSize(320, 180);
+        this.setOpaque(false);
+    }
+
+    @Override
+    public void setBounds(int x, int y, int width, int height) {
+        super.setBounds(x, y, width, height);
+        localBounds.setBounds(0, 0, width, height);
     }
 
     public void setParent(JComponent parent) {
         this.parent = parent;
     }
 
-    public Rectangle2D getBounds() {
-        return bounds;
+    public void setLocked(boolean locked) {
+        if (this.isLocked != locked) {
+            this.isLocked = locked;
+            triggerRepaint();
+        }
     }
 
     public boolean isLocked() {
         return isLocked;
     }
 
-    public void setBounds(Rectangle2D bounds) {
-        this.bounds = bounds;
-        triggerRepaint();
+    public String getChapterId() {
+        return id;
     }
-
-    public void lockedTest(Set<String> availableIds) {
-        boolean previouslyLocked = this.isLocked;
-        
-        this.isLocked = (availableIds == null || !availableIds.contains(this.id));
-        
-        if (previouslyLocked != this.isLocked) {
-            triggerRepaint();
-        }
-    }
-
+    
     public boolean hoverTest(Point p) {
         boolean previouslyHovered = this.isHovered;
-        this.isHovered = (p != null && bounds.contains(p));
+        this.isHovered = (p != null && localBounds.contains(p));
         
         if (previouslyHovered != this.isHovered) {
             triggerRepaint();
@@ -74,92 +71,86 @@ public final class SwingChapterCardTemplate {
     }
 
     public boolean hitTest(Point p) {
-        return p != null && bounds.contains(p);
+        return p != null && localBounds.contains(p);
     }
 
     private void triggerRepaint() {
+        this.repaint();
         if (parent != null) {
             parent.repaint();
         }
     }
 
-    public void paint(Graphics2D g) {
-        final int PADDING = 28;
-        final int OFFSET_X = 40; 
-        final int OFFSET_Y = 30;
-        final int CORNER_ARC = 24;
-        final int STRIPE_WIDTH = 6;
-        final int STRIPE_X_INSET = 16;
-        final int SHADOW_OFFSET_Y = 6;
-        final int SHADOW_ALPHA_BASE = 20;
-        final int SHADOW_ALPHA_HOVER = 45;
-        final int TITLE_BASELINE_Y = 18;
-        final int DESC_TOP_MARGIN = 15;
-        final int MSG_TOP_MARGIN = 15;
-        final int GLASS_INSET = 10;
-        final int FOOTER_BOTTOM_MARGIN = 25;
-
-        final int cardX = (int) Math.round(bounds.getX());
-        final int cardY = (int) Math.round(bounds.getY());
-        final int cardW = (int) Math.round(bounds.getWidth());
-        final int cardH = (int) Math.round(bounds.getHeight());
-
-        final int contentWidth = cardW - (PADDING * 2);
-        final int textX = cardX + OFFSET_X;
-
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g.create();
+        
+        final int W = getWidth();
+        final int H = getHeight();
+        final int OFFSET_X = 35; 
+        final int OFFSET_Y = 20;
+        final int CORNER_ARC = 18;
+        final int STRIPE_WIDTH = 5;
+        final int STRIPE_X_INSET = 12;
+
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         renderer.setGraphics2D(g2);
 
         if (!isLocked) {
-            g2.setColor(withAlpha(CARD_SHADOW, isHovered ? SHADOW_ALPHA_HOVER : SHADOW_ALPHA_BASE));
-            g2.fill(new RoundRectangle2D.Double(cardX + 2, cardY + SHADOW_OFFSET_Y, cardW - 4, cardH, CORNER_ARC, CORNER_ARC));
+            g2.setColor(withAlpha(CARD_SHADOW, isHovered ? 40 : 20));
+            g2.fill(new RoundRectangle2D.Double(2, 4, W - 4, H - 4, CORNER_ARC, CORNER_ARC));
         }
 
-        RoundRectangle2D cardShape = new RoundRectangle2D.Double(cardX, cardY, cardW, cardH, CORNER_ARC, CORNER_ARC);
+        RoundRectangle2D cardShape = new RoundRectangle2D.Double(0, 0, W - 1, H - 1, CORNER_ARC, CORNER_ARC);
         Color topColor = isLocked ? withAdjust(PAGE_BASE, 0.9) : (isHovered ? withAdjust(PAGE_BASE, 1.02) : PAGE_BASE);
-        Color bottomColor = withAdjust(topColor, 0.95);
-        g2.setPaint(new GradientPaint(cardX, cardY, topColor, cardX, cardY + cardH, bottomColor));
+        g2.setPaint(new GradientPaint(0, 0, topColor, 0, H, withAdjust(topColor, 0.96)));
         g2.fill(cardShape);
 
-        int stripeH = cardH - (OFFSET_Y * 2);
-        Color stripeColor = isLocked ? LOCKED_GRAY : (isHovered ? ORANGE_BASED : withAdjust(ORANGE_BASED, 0.9));
-        g2.setColor(stripeColor);
-        g2.fillRoundRect(cardX + STRIPE_X_INSET, cardY + OFFSET_Y, STRIPE_WIDTH, stripeH, 4, 4);
+        g2.setColor(isLocked ? LOCKED_GRAY : (isHovered ? ORANGE_BASED : withAdjust(ORANGE_BASED, 0.9)));
+        g2.fillRoundRect(STRIPE_X_INSET, OFFSET_Y, STRIPE_WIDTH, H - (OFFSET_Y * 2), 4, 4);
         
-        g2.setFont(new Font("Segoe UI", Font.BOLD, 18)); 
+        g2.setFont(new Font("Segoe UI", Font.BOLD, 16)); 
         g2.setColor(isLocked ? withAdjust(INK_DARK, 1.4) : INK_DARK);
-        g2.drawString(title.text().toUpperCase(), textX, cardY + OFFSET_Y + TITLE_BASELINE_Y);
+        g2.drawString(title.text().toUpperCase(), OFFSET_X, OFFSET_Y + 15);
 
-        int descY = cardY + OFFSET_Y + TITLE_BASELINE_Y + DESC_TOP_MARGIN;
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        g2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         g2.setColor(isLocked ? INK_FADED : INK_MEDIUM);
-        int nextY = renderer.drawText(description.text(), textX, descY, contentWidth - 20, 0, 0, 0);
+        int nextY = renderer.drawText(description.text(), OFFSET_X, OFFSET_Y + 32, W - OFFSET_X - 20, 0, 0, 0);
 
         if (!isLocked) {
-            int msgY = nextY + MSG_TOP_MARGIN;
-            g2.setColor(withAlpha(isHovered ? ORANGE_BASED : MESSAGE_BASE, isHovered ? 25 : 40));
-            g2.fillRoundRect(textX - GLASS_INSET, msgY - 5, contentWidth + GLASS_INSET, (cardY + cardH - msgY) - 15, 12, 12);
+            int msgY = nextY + 10;
+            g2.setColor(withAlpha(isHovered ? ORANGE_BASED : MESSAGE_BASE, isHovered ? 20 : 35));
+            g2.fillRoundRect(OFFSET_X - 8, msgY, W - OFFSET_X - 10, 34, 10, 10);
             
-            g2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 12));
+            g2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
             g2.setColor(isHovered ? withAdjust(ORANGE_BASED, 0.8) : INK_MEDIUM);
-            renderer.drawText(message.text(), textX, msgY, contentWidth - GLASS_INSET, 0, 0, 0);
+            renderer.drawText(message.text(), OFFSET_X, msgY, W - OFFSET_X - 20, 1, 0, 0);
         } else {
-            g2.setFont(new Font("Segoe UI Black", Font.PLAIN, 10));
+            g2.setFont(new Font("Segoe UI Black", Font.PLAIN, 9));
             g2.setColor(LOCKED_GRAY);
-            g2.drawString("SECURED CHAPTER", textX, cardY + cardH - FOOTER_BOTTOM_MARGIN);
+            g2.drawString("LOCKED CONTENT", OFFSET_X, H - 20);
         }
 
-        g2.setStroke(new BasicStroke(isHovered ? 1.2f : 0.6f));
-        g2.setColor(isLocked ? withAlpha(BORDER_NORMAL, 80) : (isHovered ? ORANGE_BASED : BORDER_NORMAL));
+        g2.setStroke(new BasicStroke(isHovered ? 1.5f : 0.8f));
+        g2.setColor(isLocked ? withAlpha(BORDER_NORMAL, 60) : (isHovered ? ORANGE_BASED : BORDER_NORMAL));
         g2.draw(cardShape);
 
         if (isLocked) {
-            g2.setColor(withAlpha(Color.BLACK, 15));
+            g2.setColor(withAlpha(Color.BLACK, 10));
             g2.fill(cardShape);
         }
 
         g2.dispose();
+    }
+
+    @Override
+    public void setOffset(int x, int y) {
+    }
+
+    @Override
+    public boolean isStillDisplayable() {
+        return isDisplayable();
     }
 }

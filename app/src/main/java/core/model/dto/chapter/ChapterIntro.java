@@ -5,7 +5,7 @@ import java.util.List;
 import core.model.dto.content.TextContent;
 
 public record ChapterIntro(
-    String title,
+    TextContent title,
     List<TextContent> description,
     List<TextContent> objectives
 ) {

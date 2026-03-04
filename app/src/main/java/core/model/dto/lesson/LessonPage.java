@@ -4,7 +4,7 @@ import java.util.List;
 
 import core.model.dto.content.Content;
 
-public record LessonPart(
+public record LessonPage(
     List<Content> contents
 ) {
 

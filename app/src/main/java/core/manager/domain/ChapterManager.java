@@ -17,7 +17,6 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
     private LessonManager lessonManager;
     private ActivityManager activityManager;
     private ContentSnapshotAssembler contentSnapshotAssembler;
-    private int i = 0;
 
     public ChapterManager(
         ChapterRepository chapterRepository,
@@ -66,12 +65,12 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
         dto.id(),
         Map.of(
             "card", Map.of(
-                "title",  "Chapter " + ++i + ": " + dto.chapterCard().title(),
-                "subTitle", dto.chapterCard().subTitle(),
+                "title",  contentSnapshotAssembler.from(dto.chapterCard().title()),
+                "subTitle", contentSnapshotAssembler.from(dto.chapterCard().subTitle()),
                 "message", contentSnapshotAssembler.from(dto.chapterCard().message())
             ),
             "intro", Map.of(
-                "title", dto.chapterIntro().title(),
+                "title", contentSnapshotAssembler.from(dto.chapterIntro().title()),
                 "description", contentSnapshotAssembler.from(dto.chapterIntro().description()),
                 "objectives", contentSnapshotAssembler.from(dto.chapterIntro().objectives())
             ),
@@ -79,8 +78,8 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
             "lessons", lessonManager.from(lessonIds),
             "activities", activityManager.from(activityIds),
             "outro", Map.of(
-                "title", dto.chapterOutro().title(),
-                "description", dto.chapterOutro().description(),
+                "title", contentSnapshotAssembler.from(dto.chapterOutro().title()),
+                "description", contentSnapshotAssembler.from(dto.chapterOutro().description()),
                 "sneakPeaks", contentSnapshotAssembler.from(dto.chapterOutro().sneakPeaks()),
                 "conclusion", contentSnapshotAssembler.from(dto.chapterOutro().conclusion())
             )

@@ -1,9 +1,11 @@
 package core.model.view.content;
 
-import core.model.dto.content.ContentType;
+import core.model.dto.content.enums.ContentType;
+import core.model.dto.content.enums.text.TextStyle;
 
 public record TextContentView(
-    String text
+    String text,
+    TextStyle style
 ) implements ContentView{
 
     @Override

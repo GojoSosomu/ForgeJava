@@ -1,6 +1,5 @@
 package presentation.outside.swing.assembler;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,14 +12,10 @@ public final class SwingChapterCardAssembler {
             List<ChapterView> views
     ) {
         List<SwingChapterCardTemplate> result = new ArrayList<>();
-
-        int x = 40;
-        int y = 40;
-
+        
         for (ChapterView view : views) {
             result.add(new SwingChapterCardTemplate(
-                view,
-                new Rectangle(x, y, 320, 180)
+                view
             ));
         }
 

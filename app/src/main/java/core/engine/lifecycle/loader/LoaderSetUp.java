@@ -9,7 +9,7 @@ import core.manager.loader.order.*;
 import core.model.dto.activity.*;
 import core.model.dto.activity.problem.*;
 import core.model.dto.chapter.ChapterDTO;
-import core.model.dto.content.ContentType;
+import core.model.dto.content.enums.ContentType;
 import core.model.dto.lesson.LessonDTO;
 import core.model.dto.progress.UserDatabaseDTO;
 import infrastructure.event.receiver.LoadingReceiver;
@@ -92,7 +92,7 @@ public class LoaderSetUp {
             engine
         );
 
-        Translator<UserDatabaseDTO> userDatabaseTranslator = new UserDatabaseranslator(userDatabaseMapper);
+        Translator<UserDatabaseDTO> userDatabaseTranslator = new UserDatabaseTranslator(userDatabaseMapper);
 
         Loader<UserDatabaseDTO> userDatabaseLoader = new Loader<>(
             userDatabaseTranslator,

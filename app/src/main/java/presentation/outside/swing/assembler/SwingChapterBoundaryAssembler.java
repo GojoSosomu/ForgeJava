@@ -7,32 +7,26 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import core.model.view.chapter.ChapterIntroView;
+import core.model.view.chapter.ChapterView;
 import core.model.view.content.ContentView;
 import core.model.view.content.TextContentView;
-import presentation.outside.swing.animation.SwingAnimationRunner;
-import presentation.outside.swing.renderer.SwingRenderer;
+import presentation.outside.renderer.SwingRenderer;
 import presentation.outside.swing.template.SwingChapterIntroTemplate;
 
 public class SwingChapterBoundaryAssembler {
 
     private SwingRenderer renderer = new SwingRenderer();
 
-    public SwingChapterIntroTemplate assembleIntro(ChapterIntroView introView, SwingAnimationRunner animationRunner) {
-        List<JPanel> pages = new ArrayList<>();
+    public List<SwingChapterIntroTemplate> assembleIntroTemplates(List<ChapterView> views) {
+        List<SwingChapterIntroTemplate> result = new ArrayList<>();
+        
+        for (ChapterView view : views) {
+            result.add(new SwingChapterIntroTemplate(
+                view
+            ));
+        }
 
-        pages.add(makeTitleAndDescription(
-            introView.title(),
-            introView.description()
-        ));
-
-        pages.add(makeListOfText(
-            introView.objectives()
-        ));
-
-        return new SwingChapterIntroTemplate(
-            
-        );
+        return result;
     }
 
     /*public SwingChapterBoundaryTemplate assembleOutro(ChapterOutroView outroView, SwingAnimationRunner animationRunner) {

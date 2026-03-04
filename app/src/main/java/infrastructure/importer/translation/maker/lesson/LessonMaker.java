@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import core.model.dto.lesson.LessonDTO;
-import core.model.dto.lesson.LessonPart;
+import core.model.dto.lesson.LessonPage;
 import infrastructure.importer.translation.maker.Maker;
 import infrastructure.importer.translation.mapper.ContentMapper;
 
@@ -26,11 +26,11 @@ public class LessonMaker implements Maker<Map<String, Object>, LessonDTO> {
         );
     }
 
-    private List<LessonPart> makeLessonParts(List<Map<String, Object>> pages) {
-        List<LessonPart> result = new ArrayList<>();
+    private List<LessonPage> makeLessonParts(List<Map<String, Object>> pages) {
+        List<LessonPage> result = new ArrayList<>();
 
         for(Map<String, Object> page : pages) {
-            result.add(new LessonPart(
+            result.add(new LessonPage(
                 contentMapper.list((List<Map<String, Object>>)page.get("contents"))
             ));
         }

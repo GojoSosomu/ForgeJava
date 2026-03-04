@@ -1,10 +1,10 @@
 package core.manager.domain.assembler;
 
 
-import core.model.dto.lesson.LessonPart;
+import core.model.dto.lesson.LessonPage;
 import core.model.snapshot.lesson.LessonPageSnapshot;
 
-public class LessonPageSnapshotAssembler implements ValueSnapshotAssembler<LessonPart, LessonPageSnapshot> {
+public class LessonPageSnapshotAssembler implements ValueSnapshotAssembler<LessonPage, LessonPageSnapshot> {
     private ContentSnapshotAssembler contentSnapshotAssembler;
 
     public LessonPageSnapshotAssembler(
@@ -14,7 +14,7 @@ public class LessonPageSnapshotAssembler implements ValueSnapshotAssembler<Lesso
     }
 
     @Override
-    public LessonPageSnapshot from(LessonPart object) {
+    public LessonPageSnapshot from(LessonPage object) {
         return new LessonPageSnapshot(
             contentSnapshotAssembler.from(object.contents())
         );

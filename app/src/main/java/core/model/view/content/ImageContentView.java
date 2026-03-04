@@ -1,6 +1,6 @@
 package core.model.view.content;
 
-import core.model.dto.content.ContentType;
+import core.model.dto.content.enums.ContentType;
 
 public record ImageContentView(
     String imageUrl

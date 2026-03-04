@@ -1,210 +1,198 @@
 {
-    "C-001": {
-        "chapterCard": {
-            "title": "Introduction to Java",
-            "subTitle": "Basic Syntax and Structure",
-            "message": {
+    "C-001" : {
+        "chapterCard" : {
+            "title" : {
                 "type": "TEXT",
-                "text": "Discover your first steps using Main methods and Terminators. These elements form the basic entry point and syntax of every program."
+                "text" : "Chapter 1: Introduction to Java",
+                "style" : {
+                    "emphasis" : "TITLE",
+                    "size" : "HUGE"
+                }
+            },
+            "subTitle" : {
+                "type": "TEXT",
+                "text" : "Getting Started with Java Programming",
+                "style" : {
+                    "emphasis" : "SUBTITLE",
+                    "size" : "LARGE"
+                }
+            },
+            "message" : {
+                "type": "TEXT",
+                "text" : "In this chapter, you will learn the basics of Java programming, including syntax, data types, and control structures."
             }
         },
-        "chapterIntro": {
-            "title": "Welcome to Java Programming",
-            "description": "This chapter introduces the structural backbone of any Java application. You will learn about the entry point of programs and how to output information to the console.",
-            "objectives": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Understand the structure of the Main Method"
+        "chapterIntro" : {
+            "title" : {
+                "type": "TEXT",
+                "text" : "Welcome to Java!",
+                "style" : {
+                    "emphasis" : "TITLE",
+                    "size" : "HUGE"
+                }
+            },
+            "description" : {
+                "type": "TEXT",
+                "text" : "This chapter will introduce you to the fundamentals of Java programming. By the end of this chapter, you will have a solid understanding of Java syntax and be ready to start coding.",
+                "style" : {
+                    "emphasis" : "DESCRIPTION",
+                    "size" : "MEDIUM"
+                }
+            },
+            "objectives" : [
+                {
+                    "type": "TEXT",
+                    "text" : "Understand Java syntax and structure."
                 },
-                { 
-                    "type": "TEXT", 
-                    "text": "Learn the role of the semicolon as a statement terminator" 
+                {
+                    "type": "TEXT",
+                    "text" : "Learn about data types and variables in Java."
                 },
-                { 
-                    "type": "TEXT", 
-                    "text": "Execute your first Java program" 
+                {
+                    "type": "TEXT",
+                    "text" : "Explore control structures like loops and conditionals."
                 }
             ]
         },
-        "sequences": ["L-001"],
-        "chapterOutro": {
-            "title": "Syntax Success!",
-            "description": "You can now write valid Java statements and execute a basic program. This fundamental skill is the requirement for all future coding tasks.",
-            "sneakPeaks": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Next, we explore storing data using Variables and Data Types. You will learn how to keep information saved in memory." 
+        "sequences" : [
+            "L-001",
+            "L-002",
+            "A-001"
+        ],
+        "chapterOutro" : {
+            "title" : {
+                "type": "TEXT",
+                "text" : "Congratulations on Completing the Chapter!",
+                "style" : {
+                    "emphasis" : "TITLE",
+                    "size" : "HUGE"
+                }
+            },
+            "description" : {
+                "type": "TEXT",
+                "text" : "You have successfully completed the Introduction to Java chapter. You should now have a good understanding of Java basics and be ready to move on to more advanced topics.",
+                "style" : {
+                    "emphasis" : "DESCRIPTION",
+                    "size" : "MEDIUM"
+                }
+            },
+            "sneakPeaks" : [
+                {
+                    "type": "TEXT",
+                    "text" : "In the next chapter, we will dive deeper into object-oriented programming in Java."
+                },
+                {
+                    "type": "TEXT",
+                    "text" : "Get ready to learn about classes, objects, inheritance, and more!"
                 }
             ],
-            "conclusion": [
-                { 
-                    "type": "TEXT", 
-                    "text": "The foundation is built and you are ready to start handling data. Your journey into professional development starts here." 
+            "conclusion" : [
+                {
+                    "type": "TEXT",
+                    "text" : "Keep practicing your Java skills by working on small projects and exercises."
+                },
+                {
+                    "type": "TEXT",
+                    "text" : "Don't forget to review the concepts covered in this chapter regularly to reinforce your understanding."
                 }
             ]
         }
     },
-    "C-002": {
-        "chapterCard": {
-            "title": "Data and Memory",
-            "subTitle": "Variables and Types",
-            "message": {
+    "C-002" : {
+        "chapterCard" : {
+            "title" : {
                 "type": "TEXT",
-                "text": "Master the difference between Primitive and Reference variables. Understanding memory allocation is key to writing efficient software."
+                "text" : "Chapter 2: Object-Oriented Programming in Java",
+                "style" : {
+                    "emphasis" : "TITLE",
+                    "size" : "HUGE"
+                }
+            },
+            "subTitle" : {
+                "type": "TEXT",
+                "text" : "Mastering Classes and Objects",
+                "style" : {
+                    "emphasis" : "SUBTITLE",
+                    "size" : "LARGE"
+                }
+            },
+            "message" : {
+                "type": "TEXT",
+                "text" : "In this chapter, you will learn about object-oriented programming concepts in Java, including classes, objects, inheritance, and polymorphism."
             }
         },
-        "chapterIntro": {
-            "title": "Variables and Data Types",
-            "description": "Learn how Java stores information in memory using various data sizes. We will explore how objects are referenced and how primitives behave differently.",
-            "objectives": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Master primitive types and reference variables" 
-                },
-                { 
-                    "type": "TEXT", 
-                    "text": "Declare and initialize variables properly" 
-                },
-                { 
-                    "type": "TEXT", 
-                    "text": "Understand memory allocation for data" 
-                }
-            ]
-        },
-        "sequences": ["L-002"],
-        "chapterOutro": {
-            "title": "Data Mastery!",
-            "description": "You now understand how to define the state of your application using variables. Storing information correctly is the first step toward complex logic.",
-            "sneakPeaks": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Up next, we will be making decisions with If-Else and Switch statements. This will allow your code to choose different paths." 
-                }
-            ],
-            "conclusion": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Data is the core of software and you have learned how to store it safely. You are now prepared to build functional programs." 
-                }
-            ]
-        }
-    },
-    "C-003": {
-        "chapterCard": {
-            "title": "Control Structure I",
-            "subTitle": "Conditional Logic",
-            "message": {
+        "chapterIntro" : {
+            "title" : {
                 "type": "TEXT",
-                "text": "Start making decisions within your code using If and Switch blocks. These tools allow your program to react differently to various inputs."
-            }
-        },
-        "chapterIntro": {
-            "title": "Decision Making in Code",
-            "description": "Programs need to act differently under different conditions to be useful. This chapter focuses on branching logic and logical evaluation.",
-            "objectives": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Implement If-Else and Else-If ladders" 
-                },
-                { 
-                    "type": "TEXT", 
-                    "text": "Use Switch-Case for multi-way branching" 
-                },
-                { 
-                    "type": "TEXT", 
-                    "text": "Apply boolean logic to control flow" 
+                "text" : "Welcome to Object-Oriented Programming!",
+                "style" : {
+                    "emphasis" : "TITLE",
+                    "size" : "HUGE"
                 }
-            ]
-        },
-        "sequences": ["L-003"],
-        "chapterOutro": {
-            "title": "Logic Unlocked!",
-            "description": "Your programs are no longer linear and can now branch based on data. This logic forms the 'brain' of your entire application.",
-            "sneakPeaks": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Next, we will cover automation using various types of Loops. You will learn to repeat tasks without writing extra code." 
-                }
-            ],
-            "conclusion": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Control structures are the core logic of your code and you did a great job. Dynamic programming is now within your reach."
-                }
-            ]
-        }
-    },
-    "C-004": {
-        "chapterCard": {
-            "title": "Control Structure II",
-            "subTitle": "Iteration and Loops",
-            "message": {
+            },
+            "description" : {
                 "type": "TEXT",
-                "text": "Automate repetitive tasks using For, While, and Do-While loops. Efficiency in coding comes from mastering these iterative structures."
-            }
-        },
-        "chapterIntro": {
-            "title": "Repetitive Tasks",
-            "description": "Instead of writing the same code twice, learn to use loops to automate repetitive logic. This chapter covers the syntax and control of all major loop types.",
-            "objectives": [
-                { "type": "TEXT", "text": "Write efficient For loops for known iterations" },
-                { "type": "TEXT", "text": "Use While and Do-While for conditional repetition" },
-                { "type": "TEXT", "text": "Control loop execution with break and continue" }
+                "text" : "This chapter will introduce you to the core concepts of object-oriented programming in Java. By the end of this chapter, you will understand how to create and use classes and objects, as well as how to implement inheritance and polymorphism.",
+                "style" : {
+                    "emphasis" : "DESCRIPTION",
+                    "size" : "MEDIUM"
+                }
+            },
+            "objectives" : [
+                {
+                    "type": "TEXT",
+                    "text" : "Learn how to define classes and create objects in Java."
+                },
+                {
+                    "type": "TEXT",
+                    "text" : "Understand the principles of inheritance and how to use it effectively."
+                },
+                {
+                    "type": "TEXT",
+                    "text" : "Explore polymorphism and its applications in Java programming."
+                }
             ]
         },
-        "sequences": ["L-004"],
-        "chapterOutro": {
-            "title": "Automation Mastered!",
-            "description": "You can now handle large-scale tasks with just a few lines of code. This level of automation is what makes computers so powerful.",
-            "sneakPeaks": [
-                { "type": "TEXT", "text": "The final step involves communicating via Input and Output streams. You will learn to make your programs fully interactive." }
-            ],
-            "conclusion": [
-                { "type": "TEXT", "text": "Loops allow you to harness the true speed of a computer processor. You have successfully scaled your programming capabilities." }
-            ]
-        }
-    },
-    "C-005": {
-        "chapterCard": {
-            "title": "Input/Output",
-            "subTitle": "Streams and Scanners",
-            "message": {
+        "sequences" : [
+            "L-003",
+            "L-004",
+            "A-002"
+        ],
+        "chapterOutro" : {
+            "title" : {
                 "type": "TEXT",
-                "text": "Learn to read from users and write to streams to make interactive programs. This bridges the gap between the code and the end user."
-            }
-        },
-        "chapterIntro": {
-            "title": "The Outside World",
-            "description": "Make your programs interactive by capturing user input and managing data streams. We will focus on the Scanner class and PrintStream management.",
-            "objectives": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Capture user input with the Scanner class" 
-                },
-                { 
-                    "type": "TEXT", 
-                    "text": "Understand PrintStream for console output" 
-                },
-                { 
-                    "type": "TEXT", 
-                    "text": "Manage basic stream resources" 
+                "text" : "Great Job on Learning OOP!",
+                "style" : {
+                    "emphasis" : "TITLE",
+                    "size" : "HUGE"
                 }
-            ]
-        },
-        "sequences": ["L-005"],
-        "chapterOutro": {
-            "title": "Course Completed!",
-            "description": "You have transitioned from basic syntax to interactive program handling. Your skills now cover the entire basic lifecycle of a Java application.",
-            "sneakPeaks": [
-                { 
-                    "type": "TEXT", 
-                    "text": "The next level involves Advanced Data Structures and GUI development. You are ready to build full-scale desktop applications." 
+            },
+            "description" : {
+                "type": "TEXT",
+                "text" : "You have successfully completed the Object-Oriented Programming chapter. You should now have a solid understanding of OOP concepts in Java and be ready to apply them in your coding projects.",
+                "style" : {
+                    "emphasis" : "DESCRIPTION",
+                    "size" : "MEDIUM"
+                }
+            },
+            "sneakPeaks" : [
+                {
+                    "type": "TEXT",
+                    "text" : "In the next chapter, we will explore advanced Java topics such as multithreading and concurrency."
+                },
+                {
+                    "type": "TEXT",
+                    "text" : "Get ready to take your Java skills to the next level!"
                 }
             ],
-            "conclusion": [
-                { 
-                    "type": "TEXT", 
-                    "text": "Congratulations on mastering the core foundations of Java programming. You have built a solid base for a career in software development." 
+            "conclusion" : [
+                {
+                    "type": "TEXT",
+                    "text" : "Continue practicing OOP principles by building more complex projects and experimenting with different design patterns."
+                },
+                {
+                    "type": "TEXT",
+                    "text" : "Remember to review the concepts covered in this chapter regularly to deepen your understanding of OOP in Java."
                 }
             ]
         }

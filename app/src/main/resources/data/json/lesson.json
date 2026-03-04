@@ -1,42 +1,48 @@
 {
-    "L-001" : {
-        "pages": [
-            {
-                "contents" : [
-                    {
-                        "type": "TEXT",
-                        "text": "Welcome to Lesson 1! In this lesson, we will cover the basics of our subject."
-                    },
-                    {
-                        "type": "IMAGE",
-                        "url": "https://example.com/images/lesson1_intro.png"
-                    },
-                    {
-                        "type": "TEXT",
-                        "text": "Let's get started with the first topic."
-                    }
-                ]
-            }
+  "L-001": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "The Anatomy of a Java Program",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Every Java program starts with a class definition. Inside that class, you need a 'main' method. Think of the main method as the front door to your house—it is where the execution starts!",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Example: public static void main(String[] args) { ... }",
+            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
+          }
         ]
-    },
-    "L-002" : {
-        "pages": [
-            {
-                "contents" : [
-                    {
-                        "type": "TEXT",
-                        "text": "Welcome to Lesson 1! In this lesson, we will cover the basics of our subject."
-                    },
-                    {
-                        "type": "IMAGE",
-                        "url": "https://example.com/images/lesson1_intro.png"
-                    },
-                    {
-                        "type": "TEXT",
-                        "text": "Let's get started with the first topic."
-                    }
-                ]
-            }
+      }
+    ]
+  },
+  "L-002": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Understanding Variables",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Variables are like named containers. In Java, you must declare what kind of data the container holds. For example, 'int' is for whole numbers, and 'double' is for decimals.",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Remember: Java is strongly typed, meaning you can't put text into a number variable!",
+            "style": { "emphasis": "WARNING", "size": "SMALL" }
+          }
         ]
-    }
+      }
+    ]
+  }
 }

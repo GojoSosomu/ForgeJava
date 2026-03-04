@@ -5,10 +5,10 @@ import java.util.Map;
 import core.model.dto.progress.UserDatabaseDTO;
 import infrastructure.importer.translation.mapper.UserDatabaseMapper;
 
-public class UserDatabaseranslator implements Translator<UserDatabaseDTO> {
+public class UserDatabaseTranslator implements Translator<UserDatabaseDTO> {
     private UserDatabaseMapper userDatabaseMapper;
 
-    public UserDatabaseranslator(
+    public UserDatabaseTranslator(
         UserDatabaseMapper userDatabaseMapper
     ) {
         this.userDatabaseMapper = userDatabaseMapper;

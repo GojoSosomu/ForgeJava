@@ -10,6 +10,7 @@ public class UserProgressRepository extends AbstractRepository<UserProgressDTO> 
 
     public void setCurrentUser(String currentUser) {
         this.currentUser = currentUser;
+        System.out.println("Setting current user to: " + this.currentUser);
     }
 
     public UserProgressDTO getCurrentUser() {

@@ -4,10 +4,11 @@ import java.util.List;
 
 import core.model.view.View;
 import core.model.view.content.ContentView;
+import core.model.view.content.TextContentView;
 
 public record ChapterOutroView(
-    String title,
-    String description,
+    TextContentView title,
+    TextContentView description,
     List<ContentView> sneakPeaks,
     List<ContentView> conclusion
 ) implements View {

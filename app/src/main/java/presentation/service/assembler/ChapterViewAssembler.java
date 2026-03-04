@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import core.model.dto.content.ContentType;
+import core.model.dto.content.enums.ContentType;
 import core.model.snapshot.activity.ActivitySnapshot;
 import core.model.snapshot.chapter.ChapterSnapshot;
 import core.model.snapshot.content.ContentSnapshot;
@@ -44,8 +44,8 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
 
     private ChapterOutroView assembleOutro(Map<String,Object> part) {
         return new ChapterOutroView(
-            (String) part.get("title"), 
-            (String) part.get("description"), 
+            (TextContentView)contentViewAssembler.from((ContentSnapshot) part.get("title")), 
+            (TextContentView)contentViewAssembler.from((ContentSnapshot) part.get("description")), 
             contentViewAssembler.from((List<ContentSnapshot>) part.get("sneakPeaks")), 
             contentViewAssembler.from((List<ContentSnapshot>) part.get("conclusion")));
     }
@@ -74,15 +74,15 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
                 objectives.add((TextContentView) contentViewAssembler.from(snapshot));
 
         return new ChapterIntroView(
-            (String) part.get("title"), 
+            (TextContentView) contentViewAssembler.from((ContentSnapshot) part.get("title")), 
             description, 
             objectives);
     }
 
     private ChapterCardView assembleCard(Map<String, Object> part) {
         return new ChapterCardView(
-            (TextContentView) contentViewAssembler.from((String)part.get("title")), 
-            (TextContentView) contentViewAssembler.from((String)part.get("subTitle")), 
+            (TextContentView) contentViewAssembler.from((ContentSnapshot) part.get("title")), 
+            (TextContentView) contentViewAssembler.from((ContentSnapshot) part.get("subTitle")), 
             (TextContentView) contentViewAssembler.from((ContentSnapshot) part.get("message")));
     }
 

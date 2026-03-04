@@ -22,6 +22,9 @@ public class LogInSignInService extends AService{
 		if(password.length() < 8) {
 			return SuccessType.FAILURE_PASSWORD_TOO_SHORT;
 		}
+		if(!isStrongPassword(password)) {
+			return SuccessType.FAILURE_PASSWORD_MISSING_SYMBOL;
+		}
 
 		engine.newUserAccount(userName, password);
 		return SuccessType.SIGN_IN_SUCCESS;
@@ -52,4 +55,13 @@ public class LogInSignInService extends AService{
 			return SuccessType.FAULIER_CURRENT_USER_NOT_EXIST;
 	   }
     }
+
+    public String getCurrentUserName() {
+        return engine.getCurrentUserName();
+    }
+
+	private boolean isStrongPassword(String password) {
+		String pattern = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[\\W_]).{8,}$";
+		return password.matches(pattern);
+	}
 }
