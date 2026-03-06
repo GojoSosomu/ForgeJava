@@ -23,9 +23,10 @@ public class TextContentMaker extends ContentMaker {
     }
 
     private TextStyle makeStyle(Map<String, Object> raw) {
+        Map<String, Object> styleMap = (Map<String, Object>) raw.getOrDefault("style", Map.of());
         return new TextStyle(
-            (TextEmphasize) raw.getOrDefault("emphasize", TextEmphasize.BODY),
-            (TextSize) raw.getOrDefault("size", TextSize.MEDIUM)
+            TextEmphasize.fromString((String) styleMap.getOrDefault("emphasis", "BODY")),
+            TextSize.fromString((String) styleMap.getOrDefault("size", "MEDIUM"))
         );
     }
 }

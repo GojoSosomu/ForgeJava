@@ -54,7 +54,7 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
         List<String> sequence,
         Map<String, LessonSnapshot> lessons,
         Map<String, ActivitySnapshot> activities) {
-        
+            
         return new ChapterSequenceView(
             lessonViewAssembler.from(lessons), 
             activityViewAssembler.from(activities), 
@@ -62,12 +62,7 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
     }
 
     private ChapterIntroView assembleIntro(Map<String,Object> part) {
-        List<TextContentView> description = new ArrayList<>();
         List<TextContentView> objectives = new ArrayList<>();
-
-        for(ContentSnapshot snapshot : (List<ContentSnapshot>) part.get("description"))
-            if(snapshot.type() == ContentType.TEXT)
-                description.add((TextContentView) contentViewAssembler.from(snapshot));
 
         for(ContentSnapshot snapshot : (List<ContentSnapshot>) part.get("objectives"))
             if(snapshot.type() == ContentType.TEXT)
@@ -75,8 +70,9 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
 
         return new ChapterIntroView(
             (TextContentView) contentViewAssembler.from((ContentSnapshot) part.get("title")), 
-            description, 
-            objectives);
+            (TextContentView) contentViewAssembler.from((ContentSnapshot) part.get("description")), 
+            objectives
+        );
     }
 
     private ChapterCardView assembleCard(Map<String, Object> part) {

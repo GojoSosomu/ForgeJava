@@ -1,200 +1,277 @@
 {
-    "C-001" : {
-        "chapterCard" : {
-            "title" : {
-                "type": "TEXT",
-                "text" : "Chapter 1: Introduction to Java",
-                "style" : {
-                    "emphasis" : "TITLE",
-                    "size" : "HUGE"
-                }
-            },
-            "subTitle" : {
-                "type": "TEXT",
-                "text" : "Getting Started with Java Programming",
-                "style" : {
-                    "emphasis" : "SUBTITLE",
-                    "size" : "LARGE"
-                }
-            },
-            "message" : {
-                "type": "TEXT",
-                "text" : "In this chapter, you will learn the basics of Java programming, including syntax, data types, and control structures."
-            }
-        },
-        "chapterIntro" : {
-            "title" : {
-                "type": "TEXT",
-                "text" : "Welcome to Java!",
-                "style" : {
-                    "emphasis" : "TITLE",
-                    "size" : "HUGE"
-                }
-            },
-            "description" : {
-                "type": "TEXT",
-                "text" : "This chapter will introduce you to the fundamentals of Java programming. By the end of this chapter, you will have a solid understanding of Java syntax and be ready to start coding.",
-                "style" : {
-                    "emphasis" : "DESCRIPTION",
-                    "size" : "MEDIUM"
-                }
-            },
-            "objectives" : [
-                {
-                    "type": "TEXT",
-                    "text" : "Understand Java syntax and structure."
-                },
-                {
-                    "type": "TEXT",
-                    "text" : "Learn about data types and variables in Java."
-                },
-                {
-                    "type": "TEXT",
-                    "text" : "Explore control structures like loops and conditionals."
-                }
-            ]
-        },
-        "sequences" : [
-            "L-001",
-            "L-002",
-            "A-001"
-        ],
-        "chapterOutro" : {
-            "title" : {
-                "type": "TEXT",
-                "text" : "Congratulations on Completing the Chapter!",
-                "style" : {
-                    "emphasis" : "TITLE",
-                    "size" : "HUGE"
-                }
-            },
-            "description" : {
-                "type": "TEXT",
-                "text" : "You have successfully completed the Introduction to Java chapter. You should now have a good understanding of Java basics and be ready to move on to more advanced topics.",
-                "style" : {
-                    "emphasis" : "DESCRIPTION",
-                    "size" : "MEDIUM"
-                }
-            },
-            "sneakPeaks" : [
-                {
-                    "type": "TEXT",
-                    "text" : "In the next chapter, we will dive deeper into object-oriented programming in Java."
-                },
-                {
-                    "type": "TEXT",
-                    "text" : "Get ready to learn about classes, objects, inheritance, and more!"
-                }
-            ],
-            "conclusion" : [
-                {
-                    "type": "TEXT",
-                    "text" : "Keep practicing your Java skills by working on small projects and exercises."
-                },
-                {
-                    "type": "TEXT",
-                    "text" : "Don't forget to review the concepts covered in this chapter regularly to reinforce your understanding."
-                }
-            ]
-        }
+  "C-001": {
+    "chapterCard": {
+      "title": {
+        "type": "TEXT",
+        "text": "Chapter 1: The Java Foundation",
+        "style": { "emphasis": "TITLE", "size": "LARGE" }
+      },
+      "subTitle": {
+        "type": "TEXT",
+        "text": "Syntax, Variables, and Logic",
+        "style": { "emphasis": "SUBTITLE", "size": "MEDIUM" }
+      },
+      "message": {
+        "type": "TEXT",
+        "text": "Before you can build complex systems, you must understand the rules of the language.\n\nThis chapter covers the essential syntax, data types, and logical structures that form the DNA of every Java application, providing you with the tools to translate human logic into machine-executable code."
+      }
     },
-    "C-002" : {
-        "chapterCard" : {
-            "title" : {
-                "type": "TEXT",
-                "text" : "Chapter 2: Object-Oriented Programming in Java",
-                "style" : {
-                    "emphasis" : "TITLE",
-                    "size" : "HUGE"
-                }
-            },
-            "subTitle" : {
-                "type": "TEXT",
-                "text" : "Mastering Classes and Objects",
-                "style" : {
-                    "emphasis" : "SUBTITLE",
-                    "size" : "LARGE"
-                }
-            },
-            "message" : {
-                "type": "TEXT",
-                "text" : "In this chapter, you will learn about object-oriented programming concepts in Java, including classes, objects, inheritance, and polymorphism."
-            }
-        },
-        "chapterIntro" : {
-            "title" : {
-                "type": "TEXT",
-                "text" : "Welcome to Object-Oriented Programming!",
-                "style" : {
-                    "emphasis" : "TITLE",
-                    "size" : "HUGE"
-                }
-            },
-            "description" : {
-                "type": "TEXT",
-                "text" : "This chapter will introduce you to the core concepts of object-oriented programming in Java. By the end of this chapter, you will understand how to create and use classes and objects, as well as how to implement inheritance and polymorphism.",
-                "style" : {
-                    "emphasis" : "DESCRIPTION",
-                    "size" : "MEDIUM"
-                }
-            },
-            "objectives" : [
-                {
-                    "type": "TEXT",
-                    "text" : "Learn how to define classes and create objects in Java."
-                },
-                {
-                    "type": "TEXT",
-                    "text" : "Understand the principles of inheritance and how to use it effectively."
-                },
-                {
-                    "type": "TEXT",
-                    "text" : "Explore polymorphism and its applications in Java programming."
-                }
-            ]
-        },
-        "sequences" : [
-            "L-003",
-            "L-004",
-            "A-002"
-        ],
-        "chapterOutro" : {
-            "title" : {
-                "type": "TEXT",
-                "text" : "Great Job on Learning OOP!",
-                "style" : {
-                    "emphasis" : "TITLE",
-                    "size" : "HUGE"
-                }
-            },
-            "description" : {
-                "type": "TEXT",
-                "text" : "You have successfully completed the Object-Oriented Programming chapter. You should now have a solid understanding of OOP concepts in Java and be ready to apply them in your coding projects.",
-                "style" : {
-                    "emphasis" : "DESCRIPTION",
-                    "size" : "MEDIUM"
-                }
-            },
-            "sneakPeaks" : [
-                {
-                    "type": "TEXT",
-                    "text" : "In the next chapter, we will explore advanced Java topics such as multithreading and concurrency."
-                },
-                {
-                    "type": "TEXT",
-                    "text" : "Get ready to take your Java skills to the next level!"
-                }
-            ],
-            "conclusion" : [
-                {
-                    "type": "TEXT",
-                    "text" : "Continue practicing OOP principles by building more complex projects and experimenting with different design patterns."
-                },
-                {
-                    "type": "TEXT",
-                    "text" : "Remember to review the concepts covered in this chapter regularly to deepen your understanding of OOP in Java."
-                }
-            ]
-        }
+    "chapterIntro": {
+      "title": {
+        "type": "TEXT",
+        "text": "Setting Up for Success",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "Welcome to the starting line of your Java journey. Programming is more than just writing lines of code; it is a discipline of structured thinking.\n\nIn this chapter, we will demystify the Java Development Kit (JDK) and the Java Virtual Machine (JVM). You will learn how Java achieves its 'Write Once, Run Anywhere' promise. We will dive deep into how computers store information using variables, the precision of mathematical operations in code, and the decision-making power of conditional logic.\n\nBy the time you finish this section, the blank screen will no longer be intimidating, as you will possess the fundamental grammar required to converse with the computer.",
+        "style": { "emphasis": "BODY", "size": "MEDIUM" }
+      },
+      "objectives": [
+        { "type": "TEXT", "text": "Configure the JDK environment and execute your first compiled program." },
+        { "type": "TEXT", "text": "Master primitive data types and understand memory allocation for numbers and text." },
+        { "type": "TEXT", "text": "Implement complex decision-making trees using nested if-else and switch statements." },
+        { "type": "TEXT", "text": "Utilize various looping mechanisms to automate repetitive tasks efficiently." }
+      ]
+    },
+    "sequences": ["L-001", "L-002", "A-001", "L-003", "A-002", "L-004", "A-003"],
+    "chapterOutro": {
+      "title": {
+        "type": "TEXT",
+        "text": "Foundations Solidified!",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "Congratulations on completing your first major milestone! You have successfully navigated the steep learning curve of basic syntax and logical flow.\n\nYou now understand how to manipulate data, control the direction of a program based on user input, and use loops to handle bulk operations. While these scripts are powerful, they are currently 'procedural'—meaning they run like a recipe from top to bottom.\n\nAs you move forward, you will learn how to break away from this linear style and start building code that is organized, reusable, and modeled after the real world. Your cement is dry; it is time to start framing the house.",
+        "style": { "emphasis": "BODY", "size": "LARGE" }
+      },
+      "sneakPeaks": [
+        { "type": "TEXT", "text": "Next up: Defining your own custom types and blueprints with Classes and Objects." }
+      ],
+      "conclusion": [
+        { "type": "TEXT", "text": "Challenge yourself by recreating a simple calculator or a text-based 'Guess the Number' game." }
+      ]
     }
+  },
+  "C-002": {
+    "chapterCard": {
+      "title": {
+        "type": "TEXT",
+        "text": "Chapter 2: The Object Paradigm",
+        "style": { "emphasis": "TITLE", "size": "LARGE" }
+      },
+      "subTitle": {
+        "type": "TEXT",
+        "text": "Classes, Objects, and Encapsulation",
+        "style": { "emphasis": "SUBTITLE", "size": "MEDIUM" }
+      },
+      "message": {
+        "type": "TEXT",
+        "text": "Stop thinking in scripts and start thinking in systems.\n\nThis chapter introduces Object-Oriented Programming (OOP), the philosophy that revolutionized software development by allowing developers to model code after real-world entities like bank accounts, users, and vehicles."
+      }
+    },
+    "chapterIntro": {
+      "title": {
+        "type": "TEXT",
+        "text": "Think in Objects",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "In the real world, everything is an object: your phone, your bank account, and even you. Each has attributes (data) and behaviors (actions). Java is designed to mirror this reality perfectly.\n\nIn this chapter, we transition from writing lists of instructions to designing 'blueprints' called Classes. You will learn how to create instances of these blueprints to populate your program with interacting entities.\n\nCrucially, we will explore Encapsulation—the art of hiding the internal complexity of an object and only exposing what is necessary. This is the secret to building large-scale software that doesn't break easily.",
+        "style": { "emphasis": "BODY", "size": "MEDIUM" }
+      },
+      "objectives": [
+        { "type": "TEXT", "text": "Construct robust Class blueprints with fields, methods, and specialized constructors." },
+        { "type": "TEXT", "text": "Understand the lifecycle of an object from instantiation to memory management." },
+        { "type": "TEXT", "text": "Protect data integrity using private access modifiers and controlled access points." },
+        { "type": "TEXT", "text": "Design flexible methods using overloading to handle different types of input." }
+      ]
+    },
+    "sequences": ["L-005", "L-006", "A-004", "L-007", "A-005"],
+    "chapterOutro": {
+      "title": {
+        "type": "TEXT",
+        "text": "You are now an Architect!",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "By mastering Classes and Objects, you have graduated from a coder to a software architect. Your programs are no longer just messy sequences of logic; they are collections of smart, self-contained objects.\n\nYou have learned how to use constructors to initialize your data and how encapsulation keeps your code safe from external interference. This organizational shift is what allows professional teams to work on millions of lines of code simultaneously.\n\nNext, we will take these blueprints and learn how to create relationships between them through inheritance.",
+        "style": { "emphasis": "BODY", "size": "LARGE" }
+      },
+      "sneakPeaks": [
+        { "type": "TEXT", "text": "Inheritance and Polymorphism: Learning how objects can 'be' more than one thing at once." }
+      ],
+      "conclusion": [
+        { "type": "TEXT", "text": "Try modeling a 'Store' system where 'Product' and 'Customer' objects interact with each other." }
+      ]
+    }
+  },
+  "C-003": {
+    "chapterCard": {
+      "title": {
+        "type": "TEXT",
+        "text": "Chapter 3: Relationships & Interfaces",
+        "style": { "emphasis": "TITLE", "size": "LARGE" }
+      },
+      "subTitle": {
+        "type": "TEXT",
+        "text": "Inheritance, Polymorphism, and Abstraction",
+        "style": { "emphasis": "SUBTITLE", "size": "MEDIUM" }
+      },
+      "message": {
+        "type": "TEXT",
+        "text": "Unlock the true power of Java's type system.\n\nLearn how to create hierarchies that share logic and interfaces that define behavior, allowing for code that is incredibly flexible and reusable."
+      }
+    },
+    "chapterIntro": {
+      "title": {
+        "type": "TEXT",
+        "text": "Hierarchy and Flexibility",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "The mark of a senior developer is the ability to write code that 'future-proofs' an application. This chapter focuses on the relationships between classes.\n\nWe will explore Inheritance, which allows you to define a general 'Parent' class and create 'Child' classes that inherit its traits—saving you from writing the same code twice.\n\nFinally, we will look at Abstraction and Interfaces, which allow you to define 'contracts' for what a program should do without worrying about the details of how it's done. This is where your code becomes truly professional.",
+        "style": { "emphasis": "BODY", "size": "MEDIUM" }
+      },
+      "objectives": [
+        { "type": "TEXT", "text": "Implement class hierarchies to maximize code reuse and logical grouping." },
+        { "type": "TEXT", "text": "Override parent behaviors to provide specialized functionality in child classes." },
+        { "type": "TEXT", "text": "Use Polymorphism to write methods that can process a wide variety of object types." },
+        { "type": "TEXT", "text": "Design strict behavior contracts using Interfaces to decouple code components." }
+      ]
+    },
+    "sequences": ["L-008", "A-006", "L-009", "L-010", "A-007", "A-008"],
+    "chapterOutro": {
+      "title": {
+        "type": "TEXT",
+        "text": "The Four Pillars Conquered",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "You have now conquered the 'Four Pillars of OOP': Encapsulation, Abstraction, Inheritance, and Polymorphism.\n\nThese concepts are the foundation of almost every modern software framework, from Android apps to massive enterprise servers. You now understand how to build systems that are 'closed for modification but open for extension.'\n\nWith this theoretical power in your hands, it's time to look at the practical side of programming: managing large amounts of dynamic data efficiently.",
+        "style": { "emphasis": "BODY", "size": "LARGE" }
+      },
+      "sneakPeaks": [
+        { "type": "TEXT", "text": "Lists, Sets, and Maps: Navigating the Java Collections Framework." }
+      ],
+      "conclusion": [
+        { "type": "TEXT", "text": "Review the difference between an Interface and an Abstract class—it is a critical distinction in design." }
+      ]
+    }
+  },
+  "C-004": {
+    "chapterCard": {
+      "title": {
+        "type": "TEXT",
+        "text": "Chapter 4: Data & Resilience",
+        "style": { "emphasis": "TITLE", "size": "LARGE" }
+      },
+      "subTitle": {
+        "type": "TEXT",
+        "text": "Collections and Exception Handling",
+        "style": { "emphasis": "SUBTITLE", "size": "MEDIUM" }
+      },
+      "message": {
+        "type": "TEXT",
+        "text": "Real-world data is dynamic and unpredictable.\n\nLearn how to manage growing lists of information and how to make your applications crash-proof by handling errors before they reach the user."
+      }
+    },
+    "chapterIntro": {
+      "title": {
+        "type": "TEXT",
+        "text": "Dynamic Data and Error Safety",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "So far, we have dealt with single objects and fixed arrays. But what happens when you have thousands of users?\n\nThis chapter introduces the Java Collections Framework, providing you with high-performance tools like ArrayLists and HashMaps.\n\nBeyond data, we will address the reality that things go wrong. You will learn the 'Try-Catch' mechanism to handle these 'Exceptions' gracefully. Instead of your app crashing, you will learn how to inform the user and keep the program running smoothly.",
+        "style": { "emphasis": "BODY", "size": "MEDIUM" }
+      },
+      "objectives": [
+        { "type": "TEXT", "text": "Master dynamic lists and key-value pairs using the Collections API." },
+        { "type": "TEXT", "text": "Implement robust error-handling logic to prevent application crashes." },
+        { "type": "TEXT", "text": "Differentiate between recoverable errors and fatal system failures." },
+        { "type": "TEXT", "text": "Learn to read from and write to external files to persist data permanently." }
+      ]
+    },
+    "sequences": ["L-011", "A-009", "L-012", "A-010", "L-013", "A-011"],
+    "chapterOutro": {
+      "title": {
+        "type": "TEXT",
+        "text": "Ready for Production!",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "Your applications are now resilient and data-driven. You can store millions of records and save them to a hard drive for later use.\n\nMore importantly, you have moved past the 'happy path' of coding—you now anticipate failures. This transition from 'code that works' to 'code that lasts' is what distinguishes a professional.\n\nYou are now ready for the final frontier: high-performance parallel processing.",
+        "style": { "emphasis": "BODY", "size": "LARGE" }
+      },
+      "sneakPeaks": [
+        { "type": "TEXT", "text": "The Modern Developer's Toolkit: Multithreading and Functional Programming." }
+      ],
+      "conclusion": [
+        { "type": "TEXT", "text": "Try building a small contact management system that saves your data to a text file." }
+      ]
+    }
+  },
+  "C-005": {
+    "chapterCard": {
+      "title": {
+        "type": "TEXT",
+        "text": "Chapter 5: Advanced Performance",
+        "style": { "emphasis": "TITLE", "size": "LARGE" }
+      },
+      "subTitle": {
+        "type": "TEXT",
+        "text": "Concurrency and Modern Java Streams",
+        "style": { "emphasis": "SUBTITLE", "size": "MEDIUM" }
+      },
+      "message": {
+        "type": "TEXT",
+        "text": "Modern processors have multiple cores; learn to use them all.\n\nThis chapter covers multithreading and the Stream API, allowing you to write high-speed, parallel applications."
+      }
+    },
+    "chapterIntro": {
+      "title": {
+        "type": "TEXT",
+        "text": "The Power of Parallelism",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "We live in an age of multi-core processors, yet most beginners write programs that only use one core at a time. In this final chapter, we will break that barrier.\n\nYou will learn about Multithreading—the ability to perform multiple tasks simultaneously. We will then transition to 'Modern Java' (Java 8+), learning about Lambda Expressions and the Stream API.\n\nThis functional approach allows you to process massive amounts of data with just a few lines of incredibly readable code.",
+        "style": { "emphasis": "BODY", "size": "MEDIUM" }
+      },
+      "objectives": [
+        { "type": "TEXT", "text": "Spawn and manage multiple threads to perform parallel background tasks." },
+        { "type": "TEXT", "text": "Understand thread synchronization to prevent data conflicts." },
+        { "type": "TEXT", "text": "Simplify complex logic using anonymous functions and Lambda syntax." },
+        { "type": "TEXT", "text": "Process data sets with high-level Stream operations like Filter and Map." }
+      ]
+    },
+    "sequences": ["L-014", "L-015", "A-012", "L-016", "A-013", "A-014"],
+    "chapterOutro": {
+      "title": {
+        "type": "TEXT",
+        "text": "Mastery Achieved",
+        "style": { "emphasis": "TITLE", "size": "HUGE" }
+      },
+      "description": {
+        "type": "TEXT",
+        "text": "You have traveled an incredible distance, from printing 'Hello World' to orchestrating parallel threads.\n\nYou now possess a professional-grade understanding of one of the world's most powerful languages. The world of Spring Boot, Android, and Big Data is now wide open to you.\n\nKeep coding, keep breaking things, and most importantly, keep building.",
+        "style": { "emphasis": "BODY", "size": "LARGE" }
+      },
+      "sneakPeaks": [
+        { "type": "TEXT", "text": "Next Journey: Enterprise Web Development with Spring Boot." }
+      ],
+      "conclusion": [
+        { "type": "TEXT", "text": "Take your contact manager and make it multi-threaded!" }
+      ]
+    }
+  }
 }

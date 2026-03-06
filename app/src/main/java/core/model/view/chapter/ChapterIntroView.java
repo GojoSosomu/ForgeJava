@@ -7,7 +7,7 @@ import core.model.view.content.TextContentView;
 
 public record ChapterIntroView(
     TextContentView title,
-    List<TextContentView> description,
+    TextContentView description,
     List<TextContentView> objectives
 ) implements View {
 

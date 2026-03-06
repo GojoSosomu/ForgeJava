@@ -56,11 +56,12 @@ public class ChapterManager implements LoadTarget, EntitySnapshotAssembler<Chapt
         List<String> activityIds = new ArrayList<>();
 
         for(String sequenceId : dto.sequences()) {
-            if(lessonManager.isExist(id))
+            if(lessonManager.isExist(sequenceId))
                 lessonIds.add(sequenceId);
-            else if(activityManager.isExist(id))
+            else if(activityManager.isExist(sequenceId))
                 activityIds.add(sequenceId);
         }
+
         return new ChapterSnapshot(
         dto.id(),
         Map.of(

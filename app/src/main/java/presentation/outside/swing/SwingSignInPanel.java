@@ -5,7 +5,6 @@ import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
 import presentation.outside.launcher.SwingLauncher;
-import presentation.outside.library.LibraryOfColor;
 
 import java.awt.*;
 import java.awt.event.KeyAdapter;

@@ -68,4 +68,8 @@ public class ChapterService extends AService {
     public boolean isChapterAvailable(String chapterId) {
         return availableChapterId.contains(chapterId);
     }
+
+    public ChapterView getChapyter(String currentItem) {
+        return chapterViewAssembler.from(engine.getChapters().get(currentItem));
+    }
 }

@@ -55,32 +55,26 @@ public class SwingRenderer implements ContentRenderer {
     public int drawText(String text, int x, int y, float w, int vgap, int hgap, int padding) {
         if (text == null) return y;
 
-        Graphics2D g = (Graphics2D) g2.create();
-
         int startX = x + hgap + padding;
-        int startY = y + vgap;
+        int startY = y;
         float maxWidth = w - (hgap * 2) - (padding * 2);
 
-        int finalY = drawWrappedText(g, text, startX, startY, maxWidth);
-
-        g.dispose();
-
-        return finalY;
+        return drawWrappedText(g2, text, startX, startY, maxWidth) + vgap;
     }
 
     @Override
-    public int drawImage(ImageContentView imageContent, int x, int y, float w, int h, int vgap, int hgap, int padding) {
-        return drawImage(imageContent.imageUrl(), x, y, w, h, vgap, hgap, padding);
+    public int drawImage(ImageContentView imageContent, int x, int y, float w, int vgap, int hgap, int padding) {
+        return drawImage(imageContent.imageUrl(), x, y, w, vgap, hgap, padding);
     }
 
     @Override
-    public int drawImage(String url, int x, int y, float w, int h, int vgap, int hgap, int padding) {
+    public int drawImage(String url, int x, int y, float w, int vgap, int hgap, int padding) {
         int drawX = x + hgap + padding;
         int drawY = y + vgap;
         int drawW = (int) w - (hgap * 2) - (padding * 2);
-        int drawH = h;
 
         BufferedImage img = imageCache.get(url);
+        int drawH = img.getHeight() * drawW / img.getWidth();
 
         if (img == null) {
             try {
@@ -89,21 +83,21 @@ public class SwingRenderer implements ContentRenderer {
             } catch (IOException e) {
                 g2.setColor(INK_FADED);
                 g2.fillRect(drawX, drawY, drawW, drawH);
-                return y + vgap + h + vgap;
+                return y + vgap + drawH + vgap;
             }
         }
 
         g2.drawImage(img, drawX, drawY, drawW, drawH, null);
-        return y + vgap + h + vgap;
+        return y + vgap + drawH + vgap;
     }
 
     @Override
-    public int drawVideo(VideoContentView videoContent, int x, int y, float w, int h, int vgap, int hgap, int padding) {
-        return drawVideo(videoContent.videoUrl(), x, y, w, h, vgap, hgap, padding);
+    public int drawVideo(VideoContentView videoContent, int x, int y, float w, int vgap, int hgap, int padding) {
+        return drawVideo(videoContent.videoUrl(), x, y, w, vgap, hgap, padding);
     }
 
     @Override
-    public int drawVideo(String url, int x, int y, float w, int h, int vgap, int hgap, int padding) {
+    public int drawVideo(String url, int x, int y, float w, int vgap, int hgap, int padding) {
         File videoFile = new File(url);
         if(!videoFile.exists()) {
             JOptionPane.showMessageDialog(
@@ -112,7 +106,7 @@ public class SwingRenderer implements ContentRenderer {
                 "Error", 
                 JOptionPane.ERROR_MESSAGE
             );
-            return y + vgap + h + vgap;
+            return y + vgap + vgap;
         } else {
             int textHeight = drawText("> " + videoFile.getName(), x, y, w, vgap, hgap, padding);
 
@@ -156,25 +150,63 @@ public class SwingRenderer implements ContentRenderer {
         }
     }
 
-    public int measureTextHeight(Graphics2D g, String text, int maxWidth) {
+    public int measureTextHeight(String text, int maxWidth) {
         if (text == null || text.isEmpty()) return 0;
-        
-        FontMetrics fm = g.getFontMetrics();
-        String[] words = text.split("\\s+");
-        String currentLine = "";
-        int lineCount = 1; 
 
-        for (String word : words) {
-            String testLine = currentLine.isEmpty() ? word : currentLine + " " + word;
-            if (fm.stringWidth(testLine) > maxWidth) {
-                lineCount++; 
-                currentLine = word;
-            } else {
-                currentLine = testLine;
+        FontMetrics fm = g2.getFontMetrics();
+        int totalLines = 0;
+        String[] paragraphs = text.split("\n", -1);
+
+        for (String paragraph : paragraphs) {
+            if (paragraph.isEmpty()) {
+                totalLines++;
+                continue;
+            }
+
+            String[] words = paragraph.split("\\s+");
+            String currentLine = "";
+            int linesInParagraph = 1;
+
+            for (String word : words) {
+                String testLine = currentLine.isEmpty() ? word : currentLine + " " + word;
+                
+                if (fm.stringWidth(testLine) > maxWidth) {
+                    linesInParagraph++;
+                    currentLine = word;
+                } else {
+                    currentLine = testLine;
+                }
+            }
+            totalLines += linesInParagraph;
+        }
+
+        return totalLines * fm.getHeight();
+    }
+
+    public int measureImageHeight(String url, float maxWidth) {
+        BufferedImage img = imageCache.get(url);
+        if (img == null) {
+            try {
+                img = ImageIO.read(new File(url));
+                imageCache.put(url, img);
+            } catch (IOException e) {
+                return 0;
             }
         }
-        
-        return lineCount * fm.getHeight();
+        int originalWidth = img.getWidth();
+        int originalHeight = img.getHeight();
+        float scaleFactor = maxWidth / originalWidth;
+        return (int) (originalHeight * scaleFactor);
+    }
+
+    public int measureVideoHeight(String url, float maxWidth) {
+        File videoFile = new File(url);
+        if(!videoFile.exists()) {
+            return 0;
+        } else {
+            String displayText = "> " + videoFile.getName();
+            return measureTextHeight(displayText, (int) maxWidth);
+        }
     }
 
     @Override
@@ -208,22 +240,33 @@ public class SwingRenderer implements ContentRenderer {
         if (text == null || text.isEmpty()) return y;
         
         FontMetrics fm = g.getFontMetrics();
-        String[] words = text.split("\\s+");
-        String currentLine = "";
+        int lineHeight = fm.getHeight();
+        String[] lines = text.split("\n");
         int currentY = y + fm.getAscent(); 
 
-        for (String word : words) {
-            String testLine = currentLine.isEmpty() ? word : currentLine + " " + word;
-            if (fm.stringWidth(testLine) > maxWidth) {
-                g.drawString(currentLine, x, currentY);
-                currentLine = word;
-                currentY += fm.getHeight();
-            } else {
-                currentLine = testLine;
+        for (int i = 0; i < lines.length; i++) {
+            String paragraph = lines[i];
+            String[] words = paragraph.split("\\s+");
+            String currentLine = "";
+
+            for (String word : words) {
+                String testLine = currentLine.isEmpty() ? word : currentLine + " " + word;
+                if (fm.stringWidth(testLine) > maxWidth) {
+                    g.drawString(currentLine, x, currentY);
+                    currentLine = word;
+                    currentY += lineHeight;
+                } else {
+                    currentLine = testLine;
+                }
+            }
+            
+            g.drawString(currentLine, x, currentY);
+
+            if (i < lines.length - 1) {
+                currentY += lineHeight;
             }
         }
         
-        g.drawString(currentLine, x, currentY);
         return currentY + fm.getDescent(); 
     }
 
@@ -234,6 +277,7 @@ public class SwingRenderer implements ContentRenderer {
             case CAPTION -> Font.ITALIC;
             default -> Font.PLAIN;
         };
+        
         return new Font(name, style, size);
     }
 }

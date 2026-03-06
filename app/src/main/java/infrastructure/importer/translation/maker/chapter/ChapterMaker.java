@@ -50,15 +50,8 @@ public class ChapterMaker implements Maker<Map<String, Object>, ChapterDTO> {
 
     private ChapterIntro makChapterIntro(Map<String, Object> data) {
         List<TextContent> objectivTextContents = new ArrayList<>();
-        List<TextContent> descriptiTextContents = new ArrayList<>();
+
         List<Content> objectiveTextContentsOnly = filter.listByType(
-                mapper.list(
-                    (List<Map<String, Object>>) 
-                        data.get("objectives")
-                ),
-                ContentType.TEXT
-        );
-        List<Content> descriptionTextContentsOnly = filter.listByType(
                 mapper.list(
                     (List<Map<String, Object>>) 
                         data.get("objectives")
@@ -69,14 +62,10 @@ public class ChapterMaker implements Maker<Map<String, Object>, ChapterDTO> {
         for(Content content : objectiveTextContentsOnly) {
             objectivTextContents.add((TextContent)content);
         }
-        
-        for(Content content : descriptionTextContentsOnly) {
-            descriptiTextContents.add((TextContent)content);
-        }
 
         return new ChapterIntro(
             (TextContent) mapper.single((Map<String, Object>) data.get("title")),
-            descriptiTextContents,
+            (TextContent) mapper.single((Map<String, Object>) data.get("description")),
             objectivTextContents
         );
     }

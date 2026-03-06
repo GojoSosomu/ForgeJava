@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.Point2D;
 import java.util.List;
-import java.util.Set;
 
 import presentation.outside.launcher.SwingLauncher;
 import presentation.outside.swing.animation.SwingAnimationRunner;
@@ -149,11 +148,25 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
     public void setOffset(int x, int y) {
         this.offsetX = x;
         this.offsetY = y;
+
+        if (isCardActive && getWidth() > 0) {
+            float progress = (float) Math.abs(x) / getWidth();
+            float lerpFactor = 1.0f - progress;
+
+            int startIdx = carousel.getCurrentIndex();
+            int endIdx = animationNextIndex;
+
+            this.indicatorPosition = startIdx + (endIdx - startIdx) * lerpFactor;
+        }
+
         updateCardBounds();
+
         if (isCardActive && x == 0) {
             carousel.selectIndex(animationNextIndex);
+            this.indicatorPosition = (float) carousel.getCurrentIndex(); 
             isCardActive = false;
             animationDirection = 0;
+            this.offsetX = 0;
         }
         repaint();
     }

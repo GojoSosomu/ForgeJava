@@ -18,15 +18,16 @@ public final class SwingChapterIntroTemplate extends JPanel implements SwingSlid
     private final JButton backButton;
     private final JButton startButton;
     private final TextContentView title;
-    private final List<TextContentView> description;
+    private final TextContentView description;
     private final List<TextContentView> objectives;
     private final SwingRenderer renderer = new SwingRenderer();
     private final JScrollPane scrollPane;
 
-    private static final int CORNER_ARC = 28;
-    private static final int STRIPE_WIDTH = 6;
-    private static final int LEFT_MARGIN = 65;
-    public static final Color GLOW_ORANGE = new Color(255, 140, 50, 40);
+    private static final int CORNER_ARC = 18; 
+    private static final int STRIPE_WIDTH = 5;
+    private static final int STRIPE_X_INSET = 12;
+    private static final int OFFSET_X = 35; 
+    private static final int OFFSET_Y = 10;
 
     public SwingChapterIntroTemplate(ChapterView view) {
         this.title = view.chapterIntroView().title();
@@ -40,8 +41,10 @@ public final class SwingChapterIntroTemplate extends JPanel implements SwingSlid
         setSize(800, 500);
         setLayout(new BorderLayout(0, 0));
         setOpaque(false);
-        setBorder(BorderFactory.createEmptyBorder(30, LEFT_MARGIN, 30, 50));
+        
+        setBorder(BorderFactory.createEmptyBorder(20, OFFSET_X, 20, 40));
 
+        // Header now only contains the Title
         JPanel headerPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
@@ -50,26 +53,25 @@ public final class SwingChapterIntroTemplate extends JPanel implements SwingSlid
                 g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
                 renderer.setGraphics2D(g2);
 
-                int y = 25;
-                g2.setFont(new Font("Segoe UI", Font.BOLD, 28));
                 g2.setColor(INK_DARK);
-                g2.drawString(title.text().toUpperCase(), 0, y);
-
-                y += 22;
-                g2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
-                g2.setColor(INK_MEDIUM);
-                for (TextContentView desc : description) {
-                    y = renderer.drawText(desc.text(), 0, y, getWidth(), 0, 0, 0) + 8;
-                }
+                renderer.drawText(title, 0, 0, getWidth(), 5, 0, 0);
                 g2.dispose();
             }
+
             @Override
-            public Dimension getPreferredSize() { return new Dimension(100, 120); }
+            public Dimension getPreferredSize() {
+                if (getGraphics() == null) return new Dimension(100, 50);
+                renderer.setGraphics2D((Graphics2D) getGraphics().create());
+                renderer.applyStyle(title.style());
+                int h = renderer.measureTextHeight(title.text(), getWidth()) + 5;
+                return new Dimension(100, h);
+            }
         };
         headerPanel.setOpaque(false);
 
-        ObjectivePanel objContent = new ObjectivePanel();
-        scrollPane = new JScrollPane(objContent);
+        // InfoPanel now handles Description + "Learning Objectives" Label + Objectives List
+        InfoPanel infoContent = new InfoPanel();
+        scrollPane = new JScrollPane(infoContent);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         scrollPane.setBorder(null);
@@ -85,7 +87,7 @@ public final class SwingChapterIntroTemplate extends JPanel implements SwingSlid
         footerPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 0, 0));
         footerPanel.add(startButton, BorderLayout.EAST);
 
-        JPanel centerWrapper = new JPanel(new BorderLayout(0, 15));
+        JPanel centerWrapper = new JPanel(new BorderLayout(0, 10));
         centerWrapper.setOpaque(false);
         centerWrapper.add(headerPanel, BorderLayout.NORTH);
         centerWrapper.add(scrollPane, BorderLayout.CENTER);
@@ -95,37 +97,81 @@ public final class SwingChapterIntroTemplate extends JPanel implements SwingSlid
         add(footerPanel, BorderLayout.SOUTH);
     }
 
-    private class ObjectivePanel extends JPanel {
-        ObjectivePanel() { setOpaque(false); }
+    private class InfoPanel extends JPanel {
+        InfoPanel() { 
+            setOpaque(false); 
+            setBorder(BorderFactory.createEmptyBorder(0, 0, 50, 0));
+        }
 
         @Override
         public Dimension getPreferredSize() {
-            return new Dimension(100, objectives.size() * 45 + 60);
+            if (getGraphics() == null) return new Dimension(100, 500);
+            renderer.setGraphics2D((Graphics2D) getGraphics());
+            
+            int totalHeight = 0;
+            // 1. Measure Description
+            totalHeight += renderer.measureTextHeight(description.text(), getWidth()) + 30;
+
+            // 2. Measure Label space
+            totalHeight += 35; 
+
+            // 3. Measure Objectives List
+            int vgap = 10;
+            for (TextContentView obj : objectives) {
+                renderer.applyStyle(obj.style());
+                // Measure the text plus the vertical gaps we use in paintComponent
+                totalHeight += renderer.measureTextHeight(obj.text(), getWidth() - 50) + vgap + 15;
+            }
+            
+            // 4. ADD THE SAFETY BUFFER
+            // This ensures the last item (like #4) has breathing room
+            totalHeight += 40; 
+            
+            return new Dimension(getWidth(), totalHeight);
         }
 
         @Override
         protected void paintComponent(Graphics g) {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
             renderer.setGraphics2D(g2);
 
+            // 1. Draw Description
+            int curY = renderer.drawText(description, 0, 0, getWidth(), 2, 0, 0);
+            curY += 25; 
+
+            // 2. Draw "LEARNING OBJECTIVES" Label inside the scrollable area
             g2.setFont(new Font("Segoe UI Black", Font.PLAIN, 10));
+            FontMetrics fmLabel = g2.getFontMetrics();
             g2.setColor(withAlpha(INK_MEDIUM, 150));
-            g2.drawString("LEARNING OBJECTIVES", 0, 15);
+            g2.drawString("LEARNING OBJECTIVES", 0, curY + fmLabel.getAscent());
+            curY += fmLabel.getHeight() + 15;
 
+            // 3. Draw Objectives
             int count = 1;
-            int curY = 45;
             for (TextContentView obj : objectives) {
-                g2.setColor(GLOW_ORANGE);
-                g2.fillOval(0, curY - 14, 20, 20);
+                renderer.applyStyle(obj.style());
+                FontMetrics fm = g2.getFontMetrics();
                 
-                g2.setFont(new Font("Segoe UI", Font.BOLD, 10));
+                int vgap = 10;
+                int firstLineBaseline = curY + fm.getAscent();
+                int circleSize = 20;
+                int circleY = firstLineBaseline - (fm.getAscent() / 2) - (circleSize / 2) + (circleSize / 4);
+                
+                g2.setColor(new Color(255, 140, 50, 40));
+                g2.fillOval(0, circleY, circleSize, circleSize);
+                
+                g2.setFont(new Font("Segoe UI", Font.BOLD, 12));
                 g2.setColor(ORANGE_BASED);
-                g2.drawString(String.valueOf(count), count < 10 ? 7 : 4, curY);
+                FontMetrics fmNum = g2.getFontMetrics();
+                
+                int numX = (circleSize - fmNum.stringWidth(String.valueOf(count))) / 2;
+                int numY = circleY + ((circleSize + fmNum.getAscent()) / 2) - 2;
+                
+                g2.drawString(String.valueOf(count), numX, numY);
 
-                g2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-                g2.setColor(INK_MEDIUM);
-                curY = renderer.drawText(obj.text(), 32, curY, getWidth() - 50, 0, 0, 0) + 25;
+                curY = renderer.drawText(obj, 32, curY, getWidth() - 50, vgap, 0, 0);
                 count++;
             }
             g2.dispose();
@@ -141,17 +187,17 @@ public final class SwingChapterIntroTemplate extends JPanel implements SwingSlid
         final int W = getWidth();
         final int H = getHeight();
 
-        g2.setColor(CARD_SHADOW);
-        g2.fill(new RoundRectangle2D.Double(4, 6, W - 8, H - 8, CORNER_ARC, CORNER_ARC));
+        g2.setColor(withAlpha(CARD_SHADOW, 20));
+        g2.fill(new RoundRectangle2D.Double(2, 4, W - 4, H - 4, CORNER_ARC, CORNER_ARC));
 
         RoundRectangle2D cardShape = new RoundRectangle2D.Double(0, 0, W - 1, H - 1, CORNER_ARC, CORNER_ARC);
-        g2.setPaint(new GradientPaint(0, 0, PAGE_BASE, 0, H, withAdjust(PAGE_BASE, 0.97)));
+        g2.setPaint(new GradientPaint(0, 0, PAGE_BASE, 0, H, withAdjust(PAGE_BASE, 0.96)));
         g2.fill(cardShape);
 
-        g2.setColor(ORANGE_BASED);
-        g2.fillRoundRect(22, 40, STRIPE_WIDTH, H - 85, 4, 4);
+        g2.setColor(withAdjust(ORANGE_BASED, 0.9));
+        g2.fillRoundRect(STRIPE_X_INSET, OFFSET_Y, STRIPE_WIDTH, H - (OFFSET_Y * 2), 4, 4);
 
-        g2.setStroke(new BasicStroke(1.1f));
+        g2.setStroke(new BasicStroke(0.8f));
         g2.setColor(BORDER_NORMAL);
         g2.draw(cardShape);
 

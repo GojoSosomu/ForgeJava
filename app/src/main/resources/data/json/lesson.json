@@ -44,5 +44,212 @@
         ]
       }
     ]
+  },
+  "L-003": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Control Flow: If-Else Statements",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Decision making in Java is handled by 'if' statements. It allows your program to choose different paths based on whether a condition is true or false.",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Syntax: if (condition) { // do this } else { // do that }",
+            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
+          }
+        ]
+      }
+    ]
+  },
+  "L-004": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Mastering Loops: For and While",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Loops prevent you from writing the same code over and over. A 'for' loop is great when you know how many times to repeat, while a 'while' loop runs as long as a condition remains true.",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Careful: Always ensure your loop has a way to stop, or you will create an 'infinite loop' that crashes your program!",
+            "style": { "emphasis": "WARNING", "size": "SMALL" }
+          }
+        ]
+      }
+    ]
+  },
+  "L-005": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Methods and Parameters",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Methods are reusable blocks of code. You can pass information into them using parameters and get information back using a return type.",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Tip: If a method doesn't return anything, its return type must be marked as 'void'.",
+            "style": { "emphasis": "INFO", "size": "SMALL" }
+          }
+        ]
+      }
+    ]
+  },
+  "L-006": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Introduction to Arrays",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "An array is a collection of variables of the same type. Think of it like a train with several cars, where each car holds one piece of data.",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Note: Arrays in Java are zero-indexed. The first item is at position [0], not [1]!",
+            "style": { "emphasis": "WARNING", "size": "SMALL" }
+          }
+        ]
+      }
+    ]
+  },
+  "L-007": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Object-Oriented Programming (OOP)",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Java is an object-oriented language. This means we organize code into 'Objects' that have attributes (fields) and behaviors (methods).",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Concept: A Class is the blueprint, and an Object is the actual house built from that blueprint.",
+            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
+          }
+        ]
+      }
+    ]
+  },
+  "L-008": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Inheritance and Reusability",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Inheritance allows one class to acquire the properties of another. Use the 'extends' keyword to create a subclass.",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Example: A 'Dog' class can inherit from an 'Animal' class.",
+            "style": { "emphasis": "INFO", "size": "SMALL" }
+          }
+        ]
+      }
+    ]
+  },
+  "L-009": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Interfaces and Abstraction",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Interfaces define a contract for what a class should do, without specifying how it does it. It's like a to-do list for your classes.",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Constraint: A class 'implements' an interface and must provide code for all its methods.",
+            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
+          }
+        ]
+      }
+    ]
+  },
+  "L-010": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Exception Handling",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Errors happen! Java uses 'try-catch' blocks to handle exceptions gracefully so the entire program doesn't stop working when something goes wrong.",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Example: try { // risky code } catch (Exception e) { // fix it }",
+            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
+          }
+        ]
+      }
+    ]
+  },
+  "L-011": {
+    "pages": [
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Working with Strings",
+            "style": { "emphasis": "TITLE", "size": "LARGE" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Strings are objects used to store text. Java provides many methods to manipulate them, such as .length(), .toUpperCase(), and .contains().",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Crucial: Strings in Java are immutable. Once created, their value cannot be changed!",
+            "style": { "emphasis": "WARNING", "size": "SMALL" }
+          }
+        ]
+      }
+    ]
   }
 }

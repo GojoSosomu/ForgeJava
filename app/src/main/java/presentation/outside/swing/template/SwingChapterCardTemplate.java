@@ -85,11 +85,11 @@ public final class SwingChapterCardTemplate extends JPanel implements SwingSlide
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g.create();
-        
+
         final int W = getWidth();
         final int H = getHeight();
         final int OFFSET_X = 35; 
-        final int OFFSET_Y = 20;
+        final int OFFSET_Y = 10;
         final int CORNER_ARC = 18;
         final int STRIPE_WIDTH = 5;
         final int STRIPE_X_INSET = 12;
@@ -110,23 +110,22 @@ public final class SwingChapterCardTemplate extends JPanel implements SwingSlide
 
         g2.setColor(isLocked ? LOCKED_GRAY : (isHovered ? ORANGE_BASED : withAdjust(ORANGE_BASED, 0.9)));
         g2.fillRoundRect(STRIPE_X_INSET, OFFSET_Y, STRIPE_WIDTH, H - (OFFSET_Y * 2), 4, 4);
-        
-        g2.setFont(new Font("Segoe UI", Font.BOLD, 16)); 
-        g2.setColor(isLocked ? withAdjust(INK_DARK, 1.4) : INK_DARK);
-        g2.drawString(title.text().toUpperCase(), OFFSET_X, OFFSET_Y + 15);
 
-        g2.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        g2.setColor(isHovered ? withAdjust(ORANGE_BASED, 0.8) : INK_MEDIUM);
+        int titleY = renderer.drawText(title, OFFSET_X, OFFSET_Y + 10, W - OFFSET_X - 20, 10, 0, 0);
+
         g2.setColor(isLocked ? INK_FADED : INK_MEDIUM);
-        int nextY = renderer.drawText(description.text(), OFFSET_X, OFFSET_Y + 32, W - OFFSET_X - 20, 0, 0, 0);
+        int nextY = renderer.drawText(description, OFFSET_X, titleY, W - OFFSET_X - 20, 10, 0, 0);
 
         if (!isLocked) {
-            int msgY = nextY + 10;
-            g2.setColor(withAlpha(isHovered ? ORANGE_BASED : MESSAGE_BASE, isHovered ? 20 : 35));
-            g2.fillRoundRect(OFFSET_X - 8, msgY, W - OFFSET_X - 10, 34, 10, 10);
+            int msgY = nextY + 2;
+            int msgHeight = renderer.measureTextHeight(message.text(), (int)(W - OFFSET_X - 20));
             
-            g2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 11));
+            g2.setColor(withAlpha(isHovered ? ORANGE_BASED : MESSAGE_BASE, isHovered ? 20 : 35));
+            g2.fillRoundRect(OFFSET_X - 8, msgY, W - OFFSET_X - 10, msgHeight + 4, 10, 10);
+            
             g2.setColor(isHovered ? withAdjust(ORANGE_BASED, 0.8) : INK_MEDIUM);
-            renderer.drawText(message.text(), OFFSET_X, msgY, W - OFFSET_X - 20, 1, 0, 0);
+            renderer.drawText(message, OFFSET_X, msgY, W - OFFSET_X - 20, 0, 0, 0);
         } else {
             g2.setFont(new Font("Segoe UI Black", Font.PLAIN, 9));
             g2.setColor(LOCKED_GRAY);

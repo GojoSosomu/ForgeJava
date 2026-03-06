@@ -1,12 +1,10 @@
 {
-  "" : {
+  "howtodo" : {
+    "id" : "howtodo",
     "users" : [ {
-      "activityProgress" : {
-        "completedActivities" : [ ]
-      },
       "chapterProgress" : {
-        "currentChapter" : 1,
-        "completedChapters" : [ ]
+        "completedChapters" : [ ],
+        "currentChapter" : 1
       },
       "id" : "howtodo",
       "version" : 1,
@@ -16,14 +14,14 @@
       "userAccount" : {
         "salt" : "Xy4rqmS7oTER5onJ9LWTwQ==",
         "password" : "f116628ce6a6ef8d62563a658f6ae6ad932d1b140cfbf1855a84fc9eefc9ca2c"
-      }
-    }, {
+      },
       "activityProgress" : {
         "completedActivities" : [ ]
-      },
+      }
+    }, {
       "chapterProgress" : {
-        "currentChapter" : 1,
-        "completedChapters" : [ ]
+        "completedChapters" : [ ],
+        "currentChapter" : 1
       },
       "id" : "ho",
       "version" : 1,
@@ -33,14 +31,14 @@
       "userAccount" : {
         "salt" : "LmlUagY89+DtpFONGoTahA==",
         "password" : "039a014770aef0baccbabce68087d67db152523d30c9c3971ccd91a694f05236"
-      }
-    }, {
+      },
       "activityProgress" : {
         "completedActivities" : [ ]
-      },
+      }
+    }, {
       "chapterProgress" : {
-        "currentChapter" : 1,
-        "completedChapters" : [ ]
+        "completedChapters" : [ ],
+        "currentChapter" : 1
       },
       "id" : "you",
       "version" : 1,
@@ -50,8 +48,10 @@
       "userAccount" : {
         "salt" : "Fz9iJ0me3PMHOZBpZJWonw==",
         "password" : "33529f221245a600492b6921c198eeae4db463f1c690d5cefbefd987f5af4c01"
+      },
+      "activityProgress" : {
+        "completedActivities" : [ ]
       }
-    } ],
-    "id" : ""
+    } ]
   }
 }

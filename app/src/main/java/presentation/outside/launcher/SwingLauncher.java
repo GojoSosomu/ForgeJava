@@ -83,7 +83,7 @@ public class SwingLauncher extends Launcher {
         
         SwingChapterCoveragePanel chapterCoveragePanel = new SwingChapterCoveragePanel(
             new SwingChapterCardAssembler().assemble(chapterService.getAllChapters()),
-            new SwingChapterBoundaryAssembler().assembleIntroTemplates(chapterService.getAllChapters()),
+            new SwingChapterIntroAssembler().assembleIntroTemplates(chapterService.getAllChapters()),
             chapterService,
             animationRunner,
             this
@@ -202,6 +202,15 @@ public class SwingLauncher extends Launcher {
     }
 
     public void startChapter(String currentItem) {
-        
+        SwingChapterPanel chapterPanel = new SwingChapterPanel(
+            chapterService.getChapyter(currentItem), 
+            new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT),
+            this
+        );
+        chapterPanel.showIntro();
+    }
+
+    public void endChapter() {
+        switchPanel(mainPanel);
     }
 }

@@ -6,7 +6,7 @@ import core.model.dto.content.TextContent;
 
 public record ChapterIntro(
     TextContent title,
-    List<TextContent> description,
+    TextContent description,
     List<TextContent> objectives
 ) {
     

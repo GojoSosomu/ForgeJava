@@ -1,9 +1,9 @@
 package presentation.service.assembler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import core.model.snapshot.Snapshot;
 import core.model.view.View;
@@ -19,7 +19,7 @@ public interface ViewAssembler<T extends Snapshot,R extends View> {
     }
 
     default Map<String, R> from(Map<String, T> snapshots) {
-        Map<String, R> result = new HashMap<>();
+        Map<String, R> result = new TreeMap<>();
 
         for(Map.Entry<String, T> snapshot : snapshots.entrySet()) {
             result.put(snapshot.getKey(), this.from(snapshot.getValue()));

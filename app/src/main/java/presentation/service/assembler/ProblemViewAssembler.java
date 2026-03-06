@@ -28,7 +28,7 @@ public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, Prob
 
         List<TextContentView> instruction = new ArrayList<>();
 
-        for(ContentSnapshot contentSnapshot : (List<ContentSnapshot>) values.get("question"))
+        for(ContentSnapshot contentSnapshot : (List<ContentSnapshot>) values.get("questions"))
             if(contentSnapshot.type() == ContentType.TEXT)
                 instruction.add((TextContentView) contentViewAssembler.from(contentSnapshot));
 
