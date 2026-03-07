@@ -69,7 +69,7 @@ public class ChapterService extends AService {
         return availableChapterId.contains(chapterId);
     }
 
-    public ChapterView getChapyter(String currentItem) {
+    public ChapterView getChapter(String currentItem) {
         return chapterViewAssembler.from(engine.getChapters().get(currentItem));
     }
 }

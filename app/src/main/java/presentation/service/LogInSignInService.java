@@ -52,7 +52,7 @@ public class LogInSignInService extends AService{
        if(engine.getCurrentUser() != null) {
 			return SuccessType.LOG_IN_SUCCESS;
 	   } else {
-			return SuccessType.FAULIER_CURRENT_USER_NOT_EXIST;
+			return SuccessType.FAILURE_CURRENT_USER_NOT_EXIST;
 	   }
     }
 

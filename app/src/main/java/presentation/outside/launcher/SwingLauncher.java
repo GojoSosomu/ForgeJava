@@ -110,7 +110,7 @@ public class SwingLauncher extends Launcher {
             switchPanel(mainPanel);
             mainPanel.getNameLabel().setText("Welcome, " + logInSignInService.getCurrentUserName());
         }
-        else if(result == SuccessType.FAULIER_CURRENT_USER_NOT_EXIST)
+        else if(result == SuccessType.FAILURE_CURRENT_USER_NOT_EXIST)
             switchPanel(logInPanel, 380, 340);
     }
 
@@ -197,7 +197,7 @@ public class SwingLauncher extends Launcher {
 
     public void startChapter(String currentItem) {
         SwingChapterPanel chapterPanel = new SwingChapterPanel(
-            chapterService.getChapyter(currentItem), 
+            chapterService.getChapter(currentItem), 
             new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT),
             this
         );
