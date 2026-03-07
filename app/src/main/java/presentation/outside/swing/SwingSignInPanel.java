@@ -164,7 +164,6 @@ public class SwingSignInPanel extends JPanel {
         usernameField.addKeyListener(enterListener);
         passwordField.addKeyListener(enterListener);
         confirmPasswordField.addKeyListener(enterListener);
-        signInButton.addActionListener(e -> signIn());
         
         addAncestorListener(new AncestorListener() {
             @Override

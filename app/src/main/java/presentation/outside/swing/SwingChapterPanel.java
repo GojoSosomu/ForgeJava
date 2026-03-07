@@ -9,7 +9,6 @@ import presentation.outside.swing.template.page.SwingChapterSequencePanel;
 
 public class SwingChapterPanel {
     private final SwingLauncher launcher;
-    private final ChapterView chapter;
     private final Dimension dimension;
 
     private SwingChapterIntroPanel introPanel;
@@ -21,7 +20,6 @@ public class SwingChapterPanel {
         Dimension dimension,
         SwingLauncher launcher
     ) {
-        this.chapter = chapter;
         this.dimension = dimension;
         this.launcher = launcher;
 

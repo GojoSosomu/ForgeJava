@@ -155,7 +155,6 @@ public class SwingLauncher extends Launcher {
             signInPanel.getPassword().trim(),
             signInPanel.getConfirmPassword().trim()
         );
-        System.out.println("Sign-in result: " + result);
         switch(result) {
             case SIGN_IN_SUCCESS -> {
                 switchPanel(mainPanel);

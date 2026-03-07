@@ -169,7 +169,6 @@ public class SwingLogInPanel extends JPanel {
 
         usernameField.addKeyListener(enterListener);
         passwordField.addKeyListener(enterListener);
-        logInButton.addActionListener(e -> logIn());
     }
 
     private JLabel createLabel(String text) {
