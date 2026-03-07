@@ -4,7 +4,8 @@ import java.util.List;
 
 public record ChapterProgress(
     List<String> completedChapters,
-    byte currentChapter
+    byte currentChapter,
+    short currentSequenceIndex
 ) {
 
 }

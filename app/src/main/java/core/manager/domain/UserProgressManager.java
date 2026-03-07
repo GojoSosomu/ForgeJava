@@ -46,7 +46,8 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
             ),
             new ChapterProgress(
                 List.of(),
-                (byte)1
+                (byte) 1,
+                (short) 0
             ),
             new ActivityProgress(
                 List.of()
@@ -112,7 +113,8 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
                 ),
                 "chapterProgress", Map.of(
                     "completedChapters", dto.chapterProgress().completedChapters(),
-                    "currentChapter", dto.chapterProgress().currentChapter()
+                    "currentChapter", dto.chapterProgress().currentChapter(),
+                    "currentSequenceIndex", dto.chapterProgress().currentSequenceIndex()
                 ),
                 "activityProgress", Map.of(
                     "completedActivities", dto.activityProgress().completedActivities()

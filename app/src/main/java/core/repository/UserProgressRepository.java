@@ -6,7 +6,7 @@ import core.model.dto.progress.UserDatabaseDTO;
 import core.model.dto.progress.UserProgressDTO;
 
 public class UserProgressRepository extends AbstractRepository<UserProgressDTO> {
-    private String currentUser;
+    private String currentUser = "";
 
     public void setCurrentUser(String currentUser) {
         this.currentUser = currentUser;

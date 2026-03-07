@@ -36,7 +36,8 @@ public class UserProgressMaker implements Maker<Map<String, Object>, UserProgres
     private ChapterProgress makeChapterProgress(Map<String, Object> raw) {
         return new ChapterProgress(
             (List<String>) raw.get("completedChapters"),
-            ((Number) raw.get("currentChapter")).byteValue()
+            ((Number) raw.get("currentChapter")).byteValue(),
+            ((Number) raw.get("currentSequenceIndex")).shortValue()
         );
     }
 

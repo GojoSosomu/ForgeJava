@@ -24,6 +24,7 @@ public abstract class AbstractRepository<V> {
     }
 
     public boolean isExist(String id) {
+        System.out.println(store.containsKey(id));
         return store.containsKey(id);
     }
 

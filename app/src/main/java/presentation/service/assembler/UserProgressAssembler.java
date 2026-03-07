@@ -32,7 +32,8 @@ public class UserProgressAssembler implements ViewAssembler<UserProgressSnapshot
             (List<String>) ((Map<String, Object>) data.get("lessonProgress")).get("completedLessons"),
             (List<String>) ((Map<String, Object>) data.get("chapterProgress")).get("completedChapters"),
             (List<String>) ((Map<String, Object>) data.get("activityProgress")).get("completedActivities"),
-            (byte) ((Map<String, Object>)data.get("chapterProgress")).get("currentChapter")
+            (byte) ((Map<String, Object>)data.get("chapterProgress")).get("currentChapter"),
+            (short) ((Map<String, Object>)data.get("chapterProgress")).get("currentSequenceIndex")
         );
     }
 }

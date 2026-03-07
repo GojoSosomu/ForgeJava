@@ -115,10 +115,9 @@ public class SwingLauncher extends Launcher {
     }
 
     public void switchPanel(JPanel panel, int width, int height) {
-
         frame.setSize(width, height);
-
         transition.setPanel(panel);
+        frame.setLocationRelativeTo(null);
     }
 
     public void switchPanel(JPanel panel) {
