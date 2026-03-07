@@ -30,6 +30,7 @@ public class SwingLauncher extends Launcher {
 
     @Override
     public void start(ViewAssembler<LoadingSnapshot, LoadingView> viewAssembler) {
+        // --- STEP 1: Frame setup (same as before, runs on EDT) ---
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -58,66 +59,113 @@ public class SwingLauncher extends Launcher {
             viewAssembler
         );
 
-        bootService.boot(loadingReceiver);
+        // --- STEP 2: Run boot on a background thread ---
+        SwingWorker<Void, Void> bootWorker = new SwingWorker<>() {
 
-        SwingAnimationRunner animationRunner = new SwingAnimationRunner(60);
+            @Override
+            protected Void doInBackground() {
+                // Runs OFF the EDT — loading is safe here
+                bootService.boot(loadingReceiver);
+                return null;
+            }
 
-        mainPanel = new SwingMainPanel();
-        SwingSignInPanel signInPanel = new SwingSignInPanel(this);
-        SwingLogInPanel logInPanel = new SwingLogInPanel(this);
+            @Override
+            protected void done() {
+                // Runs BACK ON the EDT — safe to build and touch UI here
 
-        logInPanel.getLogInButton().addActionListener(e -> loginSuccessToMainPanel(logInPanel));
-        logInPanel.getSwitchToSignInButton().addActionListener(e -> {
-            logInPanel.reset();
-            switchPanel(signInPanel, 400, 370);
-            signInPanel.start();
-        });
+                // Check if boot threw an exception
+                try {
+                    get(); // rethrows any exception from doInBackground
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(
+                        frame,
+                        "Failed to load application data:\n" + e.getMessage(),
+                        "Boot Error",
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                    System.exit(1);
+                    return;
+                }
 
-        signInPanel.getSignInButton().addActionListener(e -> signInSuccessToMainPanel(signInPanel));
-        signInPanel.getSwitchToLoginButton().addActionListener(e -> {
-            signInPanel.reset();
-            switchPanel(logInPanel, 380, 340);
-            logInPanel.start();
-        });
+                // --- STEP 3: Build all panels (same as before, now inside done()) ---
+                SwingAnimationRunner animationRunner = new SwingAnimationRunner(60);
 
-        SwingCreditPanel creditPanel = new SwingCreditPanel();
-        creditPanel.getBackButton().addActionListener(e -> switchPanel(mainPanel));
-        
-        SwingChapterCoveragePanel chapterCoveragePanel = new SwingChapterCoveragePanel(
-            new SwingChapterCardAssembler().assemble(chapterService.getAllChapters()),
-            new SwingChapterIntroAssembler().assembleIntroTemplates(chapterService.getAllChapters()),
-            chapterService,
-            animationRunner,
-            this
-        );
-        chapterCoveragePanel.getBackButton().addActionListener(e -> switchPanel(mainPanel));
+                mainPanel = new SwingMainPanel();
+                SwingSignInPanel signInPanel = new SwingSignInPanel(SwingLauncher.this);
+                SwingLogInPanel logInPanel = new SwingLogInPanel(SwingLauncher.this);
 
-        mainPanel.getStartButton().addActionListener(e -> {
-            switchPanel(chapterCoveragePanel, 1000, 600);
-            chapterCoveragePanel.setUpLocked();
-        });
-        mainPanel.getQuitButton().addActionListener(e -> handleExit(frame, bootService));
-        mainPanel.getLogoutButton().addActionListener(e -> {
-            logInSignInService.resetCurrentUser();
-            logInPanel.reset();
-            switchPanel(logInPanel, 400, 370);
-            logInPanel.start();
-        });
-        mainPanel.getCreditButton().addActionListener(e -> switchPanel(creditPanel));
+                logInPanel.getLogInButton().addActionListener(e -> loginSuccessToMainPanel(logInPanel));
+                logInPanel.getSwitchToSignInButton().addActionListener(e -> {
+                    logInPanel.reset();
+                    switchPanel(signInPanel, 400, 370);
+                    signInPanel.start();
+                });
 
-        SuccessType result = logInSignInService.logInCurrentUser();
-        if(result == SuccessType.LOG_IN_SUCCESS) {
-            switchPanel(mainPanel);
-            mainPanel.getNameLabel().setText("Welcome, " + logInSignInService.getCurrentUserName());
-        }
-        else if(result == SuccessType.FAILURE_CURRENT_USER_NOT_EXIST)
-            switchPanel(logInPanel, 380, 340);
+                signInPanel.getSignInButton().addActionListener(e -> signInSuccessToMainPanel(signInPanel));
+                signInPanel.getSwitchToLoginButton().addActionListener(e -> {
+                    signInPanel.reset();
+                    switchPanel(logInPanel, 380, 340);
+                    logInPanel.start();
+                });
+
+                SwingCreditPanel creditPanel = new SwingCreditPanel();
+                creditPanel.getBackButton().addActionListener(e -> switchPanel(mainPanel));
+
+                SwingChapterCoveragePanel chapterCoveragePanel = new SwingChapterCoveragePanel(
+                    new SwingChapterCardAssembler().assemble(chapterService.getAllChapters()),
+                    new SwingChapterIntroAssembler().assembleIntroTemplates(chapterService.getAllChapters()),
+                    chapterService,
+                    animationRunner,
+                    SwingLauncher.this
+                );
+                chapterCoveragePanel.getBackButton().addActionListener(e -> switchPanel(mainPanel));
+
+                mainPanel.getStartButton().addActionListener(e -> {
+                    switchPanel(chapterCoveragePanel, 1000, 600);
+                    chapterCoveragePanel.setUpLocked();
+                });
+                mainPanel.getQuitButton().addActionListener(e -> handleExit(frame, bootService));
+                mainPanel.getLogoutButton().addActionListener(e -> {
+                    logInSignInService.resetCurrentUser();
+                    logInPanel.reset();
+                    switchPanel(logInPanel, 400, 370);
+                    logInPanel.start();
+                });
+                mainPanel.getCreditButton().addActionListener(e -> switchPanel(creditPanel));
+
+                // --- STEP 4: Navigate to first screen (same as before) ---
+                SuccessType result = logInSignInService.logInCurrentUser();
+                if (result == SuccessType.LOG_IN_SUCCESS) {
+                    switchPanel(mainPanel);
+                    mainPanel.getNameLabel().setText("Welcome, " + logInSignInService.getCurrentUserName());
+                } else {
+                    switchPanel(logInPanel, 380, 340);
+                }
+            }
+        };
+
+        bootWorker.execute(); // non-blocking — returns immediately, EDT stays free
     }
 
     public void switchPanel(JPanel panel, int width, int height) {
-        frame.setSize(width, height);
-        transition.setPanel(panel);
-        frame.setLocationRelativeTo(null);
+        // 1. Hide the frame immediately
+        frame.setVisible(false);
+
+        SwingUtilities.invokeLater(() -> {
+            // 2. We are now "behind the curtain." Do the heavy work.
+            frame.setSize(width, height);
+            transition.setPanel(panel);
+            frame.setLocationRelativeTo(null); 
+            
+            // 3. Request the UI to update its internal layout 
+            frame.revalidate();
+            frame.repaint();
+
+            // 4. Only once EVERYTHING above is finished, schedule the "Show"
+            SwingUtilities.invokeLater(() -> {
+                frame.setVisible(true);
+            });
+        });
     }
 
     public void switchPanel(JPanel panel) {
