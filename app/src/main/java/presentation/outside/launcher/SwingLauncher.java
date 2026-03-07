@@ -24,6 +24,7 @@ public class SwingLauncher extends Launcher {
     private final JFrame frame = new JFrame(PROJECT_NAME);
     private JPanel loadingPanel;
     private SwingMainPanel mainPanel;
+    private final SwingTransitionPanel transition = new SwingTransitionPanel();
     private static final int DEFAULT_WIDTH = 1200;
     private static final int DEFAULT_HEIGHT = 700;
 
@@ -50,6 +51,7 @@ public class SwingLauncher extends Launcher {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setAlwaysOnTop(false);
+        frame.setContentPane(transition);
 
         LoadingReceiver loadingReceiver = new LoadingReceiver(
             (OutsideChannel<LoadingView>) loadingPanel,
@@ -113,16 +115,10 @@ public class SwingLauncher extends Launcher {
     }
 
     public void switchPanel(JPanel panel, int width, int height) {
-        SwingUtilities.invokeLater(() -> {
-            panel.setPreferredSize(new Dimension(width, height));
-            frame.setContentPane(panel);
-            frame.revalidate();
-            frame.repaint();
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            
-            panel.transferFocus(); 
-        });
+
+        frame.setSize(width, height);
+
+        transition.setPanel(panel);
     }
 
     public void switchPanel(JPanel panel) {
