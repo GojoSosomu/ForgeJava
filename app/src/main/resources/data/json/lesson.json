@@ -1,269 +1,499 @@
 {
   "L-001": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "The Anatomy of a Java Program",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Every Java program starts with a class definition. Inside that class, you need a 'main' method. Think of the main method as the front door to your house—it is where the execution starts!",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Example: public static void main(String[] args) { ... }",
-            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
-          }
-        ]
-      },
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Every Java program starts with a class definition. Inside that class, you need a 'main' method. Think of the main method as the front door to your house—it is where the execution starts!",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Example: public static void main(String[] args) { ... }",
-            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 1: The Foundations of the Java Machine", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "Welcome to the Forge. Before we can build a Metropolis, we must understand the environment.\n\nJava was born in 1995 with a radical vision: 'Write Once, Run Anywhere' (WORA). This was a solution to the 'Fragmentation Problem'—where code written for one computer wouldn't work on another.\n\nIn our world, Java is the 'Neutral Atmosphere' that allows our logic to breathe on any operating system, from Windows to Linux to the cloud.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Holy Trinity: JDK, JRE, and JVM", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "To run the Engine, we need three specific components:\n\n1. JVM (Java Virtual Machine): The actual heart of the machine. It reads the instructions and moves the pistons of the CPU.\n2. JRE (Java Runtime Environment): The JVM plus the standard libraries. This is the 'Fuel' needed to keep the machine running.\n3. JDK (Java Development Kit): The full toolkit. It includes the JRE plus the 'Tools' (like the compiler) we use to build the machine.\n\nYou are currently using a JDK 25 toolchain—the most advanced toolkit available.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "Architect's Rule: You need the JDK to BUILD, but only the JRE to RUN.", "style": { "emphasis": "INFO", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Smelting Process: Compilation", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Computers do not understand the words you type. They only understand electricity (1s and 0s).\n\nWhen you write code in a .java file, it is 'Raw Ore'. We use the 'javac' command (The Compiler) to smelt this ore into 'Bytecode' (.class files).\n\nBytecode is the 'Processed Material'. It isn't machine code yet, but it is in a special format that the JVM can translate into action instantly on any computer.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "Source (.java) -> Compiler (javac) -> Bytecode (.class) -> JVM", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Anatomy of a Class", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "In Java, everything lives inside a 'Class'. Think of a class as a 'Blueprint' for a building in our Metropolis.\n\nThe class name must perfectly match the filename. If your class is named 'Engine', your file must be 'Engine.java'.\n\nInside the class, we define the 'Rooms' (Methods) and 'Furniture' (Variables) that make the building functional.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "public class MyFirstMachine {\n    // This is the blueprint interior\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Start Button: The main Method", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Every factory needs a start button. In Java, that button is the 'main' method.\n\nWhen you tell the JVM to run your class, it ignores everything until it finds this exact line:\n'public static void main(String[] args)'\n\nWithout this method, your class is just a blueprint that can never be turned into a living machine.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "public static void main(String[] args) {\n    // The power turns on here\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Voice of the Machine: System.out", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "To communicate with the outside world, the machine uses an 'Output Stream'.\n\n'System.out.println()' is the command to print a message to the console and then move to a new line.\n\n'println' stands for 'Print Line'. If you use just 'print', the machine will stay on the same line for the next message.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "System.out.println(\"System Online.\");\nSystem.out.print(\"Initializing...\");", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Laws of Syntax", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Java is a strict language. It follows 'Strict Laws' that must be obeyed, or the compiler will refuse to work:\n\n1. Case Sensitivity: 'Engine' and 'engine' are different entities.\n2. Semicolons: Every complete instruction (statement) must end with a (;).\n3. Braces: Curly braces { } are used to define the boundaries of classes and methods.\n\nIf you break these laws, you create a 'Compile-Time Error'—the factory stops immediately.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "Architect's Hint: Think of semicolons like the 'Period' at the end of a sentence.", "style": { "emphasis": "CAPTION", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Naming Conventions: Identifiers", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "In a Metropolis, we need clear signs. Identifiers are the names we give to classes, methods, and variables.\n\n- Class Names: Should start with an Uppercase letter (e.g., UserProgress).\n- Method/Variable Names: Should start with a lowercase letter (e.g., startEngine).\n- Style: We use 'camelCase' where every new word starts with a capital letter.\n\nNames can contain letters, numbers, $ and _, but they CANNOT start with a number.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Architect's Notes: Comments", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Comments are notes for the humans, not the machine. The JVM completely ignores them.\n\n- Single Line: Use // for a quick note.\n- Multi-Line: Use /* ... */ for long explanations.\n\nUse comments to explain WHY you did something, not WHAT the code is doing. Good code should be clear enough to explain the 'What' by itself.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "// TODO: Fix the flux capacitor\n/* This logic handles the \n   metropolis power grid. */", "style": { "emphasis": "CAPTION", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 1 Summary", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You have taken your first step into a larger world. You understand the components of Java, the compilation process, and the basic structure of a class.\n\nYou have turned the power on. In the next lesson, we will begin gathering the materials we need to store data in our factory.", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   },
   "L-002": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Understanding Variables",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Variables are like named containers. In Java, you must declare what kind of data the container holds. For example, 'int' is for whole numbers, and 'double' is for decimals.",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Remember: Java is strongly typed, meaning you can't put text into a number variable!",
-            "style": { "emphasis": "WARNING", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 2: Variables and the 8 Elements", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "In our Metropolis, we need to move and store 'Information'. Variables are the 'Storage Bins' of the factory floor.\n\nA variable is a named space in the computer's memory that holds a value. But unlike a real bin, in Java, you must decide what TYPE of material the bin can hold before you create it.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Declaration Contract", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "To use a variable, you must follow a two-step process:\n\n1. Declaration: Telling the machine the Type and Name (int score;).\n2. Initialization: Putting the first value into the bin (score = 0;).\n\nYou can do both at the same time: 'int score = 0;'. This is the standard practice for modern Architects.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "dataType variableName = value;", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Primitive Elements", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Java has 8 'Primitive' data types. These are the fundamental elements of the universe. They are simple, fast, and cannot be broken down into smaller pieces.\n\nThey are categorized into four groups: Integers, Decimals, Characters, and Truths.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Integer Family (Whole Numbers)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "For storing numbers without decimals, we have four options depending on how big the number is:\n\n- byte: Tiny (8-bit). Used for small data.\n- short: Small (16-bit).\n- int: Standard (32-bit). Most common choice.\n- long: Massive (64-bit). Used for huge numbers like world populations.\n\nIf you use 'long', you must put an 'L' at the end of the number (e.g., 5000000000L).", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Decimal Family (Floating Point)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "For numbers with decimal points, we have two choices:\n\n- float: Standard precision. You must put an 'f' at the end (e.g., 3.14f).\n- double: High precision. This is the default choice for decimals.\n\nArchitect's Warning: Decimals are not 100% accurate in computer memory. Never use them for money; use integers (cents) instead!", "style": { "emphasis": "WARNING", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Character Type (char)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "A 'char' stores a single symbol, letter, or digit. It must be surrounded by SINGLE quotes (' ').\n\nInternally, Java stores characters as numbers using the Unicode system. This means 'A' is actually stored as the number 65.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "char grade = 'A';\nchar symbol = '$';", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Truth Type (boolean)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "A 'boolean' is the simplest data type. It can only hold two values: 'true' or 'false'.\n\nThis is the foundation of every decision in our Engine. It is like a light switch that is either ON or OFF.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean isSystemActive = true;\nboolean hasError = false;", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Memory Mechanics: The Stack", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Primitives are stored in a part of memory called the 'Stack'.\n\nThe Stack is fast and organized. When a method finishes running, all the variables in the Stack are immediately cleared. This is why we call them 'Local Variables'.\n\nIn our industrial hierarchy, the Stack is like the worker's immediate tool belt.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Constants: The 'final' Keyword", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Sometimes you want a storage bin that can NEVER be changed once it is filled. We use the 'final' keyword for this.\n\nConstants help prevent accidents. If you try to change a final variable, the compiler will throw an error.\nConvention: Constant names should be ALL CAPS with underscores.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "final int MAX_SPEED = 120;\n// MAX_SPEED = 150; // ERROR!", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 2 Summary", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You have built the storage system for your Metropolis. You understand how to declare variables and choose the right primitive type for the job.\n\nYou have the elements. Next, we will look at 'Strings'—the complex material used to handle human language.", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   },
   "L-003": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Control Flow: If-Else Statements",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Decision making in Java is handled by 'if' statements. It allows your program to choose different paths based on whether a condition is true or false.",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Syntax: if (condition) { // do this } else { // do that }",
-            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 3: The Power of Strings", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "In the last lesson, we saw Primitives. Now we meet the first 'Object': The String.\n\nA String is a sequence of characters. Unlike a 'char', which is one letter, a String can be a word, a sentence, or an entire book. In our factory, Strings are 'Processed Materials' that come with their own set of tools.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Strings are Objects, not Primitives", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "This is a key architectural distinction. Strings are not stored directly in the Stack. Instead, they live in the 'Heap' (a larger memory area).\n\nThe variable in the Stack only holds a 'Reference' (a pointer) to where the String lives in the Heap. Strings are much heavier than primitives, which is why we treat them differently.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "String name = \"Forge\"; // Notice double quotes!", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The String Pool", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Java is very efficient with text. It uses a 'String Pool' to save memory.\n\nIf you create two variables with the same text, Java will often make them both point to the SAME object in the pool instead of wasting space. This is why Strings are handled with extra care by the JVM.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "Architect's Hint: Memory efficiency is the secret to a fast Metropolis.", "style": { "emphasis": "INFO", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Joining Strings: Concatenation", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You can combine two or more strings using the (+) operator. This is called 'Concatenation'.\n\nYou can even concatenate a String with a number. Java will automatically convert the number to text so it can fit into the sequence.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "String user = \"Admin\";\nString msg = \"Hello \" + user + \"!\";", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Immutability: The 'Frozen' Rule", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Strings in Java are 'Immutable'. This means once a String is created, it can NEVER be changed.\n\nWhen you 'change' a string, Java isn't modifying the old one. It is throwing the old one away and creating a COMPLETELY NEW String in memory.\nBe careful when modifying text inside a loop—it can create a lot of garbage!", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "Architect's Warning: Changing strings too often can slow down the Engine.", "style": { "emphasis": "WARNING", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "String Tools: Length and Case", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Because Strings are Objects, they have 'Methods' (tools) built-in:\n\n- .length(): Returns the number of characters.\n- .toUpperCase(): Creates a new version of the string in ALL CAPS.\n- .toLowerCase(): Creates a lowercase version.\n\nExample: \"Forge\".length() returns 5.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Finding Data: indexOf", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "If you need to find where a specific word or letter starts inside a string, use '.indexOf()'.\n\nIt returns the position (Index) of the first match. Remember: Java starts counting at 0, not 1!\nIf the word is not found, it returns -1.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "String text = \"Hello Java\";\nint pos = text.indexOf(\"Java\"); // pos is 6", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Comparing Strings: The .equals() Rule", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Never use '==' to compare the content of two strings.\n\n'==' checks if the two variables point to the same memory address. '.equals()' checks if the actual text inside is the same.\n\nAlways use '.equals()' or '.equalsIgnoreCase()' to check names, passwords, or IDs.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "// WRONG: if (name == \"Forge\")\n// RIGHT: if (name.equals(\"Forge\"))", "style": { "emphasis": "ERROR", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Escape Sequences", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Some characters are special and need an 'Escape' symbol (\\) to be printed:\n\n- \\n: Moves to a new line.\n- \\t: Adds a tab space.\n- \\\": Prints a double quote inside a string.\n- \\\\: Prints a backslash.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "System.out.println(\"Line 1\\nLine 2\");", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 3 Summary", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You have mastered the art of handling language in the machine. You understand why Strings are objects and how to manipulate them safely.\n\nYou have the data. Next, we will look at 'Operators'—the tools that allow the Engine to perform math and process values.", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   },
   "L-004": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Mastering Loops: For and While",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Loops prevent you from writing the same code over and over. A 'for' loop is great when you know how many times to repeat, while a 'while' loop runs as long as a condition remains true.",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Careful: Always ensure your loop has a way to stop, or you will create an 'infinite loop' that crashes your program!",
-            "style": { "emphasis": "WARNING", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 4: Arithmetic and the Math Engine", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "A Metropolis needs to calculate resources, scores, and positions. Arithmetic Operators are the 'Gears' of our Engine.\n\nIn this unit, we learn how to perform math on our variables. While basic math is simple, Java has specific rules about how numbers are processed in memory.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Basic Four: + - * /", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Addition (+), Subtraction (-), Multiplication (*), and Division (/) work mostly as they do in a calculator.\n\nHowever, there is a catch with Division! If you divide two 'int' types, Java will perform 'Integer Division'. This means it throws away the remainder. 5 / 2 will result in 2, not 2.5!", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "int x = 5 / 2; // x is 2\ndouble y = 5.0 / 2.0; // y is 2.5", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Modulus Operator (%)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "The Modulus (%) operator is a hidden gem in programming. It returns the REMAINDER of a division.\n\nIt is extremely useful for checking if a number is Even or Odd (x % 2 == 0) or for creating repeating patterns in your UI.\n5 % 2 = 1 (because 2 goes into 5 twice, with 1 left over).", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Unary Operators: Increment/Decrement", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "In a factory, we often count items one by one. Java has a shortcut for this:\n\n- (++) Increment: Increases a value by 1.\n- (--) Decrement: Decreases a value by 1.\n\nThere is a difference between 'x++' (Post-increment) and '++x' (Pre-increment), but for now, just remember they are used for simple counting.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "int count = 0;\ncount++; // count is now 1", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Compound Assignment", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Professional Architects love efficiency. Instead of writing 'x = x + 5', you can write 'x += 5'.\n\nThis works for all math operators: +=, -=, *=, /=, and %=.\nIt makes the code shorter and reduces the chance of making a typo with the variable name.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "points += 10; // Adds 10 points\nhealth -= 5; // Subtracts 5 health", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Order of Precedence: PEMDAS", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "The machine follows the rules of math. Multiplication and Division happen BEFORE Addition and Subtraction.\n\nIf you want to control the order, use Parentheses (). Anything inside parentheses is processed first.\nRule: When in doubt, use parentheses to make your intent clear!", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "int result = 10 + 5 * 2; // result is 20\nint result2 = (10 + 5) * 2; // result is 30", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Widening Casting (Automatic)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Sometimes we need to move data from a small bin (int) to a big bin (double).\n\nJava does this 'Widening' automatically. Since a double can hold any value an int can, there is no risk of losing data. The machine just adds a .0 to the end.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "int small = 10;\ndouble big = small; // big is 10.0", "style": { "emphasis": "INFO", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Narrowing Casting (Manual)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "If you try to put a big value (double) into a small bin (int), you risk 'Overflow' or losing the decimal.\n\nJava will NOT do this automatically. You must manually cast the value by putting the type in parentheses. This is you telling the machine: 'I know data will be lost, do it anyway.'", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "double price = 9.99;\nint whole = (int) price; // whole is 9 (not 10!)", "style": { "emphasis": "WARNING", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Math Helper Class", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "For complex math, Java provides a 'Math' toolkit:\n\n- Math.max(a, b): Returns the larger number.\n- Math.min(a, b): Returns the smaller.\n- Math.sqrt(x): Returns the square root.\n- Math.random(): Returns a random number between 0.0 and 1.0.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 4 Summary", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "The Engine is now calculating. You understand the basic operators, the dangers of integer division, and how to cast types.\n\nYou have the math. Next: We look at 'Relational Operators' to allow the machine to compare values and see the truth.", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   },
   "L-005": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Methods and Parameters",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Methods are reusable blocks of code. You can pass information into them using parameters and get information back using a return type.",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Tip: If a method doesn't return anything, its return type must be marked as 'void'.",
-            "style": { "emphasis": "INFO", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 5: Relational Operators (Sensors)", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "A machine without sensors is a machine that cannot react. Relational operators are the sensors of our Engine.\n\nThey compare two values and return a 'boolean' (true or false). They don't change the data; they only report the truth about the relationship between two pieces of information.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Equality Sensor (==)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "To check if two values are exactly the same, we use '=='.\n\nNote: In Lesson 2, we saw '=' is for ASSIGNING a value. In Lesson 5, we see '==' is for COMPARING. If you use the wrong one inside a decision, your Metropolis logic will fail.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean same = (5 == 5); // same is true", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Inequality Sensor (!=)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "To check if two things are NOT the same, we use the exclamation mark combined with an equals sign.\n\nThis is vital for security. For example: 'if (userStatus != BANNED)'. If the values are different, the sensor returns true.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean diff = (10 != 2); // diff is true", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Boundary Sensors (> <)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Greater Than (>) and Less Than (<) are used to check if a value has crossed a specific line.\n\nThey are commonly used for score thresholds, level requirements, or measuring if a resource is depleted.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean hasWon = (score > 100);\nboolean isBroken = (health < 0);", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Inclusive Boundaries (>= <=)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "What if you want to include the exact value? We add an equals sign to the boundary sensors.\n\n'Greater than or equal to' (>=) and 'Less than or equal to' (<=).\nWarning: The equals sign must always come AFTER the angle bracket. '=>' will cause a compiler crash!", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean canVote = (age >= 18);", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Comparing Primitives vs Objects", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Relational operators are perfect for primitives (int, double, char).\n\nBut recall the 'String Rule' from Lesson 3: Do not use '==' for strings! Relational operators check memory addresses for objects, which leads to 'False Negatives' where the text is the same but the machine says 'false'.", "style": { "emphasis": "WARNING", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Logic of Characters", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You can use relational operators on 'char' values too. Because they are stored as numbers, Java can compare them alphabetically.\n\n'A' < 'B' is true because 65 < 66.\nThis allows the machine to sort names or organize files in alphabetical order.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Combining Sensors with Math", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You can perform math and comparison in one line. Java will do the math FIRST and then the comparison.\n\nExample: 'if (points + bonus > 50)'. The machine adds the values, then checks if they cross the threshold of 50.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean ready = (x + y == 10);", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The 'Null' Sensor", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "'null' represents an empty reference—a pointer that leads to nothing. \n\nWe use '==' and '!=' to check if an object exists before we try to use it. This is the #1 way to prevent crashes in the Metropolis.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (user != null) {\n    // Safe to proceed\n}", "style": { "emphasis": "INFO", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 5 Summary", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Your Engine can now see. You understand how to compare values and report truths.\n\nYou have the sensors. Next: We look at 'Logical Operators' to connect these sensors together into complex circuits.", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   },
   "L-006": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Introduction to Arrays",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "An array is a collection of variables of the same type. Think of it like a train with several cars, where each car holds one piece of data.",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Note: Arrays in Java are zero-indexed. The first item is at position [0], not [1]!",
-            "style": { "emphasis": "WARNING", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 6: Logical Operators (Circuits)", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "In a complex Metropolis, a single sensor is often not enough. We need to combine truths to make high-level decisions.\n\nLogical Operators are the 'Wiring' that connects our sensors. They allow us to create conditions like: 'If the user is logged in AND they are an Admin'.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The AND Operator (&&)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "The double ampersand (&&) is the 'Strict' operator. It only returns true if BOTH sides are true.\n\nIf even one side is false, the whole circuit breaks and returns false. Think of it as a security door with two locks; you need both keys to enter.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean canEnter = (hasKey && isDoorOpen);", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The OR Operator (||)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "The double pipe (||) is the 'Flexible' operator. It returns true if AT LEAST ONE side is true.\n\nIt only returns false if BOTH sides are false. It is useful for options, like: 'If you have a password OR an access card'.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean canEnter = (hasPassword || hasCard);", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The NOT Operator (!)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "The exclamation mark (!) is the 'Inverter'. It flips a boolean value to its opposite.\n\n!true = false. !false = true.\nIt is extremely useful for checking if something is NOT happening. For example: 'if (!isLocked)'.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean isUnlocked = !isLocked;", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Short-Circuit Efficiency", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Java is an efficient machine. For AND (&&), if the first side is false, the machine doesn't even look at the second side (because it knows the result must be false).\n\nFor OR (||), if the first side is true, it stops looking. This 'Short-Circuiting' saves energy and prevents errors when the second check might crash the system.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "Architect's Hint: Put the most likely 'fail' check on the left side of &&.", "style": { "emphasis": "INFO", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Truth Table: AND (&&)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Logic is predictable. Here is the map for AND:\n\n- True  && True  = True\n- True  && False = False\n- False && True  = False\n- False && False = False\n\nRule: All inputs must be True to output True.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Truth Table: OR (||)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Here is the map for the flexible OR:\n\n- True  || True  = True\n- True  || False = True\n- False || True  = True\n- False || False = False\n\nRule: Only outputs False if everything is False.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Complexity and Nesting", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You can use many logical operators in a row. Use Parentheses to decide which gates are processed first.\n\n'A && (B || C)' is different from '(A && B) || C'.\nParentheses are the 'Shield' that prevents logical corruption in a complex circuit.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean access = isAdmin && (isManager || isOwner);", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Order of Operations (Precedence)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "If you don't use parentheses, Java follows this order:\n\n1. NOT (!)\n2. AND (&&)\n3. OR (||)\n\nThis means AND is 'stickier' than OR. It will be calculated first. Always use ( ) to make sure the machine doesn't misinterpret your logic!", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 6 Summary", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Congratulations! You have completed the foundation of Logic. You have the sensors and the wiring.\n\nYou have built the circuitry. Next track: We enter 'Control Flow'—using these circuits to actually change the path of the Engine through the Metropolis!", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   },
   "L-007": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Object-Oriented Programming (OOP)",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Java is an object-oriented language. This means we organize code into 'Objects' that have attributes (fields) and behaviors (methods).",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Concept: A Class is the blueprint, and an Object is the actual house built from that blueprint.",
-            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 7: The 'If' Statement - Branching Logic", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "Up until now, our code has been a straight conveyor belt: it flows from top to bottom without stopping.\n\nIn a real Metropolis, we need crossroads. The 'If' statement is the most fundamental 'Logic Gate' in programming.\nIt tells the Brain: 'Only execute this specific block of code IF this condition is true.'\nIf the condition is false, the Engine simply jumps over the code and continues as if it never existed.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Anatomy of a Decision", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "An 'if' statement consists of the keyword 'if', followed by a boolean expression inside parentheses ( ), and then a block of code inside curly braces { }.\n\nThe boolean expression is the 'Sensor Check'. It must result in either TRUE or FALSE.\nIf the sensor returns true, the machine enters the curly braces and performs the work.\nIf it is false, the machine ignores everything inside those braces.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (userPoints > 100) {\n    System.out.println('Promoted to Senior!');\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Alternative Path: 'Else'", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "What happens if the condition is false? Sometimes, we want a 'Backup Plan'.\n\nThe 'else' keyword follows an 'if' block and provides code that will run ONLY if the 'if' condition failed.\nThink of it as a binary fork in the road: The machine MUST take one path, but it CANNOT take both.\nEither the 'if' runs, or the 'else' runs.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (isAuthenticated) {\n    showDashboard();\n} else {\n    showLoginScreen();\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Ladder of Choices: 'Else If'", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "In complex systems, decisions aren't always binary (Yes/No).\nWe might have multiple specific conditions to check. For this, we use the 'else if' ladder.\n\nThe machine checks the first 'if'. If it's false, it moves to the first 'else if'.\nIt continues down the ladder until it finds a true condition.\nCrucially, as soon as one condition is true, the machine runs that code and SKIPS all remaining checks in the ladder.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (score >= 90) {\n    grade = 'A';\n} else if (score >= 80) {\n    grade = 'B';\n} else {\n    grade = 'F';\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Understanding Block Scope", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "When you create a variable inside an 'if' statement's curly braces, that variable is 'Local' to that block.\n\nThis means the variable exists only within those braces. Once the machine exits the block, the variable is deleted from memory.\nArchitects use this to keep memory clean and prevent variables from 'leaking' into other parts of the system where they don't belong.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (true) {\n    int temp = 5;\n}\n// temp cannot be used here! It is gone.", "style": { "emphasis": "INFO", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Nested Decisions", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You can place an 'if' statement INSIDE another 'if' statement. This is called 'Nesting'.\n\nThis is useful for multi-layered security. For example: First, check if the user is logged in. Second, check if they have 'Admin' permissions.\nThe inner block will only run if BOTH the outer and inner conditions are met.\nHowever, be careful! Too many nests can make the code 'Smell' and become hard to read.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (isLoggedIn) {\n    if (isAdmin) {\n        accessNuclearVault();\n    }\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Common Error: Assignment vs Equality", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "This is the #1 mistake new students make.\n\nInside an 'if' statement, you must use '==' to compare values.\nIf you use '=', you are 'Assigning' a value, which is not a boolean check.\nIn some cases, Java will stop you with a compiler error, but in others, it might lead to a logical 'Corruption' where the machine behaves unpredictably.", "style": { "emphasis": "WARNING", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "// WRONG: if (x = 10)\n// RIGHT: if (x == 10)", "style": { "emphasis": "ERROR", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Logical Efficiency", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "When building an 'else if' ladder, always place the most likely condition at the TOP.\n\nIf 90% of your users are 'Standard Users' and 1% are 'Admins', checking for 'Standard' first saves the CPU from doing unnecessary work.\nIn a large-scale Metropolis, these nanoseconds add up to significant performance gains.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "Architect's Rule: Optimize for the common case.", "style": { "emphasis": "CAPTION", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Simplifying with Booleans", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "If you are checking a boolean variable, you don't need to write '== true'.\n\nThe variable itself is already a result that the 'if' can understand.\n'if (isSystemRunning)' is cleaner and more professional than 'if (isSystemRunning == true)'.\nTo check the opposite, use the NOT operator: 'if (!isSystemRunning)'.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 7 Conclusion", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You have successfully implemented branching logic. The Engine can now choose different paths based on the truth.\n\nYou understand 'if', 'else', 'else if', and the importance of block scope.\nNext, we will look at more advanced decision-making tools for handling many different possibilities at once.", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   },
   "L-008": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Inheritance and Reusability",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Inheritance allows one class to acquire the properties of another. Use the 'extends' keyword to create a subclass.",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Example: A 'Dog' class can inherit from an 'Animal' class.",
-            "style": { "emphasis": "INFO", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 8: Advanced Decision Systems", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "Sometimes, using many 'if' statements feels like trying to build a skyscraper with only a hammer.\n\nIn this unit, we will explore how to refine our logic. We will learn how to avoid 'Spaghetti Code' (messy, tangled logic) and ensure our decision systems are clean, fast, and easy for other Architects to read.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Boolean Flag Pattern", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "A 'Flag' is a boolean variable that stores the result of a complex calculation for later use.\n\nInstead of putting a massive, complicated calculation inside an 'if' parentheses, we calculate it first and store it in a variable with a clear name.\nThis makes the 'if' statement much easier to read and understand at a glance.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "boolean canUpgrade = (userLevel > 10 && points > 500 && !isBanned);\nif (canUpgrade) {\n    performUpgrade();\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "De Morgan's Laws in Logic", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "In the world of high-level logic, we sometimes need to simplify complex 'NOT' conditions.\n\nDe Morgan's Law states:\n1. !(A && B) is the same as !A || !B\n2. !(A || B) is the same as !A && !B\n\nBy using these laws, you can turn a confusing 'Double Negative' condition into a clear, positive one that is easier for the human brain to process.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Guard Clause Pattern", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Instead of wrapping your whole logic in a giant 'if' block, we use 'Guard Clauses' to exit early if something is wrong.\n\nThis keeps the 'Happy Path' (the code that should run) at the top level of the method instead of being buried deep inside nested braces.\nThis is a favorite technique of Senior Architects to maintain 'Purity' in their logic.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (!isLoggedIn) return;\nif (!hasPermission) return;\n// Start main logic here...\ndoTheWork();", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Boolean Short-Circuit Review", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Recall from Lesson 6 that Java stops evaluating as soon as the result is certain.\n\nThis is vital for preventing 'Null Pointer' errors. For example, if you want to check a user's name, you must first check if the User object exists.\nBy putting the existence check on the LEFT of the &&, you protect the Engine from crashing if the user is missing.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (user != null && user.isOnline()) { ... }", "style": { "emphasis": "INFO", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Refactoring Nested Ifs", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Whenever you see an 'if' inside an 'if', ask yourself: 'Can I use && instead?'\n\nNesting increases the 'Cognitive Load' for anyone reading your code.\nIf the inner block doesn't have an 'else' that belongs specifically to it, you can almost always combine the conditions into a single 'if' using logical operators.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (isSunny && isWarm) {\n    goToBeach();\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Ternary Operator (The Shortcut)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Java provides a one-line version of 'if-else' called the Ternary Operator ( ? : ).\n\nIt follows the format: (condition) ? (value_if_true) : (value_if_false).\nIt is excellent for simple assignments, but don't over-use it for complex logic, or the CEO will have a hard time reading your reports!", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "String status = (score > 70) ? 'Pass' : 'Fail';", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Conditional Logic in ForgeJava", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "In your JLearning app, the 'isItemLocked' method uses relational logic to determine if a lesson should be clickable.\n\nThis is a live example of advanced decision making. It takes the user's current sequence index and compares it against the sequence map of the chapter to protect the content.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "return !(sequenceIndex >= sequence.indexOf(id));", "style": { "emphasis": "INFO", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Truth and Readability", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Code is read more often than it is written.\n\nAvoid 'Double Negatives' like 'if (!notReady)'. Even if the machine understands it, humans will get confused.\nAlways aim for logic that reads like an English sentence. Use clear variable names to help the reader follow the path.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 8 Conclusion", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You have graduated from basic 'ifs' to high-level logical architecture.\n\nYou now know how to use flags, guard clauses, and De Morgan's laws to keep your Metropolis organized.\nNext, we will look at the 'Switch' statement for handling many specific choices efficiently.", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   },
   "L-009": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Interfaces and Abstraction",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Interfaces define a contract for what a class should do, without specifying how it does it. It's like a to-do list for your classes.",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Constraint: A class 'implements' an interface and must provide code for all its methods.",
-            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 9: The Switch Statement", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "What if you have 10 different paths based on a single variable?\n\nUsing 'if-else if' 10 times would make your code look long and repetitive. The 'switch' statement is a specialized tool for selecting one of many code blocks to be executed based on a single value.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Switch Mechanics: The Key and Cases", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Think of the 'switch' as a key that goes into a lock. The variable is the key, and the 'cases' are the specific slots in the machine.\n\nJava takes the value of the variable and jumps directly to the matching 'case'.\nIt is often faster than an 'if-else' ladder because the machine can jump straight to the answer instead of checking every condition one by one.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "switch (day) {\n    case 1: \n       System.out.println('Monday');\n       break;\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Importance of 'Break'", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "By default, 'switch' statements have a behavior called 'Fall-Through'.\n\nIf you don't use the 'break' keyword at the end of a case, the machine will continue to execute the code in the NEXT case, even if it doesn't match!\n'break' tells the machine: 'I'm done, exit the switch now.'", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "Architect's Warning: Forgetting 'break' is a common source of bugs!", "style": { "emphasis": "WARNING", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Default Case", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "What if the key doesn't fit any lock? The 'default' case is the 'Catch-All'.\n\nIf no matching case is found, the code inside 'default' will run.\nIt is like the 'else' at the end of an 'if-else' ladder. It ensures that the machine always has something to do, even when the input is unexpected.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "default:\n    System.out.println('Invalid Day');", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Valid Data Types for Switch", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You cannot switch on everything. Java only allows specific types:\n\n1. Integers (byte, short, int)\n2. Characters (char)\n3. Strings (since Java 7)\n4. Enums (Enumerated types)\n\nYou cannot switch on floating-point numbers (float/double) or long integers.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Switch with Strings", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Switching on Strings is very powerful for interpreting commands from the User.\n\nInside the machine, Java uses the 'hash code' of the String to find the matching case quickly.\nRemember that String switching is case-sensitive! 'Admin' will not match 'admin'.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "switch (role) {\n    case 'ADMIN': grantAll(); break;\n    case 'USER': grantBasic(); break;\n}", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Grouping Cases", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "If multiple cases should lead to the same result, you can stack them without a 'break' between them.\n\nThis is a legitimate use of the 'Fall-Through' behavior. For example, if you want the same code to run for both Saturday and Sunday (The Weekend), you can group them together.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "case 6:\ncase 7:\n    System.out.println('It is the weekend!');\n    break;", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Modern Switch Expressions (Java 14+)", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Since you are using Java 25, you have access to the 'Arrow Syntax' ( -> ).\n\nThis modern version is much safer because it does NOT have fall-through behavior, and it can return a value directly.\nIt eliminates the need for 'break' and makes the code much cleaner and more concise.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "String result = switch (day) {\n    case 1 -> 'Monday';\n    case 2 -> 'Tuesday';\n    default -> 'Invalid';\n};", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "When to choose If vs Switch?", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Use 'If' when:\n- You are checking ranges (e.g., score > 90).\n- You have complex logical conditions (&&, ||).\n\nUse 'Switch' when:\n- You are checking a single variable against many fixed values.\n- You want to maximize performance for many discrete options.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 9 Conclusion", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You now have the 'Key and Lock' system in your arsenal. The switch statement is your go-to tool for menu systems and discrete choices.\n\nNext: We will finish our Control Flow journey by looking at the Ternary operator and common logic best practices.", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   },
   "L-010": {
     "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Exception Handling",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Errors happen! Java uses 'try-catch' blocks to handle exceptions gracefully so the entire program doesn't stop working when something goes wrong.",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Example: try { // risky code } catch (Exception e) { // fix it }",
-            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
-          }
-        ]
-      }
-    ]
-  },
-  "L-011": {
-    "pages": [
-      {
-        "contents": [
-          {
-            "type": "TEXT",
-            "text": "Working with Strings",
-            "style": { "emphasis": "TITLE", "size": "LARGE" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Strings are objects used to store text. Java provides many methods to manipulate them, such as .length(), .toUpperCase(), and .contains().",
-            "style": { "emphasis": "BODY", "size": "MEDIUM" }
-          },
-          {
-            "type": "TEXT",
-            "text": "Crucial: Strings in Java are immutable. Once created, their value cannot be changed!",
-            "style": { "emphasis": "WARNING", "size": "SMALL" }
-          }
-        ]
-      }
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 10: Control Flow Best Practices", "style": { "emphasis": "TITLE", "size": "HUGE" } },
+        { "type": "TEXT", "text": "You have the tools. Now you need the 'Architect's Wisdom'.\n\nWriting logic that works is the first step. Writing logic that is beautiful, professional, and efficient is the goal of JLearning. In this final unit on decision systems, we will look at how to refine your choices.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The DRY Principle: Don't Repeat Yourself", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "If you find yourself writing the exact same code inside both an 'if' and an 'else', you are violating the DRY principle.\n\nMove the repeated code outside the logic gates. Logic gates should only contain what is DIFFERENT between the two paths.\nThis keeps your Metropolis lean and reduces the risk of bugs when you need to update your code later.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Logical Complexity and Methods", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "If your 'if' condition is getting too long (more than 2 lines), it's time to extract it into a Method.\n\nInstead of checking 'if (a > 5 && b < 10 && c == true)', create a method called 'isReady()' and call that instead.\nThis gives a NAME to your logic, making it self-documenting. The CEO should be able to read your code like a story.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (isReady()) { ... }", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Handling Edge Cases First", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "An 'Edge Case' is a value that is at the extreme limit of what is possible (like a score of 0 or a null name).\n\nAlways handle these extreme cases at the top of your logic. By clearing the 'weird' data early, the rest of your logic can assume the data is safe and normal.\nThis is called 'Robust Programming'.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "if (id == null) return error();", "style": { "emphasis": "INFO", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Avoid Redundant Booleans", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Never write: 'if (isAlive == true)'.\nNever write: 'boolean x = (score > 50) ? true : false;'.\n\nThe expression (score > 50) IS ALREADY a boolean! You can simply write: 'boolean x = (score > 50);'.\nReal Architects avoid unnecessary complexity. If the truth is already there, don't try to wrap it in another layer.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Cost of Nesting", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Every time you nest an 'if' inside another, you add a 'Level of Indentation'.\n\nTry to keep your code at 2 levels of indentation maximum. If you find yourself hitting 4 or 5 levels, your logic is too 'Deep'.\nUse the 'Return Early' strategy to 'Flatten' your code and make the structure more stable.", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
+        { "type": "TEXT", "text": "Architect's Rule: Flat is better than nested.", "style": { "emphasis": "CAPTION", "size": "SMALL" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Choosing Clear Variable Names", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Logic depends on names. 'if (a && b)' tells the reader nothing.\n'if (hasLicense && isSober)' tells the reader exactly what the rule is.\n\nUse prefixes like 'is', 'has', 'can', or 'should' for boolean variables to make your logic gates read like natural questions.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Performance of Decision Making", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "In modern Java, 'if' and 'switch' are extremely fast. You should almost always prioritize 'Readability' over tiny performance gains.\n\nUnless you are running a loop a billion times, the machine can handle your logic faster than a blink of an eye.\nWrite for the Human first, and the Machine second.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "The Decision-Making Journey", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "You have traveled from the basic 'if' gate to complex switch expressions and architectural patterns.\n\nYou now have the power to make the Engine behave intelligently, reacting to every user input with precision and safety.\nThis is the end of our unit on Control Flow... but just the beginning of the Engine's power.", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
+      ]},
+      { "contents": [
+        { "type": "TEXT", "text": "Lesson 10 Summary", "style": { "emphasis": "SUBTITLE", "size": "LARGE" } },
+        { "type": "TEXT", "text": "Congratulations, Master Architect! You have completed the Decision Systems track.\n\nYou understand the patterns of high-level logic and how to protect your code from complexity.\nNext track: We enter the world of Loops - the power to repeat work infinitely with a single command!", "style": { "emphasis": "SUCCESS", "size": "MEDIUM" } }
+      ]}
     ]
   }
 }

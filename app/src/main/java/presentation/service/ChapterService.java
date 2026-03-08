@@ -82,4 +82,8 @@ public class ChapterService extends AService {
         
         return !(sequenceIndex >= sequence.indexOf(id));
     }
+
+    public int getCurrentSequenceIndex() {
+        return (int)engine.getCurrentUserSequenceIndex();
+    }
 }

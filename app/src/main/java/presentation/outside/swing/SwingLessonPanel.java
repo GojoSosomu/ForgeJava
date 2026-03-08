@@ -23,6 +23,9 @@ public class SwingLessonPanel extends JPanel {
     
     private final JPanel pageContainer;
     private final CardLayout cardLayout;
+    
+    // NEW: The Page Counter Label
+    private final JLabel pageCounterLabel;
 
     public SwingLessonPanel(
         LessonView lessonView, 
@@ -32,15 +35,23 @@ public class SwingLessonPanel extends JPanel {
         this.launcher = launcher;
         this.onFinish = onFinish;
 
-        // 1. Initialize Carousel
         this.carousel = new CarouselUtility<>(lessonView.pages());
         this.carousel.setWrapAround(false);
 
         setLayout(new BorderLayout());
         setBackground(PAGE_BASE);
-        
-        // IMPORTANT: Make the panel able to receive Key Events
         setFocusable(true);
+
+        // 1. Create a Header for the Counter
+        JPanel header = new JPanel(new FlowLayout(FlowLayout.RIGHT, 30, 15));
+        header.setOpaque(false);
+        
+        pageCounterLabel = new JLabel();
+        pageCounterLabel.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
+        pageCounterLabel.setForeground(withAlpha(INK_MEDIUM, 180)); // Subtle but readable
+        header.add(pageCounterLabel);
+        
+        add(header, BorderLayout.SOUTH);
 
         // 2. Setup the "Stage"
         cardLayout = new CardLayout();
@@ -53,16 +64,22 @@ public class SwingLessonPanel extends JPanel {
 
         add(pageContainer, BorderLayout.CENTER);
 
-        // 3. Setup the Key Listener (The "Invisible Controller")
         setUpGestureListener();
+        updatePageCounter(); // Initial update
+    }
+
+    private void updatePageCounter() {
+        int current = carousel.getCurrentIndex() + 1;
+        int total = carousel.size();
+        pageCounterLabel.setText(current + " / " + total);
     }
 
     private void showNext() {
         if (carousel.moveRight()) {
             cardLayout.show(pageContainer, "PAGE_" + carousel.getCurrentIndex());
+            updatePageCounter();
             repaint();
         } else {
-            // "Sensor" reached the end of the line
             onFinish.run();
         }
     }
@@ -70,6 +87,7 @@ public class SwingLessonPanel extends JPanel {
     private void showPrevious() {
         if (carousel.moveLeft()) {
             cardLayout.show(pageContainer, "PAGE_" + carousel.getCurrentIndex());
+            updatePageCounter();
             repaint();
         }
     }
@@ -83,20 +101,16 @@ public class SwingLessonPanel extends JPanel {
                     case KeyEvent.VK_RIGHT: 
                         showNext(); 
                         break;
-                        
                     case KeyEvent.VK_A: 
                     case KeyEvent.VK_LEFT: 
                         showPrevious(); 
                         break;
-                        
                     case KeyEvent.VK_ESCAPE:
-                        launcher.returnChapterSequence(); // Quick exit
+                        launcher.returnChapterSequence();
                         break;
                 }
             }
         });
-        
-        // Request focus so keys work immediately
         SwingUtilities.invokeLater(this::requestFocusInWindow);
     }
 
@@ -112,6 +126,7 @@ public class SwingLessonPanel extends JPanel {
     public void start() {
         carousel.selectIndex(0);
         cardLayout.show(pageContainer, "PAGE_0");
+        updatePageCounter();
         SwingUtilities.invokeLater(this::requestFocusInWindow);
     }
 }

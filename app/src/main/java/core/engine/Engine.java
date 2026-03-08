@@ -137,14 +137,13 @@ public class Engine {
     }
 
     private void updatedLessonProgress(String id) {
-        List<String> lessons = userProgressManager.getCurrentUser().lessonProgress().completedLessons();
+        // Create a NEW mutable list from the old immutable one
+        List<String> lessons = new ArrayList<>(userProgressManager.getCurrentUser().lessonProgress().completedLessons());
         lessons.add(id);
 
         userProgressManager.updateProgress(
             getCurrentUserName(), 
-            new LessonProgress(
-                lessons
-            )
+            new LessonProgress(lessons)
         );
     }
 

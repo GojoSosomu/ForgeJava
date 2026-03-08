@@ -16,7 +16,7 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
     private String currentChapter;
 
     private JButton lessonButton, activityButton;
-    private JLabel lessonLabel, activityLabel;
+    private JLabel lessonLabel, activityLabel, nextLabel;
     private JScrollPane lessonScrollPane, activityScrollPane;
     private JPanel lessonPanel, activityPanel;
     
@@ -30,6 +30,8 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
     private final int PANEL_WIDTH = 1120;
     private final int MAX_VISIBLE_HEIGHT = 235;
 
+    private ChapterSequenceView chapterSequenceView;
+
     public SwingChapterSequencePanel(
         ChapterService service,
         SwingLauncher launcher,
@@ -40,13 +42,16 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
     ) {
         this.service = service;
         this.currentChapter = id;
+        this.chapterSequenceView = chapterSequenceView;
 
         setLayout(new BorderLayout());
         setBackground(PAGE_BASE); // Matching the background to your other panels
 
-        JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JPanel headerPanel = new JPanel(new GridBagLayout()); 
         headerPanel.setOpaque(false);
-        headerPanel.setBorder(BorderFactory.createEmptyBorder(15, 20, 0, 0));
+        headerPanel.setBorder(BorderFactory.createEmptyBorder(15, 20, 0, 20)); // Added right padding for balance
+
+        GridBagConstraints gbc = new GridBagConstraints();
 
         backButton = new JButton("← BACK");
         backButton.setFont(new Font("Segoe UI", Font.BOLD, 14));
@@ -57,7 +62,44 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         backButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
         backButton.addActionListener(e -> onBack.run());
 
-        headerPanel.add(backButton);
+        gbc.gridx = 0;             // Column 0
+        gbc.weightx = 0.0;         // Don't grow
+        gbc.anchor = GridBagConstraints.WEST; // Stick to the left
+        headerPanel.add(backButton, gbc);
+
+        String nextId = chapterSequenceView.sequence().get(service.getCurrentSequenceIndex());
+
+        nextLabel = new JLabel("FIRSTLY GO: " + nextId) {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2d = (Graphics2D) g.create();
+                g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+                
+                GradientPaint gp = new GradientPaint(0, 0, INK_MEDIUM, 0, getHeight(), INK_DARK);
+                g2d.setPaint(gp);
+                
+                g2d.setFont(getFont());
+                FontMetrics fm = g2d.getFontMetrics();
+                
+                // MATH: Center the text inside the label component
+                int x = (getWidth() - fm.stringWidth(getText())) / 2;
+                int y = fm.getAscent();
+                
+                g2d.drawString(getText(), x, y);
+                g2d.dispose();
+            }
+        };
+        nextLabel.setFont(new Font("Segoe UI Black", Font.BOLD, 32)); 
+
+        gbc.gridx = 1;             // Column 1
+        gbc.weightx = 1.0;         // Take up all available horizontal space
+        gbc.fill = GridBagConstraints.HORIZONTAL; // Expand to fill the center
+        gbc.anchor = GridBagConstraints.CENTER;   // Stay in the middle
+        headerPanel.add(nextLabel, gbc);
+        
+        gbc.gridx = 2;
+        gbc.weightx = 0.0;
+        headerPanel.add(Box.createHorizontalStrut(backButton.getPreferredSize().width), gbc);
 
         contentPanel = new JPanel(null);
         contentPanel.setOpaque(false);
@@ -113,7 +155,6 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         add(completedPanel, BorderLayout.SOUTH);
 
         relayout();
-        updatedItemButtons();
     }
 
     private JLabel createTitleLabel(String text) {
@@ -253,7 +294,7 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         repaint();
     }
 
-    public void updatedItemButtons() {
+    public void updated() {
         for(Component component : lessonPanel.getComponents()) {
             if(component instanceof JButton) {
                 JButton buttomItems = ((JButton)component);
@@ -267,7 +308,21 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
             }
         }
 
-        System.out.println("Updated!");
+        if(service.getCurrentSequenceIndex() == 0)
+            nextLabel.setText(
+                "FIRSTLY GO: " + 
+                chapterSequenceView.sequence().get(service.getCurrentSequenceIndex())
+            );
+        else if(service.getCurrentSequenceIndex() == chapterSequenceView.sequence().size() - 1)
+            nextLabel.setText(
+                "LASTLY GO: " + 
+                chapterSequenceView.sequence().get(service.getCurrentSequenceIndex())
+            );
+        else
+            nextLabel.setText(
+                "NEXT GO: " + 
+                chapterSequenceView.sequence().get(service.getCurrentSequenceIndex())
+            );
     }
 
     @Override

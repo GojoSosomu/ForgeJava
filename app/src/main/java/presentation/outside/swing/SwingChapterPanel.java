@@ -42,7 +42,7 @@ public class SwingChapterPanel {
 
     public void showSequence() { 
         launcher.switchPanel(sequencePanel, dimension.width, dimension.height);
-        sequencePanel.updatedItemButtons();
+        sequencePanel.updated();
     }
 
     public void showOutro() { 
