@@ -7,5 +7,5 @@ public record ChapterProgress(
     byte currentChapter,
     short currentSequenceIndex
 ) {
-
+    
 }

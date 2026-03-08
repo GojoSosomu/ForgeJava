@@ -72,4 +72,14 @@ public class ChapterService extends AService {
     public ChapterView getChapter(String currentItem) {
         return chapterViewAssembler.from(engine.getChapters().get(currentItem));
     }
+
+    public boolean isItemLocked(String chapterId, String id) {
+        short sequenceIndex  = engine.getCurrentUserSequenceIndex();
+
+        ChapterSnapshot snapshot = engine.getChapters().get(chapterId);
+        Map<String, Object> value = snapshot.values();
+        List<String> sequence = (List<String>)value.get("sequence");
+        
+        return !(sequenceIndex >= sequence.indexOf(id));
+    }
 }

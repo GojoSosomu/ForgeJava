@@ -35,7 +35,6 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
             assembleCard((Map<String, Object>) values.get("card")),
             assembleIntro((Map<String, Object>) values.get("intro")),
             (assembleSequence(
-                (List<String>) values.get("sequence"),
                 (Map<String, LessonSnapshot>) values.get("lessons"),
                 (Map<String, ActivitySnapshot>) values.get("activities")
             )),
@@ -51,14 +50,13 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
     }
 
     private ChapterSequenceView assembleSequence(
-        List<String> sequence,
         Map<String, LessonSnapshot> lessons,
         Map<String, ActivitySnapshot> activities) {
             
         return new ChapterSequenceView(
             lessonViewAssembler.from(lessons), 
-            activityViewAssembler.from(activities), 
-            sequence);
+            activityViewAssembler.from(activities)
+            );
     }
 
     private ChapterIntroView assembleIntro(Map<String,Object> part) {
@@ -81,6 +79,4 @@ public class ChapterViewAssembler implements ViewAssembler<ChapterSnapshot, Chap
             (TextContentView) contentViewAssembler.from((ContentSnapshot) part.get("subTitle")), 
             (TextContentView) contentViewAssembler.from((ContentSnapshot) part.get("message")));
     }
-
-    
 }

@@ -24,6 +24,7 @@ public class SwingLauncher extends Launcher {
     private final JFrame frame = new JFrame(PROJECT_NAME);
     private JPanel loadingPanel;
     private SwingMainPanel mainPanel;
+    private SwingChapterPanel chapterPanel;
     private final SwingTransitionPanel transition = new SwingTransitionPanel();
     private static final int DEFAULT_WIDTH = 1200;
     private static final int DEFAULT_HEIGHT = 700;
@@ -127,6 +128,9 @@ public class SwingLauncher extends Launcher {
                 mainPanel.getQuitButton().addActionListener(e -> handleExit(frame, bootService));
                 mainPanel.getLogoutButton().addActionListener(e -> {
                     logInSignInService.resetCurrentUser();
+                    try { bootService.save(); } catch (Exception exception) { 
+                        JOptionPane.showMessageDialog(frame, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                     logInPanel.reset();
                     switchPanel(logInPanel, 400, 370);
                     logInPanel.start();
@@ -179,8 +183,11 @@ public class SwingLauncher extends Launcher {
         );
         switch (result) {
             case LOG_IN_SUCCESS -> {
-                switchPanel(mainPanel);
+                try { bootService.save(); } catch (Exception exception) { 
+                        JOptionPane.showMessageDialog(frame, exception.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
                 mainPanel.getNameLabel().setText("Welcome, " + logInSignInService.getCurrentUserName());
+                switchPanel(mainPanel);
             }
             case FAILURE_INCORRECT_PASSWORD -> {
                 logInPanel.errorShowMessage("Incorrect password. Please try again.");
@@ -235,16 +242,17 @@ public class SwingLauncher extends Launcher {
         if (confirm == JOptionPane.YES_OPTION) {
             frame.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             frame.setEnabled(false);
-            try { bootService.unboot(); } catch (Exception e) { 
+            try { bootService.save(); } catch (Exception e) { 
                  JOptionPane.showMessageDialog(frame, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         } 
         frame.dispose();
-        System.exit(0);
+        bootService.unboot();
     }
 
     public void startChapter(String currentItem) {
-        SwingChapterPanel chapterPanel = new SwingChapterPanel(
+        chapterPanel = new SwingChapterPanel(
+            chapterService,
             chapterService.getChapter(currentItem), 
             new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT),
             this
@@ -252,7 +260,27 @@ public class SwingLauncher extends Launcher {
         chapterPanel.showIntro();
     }
 
+    public void startLesson(String currentItem) {
+        SwingLessonPanel lessonPanel = new SwingLessonPanel(
+            lessonService.getLesson(currentItem), 
+            this, 
+            () -> this.completedItem(currentItem)
+        );
+        lessonPanel.start();
+
+        switchPanel(lessonPanel);
+    }
+
     public void endChapter() {
         switchPanel(mainPanel);
+    }
+
+    public void returnChapterSequence() {
+        chapterPanel.showSequence();
+    }
+
+    public void completedItem(String id) {
+        userService.completedItem(id);
+        returnChapterSequence();
     }
 }

@@ -26,6 +26,10 @@ public class BootService extends AService {
     }
 
     public void unboot() {
+        System.exit(0);
+    }
+
+    public void save() {
         saverExecutor.execute();
     }
     

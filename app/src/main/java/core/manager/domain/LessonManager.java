@@ -1,5 +1,9 @@
 package core.manager.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import core.manager.domain.assembler.EntitySnapshotAssembler;
 import core.manager.domain.assembler.LessonPageSnapshotAssembler;
 import core.manager.loader.LoadTarget;
@@ -43,5 +47,13 @@ public class LessonManager implements LoadTarget, EntitySnapshotAssembler<Lesson
             id,
             pageSnapshotAssembler.from(dto.pages())
         );
+    }
+
+    public List<String> findAll() {
+        Map<String, LessonDTO> chapters = lessonRepository.getAll();
+
+        List<String> ids = new ArrayList<>(chapters.keySet());
+
+        return ids;
     }
 }

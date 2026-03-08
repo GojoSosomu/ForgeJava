@@ -66,12 +66,13 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
         }
         return 1;
     }
-
+    
     public void updateProgress(String userName, LessonProgress progress) {
         if (userExists(userName)) {
             UserProgressDTO existingProgress = userProgressRepository.get(userName);
             UserProgressDTO updatedProgress = existingProgress.updateProgress(progress);
             userProgressRepository.register(userName, updatedProgress);
+            System.out.println("Lesson progress updated! + " + userProgressRepository.get(userName));
         }
     }
 
@@ -80,6 +81,7 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
             UserProgressDTO existingProgress = userProgressRepository.get(userName);
             UserProgressDTO updatedProgress = existingProgress.updateProgress(progress);
             userProgressRepository.register(userName, updatedProgress);
+            System.out.println("Lesson progress updated! + " + userProgressRepository.get(userName));
         }
     }
 

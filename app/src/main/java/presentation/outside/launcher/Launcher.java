@@ -12,15 +12,18 @@ public abstract class Launcher {
     protected Engine engine = EngineSetUp.create();
     
     protected ContentViewAssembler contentViewAssembler = new ContentViewAssembler();
+    protected LessonViewAssembler lessonViewAssembler = new LessonViewAssembler(contentViewAssembler);
     protected ChapterViewAssembler chapterViewAssembler = new ChapterViewAssembler(
         contentViewAssembler, 
-        new LessonViewAssembler(contentViewAssembler), 
+        lessonViewAssembler, 
         new ActivityViewAssembler(new ProblemViewAssembler(contentViewAssembler)));
 
     protected UserProgressAssembler userProgressAssembler = new UserProgressAssembler();
 
     protected BootService bootService = new BootService(engine);
     protected ChapterService chapterService = new ChapterService(chapterViewAssembler, userProgressAssembler, engine);
+    protected LessonService lessonService = new LessonService(engine, lessonViewAssembler);
+    protected UserService userService = new UserService(engine);
     protected LogInSignInService logInSignInService = new LogInSignInService(engine);
 
     protected IconPathImporter iconPathImporter = new IconPathImporter();

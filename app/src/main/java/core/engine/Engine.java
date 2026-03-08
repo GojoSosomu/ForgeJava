@@ -10,7 +10,10 @@ import core.manager.domain.*;
 import core.manager.loader.*;
 import core.manager.saver.*;
 import core.model.dto.DTO;
+import core.model.dto.progress.attainment.ChapterProgress;
+import core.model.dto.progress.attainment.LessonProgress;
 import core.model.snapshot.chapter.*;
+import core.model.snapshot.lesson.LessonSnapshot;
 import core.model.snapshot.progress.UserProgressSnapshot;
 
 public class Engine {
@@ -107,5 +110,45 @@ public class Engine {
     
     public void setCurrentUser(String userName) {
         userProgressManager.setCurrentUser(userName);
+    }
+
+    public short getCurrentUserSequenceIndex() {
+        UserProgressSnapshot user = getCurrentUser();
+        return (short) ((Map<String, Object>)user.value().get("chapterProgress")).get("currentSequenceIndex");
+    }
+
+    public Map<String, LessonSnapshot> getLessons() {
+        List<String> ids = lessonManager.findAll();
+
+        Collections.sort(ids);
+
+        return lessonManager.from(ids);
+    }
+
+    public void incrementSequence() {
+        userProgressManager.updateProgress(
+            getCurrentUserName(), 
+            new ChapterProgress(
+                userProgressManager.getCurrentUser().chapterProgress().completedChapters(),
+                userProgressManager.getCurrentUser().chapterProgress().currentChapter(),
+                (short) (userProgressManager.getCurrentUser().chapterProgress().currentSequenceIndex() + 1)
+            )
+        );
+    }
+
+    private void updatedLessonProgress(String id) {
+        List<String> lessons = userProgressManager.getCurrentUser().lessonProgress().completedLessons();
+        lessons.add(id);
+
+        userProgressManager.updateProgress(
+            getCurrentUserName(), 
+            new LessonProgress(
+                lessons
+            )
+        );
+    }
+
+    public void updatedProgress(String id) {
+        if(lessonManager.isExist(id) && !userProgressManager.getCurrentUser().lessonProgress().completedLessons().contains(id)) updatedLessonProgress(id);
     }
 }

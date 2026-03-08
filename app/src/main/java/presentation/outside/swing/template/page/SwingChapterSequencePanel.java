@@ -6,10 +6,14 @@ import javax.swing.border.MatteBorder;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 import java.awt.*;
 import core.model.view.chapter.ChapterSequenceView;
+import presentation.outside.launcher.SwingLauncher;
+import presentation.service.ChapterService;
 
 import static presentation.outside.library.LibraryOfColor.*;
 
 public class SwingChapterSequencePanel extends JPanel implements ActionListener {
+    private ChapterService service;
+    private String currentChapter;
 
     private JButton lessonButton, activityButton;
     private JLabel lessonLabel, activityLabel;
@@ -26,7 +30,17 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
     private final int PANEL_WIDTH = 1120;
     private final int MAX_VISIBLE_HEIGHT = 235;
 
-    public SwingChapterSequencePanel(ChapterSequenceView chapterSequenceView, Runnable onBack, Runnable onComplete) {        
+    public SwingChapterSequencePanel(
+        ChapterService service,
+        SwingLauncher launcher,
+        String id,
+        ChapterSequenceView chapterSequenceView, 
+        Runnable onBack, 
+        Runnable onComplete
+    ) {
+        this.service = service;
+        this.currentChapter = id;
+
         setLayout(new BorderLayout());
         setBackground(PAGE_BASE); // Matching the background to your other panels
 
@@ -54,7 +68,10 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         lessonPanel.setOpaque(false);
         
         for(var entry : chapterSequenceView.lessonViews().entrySet()) {
-            lessonPanel.add(createItemButton(entry.getValue().id()));
+            JButton btn = createItemButton(entry.getValue().id());
+            btn.addActionListener(e -> launcher.startLesson(entry.getValue().id()));
+
+            lessonPanel.add(btn);
         }
         lessonScrollPane = createCustomScrollPane(lessonPanel);
 
@@ -96,6 +113,7 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         add(completedPanel, BorderLayout.SOUTH);
 
         relayout();
+        updatedItemButtons();
     }
 
     private JLabel createTitleLabel(String text) {
@@ -118,16 +136,72 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
     }
 
     private JButton createItemButton(String text) {
-        JButton btn = new JButton(text);
-        btn.setHorizontalAlignment(SwingConstants.LEFT);
-        btn.setBackground(Color.WHITE);
-        btn.setForeground(INK_DARK);
-        btn.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        btn.setFocusPainted(false);
-        btn.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(BORDER_NORMAL, 1),
-            BorderFactory.createEmptyBorder(10, 15, 10, 15)
-        ));
+        boolean isLocked = service.isItemLocked(currentChapter, text);
+        JButton btn = new JButton(text) {
+            private boolean isHovered = false;
+
+            {
+                // Initial setup
+                setContentAreaFilled(false);
+                setBorderPainted(false);
+                setFocusPainted(false);
+                setOpaque(false);
+                setCursor(new Cursor(Cursor.HAND_CURSOR));
+                setHorizontalAlignment(SwingConstants.LEFT);
+                
+                // Add Hover Logic
+                addMouseListener(new MouseAdapter() {
+                    public void mouseEntered(MouseEvent e) { if(!isLocked) { isHovered = true; repaint(); } }
+                    public void mouseExited(MouseEvent e) { isHovered = false; repaint(); }
+                });
+            }
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+                // 1. Draw the Background (The "Card")
+                if (isLocked) {
+                    g2.setColor(new Color(240, 240, 240)); // Muted Gray for locked
+                } else if (isHovered) {
+                    g2.setColor(Color.WHITE); // Brighter on hover
+                } else {
+                    g2.setColor(new Color(252, 252, 252)); // Standard clean white
+                }
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+
+                // 2. Draw the "Status Stripe" (The professional touch)
+                // An orange stripe on the left if unlocked, gray if locked
+                g2.setColor(isLocked ? LOCKED_GRAY : (isHovered ? ORANGE_HOVER : ORANGE_BASED));
+                g2.fillRoundRect(8, 10, 4, getHeight() - 20, 2, 2);
+
+                // 3. Draw the Border
+                g2.setColor(isLocked ? new Color(220, 220, 220) : (isHovered ? ORANGE_BASED : BORDER_NORMAL));
+                g2.setStroke(new BasicStroke(isHovered ? 1.5f : 1.0f));
+                g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
+
+                // 4. Draw the Text
+                g2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+                g2.setColor(isLocked ? LOCKED_GRAY : INK_DARK);
+                
+                FontMetrics fm = g2.getFontMetrics();
+                int textX = 30; // Move text to the right of the stripe
+                int textY = (getHeight() + fm.getAscent() - fm.getDescent()) / 2;
+                
+                g2.drawString(getText(), textX, textY);
+
+                // 5. Draw "Lock" icon if needed
+                if (isLocked) {
+                    g2.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 12));
+                    g2.drawString("🔒", getWidth() - 30, textY);
+                }
+
+                g2.dispose();
+            }
+        };
+
+        btn.setPreferredSize(new Dimension(PANEL_WIDTH - 20, 50)); // Thicker, more touchable
         return btn;
     }
 
@@ -177,6 +251,23 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         contentPanel.setPreferredSize(new Dimension(getWidth(), currentY + 50));
         revalidate();
         repaint();
+    }
+
+    public void updatedItemButtons() {
+        for(Component component : lessonPanel.getComponents()) {
+            if(component instanceof JButton) {
+                JButton buttomItems = ((JButton)component);
+                buttomItems.setEnabled(!service.isItemLocked(currentChapter, buttomItems.getText()));
+            }
+        }
+        for(Component component : activityPanel.getComponents()) {
+            if(component instanceof JButton) {
+                JButton buttomItems = ((JButton)component);
+                buttomItems.setEnabled(!service.isItemLocked(currentChapter, buttomItems.getText()));
+            }
+        }
+
+        System.out.println("Updated!");
     }
 
     @Override

@@ -6,6 +6,7 @@ import presentation.outside.launcher.SwingLauncher;
 import presentation.outside.swing.template.page.SwingChapterIntroPanel;
 import presentation.outside.swing.template.page.SwingChapterOutroPanel;
 import presentation.outside.swing.template.page.SwingChapterSequencePanel;
+import presentation.service.ChapterService;
 
 public class SwingChapterPanel {
     private final SwingLauncher launcher;
@@ -16,6 +17,7 @@ public class SwingChapterPanel {
     private SwingChapterOutroPanel outroPanel;
 
     public SwingChapterPanel(
+        ChapterService service,
         ChapterView chapter, 
         Dimension dimension,
         SwingLauncher launcher
@@ -26,7 +28,7 @@ public class SwingChapterPanel {
         Dimension boundaryPageDimension = new Dimension(900, dimension.height);
 
         this.introPanel = new SwingChapterIntroPanel(chapter.chapterIntroView(), boundaryPageDimension, this::showSequence);
-        this.sequencePanel = new SwingChapterSequencePanel(chapter.chapterSequenceView(), launcher::endChapter, this::showOutro);
+        this.sequencePanel = new SwingChapterSequencePanel(service, launcher, chapter.id(),chapter.chapterSequenceView(), launcher::endChapter, this::showOutro);
         this.outroPanel = new SwingChapterOutroPanel(chapter.chapterOutroView(), boundaryPageDimension, launcher::endChapter);
     }
 
@@ -37,6 +39,7 @@ public class SwingChapterPanel {
 
     public void showSequence() { 
         launcher.switchPanel(sequencePanel, dimension.width, dimension.height);
+        sequencePanel.updatedItemButtons();
     }
 
     public void showOutro() { 

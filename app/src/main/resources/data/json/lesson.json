@@ -19,6 +19,20 @@
             "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
           }
         ]
+      },
+      {
+        "contents": [
+          {
+            "type": "TEXT",
+            "text": "Every Java program starts with a class definition. Inside that class, you need a 'main' method. Think of the main method as the front door to your house—it is where the execution starts!",
+            "style": { "emphasis": "BODY", "size": "MEDIUM" }
+          },
+          {
+            "type": "TEXT",
+            "text": "Example: public static void main(String[] args) { ... }",
+            "style": { "emphasis": "HIGHLIGHT", "size": "SMALL" }
+          }
+        ]
       }
     ]
   },
