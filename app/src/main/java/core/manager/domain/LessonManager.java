@@ -50,9 +50,9 @@ public class LessonManager implements LoadTarget, EntitySnapshotAssembler<Lesson
     }
 
     public List<String> findAll() {
-        Map<String, LessonDTO> chapters = lessonRepository.getAll();
+        Map<String, LessonDTO> lessons = lessonRepository.getAll();
 
-        List<String> ids = new ArrayList<>(chapters.keySet());
+        List<String> ids = new ArrayList<>(lessons.keySet());
 
         return ids;
     }

@@ -8,7 +8,7 @@ import presentation.outside.swing.template.page.SwingChapterOutroPanel;
 import presentation.outside.swing.template.page.SwingChapterSequencePanel;
 import presentation.service.ChapterService;
 
-public class SwingChapterPanel {
+public class SwingChapter {
     private final SwingLauncher launcher;
     private final Dimension dimension;
 
@@ -18,7 +18,7 @@ public class SwingChapterPanel {
 
     private ChapterView chapter;
 
-    public SwingChapterPanel(
+    public SwingChapter(
         ChapterService service,
         ChapterView chapter, 
         Dimension dimension,

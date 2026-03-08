@@ -13,16 +13,19 @@ public abstract class Launcher {
     
     protected ContentViewAssembler contentViewAssembler = new ContentViewAssembler();
     protected LessonViewAssembler lessonViewAssembler = new LessonViewAssembler(contentViewAssembler);
+    protected ActivityViewAssembler activityViewAssembler = new ActivityViewAssembler(new ProblemViewAssembler(contentViewAssembler));
     protected ChapterViewAssembler chapterViewAssembler = new ChapterViewAssembler(
         contentViewAssembler, 
-        lessonViewAssembler, 
-        new ActivityViewAssembler(new ProblemViewAssembler(contentViewAssembler)));
+        lessonViewAssembler,
+        activityViewAssembler
+    );
 
     protected UserProgressAssembler userProgressAssembler = new UserProgressAssembler();
 
     protected BootService bootService = new BootService(engine);
     protected ChapterService chapterService = new ChapterService(chapterViewAssembler, userProgressAssembler, engine);
     protected LessonService lessonService = new LessonService(engine, lessonViewAssembler);
+    protected ActivityService activityService = new ActivityService(engine, activityViewAssembler);
     protected UserService userService = new UserService(engine);
     protected LogInSignInService logInSignInService = new LogInSignInService(engine);
 

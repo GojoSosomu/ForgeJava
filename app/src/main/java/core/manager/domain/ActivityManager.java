@@ -1,5 +1,9 @@
 package core.manager.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import core.manager.domain.assembler.EntitySnapshotAssembler;
 import core.manager.domain.assembler.ProblemSnapshotAssembler;
 import core.manager.loader.LoadTarget;
@@ -39,5 +43,13 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
         dto.id(),
         problemSnapshotAssembler.from(dto.problem())
        );
+    }
+
+    public List<String> findAll() {
+        Map<String, ActivityDTO> activitys = activityRepository.getAll();
+
+        List<String> ids = new ArrayList<>(activitys.keySet());
+
+        return ids;
     }
 }

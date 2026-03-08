@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import core.model.snapshot.loader.LoadingSnapshot;
+import core.model.view.activity.ActivityView;
 import core.model.view.loader.LoadingView;
 import infrastructure.event.receiver.LoadingReceiver;
 import presentation.enums.SuccessType;
@@ -24,7 +25,7 @@ public class SwingLauncher extends Launcher {
     private final JFrame frame = new JFrame(PROJECT_NAME);
     private JPanel loadingPanel;
     private SwingMainPanel mainPanel;
-    private SwingChapterPanel chapterPanel;
+    private SwingChapter chapterPanel;
     private final SwingTransitionPanel transition = new SwingTransitionPanel();
     private static final int DEFAULT_WIDTH = 1200;
     private static final int DEFAULT_HEIGHT = 700;
@@ -251,7 +252,7 @@ public class SwingLauncher extends Launcher {
     }
 
     public void startChapter(String currentItem) {
-        chapterPanel = new SwingChapterPanel(
+        chapterPanel = new SwingChapter(
             chapterService,
             chapterService.getChapter(currentItem), 
             new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT),
@@ -286,6 +287,17 @@ public class SwingLauncher extends Launcher {
             chapterService.getChapter(chapterPanel.id())
         );
         returnChapterSequence();
+    }
+
+    public void startActivity(String id) {
+        ActivityView view = activityService.getActivity(id);
         
+        SwingActivity activityCoordinator = new SwingActivity(
+            view, 
+            this, 
+            () -> this.completedItem(id)
+        );
+        
+        activityCoordinator.show();
     }
 }
