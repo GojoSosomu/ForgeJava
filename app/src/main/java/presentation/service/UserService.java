@@ -10,6 +10,5 @@ public class UserService extends AService {
 
     public void completedItem(String id) {
         engine.updatedProgress(id);
-        engine.incrementSequence();
     }
 }

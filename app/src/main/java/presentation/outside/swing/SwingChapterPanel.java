@@ -16,12 +16,15 @@ public class SwingChapterPanel {
     private SwingChapterSequencePanel sequencePanel;
     private SwingChapterOutroPanel outroPanel;
 
+    private ChapterView chapter;
+
     public SwingChapterPanel(
         ChapterService service,
         ChapterView chapter, 
         Dimension dimension,
         SwingLauncher launcher
     ) {
+        this.chapter = chapter;
         this.dimension = dimension;
         this.launcher = launcher;
 
@@ -45,5 +48,16 @@ public class SwingChapterPanel {
     public void showOutro() { 
         launcher.switchPanel(outroPanel, 600, dimension.height);
         outroPanel.start();
+    }
+
+    public void updatedSequencePanel(
+        ChapterService service,
+        ChapterView chapter
+    ) {
+        this.sequencePanel = new SwingChapterSequencePanel(service, launcher, chapter.id(),chapter.chapterSequenceView(), launcher::endChapter, this::showOutro);
+    }
+
+    public String id() {
+        return chapter.id();
     }
 }

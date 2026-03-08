@@ -281,6 +281,11 @@ public class SwingLauncher extends Launcher {
 
     public void completedItem(String id) {
         userService.completedItem(id);
+        chapterPanel.updatedSequencePanel(
+            chapterService,
+            chapterService.getChapter(chapterPanel.id())
+        );
         returnChapterSequence();
+        
     }
 }

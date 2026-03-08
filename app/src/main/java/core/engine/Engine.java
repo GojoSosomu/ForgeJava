@@ -125,7 +125,7 @@ public class Engine {
         return lessonManager.from(ids);
     }
 
-    public void incrementSequence() {
+    private void incrementSequence() {
         userProgressManager.updateProgress(
             getCurrentUserName(), 
             new ChapterProgress(
@@ -149,6 +149,13 @@ public class Engine {
     }
 
     public void updatedProgress(String id) {
-        if(lessonManager.isExist(id) && !userProgressManager.getCurrentUser().lessonProgress().completedLessons().contains(id)) updatedLessonProgress(id);
+        if(
+            lessonManager.isExist(id) 
+            && 
+            !userProgressManager.getCurrentUser().lessonProgress().completedLessons().contains(id)
+        ) {
+            incrementSequence();
+            updatedLessonProgress(id);
+        }
     }
 }
