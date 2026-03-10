@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.model.view.activity.evaulation.EvaulationView;
 import core.model.view.activity.problem.QuestionPageView;
 import core.model.view.content.TextContentView;
 import core.model.dto.activity.problem.question.QuestionType;
@@ -24,6 +25,7 @@ public class SwingQuestionnairePage extends JPanel {
     private boolean isEvaluated = false;
     private final ActivityService service;
     private final String id;
+    private final int questionIndex;
     private final Runnable onPressed;
 
     public SwingQuestionnairePage(
@@ -34,6 +36,7 @@ public class SwingQuestionnairePage extends JPanel {
     ) {
         this.data = data;
         this.service = service;
+        this.questionIndex = Integer.parseInt(data.questionNumber().strip().substring(1)) - 1;
         this.id = id;
         this.onPressed = onPressed;
 
@@ -91,6 +94,9 @@ public class SwingQuestionnairePage extends JPanel {
         renderer.setGraphics2D(tempG2);
         
         List<TextContentView> options = (List<TextContentView>) rawOptions;
+        List<String> answerOptions = options.stream()
+                                        .map(TextContentView::text)
+                                        .toList();
         ButtonGroup group = new ButtonGroup();
 
         for (int i = 0; i < options.size(); i++) {
@@ -100,13 +106,17 @@ public class SwingQuestionnairePage extends JPanel {
             String choiceText = textContentView.text();
             renderer.applyStyle(textContentView.style());
             OptionButton opt = new OptionButton(choiceText);
-            opt.addActionListener(e -> service.handleAnswerSubmit(
-                index,
-                id,
-                () -> showCorrectFeedback(),
-                () -> showErrorFeedback(),
-                new Integer(index)
-            ));
+            opt.addActionListener(e -> {
+                // 1. Send the choice to the Shield
+                EvaulationView result = service.evaluate(id, questionIndex, index, answerOptions);
+
+                // 2. React based on the result
+                if (result.isCorrect()) { // You can add 'isCorrect' to EvaulationView record
+                    showCorrectFeedback(result);
+                } else {
+                    showErrorFeedback(result); 
+                }
+            });
             
             group.add(opt);
             choices.add(opt);
@@ -162,43 +172,49 @@ public class SwingQuestionnairePage extends JPanel {
         return footer;
     }
 
-    public void showCorrectFeedback() {
+    public void showCorrectFeedback(EvaulationView evaulationView) {
         isEvaluated = true;
-        feedbackStatus.setText("TRUTH VERIFIED ✓");
+        feedbackStatus.setText(evaulationView.rightAnswer());
         feedbackStatus.setForeground(SUCCESS_GREEN);
         nextButton.setVisible(true); // SHOW THE NEXT STEP
         lockUI(SUCCESS_GREEN);
     }
 
-    public void showErrorFeedback() {
+    public void showErrorFeedback(EvaulationView evaulationView) {
         isEvaluated = true;
-        feedbackStatus.setText("LOGICAL ERROR: THE TRUTH WAS DIFFERENT");
+        feedbackStatus.setText(evaulationView.rightAnswer());
         feedbackStatus.setForeground(SCORCH_RED);
         nextButton.setVisible(true); // SHOW THE NEXT STEP
         lockUI(SCORCH_RED);
         
         if (data.type() == QuestionType.MULTIPLE_CHOICE) {
-            Object corrected = data.extras().get("correctedIndex");
-            if (corrected instanceof Integer index && index < choices.size()) {
-                choices.get(index).setHighlightColor(SUCCESS_GREEN);
+            if (evaulationView.correctIndex() < choices.size()) {
+                choices.get(evaulationView.correctIndex()).setHighlightColor(SUCCESS_GREEN);
             }
         }
     }
 
-    private void lockUI(Color color) {
+    private void lockUI(Color resultColor) {
         if (data.type() == QuestionType.MULTIPLE_CHOICE) {
             for (OptionButton b : choices) {
                 b.setEnabled(false);
-                if (b.isSelected()) b.setHighlightColor(color);
+                
+                // If this was the user's choice, give it the result color (Success or Error)
+                if (b.isSelected()) {
+                    b.setHighlightColor(resultColor);
+                } else {
+                    // Keep others neutral but set them to the evaluated state
+                    b.setHighlightColor(BORDER_NORMAL); 
+                }
             }
         } else if (textInput != null) {
             textInput.setEditable(false);
-            textInput.setBorder(BorderFactory.createLineBorder(color, 3));
+            textInput.setBorder(BorderFactory.createLineBorder(resultColor, 3));
         }
         repaint();
     }
 
-    private class OptionButton extends JRadioButton {
+   private class OptionButton extends JRadioButton {
         private Color highlight = BORDER_NORMAL;
 
         public OptionButton(String text) {
@@ -208,7 +224,10 @@ public class SwingQuestionnairePage extends JPanel {
             setCursor(new Cursor(Cursor.HAND_CURSOR));
         }
 
-        public void setHighlightColor(Color c) { this.highlight = c; repaint(); }
+        public void setHighlightColor(Color c) { 
+            this.highlight = c; 
+            repaint(); 
+        }
 
         @Override
         public Dimension getPreferredSize() { return new Dimension(450, 55); }
@@ -218,14 +237,32 @@ public class SwingQuestionnairePage extends JPanel {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            g2.setColor(isSelected() ? withAlpha(ORANGE_BASED, 40) : Color.WHITE);
+            // 1. DYNAMIC BACKGROUND
+            // If evaluated and this is the "Highlight" button, tint the background
+            if (isEvaluated && highlight != BORDER_NORMAL) {
+                g2.setColor(withAlpha(highlight, 40)); // Subtle tint of the result color
+            } else if (isSelected()) {
+                g2.setColor(withAlpha(ORANGE_BASED, 40));
+            } else {
+                g2.setColor(Color.WHITE);
+            }
             g2.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 12, 12);
 
-            g2.setColor(isEvaluated ? highlight : (isSelected() ? ORANGE_BASED : BORDER_NORMAL));
-            g2.fillRoundRect(12, 12, 6, getHeight() - 24, 4, 4);
+            // 2. THE STATUS STRIPE (The "Industrial Seal")
+            // Use the highlight color if evaluated, otherwise use standard selection colors
+            Color stripeColor = isEvaluated ? highlight : (isSelected() ? ORANGE_BASED : BORDER_NORMAL);
+            g2.setColor(stripeColor);
+            g2.fillRoundRect(12, 12, 8, getHeight() - 24, 4, 4); // Made stripe wider (8px)
 
-            g2.setColor(INK_DARK);
+            // 3. THE BORDER
+            g2.setStroke(new BasicStroke(isEvaluated && highlight != BORDER_NORMAL ? 3f : 1f));
+            g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 12, 12);
+
+            // 4. THE TEXT
+            // Ensure text is not grayed out even if button is disabled
+            g2.setColor(isEvaluated && highlight == SCORCH_RED ? SCORCH_RED : INK_DARK);
             g2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
+            
             FontMetrics fm = g2.getFontMetrics();
             int textY = (getHeight() - fm.getHeight()) / 2 + fm.getAscent();
             g2.drawString(getText(), 45, textY);

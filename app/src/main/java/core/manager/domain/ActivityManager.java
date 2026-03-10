@@ -1,6 +1,7 @@
 package core.manager.domain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,10 +10,8 @@ import core.manager.domain.assembler.ProblemSnapshotAssembler;
 import core.manager.loader.LoadTarget;
 import core.model.dto.DTO;
 import core.model.dto.activity.ActivityDTO;
-import core.model.dto.activity.problem.ProblemType;
 import core.model.dto.activity.problem.Questionnaire;
 import core.model.dto.activity.problem.question.Question;
-import core.model.dto.activity.problem.question.QuestionType;
 import core.model.snapshot.activity.ActivitySnapshot;
 import core.model.snapshot.activity.evaulation.EvaulationSnapshot;
 import core.repository.ActivityRepository;
@@ -26,12 +25,10 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
     }
 
     public record Evaulation(
-        ProblemType problemType,
-        QuestionType questionType,
         int correctIndex,
-        String correctAnswer
-    ) {
-    }
+        String correctAnswer,
+        boolean isCorrect
+    ) {}
 
     public void printAllActivities() {
         activityRepository.getAll().forEach((id, activity) -> {
@@ -66,20 +63,25 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
         return ids;
     }
 
+    // Inside ActivityManager.java
     public EvaulationSnapshot checkAnswer(String activityId, int questionIndex, Object userAnswer) {
         ActivityDTO dto = activityRepository.get(activityId);
-        if (dto == null) return false;
-
+        
         if (dto.problem() instanceof Questionnaire questionnaire) {
             Question question = questionnaire.questions().get(questionIndex);
             
-            return switch (question.type()) {
-                case MULTIPLE_CHOICE -> {
-                    int correct = (int) question.values().get("correctAnswerIndex");
-                    yield userAnswer.equals(correct);
-                }
-            };
+            // 1. Get the truth from the DTO (Basement)
+            int correctIndex = (int) question.values().get("correctAnswerIndex");
+            boolean isCorrect = userAnswer.equals(correctIndex);
+
+            // 2. Create the Evaluation Snapshot (The Report)
+            // We put the results in the Map as you designed
+            Map<String, Object> reportValues = new HashMap<>();
+            reportValues.put("isCorrect", isCorrect);
+            reportValues.put("correctIndex", correctIndex); // Now the Service will know
+
+            return new EvaulationSnapshot(reportValues);
         }
-        return false;
+        return null; 
     }
 }
