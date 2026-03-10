@@ -1,7 +1,5 @@
 package infrastructure.event.pulse;
 
-import core.model.snapshot.Snapshot;
-
-public interface Pulse<T extends Snapshot> {
+public interface Pulse<T> {
     void onPulse(T Snapshot);
 }

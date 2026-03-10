@@ -265,7 +265,7 @@ public class SwingLauncher extends Launcher {
         SwingLessonPanel lessonPanel = new SwingLessonPanel(
             lessonService.getLesson(currentItem), 
             this, 
-            () -> this.completedItem(currentItem)
+            () -> this.completedLessonItem(currentItem)
         );
         lessonPanel.start();
 
@@ -280,8 +280,8 @@ public class SwingLauncher extends Launcher {
         chapterPanel.showSequence();
     }
 
-    public void completedItem(String id) {
-        userService.completedItem(id);
+    private void completedLessonItem(String id) {
+        userService.completedLessonItem(id);
         chapterPanel.updatedSequencePanel(
             chapterService,
             chapterService.getChapter(chapterPanel.id())
@@ -296,9 +296,20 @@ public class SwingLauncher extends Launcher {
             activityService,
             view, 
             this, 
-            () -> this.completedItem(id)
+            (id, score) -> this.completedActivityItem(id, score., total)
         );
         
         activityCoordinator.show();
+    }
+
+    public void completedActivityItem(String id, int score, int total) {
+        userService.completedActivityItem(id, score, total);
+        
+        chapterPanel.updatedSequencePanel(
+            chapterService,
+            chapterService.getChapter(chapterPanel.id())
+        );
+        
+        returnChapterSequence();
     }
 }

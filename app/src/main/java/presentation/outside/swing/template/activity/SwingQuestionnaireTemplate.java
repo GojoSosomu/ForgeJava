@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import core.model.view.activity.ActivityView;
 import core.model.view.activity.problem.QuestionnaireView;
+import core.model.view.progress.info.ScoreView;
+import infrastructure.event.pulse.Pulse;
 import core.model.view.activity.problem.QuestionPageView;
 import presentation.outside.launcher.SwingLauncher;
 import presentation.outside.swing.template.page.SwingQuestionnairePage;
@@ -21,14 +23,14 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
     private final JLabel pageCounterLabel;
     private final CarouselUtility<QuestionPageView> carousel;
     private final List<SwingQuestionnairePage> questionPages = new ArrayList<>();
-    private final Runnable onFinish;
+    private final Pulse<ScoreView> onFinish;
     private final SwingLauncher launcher; // Fixed: Needs to be final
 
     public SwingQuestionnaireTemplate(
         ActivityService service, 
         ActivityView view, 
         SwingLauncher launcher, 
-        Runnable onFinish
+        Pulse<ScoreView> onFinish
     ) {
         this.launcher = launcher; // FIX: Assign the launcher!
         this.onFinish = onFinish;
@@ -97,7 +99,7 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
             updatePageCounter();
             repaint();
         } else {
-            onFinish.run(); // All units processed!
+            onFinish.onPulse(scoreFinilize(, carousel.size())); // All units processed!
         }
     }
 
@@ -105,5 +107,15 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
         int current = carousel.getCurrentIndex() + 1;
         int total = carousel.size();
         pageCounterLabel.setText("DATA UNIT: " + current + " / " + total);
+    }
+
+    @Override
+    public ScoreView scoreFinilize(int score, int total) {
+        String status = (score == total) ? "MASTERED!!" : score * (3/4) * (100) >= 75 ? "PASSED" : "FAILED" ;
+        return new ScoreView(
+            score,
+            total,
+            status
+        );
     }
 }

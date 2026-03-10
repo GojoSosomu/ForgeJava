@@ -3,6 +3,8 @@ package presentation.outside.swing;
 import javax.swing.JPanel;
 
 import core.model.view.activity.ActivityView;
+import core.model.view.progress.info.ScoreView;
+import infrastructure.event.pulse.Pulse;
 import presentation.outside.launcher.SwingLauncher;
 import presentation.outside.swing.template.activity.SwingActivityTemplate;
 import presentation.outside.swing.template.activity.SwingQuestionnaireTemplate;
@@ -17,7 +19,7 @@ public class SwingActivity {
         ActivityService service,
         ActivityView view, 
         SwingLauncher launcher,
-        Runnable onFinish
+        Pulse<ScoreView> onFinish
     ) {
         this.launcher = launcher;
 

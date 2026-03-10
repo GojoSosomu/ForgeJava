@@ -49,7 +49,7 @@ public class UserProgressAssembler implements ViewAssembler<UserProgressSnapshot
     }
 
     private ScoreView makeScore(ScoreSnapshot score) {
-        String status = (score.score() == score.total()) ? "MASTERED ✓" : "IN PROGRESS";
+        String status = (score.score() == score.total()) ? "MASTERED!!" : score.score() * (3/4) * (100) >= 75 ? "PASSED" : "FAILED" ;
         return new ScoreView(score.score(), score.total(), status);
     }
 }
