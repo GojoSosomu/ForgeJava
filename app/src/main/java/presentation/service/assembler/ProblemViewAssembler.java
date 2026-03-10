@@ -1,6 +1,7 @@
 package presentation.service.assembler;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import core.model.snapshot.content.ContentSnapshot;
 import core.model.view.activity.problem.ProblemView;
 import core.model.view.activity.problem.QuestionPageView;
 import core.model.view.activity.problem.QuestionnaireView;
+import core.model.view.content.ContentView;
 import core.model.view.content.TextContentView;
 
 public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, ProblemView> {
@@ -28,7 +30,7 @@ public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, Prob
 
         List<TextContentView> instruction = new ArrayList<>();
 
-        for(ContentSnapshot contentSnapshot : (List<ContentSnapshot>) values.get("questions"))
+        for(ContentSnapshot contentSnapshot : (List<ContentSnapshot>) values.get("instructions"))
             if(contentSnapshot.type() == ContentType.TEXT)
                 instruction.add((TextContentView) contentViewAssembler.from(contentSnapshot));
 
@@ -57,6 +59,8 @@ public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, Prob
             if(snapshot.type() == ContentType.TEXT)
                 questionDirection.add((TextContentView) contentViewAssembler.from(snapshot));
 
+        System.out.println("Type of 'question' field: " + question.get("type").getClass());
+        System.out.println("Content: " + question.get("type"));
         return new QuestionPageView(
             (String) question.get("questionNumber"),
             (QuestionType) question.get("type"),
@@ -66,15 +70,31 @@ public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, Prob
     }
 
     private Map<String, Object> assembleExtraInfo(Map<String,Object> question) {
-        return switch((QuestionType) question.get("type")) {
-            case MULTIPLE_CHOICE -> Map.of(
-                "options", question.get("options"),
-                "correctedIndex", question.get("correctedIndex")
-            );
-            case TEXT -> Map.of(
-                "correctedAnswer", question.get("correctedIndex")
-            );
-        };
+        Map<String, Object> extraInfo = new HashMap<>();
+
+        switch((QuestionType) question.get("type")) {
+            case MULTIPLE_CHOICE -> {
+                extraInfo.put("options", 
+                    assembleOptions(question));
+                extraInfo.put("correctedIndex", 
+                    question.get("correctedIndex"));
+            }
+            case TEXT -> {
+                extraInfo.put("correctedAnswer", 
+                    question.get("correctedAnswer"));
+            }
+        }
+        
+        return extraInfo;
     }
 
+    private List<TextContentView> assembleOptions(Map<String,Object> question) {
+        List<TextContentView> options = new ArrayList<>();
+
+        for(ContentSnapshot snapshot : (List<ContentSnapshot>) question.get("options"))
+            if(snapshot.type() == ContentType.TEXT)
+                options.add((TextContentView) contentViewAssembler.from(snapshot));
+
+        return options;
+    }
 }

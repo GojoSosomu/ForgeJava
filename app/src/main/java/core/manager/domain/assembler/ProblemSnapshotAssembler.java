@@ -9,6 +9,7 @@ import core.model.dto.activity.problem.Problem;
 import core.model.dto.activity.problem.Questionnaire;
 import core.model.dto.activity.problem.question.Question;
 import core.model.dto.activity.problem.question.QuestionType;
+import core.model.dto.content.Content;
 import core.model.snapshot.activity.problem.ProblemSnapshot;
 
 public class ProblemSnapshotAssembler implements ValueSnapshotAssembler<Problem, ProblemSnapshot> {
@@ -58,18 +59,20 @@ public class ProblemSnapshotAssembler implements ValueSnapshotAssembler<Problem,
                 contentSnapshotAssembler.from(question.question())
                 );
             
-            switch((QuestionType) values.get("type")) {
+            switch(question.type()) {
                 case MULTIPLE_CHOICE:
                     values.put("options",
-                        question.values().get("options"));
+                        contentSnapshotAssembler.from((List<Content>)question.values().get("options")));
                     values.put("correctedIndex",
                         question.values().get("correctedIndex"));
                     break;
                 case TEXT:
                     values.put("correctedAnswer",
-                        question.values().get("correctedIndex"));
+                        question.values().get("correctedAnswer"));
                     break;
             }
+
+            result.add(values);
         }
 
         return result;

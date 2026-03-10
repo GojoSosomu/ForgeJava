@@ -115,7 +115,7 @@
           "question": [
             {
               "type": "TEXT",
-              "text": "5. Which loop is guaranteed to execute its code block at least once?",
+              "text": "1. Which loop is guaranteed to execute its code block at least once?",
               "style": { "emphasis": "TITLE", "size": "MEDIUM" }
             }
           ],
@@ -134,7 +134,7 @@
           "question": [
             {
               "type": "TEXT",
-              "text": "6. In Java, what keyword is used to create an instance of a class?",
+              "text": "2. In Java, what keyword is used to create an instance of a class?",
               "style": { "emphasis": "TITLE", "size": "MEDIUM" }
             }
           ],
@@ -153,7 +153,7 @@
           "question": [
             {
               "type": "TEXT",
-              "text": "7. Which access modifier makes a member visible only within its own class?",
+              "text": "3. Which access modifier makes a member visible only within its own class?",
               "style": { "emphasis": "TITLE", "size": "MEDIUM" }
             }
           ],
@@ -172,7 +172,7 @@
           "question": [
             {
               "type": "TEXT",
-              "text": "8. What is the process of defining two methods with the same name but different parameters?",
+              "text": "4. What is the process of defining two methods with the same name but different parameters?",
               "style": { "emphasis": "TITLE", "size": "MEDIUM" }
             }
           ],
@@ -210,7 +210,7 @@
           "question": [
             {
               "type": "TEXT",
-              "text": "9. Which keyword is used by a subclass to inherit from a superclass?",
+              "text": "1. Which keyword is used by a subclass to inherit from a superclass?",
               "style": { "emphasis": "TITLE", "size": "MEDIUM" }
             }
           ],
@@ -229,7 +229,7 @@
           "question": [
             {
               "type": "TEXT",
-              "text": "10. In a try-catch block, which block executes regardless of whether an exception occurred?",
+              "text": "2. In a try-catch block, which block executes regardless of whether an exception occurred?",
               "style": { "emphasis": "TITLE", "size": "MEDIUM" }
             }
           ],
@@ -248,7 +248,7 @@
           "question": [
             {
               "type": "TEXT",
-              "text": "11. Which collection would you use if you want to prevent duplicate elements?",
+              "text": "3. Which collection would you use if you want to prevent duplicate elements?",
               "style": { "emphasis": "TITLE", "size": "MEDIUM" }
             }
           ],
@@ -258,253 +258,6 @@
               { "type": "TEXT", "text": "B. Set", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
               { "type": "TEXT", "text": "C. LinkedList", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
               { "type": "TEXT", "text": "D. Vector", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-004": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "instructions": [
-        { "type": "TEXT", "text": "Memory and Variables", "style": { "emphasis": "LABEL", "size": "SMALL" } },
-        { "type": "TEXT", "text": "Understanding how Java handles data storage.", "style": { "emphasis": "INFO", "size": "TINY" } }
-      ],
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "12. Where are local variables stored in Java?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. Heap Memory", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. Stack Memory", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. Method Area", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. Cache", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-005": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "instructions": [
-        { "type": "TEXT", "text": "String Manipulation", "style": { "emphasis": "LABEL", "size": "SMALL" } }
-      ],
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "13. Which class should be used for frequent string modifications?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. String", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. StringBuilder", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. StringArray", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. char[]", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-006": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "instructions": [{ "type": "TEXT", "text": "The 'Static' Keyword", "style": { "emphasis": "LABEL", "size": "SMALL" } }],
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "14. A static method can access non-static instance variables directly.", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. True", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. False", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-007": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "instructions": [{ "type": "TEXT", "text": "Encapsulation", "style": { "emphasis": "LABEL", "size": "SMALL" } }],
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "15. What is the main benefit of encapsulation?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. Faster execution", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. Data hiding and security", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. Automatic memory cleanup", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. Inheritance", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-008": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "16. Which of these is NOT a valid access modifier?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. public", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. private", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. internal", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. protected", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 2
-          }
-        }
-      ]
-    }
-  },
-  "A-009": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "17. What is the size of an 'int' data type in Java?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. 16-bit", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. 32-bit", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. 64-bit", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. 8-bit", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-010": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "18. Which keyword is used to stop a loop immediately?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. stop", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. break", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. exit", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. return", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-011": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "19. Which operator is used for comparing two values for equality?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. =", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. ==", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. equals", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. is", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-012": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "20. What is the default value of an uninitialized boolean variable in a class?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. true", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. false", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. null", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. 0", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-013": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "21. Which keyword is used to refer to the current object?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. self", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. this", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. super", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. object", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-014": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "22. What does JVM stand for?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. Java Variable Machine", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. Java Virtual Machine", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. Java Visual Machine", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. Java Virtual Method", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
-      ]
-    }
-  },
-  "A-015": {
-    "problem": {
-      "type": "QUESTIONNAIRE",
-      "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [{ "type": "TEXT", "text": "23. Which data type is used for large decimal numbers requiring high precision?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } }],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. float", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. double", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. int", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. long", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
             ],
             "correctAnswerIndex": 1
           }

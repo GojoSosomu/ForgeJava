@@ -123,7 +123,10 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         activityPanel.setOpaque(false);
 
         for(var entry : chapterSequenceView.activityViews().entrySet()) {
-            activityPanel.add(createItemButton(entry.getValue().id()));
+            JButton btn = createItemButton(entry.getValue().id());
+            btn.addActionListener(e -> launcher.startActivity(entry.getValue().id()));
+
+            activityPanel.add(btn);
         }
         activityScrollPane = createCustomScrollPane(activityPanel);
 

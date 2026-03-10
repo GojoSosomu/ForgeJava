@@ -293,6 +293,7 @@ public class SwingLauncher extends Launcher {
         ActivityView view = activityService.getActivity(id);
         
         SwingActivity activityCoordinator = new SwingActivity(
+            activityService,
             view, 
             this, 
             () -> this.completedItem(id)

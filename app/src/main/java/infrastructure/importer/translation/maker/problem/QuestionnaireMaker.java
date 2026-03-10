@@ -62,7 +62,9 @@ public final class QuestionnaireMaker extends ProblemMaker {
             switch((QuestionType) values.get("type")) {
                 case MULTIPLE_CHOICE:
                     extraValues.put("options",
-                        (List<String>) rawValues.get("options"));
+                        contentFilter.listByType(
+                        contentMapper.list((List<Map<String, Object>>) rawValues.get("options")), 
+                        ContentType.TEXT));
                     extraValues.put("correctAnswerIndex",
                         (int) rawValues.get("correctAnswerIndex"));
                     break;
