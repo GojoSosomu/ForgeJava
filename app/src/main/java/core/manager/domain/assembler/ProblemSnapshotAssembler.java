@@ -65,10 +65,6 @@ public class ProblemSnapshotAssembler implements ValueSnapshotAssembler<Problem,
                     values.put("correctedIndex",
                         question.values().get("correctedIndex"));
                     break;
-                case TEXT:
-                    values.put("correctedAnswer",
-                        question.values().get("correctedAnswer"));
-                    break;
             }
 
             result.add(values);

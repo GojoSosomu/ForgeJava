@@ -23,15 +23,18 @@ public class SwingQuestionnairePage extends JPanel {
     private JButton nextButton;
     private boolean isEvaluated = false;
     private final ActivityService service;
+    private final String id;
     private final Runnable onPressed;
 
     public SwingQuestionnairePage(
+        String id,
         QuestionPageView data, 
         ActivityService service,
         Runnable onPressed
     ) {
         this.data = data;
         this.service = service;
+        this.id = id;
         this.onPressed = onPressed;
 
         setOpaque(false);
@@ -51,8 +54,6 @@ public class SwingQuestionnairePage extends JPanel {
 
         if (data.type() == QuestionType.MULTIPLE_CHOICE) {
             setupMultipleChoice(interactionArea, gbc);
-        } else {
-            setupTextInput(interactionArea, gbc);
         }
 
         add(interactionArea, BorderLayout.CENTER);
@@ -100,9 +101,11 @@ public class SwingQuestionnairePage extends JPanel {
             renderer.applyStyle(textContentView.style());
             OptionButton opt = new OptionButton(choiceText);
             opt.addActionListener(e -> service.handleAnswerSubmit(
-                index, 
+                index,
+                id,
                 () -> showCorrectFeedback(),
-                () -> showErrorFeedback()
+                () -> showErrorFeedback(),
+                new Integer(index)
             ));
             
             group.add(opt);
@@ -112,23 +115,6 @@ public class SwingQuestionnairePage extends JPanel {
 
         tempG2.dispose();
     }
-
-    private void setupTextInput(JPanel container, GridBagConstraints gbc) {
-        JLabel label = new JLabel("ENTER RESPONSE:");
-        label.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
-        label.setForeground(INK_DARK);
-        container.add(label, gbc);
-
-        textInput = new JTextField();
-        textInput.setPreferredSize(new Dimension(400, 50));
-        textInput.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-        textInput.setBorder(BorderFactory.createCompoundBorder(
-            BorderFactory.createLineBorder(BORDER_NORMAL, 2),
-            BorderFactory.createEmptyBorder(5, 15, 5, 15)
-        ));
-        container.add(textInput, gbc);
-    }
-
     private JPanel createFooterPanel() {
         JPanel footer = new JPanel();
         footer.setOpaque(false);
@@ -164,7 +150,7 @@ public class SwingQuestionnairePage extends JPanel {
         nextButton.setFocusPainted(false);
         nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        nextButton.setVisible(false); // HIDDEN BY DEFAULT
+        nextButton.setVisible(true); // HIDDEN BY DEFAULT
 
         // Use the passed Runnable to move to next card/activity
         nextButton.addActionListener(e -> onPressed.run());

@@ -13,6 +13,7 @@ import core.model.dto.DTO;
 import core.model.dto.progress.attainment.ChapterProgress;
 import core.model.dto.progress.attainment.LessonProgress;
 import core.model.snapshot.activity.ActivitySnapshot;
+import core.model.snapshot.activity.evaulation.EvaulationSnapshot;
 import core.model.snapshot.chapter.*;
 import core.model.snapshot.lesson.LessonSnapshot;
 import core.model.snapshot.progress.UserProgressSnapshot;
@@ -165,5 +166,9 @@ public class Engine {
         Collections.sort(ids);
 
         return activityManager.from(ids);
+    }
+
+    public EvaulationSnapshot evaluateActivityAnswer(String id, int questionIndex, Object answer) {
+        return activityManager.checkAnswer(id, questionIndex, answer);
     }
 }

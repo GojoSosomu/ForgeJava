@@ -54,6 +54,7 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
         // Build Pages
         for (int i = 0; i < questionnaire.questions().size(); i++) {
             SwingQuestionnairePage page = new SwingQuestionnairePage(
+                view.id(),
                 questionnaire.questions().get(i),
                 service,
                 () -> moveToNext()

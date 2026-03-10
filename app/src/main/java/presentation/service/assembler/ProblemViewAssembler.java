@@ -58,8 +58,6 @@ public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, Prob
             if(snapshot.type() == ContentType.TEXT)
                 questionDirection.add((TextContentView) contentViewAssembler.from(snapshot));
 
-        System.out.println("Type of 'question' field: " + question.get("type").getClass());
-        System.out.println("Content: " + question.get("type"));
         return new QuestionPageView(
             (String) question.get("questionNumber"),
             (QuestionType) question.get("type"),
@@ -75,12 +73,9 @@ public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, Prob
             case MULTIPLE_CHOICE -> {
                 extraInfo.put("options", 
                     assembleOptions(question));
-                extraInfo.put("correctedIndex", 
-                    question.get("correctedIndex"));
             }
-            case TEXT -> {
-                extraInfo.put("correctedAnswer", 
-                    question.get("correctedAnswer"));
+            default -> {
+                return extraInfo;
             }
         }
         

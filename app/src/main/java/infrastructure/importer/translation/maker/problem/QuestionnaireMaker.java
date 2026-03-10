@@ -68,10 +68,6 @@ public final class QuestionnaireMaker extends ProblemMaker {
                     extraValues.put("correctAnswerIndex",
                         (int) rawValues.get("correctAnswerIndex"));
                     break;
-                case TEXT:
-                    extraValues.put("correctedAnswer",
-                        (String) rawValues.get("correctedAnswer"));
-                    break;
             }
 
             result.add(new Question(

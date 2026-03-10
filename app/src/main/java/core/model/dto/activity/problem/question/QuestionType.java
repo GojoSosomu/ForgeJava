@@ -1,8 +1,7 @@
 package core.model.dto.activity.problem.question;
 
 public enum QuestionType {
-    MULTIPLE_CHOICE,
-    TEXT;
+    MULTIPLE_CHOICE;
 
     public static QuestionType fromString(String type) {
         try {

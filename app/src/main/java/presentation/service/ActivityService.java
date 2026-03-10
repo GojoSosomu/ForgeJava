@@ -2,6 +2,7 @@ package presentation.service;
 
 import core.engine.Engine;
 import core.model.view.activity.ActivityView;
+import core.model.view.activity.evaulation.EvaulationView;
 import presentation.service.assembler.ActivityViewAssembler;
 
 public class ActivityService extends AService {
@@ -21,7 +22,7 @@ public class ActivityService extends AService {
         return viewAssembler.from(engine.getActivitys().get(id));
     }
 
-    public void handleAnswerSubmit(int i, Runnable onRight, Runnable onWrong) {
+    public EvaulationView handleAnswerSubmit(int questionIndex, String id, Object answer) {
         
     }
 }
