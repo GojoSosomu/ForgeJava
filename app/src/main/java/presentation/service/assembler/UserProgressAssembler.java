@@ -10,8 +10,16 @@ import core.model.view.progress.UserProgressView;
 import core.model.view.progress.info.ProgressInfo;
 import core.model.view.progress.info.ScoreView;
 import core.model.view.progress.info.UserInfo;
+import presentation.service.ActivityService;
 
 public class UserProgressAssembler implements ViewAssembler<UserProgressSnapshot, UserProgressView>{
+    private final ActivityService service;
+
+    public UserProgressAssembler(
+        ActivityService service
+    ) {
+        this.service = service;
+    }
 
     @Override
     public UserProgressView from(UserProgressSnapshot snapshot) {
@@ -49,7 +57,7 @@ public class UserProgressAssembler implements ViewAssembler<UserProgressSnapshot
     }
 
     private ScoreView makeScore(ScoreSnapshot score) {
-        String status = (score.score() == score.total()) ? "MASTERED!!" : score.score() * (3/4) * (100) >= 75 ? "PASSED" : "FAILED" ;
+        String status = service.checkStatus(score.score(), score.total());
         return new ScoreView(score.score(), score.total(), status);
     }
 }

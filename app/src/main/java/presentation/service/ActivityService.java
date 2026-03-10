@@ -22,7 +22,6 @@ public class ActivityService extends AService {
     }
 
     public ActivityView getActivity(String id) {
-        System.out.println(engine.getActivitys().get(id));
         return viewAssembler.from(engine.getActivitys().get(id));
     }
 
@@ -41,5 +40,10 @@ public class ActivityService extends AService {
             isCorrect,
             correctIndex
         );
+    }
+
+    public String checkStatus(int score, int total) {
+        return (score == total) ? "MASTERED!!" : score * (3/4) * (100) >= 75 ? "PASSED" : "FAILED" ;
+
     }
 }

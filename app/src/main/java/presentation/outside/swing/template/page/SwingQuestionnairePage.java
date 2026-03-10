@@ -22,7 +22,7 @@ public class SwingQuestionnairePage extends JPanel {
     private JTextField textInput;
     private JLabel feedbackStatus;
     private JButton nextButton;
-    private boolean isEvaluated = false;
+    private boolean isEvaluated = false, isCorrect = false;
     private final ActivityService service;
     private final String id;
     private final int questionIndex;
@@ -111,6 +111,7 @@ public class SwingQuestionnairePage extends JPanel {
                 EvaulationView result = service.evaluate(id, questionIndex, index, answerOptions);
 
                 // 2. React based on the result
+                isCorrect = result.isCorrect();
                 if (result.isCorrect()) { // You can add 'isCorrect' to EvaulationView record
                     showCorrectFeedback(result);
                 } else {
@@ -160,7 +161,7 @@ public class SwingQuestionnairePage extends JPanel {
         nextButton.setFocusPainted(false);
         nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        nextButton.setVisible(true); // HIDDEN BY DEFAULT
+        nextButton.setVisible(false); // HIDDEN BY DEFAULT
 
         // Use the passed Runnable to move to next card/activity
         nextButton.addActionListener(e -> onPressed.run());
@@ -269,5 +270,9 @@ public class SwingQuestionnairePage extends JPanel {
             
             g2.dispose();
         }
+    }
+
+    public boolean isCorrect() {
+        return this.isCorrect;
     }
 }

@@ -19,10 +19,9 @@ public class SwingActivity {
         ActivityService service,
         ActivityView view, 
         SwingLauncher launcher,
-        Pulse<ScoreView> onFinish
+        Pulse<ScoreView> onFinish // The Coordinator accepts the pulse
     ) {
         this.launcher = launcher;
-
         this.activityUI = switch (view.problemView().type()) {
             case QUESTIONNAIRE -> new SwingQuestionnaireTemplate(service, view, launcher, onFinish);
         };

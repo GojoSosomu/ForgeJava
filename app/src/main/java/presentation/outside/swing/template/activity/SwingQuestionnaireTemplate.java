@@ -24,6 +24,7 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
     private final CarouselUtility<QuestionPageView> carousel;
     private final List<SwingQuestionnairePage> questionPages = new ArrayList<>();
     private final Pulse<ScoreView> onFinish;
+    private final ActivityService service;
     private final SwingLauncher launcher; // Fixed: Needs to be final
 
     public SwingQuestionnaireTemplate(
@@ -33,6 +34,7 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
         Pulse<ScoreView> onFinish
     ) {
         this.launcher = launcher; // FIX: Assign the launcher!
+        this.service = service;
         this.onFinish = onFinish;
         
         QuestionnaireView questionnaire = (QuestionnaireView) view.problemView();
@@ -99,10 +101,20 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
             updatePageCounter();
             repaint();
         } else {
-            onFinish.onPulse(scoreFinilize(, carousel.size())); // All units processed!
+            // 1. Calculate the final score on the floor
+            int total = questionPages.size();
+            int finalScore = 0;
+            for (SwingQuestionnairePage page : questionPages) {
+                if (page.isCorrect()) finalScore++;
+            }
+
+            // 2. Wrap it into a ScoreView using your finalize method
+            ScoreView result = scoreFinilize(finalScore, total);
+
+            // 3. Fire the Pulse!
+            onFinish.onPulse(result); 
         }
     }
-
     private void updatePageCounter() {
         int current = carousel.getCurrentIndex() + 1;
         int total = carousel.size();
@@ -111,7 +123,7 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
 
     @Override
     public ScoreView scoreFinilize(int score, int total) {
-        String status = (score == total) ? "MASTERED!!" : score * (3/4) * (100) >= 75 ? "PASSED" : "FAILED" ;
+        String status = service.checkStatus(score, total);
         return new ScoreView(
             score,
             total,

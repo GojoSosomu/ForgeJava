@@ -9,6 +9,8 @@ import java.awt.event.WindowEvent;
 import core.model.snapshot.loader.LoadingSnapshot;
 import core.model.view.activity.ActivityView;
 import core.model.view.loader.LoadingView;
+import core.model.view.progress.info.ScoreView;
+import infrastructure.event.pulse.Pulse;
 import infrastructure.event.receiver.LoadingReceiver;
 import presentation.enums.SuccessType;
 import presentation.outside.channel.OutsideChannel;
@@ -292,11 +294,15 @@ public class SwingLauncher extends Launcher {
     public void startActivity(String id) {
         ActivityView view = activityService.getActivity(id);
         
+        Pulse<ScoreView> activityPulse = (scoreView) -> {
+            this.completedActivityItem(id, scoreView.score(), scoreView.total());
+        };
+
         SwingActivity activityCoordinator = new SwingActivity(
             activityService,
             view, 
             this, 
-            (id, score) -> this.completedActivityItem(id, score., total)
+            activityPulse
         );
         
         activityCoordinator.show();
@@ -304,12 +310,7 @@ public class SwingLauncher extends Launcher {
 
     public void completedActivityItem(String id, int score, int total) {
         userService.completedActivityItem(id, score, total);
-        
-        chapterPanel.updatedSequencePanel(
-            chapterService,
-            chapterService.getChapter(chapterPanel.id())
-        );
-        
+        chapterPanel.updatedSequencePanel(chapterService, chapterService.getChapter(chapterPanel.id()));
         returnChapterSequence();
     }
 }
