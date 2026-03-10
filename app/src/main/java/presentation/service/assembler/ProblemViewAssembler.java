@@ -12,7 +12,6 @@ import core.model.snapshot.content.ContentSnapshot;
 import core.model.view.activity.problem.ProblemView;
 import core.model.view.activity.problem.QuestionPageView;
 import core.model.view.activity.problem.QuestionnaireView;
-import core.model.view.content.ContentView;
 import core.model.view.content.TextContentView;
 
 public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, ProblemView> {

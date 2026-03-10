@@ -10,8 +10,6 @@ import presentation.service.ActivityService;
 
 public class SwingActivity {
     private final SwingLauncher launcher;
-    private final ActivityView view;
-    private final Runnable onFinish;
 
     private final JPanel activityUI;
 
@@ -21,9 +19,7 @@ public class SwingActivity {
         SwingLauncher launcher,
         Runnable onFinish
     ) {
-        this.view = view;
         this.launcher = launcher;
-        this.onFinish = onFinish;
 
         this.activityUI = switch (view.problemView().type()) {
             case QUESTIONNAIRE -> new SwingQuestionnaireTemplate(service, view, launcher, onFinish);

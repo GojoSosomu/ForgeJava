@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import core.model.view.activity.problem.QuestionPageView;
 import core.model.view.content.TextContentView;
@@ -21,6 +20,7 @@ public class SwingQuestionnairePage extends JPanel {
     private final List<OptionButton> choices = new ArrayList<>();
     private JTextField textInput;
     private JLabel feedbackStatus;
+    private JButton nextButton;
     private boolean isEvaluated = false;
     private final ActivityService service;
     private final Runnable onPressed;
@@ -57,10 +57,7 @@ public class SwingQuestionnairePage extends JPanel {
 
         add(interactionArea, BorderLayout.CENTER);
 
-        feedbackStatus = new JLabel(" ", SwingConstants.CENTER);
-        feedbackStatus.setFont(new Font("Segoe UI", Font.BOLD, 18));
-        feedbackStatus.setPreferredSize(new Dimension(0, 50));
-        add(feedbackStatus, BorderLayout.SOUTH);
+        add(createFooterPanel(), BorderLayout.SOUTH);
     }
 
     private JPanel createQuestionDisplay() {
@@ -102,7 +99,11 @@ public class SwingQuestionnairePage extends JPanel {
             String choiceText = textContentView.text();
             renderer.applyStyle(textContentView.style());
             OptionButton opt = new OptionButton(choiceText);
-            opt.addActionListener(e -> service.handleAnswerSubmit(index, onPressed));
+            opt.addActionListener(e -> service.handleAnswerSubmit(
+                index, 
+                () -> showCorrectFeedback(),
+                () -> showErrorFeedback()
+            ));
             
             group.add(opt);
             choices.add(opt);
@@ -128,10 +129,58 @@ public class SwingQuestionnairePage extends JPanel {
         container.add(textInput, gbc);
     }
 
+    private JPanel createFooterPanel() {
+        JPanel footer = new JPanel();
+        footer.setOpaque(false);
+        footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
+
+        feedbackStatus = new JLabel(" ", SwingConstants.CENTER);
+        feedbackStatus.setFont(new Font("Segoe UI", Font.BOLD, 18));
+        feedbackStatus.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        nextButton = new JButton("CONTINUE →") {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                
+                // Professional Success Green or Muted based on state
+                g2.setColor(SUCCESS_GREEN);
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
+                
+                g2.setColor(Color.WHITE);
+                g2.setFont(new Font("Segoe UI", Font.BOLD, 14));
+                FontMetrics fm = g2.getFontMetrics();
+                int x = (getWidth() - fm.stringWidth(getText())) / 2;
+                int y = (getHeight() + fm.getAscent() - fm.getDescent()) / 2;
+                g2.drawString(getText(), x, y);
+                g2.dispose();
+            }
+        };
+        nextButton.setPreferredSize(new Dimension(200, 45));
+        nextButton.setMaximumSize(new Dimension(200, 45));
+        nextButton.setContentAreaFilled(false);
+        nextButton.setBorderPainted(false);
+        nextButton.setFocusPainted(false);
+        nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        nextButton.setVisible(false); // HIDDEN BY DEFAULT
+
+        // Use the passed Runnable to move to next card/activity
+        nextButton.addActionListener(e -> onPressed.run());
+
+        footer.add(feedbackStatus);
+        footer.add(Box.createRigidArea(new Dimension(0, 15)));
+        footer.add(nextButton);
+        
+        return footer;
+    }
+
     public void showCorrectFeedback() {
         isEvaluated = true;
         feedbackStatus.setText("TRUTH VERIFIED ✓");
         feedbackStatus.setForeground(SUCCESS_GREEN);
+        nextButton.setVisible(true); // SHOW THE NEXT STEP
         lockUI(SUCCESS_GREEN);
     }
 
@@ -139,6 +188,7 @@ public class SwingQuestionnairePage extends JPanel {
         isEvaluated = true;
         feedbackStatus.setText("LOGICAL ERROR: THE TRUTH WAS DIFFERENT");
         feedbackStatus.setForeground(SCORCH_RED);
+        nextButton.setVisible(true); // SHOW THE NEXT STEP
         lockUI(SCORCH_RED);
         
         if (data.type() == QuestionType.MULTIPLE_CHOICE) {

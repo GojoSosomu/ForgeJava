@@ -8,7 +8,6 @@ import java.util.Map;
 import core.model.dto.activity.problem.Problem;
 import core.model.dto.activity.problem.Questionnaire;
 import core.model.dto.activity.problem.question.Question;
-import core.model.dto.activity.problem.question.QuestionType;
 import core.model.dto.content.Content;
 import core.model.snapshot.activity.problem.ProblemSnapshot;
 

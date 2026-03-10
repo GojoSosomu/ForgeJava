@@ -21,7 +21,7 @@ public class ActivityService extends AService {
         return viewAssembler.from(engine.getActivitys().get(id));
     }
 
-    public void handleAnswerSubmit(int i, Runnable onCompleted) {
-        onCompleted.run();
+    public void handleAnswerSubmit(int i, Runnable onRight, Runnable onWrong) {
+        
     }
 }
