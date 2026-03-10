@@ -55,7 +55,8 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
         for (int i = 0; i < questionnaire.questions().size(); i++) {
             SwingQuestionnairePage page = new SwingQuestionnairePage(
                 questionnaire.questions().get(i),
-                service
+                service,
+                () -> moveToNext()
             );
             questionPages.add(page);
             pageContainer.add(page, "Q" + i);
@@ -81,10 +82,6 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
             @Override
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
-                    case KeyEvent.VK_A: 
-                    case KeyEvent.VK_LEFT: 
-                        showPrevious(); 
-                        break;
                     case KeyEvent.VK_ESCAPE:
                         launcher.returnChapterSequence();
                         break;
@@ -100,14 +97,6 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
             repaint();
         } else {
             onFinish.run(); // All units processed!
-        }
-    }
-
-    private void showPrevious() {
-        if (carousel.moveLeft()) {
-            cardLayout.show(pageContainer, "Q" + carousel.getCurrentIndex());
-            updatePageCounter();
-            repaint();
         }
     }
 

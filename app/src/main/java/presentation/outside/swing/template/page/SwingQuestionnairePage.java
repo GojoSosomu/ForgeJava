@@ -2,6 +2,7 @@ package presentation.outside.swing.template.page;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,11 +23,16 @@ public class SwingQuestionnairePage extends JPanel {
     private JLabel feedbackStatus;
     private boolean isEvaluated = false;
     private final ActivityService service;
+    private final Runnable onPressed;
 
-    public SwingQuestionnairePage(QuestionPageView data, ActivityService service) {
+    public SwingQuestionnairePage(
+        QuestionPageView data, 
+        ActivityService service,
+        Runnable onPressed
+    ) {
         this.data = data;
         this.service = service;
-        this.renderer.setGraphics2D((Graphics2D) this.getGraphics().create());
+        this.onPressed = onPressed;
 
         setOpaque(false);
         setLayout(new BorderLayout(0, 40));
@@ -43,7 +49,6 @@ public class SwingQuestionnairePage extends JPanel {
         gbc.insets = new Insets(5, 0, 5, 0);
         gbc.weightx = 1.0;
 
-        this.renderer.setGraphics2D((Graphics2D) this.getGraphics().create());
         if (data.type() == QuestionType.MULTIPLE_CHOICE) {
             setupMultipleChoice(interactionArea, gbc);
         } else {
@@ -81,6 +86,11 @@ public class SwingQuestionnairePage extends JPanel {
     private void setupMultipleChoice(JPanel container, GridBagConstraints gbc) {
         Object rawOptions = data.extras().get("options");
         if (!(rawOptions instanceof List)) return;
+
+        var tempImg = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D tempG2 = tempImg.createGraphics();
+
+        renderer.setGraphics2D(tempG2);
         
         List<TextContentView> options = (List<TextContentView>) rawOptions;
         ButtonGroup group = new ButtonGroup();
@@ -92,12 +102,14 @@ public class SwingQuestionnairePage extends JPanel {
             String choiceText = textContentView.text();
             renderer.applyStyle(textContentView.style());
             OptionButton opt = new OptionButton(choiceText);
-            opt.addActionListener(e -> service.handleAnswerSubmit(index));
+            opt.addActionListener(e -> service.handleAnswerSubmit(index, onPressed));
             
             group.add(opt);
             choices.add(opt);
             container.add(opt, gbc);
         }
+
+        tempG2.dispose();
     }
 
     private void setupTextInput(JPanel container, GridBagConstraints gbc) {

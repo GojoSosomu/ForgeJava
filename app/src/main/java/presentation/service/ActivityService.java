@@ -21,8 +21,7 @@ public class ActivityService extends AService {
         return viewAssembler.from(engine.getActivitys().get(id));
     }
 
-    public Object handleAnswerSubmit(int i) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'handleAnswerSubmit'");
+    public void handleAnswerSubmit(int i, Runnable onCompleted) {
+        onCompleted.run();
     }
 }
