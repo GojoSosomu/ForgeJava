@@ -10,13 +10,17 @@ import core.manager.domain.*;
 import core.manager.loader.*;
 import core.manager.saver.*;
 import core.model.dto.DTO;
+import core.model.dto.progress.attainment.ActivityProgress;
 import core.model.dto.progress.attainment.ChapterProgress;
 import core.model.dto.progress.attainment.LessonProgress;
+import core.model.dto.progress.attainment.Score;
 import core.model.snapshot.activity.ActivitySnapshot;
 import core.model.snapshot.activity.evaulation.EvaulationSnapshot;
 import core.model.snapshot.chapter.*;
 import core.model.snapshot.lesson.LessonSnapshot;
+import core.model.snapshot.progress.ScoreSnapshot;
 import core.model.snapshot.progress.UserProgressSnapshot;
+import core.model.view.progress.info.ScoreView;
 
 public class Engine {
     private Map<LoadType, LoadTarget> loadTargets = new HashMap<>();
@@ -140,6 +144,7 @@ public class Engine {
 
     private void updatedLessonProgress(String id) {
         // Create a NEW mutable list from the old immutable one
+        incrementSequence();
         List<String> lessons = new ArrayList<>(userProgressManager.getCurrentUser().lessonProgress().completedLessons());
         lessons.add(id);
 
@@ -149,16 +154,27 @@ public class Engine {
         );
     }
 
-    public void updatedProgress(String id) {
-        if(
-            lessonManager.isExist(id) 
-            && 
-            !userProgressManager.getCurrentUser().lessonProgress().completedLessons().contains(id)
-        ) {
+    private void updatedActivityProgress(String id, int score, int total) {
+        // Create a NEW mutable list from the old immutable one
+        Map<String, Score> activitys = new HashMap<>(userProgressManager.getCurrentUser().activityProgress().completedActivities());
+        if(!userProgressManager.getCurrentUser().activityProgress().completedActivities().containsKey(id)) {
             incrementSequence();
-            updatedLessonProgress(id);
         }
+        
+        activitys.put(id, new Score(
+                score,
+                total
+        ));
+        userProgressManager.updateProgress(
+            getCurrentUserName(), 
+            new ActivityProgress(activitys)
+        );
     }
+
+
+            
+        
+
 
     public Map<String, ActivitySnapshot> getActivitys() {
         List<String> ids = activityManager.findAll();

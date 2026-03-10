@@ -3,6 +3,7 @@ package core.manager.domain;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import core.manager.loader.LoadTarget;
 import core.manager.saver.SaveTarget;
 import core.model.dto.DTO;
 import core.model.dto.progress.attainment.*;
+import core.model.snapshot.progress.ScoreSnapshot;
 import core.model.snapshot.progress.UserProgressSnapshot;
 import core.model.dto.progress.UserDatabaseDTO;
 import core.model.dto.progress.UserProgressDTO;
@@ -50,7 +52,7 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
                 (short) 0
             ),
             new ActivityProgress(
-                List.of()
+                Map.of()
             ),
             1
         );
@@ -103,6 +105,12 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
     @Override
     public UserProgressSnapshot from(String id) {
         UserProgressDTO dto = userProgressRepository.get(id);
+        
+        Map<String, ScoreSnapshot> scoresMap = new HashMap<>();
+        dto.activityProgress().completedActivities().forEach((actId, score) -> {
+            scoresMap.put(actId, new ScoreSnapshot(score.score(), score.total()));
+        });
+
         return new UserProgressSnapshot(
             Map.of(
                 "userName", dto.id(),
@@ -119,7 +127,7 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
                     "currentSequenceIndex", dto.chapterProgress().currentSequenceIndex()
                 ),
                 "activityProgress", Map.of(
-                    "completedActivities", dto.activityProgress().completedActivities()
+                    "completedActivities", scoresMap
                 ),
                 "version", dto.version()
         ));

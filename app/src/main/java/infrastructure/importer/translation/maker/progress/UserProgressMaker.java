@@ -43,7 +43,7 @@ public class UserProgressMaker implements Maker<Map<String, Object>, UserProgres
 
     private ActivityProgress makeActivityProgress(Map<String, Object> raw) {
         return new ActivityProgress(
-            (List<String>) raw.get("completedActivities")
+            (Map<String, Score>) raw.get("completedActivities")
         );
     }
 }

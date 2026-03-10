@@ -8,7 +8,11 @@ public class UserService extends AService {
         super(engine);
     }
 
-    public void completedItem(String id) {
-        engine.updatedProgress(id);
+    public void completedLessonItem(String id) {
+        engine.updatedLessonProgress(id);
+    }
+
+    public void completedActivityItem(String id, int score, int total) {
+        engine.updatedActivityProgress(id, score, total);
     }
 }

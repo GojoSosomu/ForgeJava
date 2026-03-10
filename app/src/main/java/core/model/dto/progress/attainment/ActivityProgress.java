@@ -1,9 +1,7 @@
 package core.model.dto.progress.attainment;
 
-import java.util.List;
+import java.util.Map;
 
 public record ActivityProgress(
-    List<String> completedActivities
-) {
-
-}
+    Map<String, Score> completedActivities
+) {}
