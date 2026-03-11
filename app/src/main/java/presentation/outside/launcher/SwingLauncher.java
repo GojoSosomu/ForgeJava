@@ -10,8 +10,6 @@ import core.model.snapshot.loader.LoadingSnapshot;
 import core.model.view.activity.ActivityView;
 import core.model.view.loader.LoadingView;
 import core.model.view.progress.UserProgressView;
-import core.model.view.progress.info.ScoreView;
-import infrastructure.event.pulse.Pulse;
 import infrastructure.event.receiver.LoadingReceiver;
 import presentation.enums.SuccessType;
 import presentation.outside.channel.OutsideChannel;
@@ -126,8 +124,8 @@ public class SwingLauncher extends Launcher {
                 chapterCoveragePanel.getBackButton().addActionListener(e -> switchPanel(mainPanel));
 
                 mainPanel.getStartButton().addActionListener(e -> {
+                    chapterCoveragePanel.updateAvailability();
                     switchPanel(chapterCoveragePanel, 1000, 600);
-                    chapterCoveragePanel.setUpLocked();
                 });
                 mainPanel.getProgressionButton().addActionListener(e -> {
 
@@ -307,24 +305,18 @@ public class SwingLauncher extends Launcher {
 
     public void startActivity(String id) {
         ActivityView view = activityService.getActivity(id);
-        
-        Pulse<ScoreView> activityPulse = (scoreView) -> {
-            this.completedActivityItem(id, scoreView.score(), scoreView.total());
-        };
 
         SwingActivity activityCoordinator = new SwingActivity(
+            userService,
             activityService,
             view, 
             this, 
-            activityPulse
+            () -> {
+                chapterPanel.updatedSequencePanel(chapterService, chapterService.getChapter(chapterPanel.id()));
+                returnChapterSequence();
+            }
         );
         
         activityCoordinator.show();
-    }
-
-    public void completedActivityItem(String id, int score, int total) {
-        userService.completedActivityItem(id, score, total);
-        chapterPanel.updatedSequencePanel(chapterService, chapterService.getChapter(chapterPanel.id()));
-        returnChapterSequence();
     }
 }

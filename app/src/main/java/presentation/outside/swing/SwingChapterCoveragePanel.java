@@ -241,6 +241,12 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
         }
     }
 
+    public void updateAvailability() {
+        service.setUpAvailableChapters();
+        setUpLocked();
+        repaint();
+    }
+
     public void resetUI() {
         this.isIntroActive = false;
         this.isCardActive = false;

@@ -3,32 +3,42 @@ package presentation.outside.swing;
 import javax.swing.JPanel;
 
 import core.model.view.activity.ActivityView;
-import core.model.view.progress.info.ScoreView;
-import infrastructure.event.pulse.Pulse;
+import infrastructure.event.receiver.ScoreReceiver;
 import presentation.outside.launcher.SwingLauncher;
-import presentation.outside.swing.template.activity.SwingActivityTemplate;
+import presentation.outside.swing.template.activity.SwingActivityResultPanel;
 import presentation.outside.swing.template.activity.SwingQuestionnaireTemplate;
 import presentation.service.ActivityService;
+import presentation.service.UserService;
 
 public class SwingActivity {
     private final SwingLauncher launcher;
-
+    private final SwingActivityResultPanel resultUI;
     private final JPanel activityUI;
 
-    public SwingActivity(
-        ActivityService service,
-        ActivityView view, 
-        SwingLauncher launcher,
-        Pulse<ScoreView> onFinish // The Coordinator accepts the pulse
-    ) {
+    public SwingActivity(UserService userService, ActivityService service, ActivityView view, SwingLauncher launcher, Runnable onFinish) {
         this.launcher = launcher;
+        
+        // 1. Create the Channel (The Score Screen)
+        this.resultUI = new SwingActivityResultPanel(onFinish);
+        
+        // 2. Create the Receiver
+        ScoreReceiver receiver = new ScoreReceiver(this.resultUI);
+
+        // 3. Create the Factory Floor (The Template)
         this.activityUI = switch (view.problemView().type()) {
-            case QUESTIONNAIRE -> new SwingQuestionnaireTemplate(service, view, launcher, onFinish);
+            case QUESTIONNAIRE -> new SwingQuestionnaireTemplate(
+                service, view, launcher, 
+                (scoreView) -> {
+                    userService.completedActivityItem(view.id(), scoreView.score(), scoreView.total());
+                    // PNEUMATIC TUBE: Send score to receiver
+                    receiver.onPulse(scoreView);
+                    // SWITCH UI: Show the results now
+                    this.showResults(); 
+                }
+            );
         };
     }
 
-    public void show() {
-        launcher.switchPanel(activityUI);
-        if (activityUI instanceof SwingActivityTemplate t) t.start();
-    }
+    public void show() { launcher.switchPanel(activityUI); }
+    public void showResults() { launcher.switchPanel(resultUI); }
 }
