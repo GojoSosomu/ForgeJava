@@ -43,7 +43,7 @@ public class ActivityService extends AService {
     }
 
     public String checkStatus(int score, int total) {
-        return (score == total) ? "MASTERED!!" : score * (3/4) * (100) >= 75 ? "PASSED" : "FAILED" ;
+        return (score == total) ? "MASTERED!!" : Math.floor(score * (3/4) * (100)) >= 75 ? "PASSED" : "FAILED" ;
 
     }
 }

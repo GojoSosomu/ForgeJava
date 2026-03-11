@@ -153,7 +153,6 @@ public class Engine {
     }
 
     public void updatedActivityProgress(String id, int score, int total) {
-        // Create a NEW mutable list from the old immutable one
         Map<String, Score> activitys = new HashMap<>(userProgressManager.getCurrentUser().activityProgress().completedActivities());
         if(!userProgressManager.getCurrentUser().activityProgress().completedActivities().containsKey(id)) {
             incrementSequence();

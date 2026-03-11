@@ -1,44 +1,42 @@
 {
-  "" : {
+  "howTodo" : {
+    "id" : "howTodo",
     "users" : [ {
-      "activityProgress" : {
-        "completedActivities" : {
-          "A-001" : {
-            "score" : 4,
-            "total" : 4
-          },
-          "A-002" : {
-            "score" : 4,
-            "total" : 4
-          },
-          "A-003" : {
-            "score" : 3,
-            "total" : 3
-          }
-        }
-      },
       "chapterProgress" : {
-        "currentChapter" : 6,
-        "currentSequenceIndex" : 0,
-        "completedChapters" : [ "C-001", "C-002", "C-003", "C-004", "C-005" ]
+        "completedChapters" : [ "C-001" ],
+        "currentChapter" : 0,
+        "currentSequenceIndex" : 2
       },
       "id" : "howTodo",
-      "version" : 19,
+      "version" : 22,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003", "L-004" ]
       },
       "userAccount" : {
         "salt" : "M/2IW4VRf7bAs6F3E+/jCQ==",
         "password" : "971953e1626defc0ccc0275bdee5ccb81fd86ee06d721ae02e4cb6dfeb486f5e"
+      },
+      "activityProgress" : {
+        "completedActivities" : {
+          "A-001" : {
+            "score" : 4,
+            "total" : 4
+          },
+          "A-003" : {
+            "score" : 3,
+            "total" : 3
+          },
+          "A-002" : {
+            "score" : 4,
+            "total" : 4
+          }
+        }
       }
     }, {
-      "activityProgress" : {
-        "completedActivities" : { }
-      },
       "chapterProgress" : {
+        "completedChapters" : [ ],
         "currentChapter" : 1,
-        "currentSequenceIndex" : 0,
-        "completedChapters" : [ ]
+        "currentSequenceIndex" : 0
       },
       "id" : "toDO",
       "version" : 1,
@@ -48,8 +46,10 @@
       "userAccount" : {
         "salt" : "Ut4PID/xqA3x2lYEc70p6A==",
         "password" : "9b24f4ea6bbae17a4c59e853c7cd84c15830223c477b3c925fa404526ff4890c"
+      },
+      "activityProgress" : {
+        "completedActivities" : { }
       }
-    } ],
-    "id" : "toDO"
+    } ]
   }
 }

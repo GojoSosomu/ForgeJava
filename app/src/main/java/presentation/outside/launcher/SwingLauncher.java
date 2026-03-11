@@ -299,7 +299,7 @@ public class SwingLauncher extends Launcher {
         chapterPanel.showSequence();
     }
 
-    private void completedLessonItem(String id) {
+    public void completedLessonItem(String id) {
         userService.completedLessonItem(id);
         chapterPanel.updatedSequencePanel(
             chapterService,
@@ -307,7 +307,7 @@ public class SwingLauncher extends Launcher {
         );
         returnChapterSequence();
     }
-
+    
     public void startActivity(String id) {
         ActivityView view = activityService.getActivity(id);
 
