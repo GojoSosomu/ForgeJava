@@ -43,7 +43,7 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         this.service = service;
         this.currentChapter = id;
         this.chapterSequenceView = chapterSequenceView;
-
+        
         setLayout(new BorderLayout());
         setBackground(PAGE_BASE); // Matching the background to your other panels
 

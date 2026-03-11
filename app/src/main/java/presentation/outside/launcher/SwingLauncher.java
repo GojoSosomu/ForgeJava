@@ -167,8 +167,6 @@ public class SwingLauncher extends Launcher {
     }
 
     public void switchPanel(JPanel panel, int width, int height) {
-        // 1. Hide the frame immediately
-        frame.setVisible(false);
 
         SwingUtilities.invokeLater(() -> {
             // 2. We are now "behind the curtain." Do the heavy work.
@@ -180,10 +178,6 @@ public class SwingLauncher extends Launcher {
             frame.revalidate();
             frame.repaint();
 
-            // 4. Only once EVERYTHING above is finished, schedule the "Show"
-            SwingUtilities.invokeLater(() -> {
-                frame.setVisible(true);
-            });
         });
     }
 

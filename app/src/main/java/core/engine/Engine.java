@@ -186,8 +186,10 @@ public class Engine {
 
         userProgressManager.updateProgress(
             getCurrentUserName(), 
-            new ChapterProgress(chapters, (byte)0,
-             (short)(userProgressManager.getCurrentUser().chapterProgress().currentChapter() + 1))
+            new ChapterProgress(chapters, 
+                (byte)(userProgressManager.getCurrentUser().chapterProgress().currentChapter() + 1),
+                (short) 0
+             )
         );
     }
 }
