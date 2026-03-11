@@ -107,8 +107,8 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
         UserProgressDTO dto = userProgressRepository.get(id);
         
         Map<String, ScoreSnapshot> scoresMap = new HashMap<>();
-        dto.activityProgress().completedActivities().forEach((actId, score) -> {
-            scoresMap.put(actId, new ScoreSnapshot(score.score(), score.total()));
+        dto.activityProgress().completedActivities().entrySet().forEach((value) -> {
+            scoresMap.put(value.getKey(), new ScoreSnapshot(value.getValue().score(), value.getValue().total()));
         });
 
         return new UserProgressSnapshot(

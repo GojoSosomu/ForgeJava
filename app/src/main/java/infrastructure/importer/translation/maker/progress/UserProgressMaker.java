@@ -5,9 +5,18 @@ import java.util.List;
 
 import core.model.dto.progress.UserProgressDTO;
 import infrastructure.importer.translation.maker.Maker;
+import infrastructure.importer.translation.mapper.ScoreMapper;
 import core.model.dto.progress.attainment.*;
 
 public class UserProgressMaker implements Maker<Map<String, Object>, UserProgressDTO> {
+    private ScoreMapper mapper;
+
+    public UserProgressMaker(
+        ScoreMapper mapper
+    ) {
+        this.mapper = mapper;
+    }
+
     @Override
     public UserProgressDTO make(Map<String, Object> raw, String id) {
         return new UserProgressDTO(
@@ -43,7 +52,7 @@ public class UserProgressMaker implements Maker<Map<String, Object>, UserProgres
 
     private ActivityProgress makeActivityProgress(Map<String, Object> raw) {
         return new ActivityProgress(
-            (Map<String, Score>) raw.get("completedActivities")
+            mapper.map((Map<String, Map<String, Object>>) raw.get("completedActivities"))
         );
     }
 }

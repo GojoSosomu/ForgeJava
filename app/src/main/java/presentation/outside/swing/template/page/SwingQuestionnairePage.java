@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import core.model.view.activity.evaulation.EvaulationView;
 import core.model.view.activity.problem.QuestionPageView;
@@ -46,18 +47,22 @@ public class SwingQuestionnairePage extends JPanel {
 
         add(createQuestionDisplay(), BorderLayout.NORTH);
 
-        JPanel interactionArea = new JPanel(new GridBagLayout());
+        JPanel interactionWrapper = new JPanel(new BorderLayout());
+        interactionWrapper.setOpaque(false);
+
+        // 2. The Button Container (Using BoxLayout for perfect vertical stacking)
+        JPanel interactionArea = new JPanel();
         interactionArea.setOpaque(false);
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = GridBagConstraints.RELATIVE;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(5, 0, 5, 0);
-        gbc.weightx = 1.0;
 
         if (data.type() == QuestionType.MULTIPLE_CHOICE) {
-            setupMultipleChoice(interactionArea, gbc);
+            setupMultipleChoice(interactionArea);
         }
+        // 3. Add "Glue" at the bottom to push everything up
+        interactionArea.add(Box.createVerticalGlue());
+
+        // 4. Put the stack into the wrapper's North so it never stretches
+        interactionWrapper.add(interactionArea, BorderLayout.NORTH);
+
 
         add(interactionArea, BorderLayout.CENTER);
 
@@ -66,7 +71,14 @@ public class SwingQuestionnairePage extends JPanel {
 
     private JPanel createQuestionDisplay() {
         return new JPanel() {
-            { setOpaque(false); setPreferredSize(new Dimension(0, 120)); }
+            { 
+                setOpaque(false); 
+                // Reserve exactly 120px for the question text
+                setPreferredSize(new Dimension(800, 120));
+                setMinimumSize(getPreferredSize());
+                setMaximumSize(getPreferredSize());
+            }
+
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -84,50 +96,55 @@ public class SwingQuestionnairePage extends JPanel {
     }
 
     @SuppressWarnings("unchecked")
-    private void setupMultipleChoice(JPanel container, GridBagConstraints gbc) {
-        Object rawOptions = data.extras().get("options");
-        if (!(rawOptions instanceof List)) return;
+    private void setupMultipleChoice(JPanel container) {
+        List<TextContentView> options = (List<TextContentView>) data.extras().get("options");
+        int rowCount = options.size();
 
-        var tempImg = new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB);
-        Graphics2D tempG2 = tempImg.createGraphics();
+        // 1. Create the Fair Grid (Rows = Count, Cols = 1, Gap = 12px)
+        JPanel gridPanel = new JPanel(new GridLayout(rowCount, 1, 0, 12));
+        gridPanel.setOpaque(false);
 
-        renderer.setGraphics2D(tempG2);
-        
-        List<TextContentView> options = (List<TextContentView>) rawOptions;
+        ButtonGroup group = new ButtonGroup();
         List<String> answerOptions = options.stream()
                                         .map(TextContentView::text)
                                         .toList();
-        ButtonGroup group = new ButtonGroup();
-
-        for (int i = 0; i < options.size(); i++) {
+        for (int i = 0; i < rowCount; i++) {
             final int index = i;
-            TextContentView textContentView = options.get(i);
+            String choiceText = (String) options.get(i).text();
             
-            String choiceText = textContentView.text();
-            renderer.applyStyle(textContentView.style());
             OptionButton opt = new OptionButton(choiceText);
             opt.addActionListener(e -> {
-                // 1. Send the choice to the Shield
                 EvaulationView result = service.evaluate(id, questionIndex, index, answerOptions);
-
-                // 2. React based on the result
                 isCorrect = result.isCorrect();
-                if (result.isCorrect()) { // You can add 'isCorrect' to EvaulationView record
-                    showCorrectFeedback(result);
-                } else {
-                    showErrorFeedback(result); 
-                }
+                if (result.isCorrect()) showCorrectFeedback(result);
+                else showErrorFeedback(result);
             });
-            
+
             group.add(opt);
             choices.add(opt);
-            container.add(opt, gbc);
+            gridPanel.add(opt); // Add to the grid
         }
 
-        tempG2.dispose();
+        // 2. Use GridBag to anchor the Fair-Grid to the TOP so it never clips the bottom
+        container.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 0.0; // Do not stretch vertically
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.NORTH;
+
+        container.add(gridPanel, gbc);
     }
-    private JPanel createFooterPanel() {
-        JPanel footer = new JPanel();
+
+   private JPanel createFooterPanel() {
+        JPanel footer = new JPanel() {
+            @Override
+            public Dimension getPreferredSize() {
+                return new Dimension(getWidth(), 130); 
+            }
+        };
         footer.setOpaque(false);
         footer.setLayout(new BoxLayout(footer, BoxLayout.Y_AXIS));
 
@@ -140,11 +157,8 @@ public class SwingQuestionnairePage extends JPanel {
             protected void paintComponent(Graphics g) {
                 Graphics2D g2 = (Graphics2D) g.create();
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                
-                // Professional Success Green or Muted based on state
                 g2.setColor(SUCCESS_GREEN);
                 g2.fillRoundRect(0, 0, getWidth(), getHeight(), 15, 15);
-                
                 g2.setColor(Color.WHITE);
                 g2.setFont(new Font("Segoe UI", Font.BOLD, 14));
                 FontMetrics fm = g2.getFontMetrics();
@@ -154,24 +168,27 @@ public class SwingQuestionnairePage extends JPanel {
                 g2.dispose();
             }
         };
-        nextButton.setPreferredSize(new Dimension(200, 45));
-        nextButton.setMaximumSize(new Dimension(200, 45));
+
+        // Lock the button size so it doesn't flex
+        nextButton.setMinimumSize(new Dimension(220, 50));
+        nextButton.setPreferredSize(new Dimension(220, 50));
+        nextButton.setMaximumSize(new Dimension(220, 50));
+
         nextButton.setContentAreaFilled(false);
         nextButton.setBorderPainted(false);
         nextButton.setFocusPainted(false);
         nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         nextButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        nextButton.setVisible(false); // HIDDEN BY DEFAULT
+        nextButton.setVisible(false);
 
-        // Use the passed Runnable to move to next card/activity
         nextButton.addActionListener(e -> onPressed.run());
 
         footer.add(feedbackStatus);
         footer.add(Box.createRigidArea(new Dimension(0, 15)));
         footer.add(nextButton);
-        
+
         return footer;
-    }
+        }
 
     public void showCorrectFeedback(EvaulationView evaulationView) {
         isEvaluated = true;
@@ -215,58 +232,85 @@ public class SwingQuestionnairePage extends JPanel {
         repaint();
     }
 
-   private class OptionButton extends JRadioButton {
+    // --- Updated OptionButton to be rigid ---
+    private class OptionButton extends JRadioButton {
         private Color highlight = BORDER_NORMAL;
+        private boolean isHovered = false; // NEW: For visual feedback
 
         public OptionButton(String text) {
             super(text);
             setOpaque(false);
             setFocusPainted(false);
             setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+            // NEW: Hover Listener to match the "Living Machine" feel of the Main Menu
+            addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent e) { if(isEnabled()) { isHovered = true; repaint(); } }
+                public void mouseExited(java.awt.event.MouseEvent e) { isHovered = false; repaint(); }
+            });
         }
 
-        public void setHighlightColor(Color c) { 
-            this.highlight = c; 
-            repaint(); 
-        }
+        public void setHighlightColor(Color c) { this.highlight = c; repaint(); }
 
-        @Override
-        public Dimension getPreferredSize() { return new Dimension(450, 55); }
+        @Override 
+        public Dimension getPreferredSize() { 
+            return new Dimension(480, 60); // Rigid height for the "Fair Grid"
+        }
 
         @Override
         protected void paintComponent(Graphics g) {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            // 1. DYNAMIC BACKGROUND
-            // If evaluated and this is the "Highlight" button, tint the background
+            int w = getWidth() - 1;
+            int h = getHeight() - 1;
+            int arc = 18; // CONSISTENCY: Matches the ChapterCard arc exactly
+
+            // 1. DYNAMIC BACKGROUND (The "Metal Plate")
             if (isEvaluated && highlight != BORDER_NORMAL) {
-                g2.setColor(withAlpha(highlight, 40)); // Subtle tint of the result color
+                // Glow the whole card with the result color (Success/Error)
+                g2.setColor(withAlpha(highlight, 25)); 
             } else if (isSelected()) {
-                g2.setColor(withAlpha(ORANGE_BASED, 40));
+                g2.setColor(withAlpha(ORANGE_BASED, 20));
+            } else if (isHovered) {
+                g2.setColor(new Color(255, 255, 255, 200)); // Subtle highlight
             } else {
                 g2.setColor(Color.WHITE);
             }
-            g2.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 12, 12);
+            g2.fillRoundRect(0, 0, w, h, arc, arc);
 
             // 2. THE STATUS STRIPE (The "Industrial Seal")
-            // Use the highlight color if evaluated, otherwise use standard selection colors
-            Color stripeColor = isEvaluated ? highlight : (isSelected() ? ORANGE_BASED : BORDER_NORMAL);
+            // Logic: Correct? -> Green | Wrong? -> Red | Selected? -> Orange | Default -> Gray
+            Color stripeColor = isEvaluated ? highlight : (isSelected() ? ORANGE_BASED : (isHovered ? ORANGE_HOVER : BORDER_NORMAL));
             g2.setColor(stripeColor);
-            g2.fillRoundRect(12, 12, 8, getHeight() - 24, 4, 4); // Made stripe wider (8px)
+            g2.fillRoundRect(12, 12, 8, h - 24, 4, 4); // Standard 8px width
 
-            // 3. THE BORDER
-            g2.setStroke(new BasicStroke(isEvaluated && highlight != BORDER_NORMAL ? 3f : 1f));
-            g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 12, 12);
+            // 3. THE BORDER (The "Structure")
+            // If evaluated, the border matches the result. If hovered, it glows orange.
+            g2.setStroke(new BasicStroke(isEvaluated || isSelected() || isHovered ? 2f : 1f));
+            g2.setColor(isEvaluated ? highlight : (isSelected() || isHovered ? ORANGE_BASED : BORDER_NORMAL));
+            g2.drawRoundRect(0, 0, w, h, arc, arc);
 
-            // 4. THE TEXT
-            // Ensure text is not grayed out even if button is disabled
-            g2.setColor(isEvaluated && highlight == SCORCH_RED ? SCORCH_RED : INK_DARK);
+            // 4. THE TEXT (The "Processed Info")
+            g2.setColor(INK_DARK);
             g2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
             
             FontMetrics fm = g2.getFontMetrics();
-            int textY = (getHeight() - fm.getHeight()) / 2 + fm.getAscent();
+            // Text is always 45px from the left to clear the stripe
+            int textY = (h - fm.getHeight()) / 2 + fm.getAscent();
             g2.drawString(getText(), 45, textY);
+
+            // 5. THE STATUS ICON (Optional but Professional)
+            if (isEvaluated) {
+                g2.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 14));
+                if (highlight == SUCCESS_GREEN) {
+                    g2.setColor(SUCCESS_GREEN);
+                    g2.drawString("✓", w - 30, textY);
+                } else if (highlight == SCORCH_RED && isSelected()) {
+                    g2.setColor(SCORCH_RED);
+                    g2.drawString("✕", w - 30, textY);
+                }
+            }
             
             g2.dispose();
         }

@@ -52,7 +52,10 @@ public class LoaderSetUp {
         LessonMaker lessonMaker = new LessonMaker(contentMapper);
         LessonMapper lessonMapper = new LessonMapper(lessonMaker);
 
-        UserProgressMaker userProgressMaker = new UserProgressMaker();
+        ScoreMaker scoreMaker = new ScoreMaker();
+        ScoreMapper scoreMapper = new ScoreMapper(scoreMaker);
+
+        UserProgressMaker userProgressMaker = new UserProgressMaker(scoreMapper);
         UserProgressMapper userProgressMapper = new UserProgressMapper(userProgressMaker);
 
         UserDatabaseMaker userDatabaseMaker = new UserDatabaseMaker(userProgressMapper);

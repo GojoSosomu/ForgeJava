@@ -48,10 +48,10 @@ public class Engine {
     }
 
     public void initialize() {
-        lessonManager.printAllLessons();
+        /*lessonManager.printAllLessons();
         activityManager.printAllActivities();
         chapterManager.printAllChapters();
-        userProgressManager.printAllUserProgress();
+        userProgressManager.printAllUserProgress();*/
     }
 
     private void registerLoadTarget(LoadType type, LoadTarget target) {

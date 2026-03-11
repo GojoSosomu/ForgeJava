@@ -22,11 +22,11 @@ public abstract class Launcher {
 
     protected ActivityService activityService = new ActivityService(engine, activityViewAssembler);
     protected UserProgressAssembler userProgressAssembler = new UserProgressAssembler(activityService);
+    protected UserService userService = new UserService(userProgressAssembler, engine);
 
     protected BootService bootService = new BootService(engine);
     protected ChapterService chapterService = new ChapterService(chapterViewAssembler, userProgressAssembler, engine);
     protected LessonService lessonService = new LessonService(engine, lessonViewAssembler);
-    protected UserService userService = new UserService(engine);
     protected LogInSignInService logInSignInService = new LogInSignInService(engine);
 
     protected IconPathImporter iconPathImporter = new IconPathImporter();

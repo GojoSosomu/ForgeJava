@@ -11,7 +11,7 @@ import static presentation.outside.library.LibraryOfColor.*;
 import static presentation.outside.library.LibraryOfProjectInfo.*;
 
 public final class SwingMainPanel extends JPanel {
-    private JButton startButton, settingsButton, quitButton, logoutButton, creditButton;
+    private JButton startButton, progressionButton, quitButton, logoutButton, creditButton;
     private JLabel nameLabel;
 
     public SwingMainPanel() {
@@ -166,12 +166,12 @@ public final class SwingMainPanel extends JPanel {
         panel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         startButton = createModernButton("START LESSON", ORANGE_BASED);
-        settingsButton = createModernButton("CUSTOMIZE INTERFACE", COOL_GRAY);
+        progressionButton = createModernButton("VIEW PROGRESS", COOL_GRAY);
         quitButton = createModernButton("EXIT APPLICATION", SCORCH_RED);
 
         panel.add(startButton);
         panel.add(Box.createRigidArea(new Dimension(0, 25)));
-        panel.add(settingsButton);
+        panel.add(progressionButton);
         panel.add(Box.createRigidArea(new Dimension(0, 25)));
         panel.add(quitButton);
 
@@ -232,7 +232,7 @@ public final class SwingMainPanel extends JPanel {
     }
 
     public JButton getStartButton() { return startButton; }
-    public JButton getSettingsButton() { return settingsButton; }
+    public JButton getProgressionButton() { return progressionButton; }
     public JButton getQuitButton() { return quitButton; }
     public JButton getLogoutButton() { return logoutButton; }
     public JButton getCreditButton() { return creditButton; }
@@ -254,7 +254,7 @@ public final class SwingMainPanel extends JPanel {
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER) startButton.doClick();
-                else if(e.getKeyCode() == KeyEvent.VK_S) settingsButton.doClick();
+                else if(e.getKeyCode() == KeyEvent.VK_P) progressionButton.doClick();
                 else if(e.getKeyCode() == KeyEvent.VK_Q) quitButton.doClick();
                 else if(e.getKeyCode() == KeyEvent.VK_ESCAPE) logoutButton.doClick();
             }

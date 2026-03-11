@@ -9,6 +9,7 @@ import java.awt.event.WindowEvent;
 import core.model.snapshot.loader.LoadingSnapshot;
 import core.model.view.activity.ActivityView;
 import core.model.view.loader.LoadingView;
+import core.model.view.progress.UserProgressView;
 import core.model.view.progress.info.ScoreView;
 import infrastructure.event.pulse.Pulse;
 import infrastructure.event.receiver.LoadingReceiver;
@@ -128,6 +129,19 @@ public class SwingLauncher extends Launcher {
                     switchPanel(chapterCoveragePanel, 1000, 600);
                     chapterCoveragePanel.setUpLocked();
                 });
+                mainPanel.getProgressionButton().addActionListener(e -> {
+
+                    UserProgressView progressView = userService.getCurrentProgressView(); 
+
+                    SwingProgressionPanel progressionPanel = new SwingProgressionPanel(
+                        progressView.progressInfo(), 
+                        () -> switchPanel(mainPanel)
+                    );
+
+                    // 3. Switch the CEO's view
+                    switchPanel(progressionPanel);
+                });
+
                 mainPanel.getQuitButton().addActionListener(e -> handleExit(frame, bootService));
                 mainPanel.getLogoutButton().addActionListener(e -> {
                     logInSignInService.resetCurrentUser();
