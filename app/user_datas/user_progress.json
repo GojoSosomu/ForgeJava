@@ -1,29 +1,24 @@
 {
-  "howTodo" : {
+  "howToDo" : {
+    "id" : "howToDo",
     "users" : [ {
-      "activityProgress" : {
-        "completedActivities" : {
-          "A-001" : {
-            "score" : 3,
-            "total" : 4
-          }
-        }
-      },
-      "chapterProgress" : {
-        "currentChapter" : 1,
-        "currentSequenceIndex" : 3,
-        "completedChapters" : [ ]
-      },
-      "id" : "howTodo",
-      "version" : 13,
+      "id" : "howToDo",
+      "version" : 1,
       "lessonProgress" : {
-        "completedLessons" : [ "L-001", "L-002" ]
+        "completedLessons" : [ ]
       },
       "userAccount" : {
-        "salt" : "G5611uguiJ3wUuz1h08gKg==",
-        "password" : "f34a9b670c5dcc066dd52df0a040f82e2eafcb6b2df32fd758b1d161c31e3e8c"
+        "password" : "65d3ec09f9b23347f282bcd080d8ed6864418bfb54d1e6395843647e84159baa",
+        "salt" : "zrd7MCa/zxatkpxyZ5Qbag=="
+      },
+      "activityProgress" : {
+        "completedActivities" : { }
+      },
+      "chapterProgress" : {
+        "completedChapters" : [ ],
+        "currentChapter" : 1,
+        "currentSequenceIndex" : 0
       }
-    } ],
-    "id" : "howTodo"
+    } ]
   }
 }

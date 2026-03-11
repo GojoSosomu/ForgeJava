@@ -2,10 +2,8 @@ package presentation.outside.swing.template.page;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import core.model.view.activity.evaulation.EvaulationView;
 import core.model.view.activity.problem.QuestionPageView;
