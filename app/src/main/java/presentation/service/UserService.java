@@ -27,4 +27,8 @@ public class UserService extends AService {
     public UserProgressView getCurrentProgressView() {
         return assembler.from(engine.getCurrentUser());
     }
+
+    public void completedChapter(String id) {
+        engine.updatedChapterProgress(id);
+    }
 }

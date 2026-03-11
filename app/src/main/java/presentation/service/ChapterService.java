@@ -61,12 +61,13 @@ public class ChapterService extends AService {
         List<String> allIds = getAllChapterID();
 
         if(engine.getCurrentUser() == null) return new HashSet<>();
-        int limit = Math.min(userProgressAssembler.from(engine.getCurrentUser()).progressInfo().currentChapter(), allIds.size());
+        int limit = Math.min(userProgressAssembler.from(engine.getCurrentUser()).progressInfo().completedChapters().size(), allIds.size() - 1);
         return new HashSet<>(allIds.subList(0, limit));
     }
 
-    public boolean isChapterAvailable(String chapterId) {
-        return availableChapterId.contains(chapterId);
+    public boolean isChapterAvailable(int i) {
+        System.out.println((i - 1) + " " + availableChapterId.size());
+        return (i - 1) <= availableChapterId.size() && (i - 1) >= 0 ? true : false;
     }
 
     public ChapterView getChapter(String currentItem) {

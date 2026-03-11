@@ -67,9 +67,7 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         gbc.anchor = GridBagConstraints.WEST; // Stick to the left
         headerPanel.add(backButton, gbc);
 
-        String nextId = chapterSequenceView.sequence().get(service.getCurrentSequenceIndex());
-
-        nextLabel = new JLabel("FIRSTLY GO: " + nextId) {
+        nextLabel = new JLabel("FIRSTLY GO: ") {
             @Override
             protected void paintComponent(Graphics g) {
                 Graphics2D g2d = (Graphics2D) g.create();
@@ -310,8 +308,10 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
                 buttomItems.setEnabled(!service.isItemLocked(currentChapter, buttomItems.getText()));
             }
         }
-
-        if(service.getCurrentSequenceIndex() == 0)
+        if (service.getCurrentSequenceIndex() > chapterSequenceView.sequence().size() - 1) {
+            nextLabel.setText("CHAPTER MASTERED ✓");
+            setCompletedButtonVisible(true);
+        } else if(service.getCurrentSequenceIndex() == 0)
             nextLabel.setText(
                 "FIRSTLY GO: " + 
                 chapterSequenceView.sequence().get(service.getCurrentSequenceIndex())

@@ -286,7 +286,12 @@ public class SwingLauncher extends Launcher {
         switchPanel(lessonPanel);
     }
 
-    public void endChapter() {
+    public void endChapter(String id) {
+        userService.completedChapter(id);
+        returnChapterMenu();
+    }
+
+    public void returnChapterMenu() {
         switchPanel(mainPanel);
     }
 

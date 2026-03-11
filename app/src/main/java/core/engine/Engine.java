@@ -180,4 +180,15 @@ public class Engine {
     public EvaulationSnapshot evaluateActivityAnswer(String id, int questionIndex, Object answer) {
         return activityManager.checkAnswer(id, questionIndex, answer);
     }
+
+    public void updatedChapterProgress(String id) {
+        List<String> chapters = new ArrayList<>(userProgressManager.getCurrentUser().chapterProgress().completedChapters());
+        chapters.add(id);
+
+        userProgressManager.updateProgress(
+            getCurrentUserName(), 
+            new ChapterProgress(chapters, (byte)0,
+             (short)(userProgressManager.getCurrentUser().chapterProgress().currentChapter() + 1))
+        );
+    }
 }

@@ -31,8 +31,8 @@ public class SwingChapter {
         Dimension boundaryPageDimension = new Dimension(900, dimension.height);
 
         this.introPanel = new SwingChapterIntroPanel(chapter.chapterIntroView(), boundaryPageDimension, this::showSequence);
-        this.sequencePanel = new SwingChapterSequencePanel(service, launcher, chapter.id(),chapter.chapterSequenceView(), launcher::endChapter, this::showOutro);
-        this.outroPanel = new SwingChapterOutroPanel(chapter.chapterOutroView(), boundaryPageDimension, launcher::endChapter);
+        this.sequencePanel = new SwingChapterSequencePanel(service, launcher, chapter.id(),chapter.chapterSequenceView(), launcher::returnChapterMenu, this::showOutro);
+        this.outroPanel = new SwingChapterOutroPanel(chapter.chapterOutroView(), boundaryPageDimension, () -> launcher.endChapter(this.id()));
     }
 
     public void showIntro() { 
@@ -54,7 +54,7 @@ public class SwingChapter {
         ChapterService service,
         ChapterView chapter
     ) {
-        this.sequencePanel = new SwingChapterSequencePanel(service, launcher, chapter.id(),chapter.chapterSequenceView(), launcher::endChapter, this::showOutro);
+        this.sequencePanel = new SwingChapterSequencePanel(service, launcher, chapter.id(),chapter.chapterSequenceView(), launcher::returnChapterMenu, this::showOutro);
     }
 
     public String id() {

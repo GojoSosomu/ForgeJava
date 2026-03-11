@@ -237,7 +237,7 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
 
     public void setUpLocked() {
         for (SwingChapterCardTemplate template : cards) {
-            template.setLocked(!service.isChapterAvailable(template.getChapterId()));
+            template.setLocked(!service.isChapterAvailable(Integer.parseInt(template.getChapterId().substring(2))));
         }
     }
 
