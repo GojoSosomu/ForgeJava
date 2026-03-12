@@ -3,325 +3,253 @@
     "problem": {
       "type": "QUESTIONNAIRE",
       "instructions": [
-        {
-          "type": "TEXT",
-          "text": "Final Chapter Assessment",
-          "style": { "emphasis": "LABEL", "size": "SMALL" }
-        },
-        {
-          "type": "TEXT",
-          "text": "Complete all questions to unlock the next chapter. Good luck!",
-          "style": { "emphasis": "INFO", "size": "TINY" }
-        }
+        { "type": "TEXT", "text": "Assessment 1: Environment & Architecture" }
       ],
       "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "1. What is the entry point of every Java application?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. start()", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. main()", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. run()", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. execute()", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        },
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "2. Which data type is used to store a single character, like 'A'?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. String", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. char", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. byte", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. Letter", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        },
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "3. What is the correct way to declare a constant value that cannot be changed?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. static int x = 10;", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. const int x = 10;", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. final int x = 10;", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. fixed int x = 10;", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 2
-          }
-        },
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "4. Which symbol is used to end a Java statement?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. : (Colon)", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. . (Period)", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. , (Comma)", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. ; (Semicolon)", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 3
-          }
-        }
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. Which command is used to compile a Java file?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. java" }, { "type": "TEXT", "text": "B. javac" }, { "type": "TEXT", "text": "C. compile" }, { "type": "TEXT", "text": "D. build" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. What is the extension of a compiled Java bytecode file?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. .java" }, { "type": "TEXT", "text": "B. .exe" }, { "type": "TEXT", "text": "C. .class" }, { "type": "TEXT", "text": "D. .bin" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. Who is the primary creator of the Java language?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. James Gosling" }, { "type": "TEXT", "text": "B. Bjarne Stroustrup" }, { "type": "TEXT", "text": "C. Dennis Ritchie" }, { "type": "TEXT", "text": "D. Linus Torvalds" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. What does JVM stand for?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Java Variable Machine" }, { "type": "TEXT", "text": "B. Java Visual Model" }, { "type": "TEXT", "text": "C. Just Version Module" }, { "type": "TEXT", "text": "D. Java Virtual Machine" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. Which component is required to develop (not just run) Java apps?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. JRE" }, { "type": "TEXT", "text": "B. JDK" }, { "type": "TEXT", "text": "C. JVM" }, { "type": "TEXT", "text": "D. Javadoc" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Bytecode is platform-specific instructions for Windows." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. Where are objects stored in Java memory?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Heap" }, { "type": "TEXT", "text": "B. Stack" }, { "type": "TEXT", "text": "C. Cache" }, { "type": "TEXT", "text": "D. Register" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. Java's 'Write Once, Run Anywhere' is possible due to the JVM." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Which year was Java first released?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. 1991" }, { "type": "TEXT", "text": "B. 2000" }, { "type": "TEXT", "text": "C. 1995" }, { "type": "TEXT", "text": "D. 1985" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Which part of memory handles method execution and local variables?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. RAM" }, { "type": "TEXT", "text": "B. Heap" }, { "type": "TEXT", "text": "C. Drive" }, { "type": "TEXT", "text": "D. Stack" } ], "correctAnswerIndex": 3 } }
       ]
     }
   },
   "A-002": {
     "problem": {
       "type": "QUESTIONNAIRE",
-      "instructions": [
-        {
-          "type": "TEXT",
-          "text": "Logic and Structure Assessment",
-          "style": { "emphasis": "LABEL", "size": "SMALL" }
-        },
-        {
-          "type": "TEXT",
-          "text": "Demonstrate your understanding of control flow and object-oriented principles.",
-          "style": { "emphasis": "INFO", "size": "TINY" }
-        }
-      ],
+      "instructions": [ { "type": "TEXT", "text": "Assessment 2: Data Types & Variables" } ],
       "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "1. Which loop is guaranteed to execute its code block at least once?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. for loop", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. while loop", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. do-while loop", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. switch loop", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 2
-          }
-        },
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "2. In Java, what keyword is used to create an instance of a class?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. create", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. instance", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. build", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. new", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 3
-          }
-        },
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "3. Which access modifier makes a member visible only within its own class?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. public", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. private", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. protected", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. static", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        },
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "4. What is the process of defining two methods with the same name but different parameters?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. Method Overriding", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. Method Overloading", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. Method Duplication", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. Method Extension", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. Which primitive type is used for high-precision decimals?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. double" }, { "type": "TEXT", "text": "B. float" }, { "type": "TEXT", "text": "C. long" }, { "type": "TEXT", "text": "D. int" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. How many bits are in a standard 'int'?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. 16" }, { "type": "TEXT", "text": "B. 32" }, { "type": "TEXT", "text": "C. 64" }, { "type": "TEXT", "text": "D. 8" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. Which keyword is used to declare a constant?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. static" }, { "type": "TEXT", "text": "B. const" }, { "type": "TEXT", "text": "C. final" }, { "type": "TEXT", "text": "D. fixed" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. Which type is used for a single character?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. String" }, { "type": "TEXT", "text": "B. byte" }, { "type": "TEXT", "text": "C. text" }, { "type": "TEXT", "text": "D. char" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. What is the default value of a boolean instance variable?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. false" }, { "type": "TEXT", "text": "B. true" }, { "type": "TEXT", "text": "C. null" }, { "type": "TEXT", "text": "D. 0" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Narrowing casting must be done manually by the programmer." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. Which of these is a reference type, not a primitive?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. int" }, { "type": "TEXT", "text": "B. String" }, { "type": "TEXT", "text": "C. char" }, { "type": "TEXT", "text": "D. boolean" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. What suffix is required for a float literal (e.g. 3.14)?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. L" }, { "type": "TEXT", "text": "B. D" }, { "type": "TEXT", "text": "C. F" }, { "type": "TEXT", "text": "D. S" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. A 'short' variable can store larger numbers than a 'long'." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Which modifier makes a variable accessible only within its own class?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. public" }, { "type": "TEXT", "text": "B. protected" }, { "type": "TEXT", "text": "C. private" }, { "type": "TEXT", "text": "D. global" } ], "correctAnswerIndex": 2 } }
       ]
     }
   },
   "A-003": {
     "problem": {
       "type": "QUESTIONNAIRE",
-      "instructions": [
-        {
-          "type": "TEXT",
-          "text": "Advanced Concepts Assessment",
-          "style": { "emphasis": "LABEL", "size": "SMALL" }
-        },
-        {
-          "type": "TEXT",
-          "text": "Finalize your assessment by covering inheritance and exceptions.",
-          "style": { "emphasis": "INFO", "size": "TINY" }
-        }
-      ],
+      "instructions": [ { "type": "TEXT", "text": "Assessment 3: Operators & Logic" } ],
       "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "1. Which keyword is used by a subclass to inherit from a superclass?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. implements", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. inherits", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. extends", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. imports", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 2
-          }
-        },
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "2. In a try-catch block, which block executes regardless of whether an exception occurred?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. finally", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. end", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. finish", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. catch", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 0
-          }
-        },
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [
-            {
-              "type": "TEXT",
-              "text": "3. Which collection would you use if you want to prevent duplicate elements?",
-              "style": { "emphasis": "TITLE", "size": "MEDIUM" }
-            }
-          ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. ArrayList", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "B. Set", "style": { "emphasis": "HIGHLIGHT", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "C. LinkedList", "style": { "emphasis": "BODY", "size": "MEDIUM" } },
-              { "type": "TEXT", "text": "D. Vector", "style": { "emphasis": "BODY", "size": "MEDIUM" } }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. What symbol is the modulus operator?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. %" }, { "type": "TEXT", "text": "B. /" }, { "type": "TEXT", "text": "C. &" }, { "type": "TEXT", "text": "D. #" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Which operator is used for Logical AND?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. ||" }, { "type": "TEXT", "text": "B. &&" }, { "type": "TEXT", "text": "C. &" }, { "type": "TEXT", "text": "D. !" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. What is the result of 10 % 3?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. 3" }, { "type": "TEXT", "text": "B. 0" }, { "type": "TEXT", "text": "C. 1" }, { "type": "TEXT", "text": "D. 3.33" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. Which symbol is the ternary operator?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. ->" }, { "type": "TEXT", "text": "B. ::" }, { "type": "TEXT", "text": "C. !=" }, { "type": "TEXT", "text": "D. ? :" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. Java uses short-circuit evaluation for && and ||." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Which operator increments a value by 1?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. +=" }, { "type": "TEXT", "text": "B. ++" }, { "type": "TEXT", "text": "C. +" }, { "type": "TEXT", "text": "D. +1" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. What is the result of '5 == 5'?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. 1" }, { "type": "TEXT", "text": "B. null" }, { "type": "TEXT", "text": "C. true" }, { "type": "TEXT", "text": "D. false" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. Which operator has the highest precedence?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. *" }, { "type": "TEXT", "text": "B. +" }, { "type": "TEXT", "text": "C. &&" }, { "type": "TEXT", "text": "D. ()" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Shorthand x += 5 is the same as x = x + 5." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Which operator is used to compare if two objects are NOT equal?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. =!" }, { "type": "TEXT", "text": "B. !=" }, { "type": "TEXT", "text": "C. <>" }, { "type": "TEXT", "text": "D. NOT==" } ], "correctAnswerIndex": 1 } }
       ]
     }
   },
   "A-004": {
     "problem": {
       "type": "QUESTIONNAIRE",
-      "instructions": [
-        { "type": "TEXT", "text": "Object-Oriented Basics", "style": { "emphasis": "LABEL", "size": "SMALL" } },
-        { "type": "TEXT", "text": "Verify your understanding of Class architecture.", "style": { "emphasis": "INFO", "size": "TINY" } }
-      ],
+      "instructions": [ { "type": "TEXT", "text": "Assessment 4: Control Flow" } ],
       "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [ { "type": "TEXT", "text": "1. What is an 'Instance' of a class called?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } } ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. A Blueprint" },
-              { "type": "TEXT", "text": "B. An Object", "style": { "emphasis": "HIGHLIGHT" } },
-              { "type": "TEXT", "text": "C. A Method" },
-              { "type": "TEXT", "text": "D. A Variable" }
-            ],
-            "correctAnswerIndex": 1
-          }
-        },
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [ { "type": "TEXT", "text": "2. Which method is used to initialize an object at creation?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } } ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. Constructor", "style": { "emphasis": "HIGHLIGHT" } },
-              { "type": "TEXT", "text": "B. Main" },
-              { "type": "TEXT", "text": "C. Static" },
-              { "type": "TEXT", "text": "D. Void" }
-            ],
-            "correctAnswerIndex": 0
-          }
-        }
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. Which keyword exits a loop immediately?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. break" }, { "type": "TEXT", "text": "B. continue" }, { "type": "TEXT", "text": "C. exit" }, { "type": "TEXT", "text": "D. stop" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Which loop is guaranteed to run at least once?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. for" }, { "type": "TEXT", "text": "B. do-while" }, { "type": "TEXT", "text": "C. while" }, { "type": "TEXT", "text": "D. foreach" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. Which keyword skips the rest of the current loop iteration?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. next" }, { "type": "TEXT", "text": "B. break" }, { "type": "TEXT", "text": "C. continue" }, { "type": "TEXT", "text": "D. skip" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. A switch statement can be used with double variables." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. What happens if a 'break' is missing in a switch case?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Compilation error" }, { "type": "TEXT", "text": "B. System crash" }, { "type": "TEXT", "text": "C. Infinite loop" }, { "type": "TEXT", "text": "D. Fall-through to the next case" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Which loop is typically used when the number of iterations is known?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. for" }, { "type": "TEXT", "text": "B. while" }, { "type": "TEXT", "text": "C. do-while" }, { "type": "TEXT", "text": "D. switch" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. The 'else' block in an if-statement is mandatory." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. What is the result of (5 > 2 && 3 < 1)?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. true" }, { "type": "TEXT", "text": "B. false" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Which block in a switch handles values not matched by cases?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. catch" }, { "type": "TEXT", "text": "B. else" }, { "type": "TEXT", "text": "C. default" }, { "type": "TEXT", "text": "D. finally" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. In a for loop header, which part runs first and only once?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Update" }, { "type": "TEXT", "text": "B. Condition" }, { "type": "TEXT", "text": "C. Initialization" }, { "type": "TEXT", "text": "D. Body" } ], "correctAnswerIndex": 2 } }
       ]
     }
   },
   "A-005": {
     "problem": {
       "type": "QUESTIONNAIRE",
-      "instructions": [
-        { "type": "TEXT", "text": "Encapsulation & Access", "style": { "emphasis": "LABEL", "size": "SMALL" } }
-      ],
+      "instructions": [ { "type": "TEXT", "text": "Assessment 5: OOP Paradigm" } ],
       "questions": [
-        {
-          "type": "MULTIPLE_CHOICE",
-          "question": [ { "type": "TEXT", "text": "1. Why do we make fields 'private'?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } } ],
-          "values": {
-            "options": [
-              { "type": "TEXT", "text": "A. To make the code run faster" },
-              { "type": "TEXT", "text": "B. To protect data from direct external interference", "style": { "emphasis": "HIGHLIGHT" } },
-              { "type": "TEXT", "text": "C. Because Java requires it" },
-              { "type": "TEXT", "text": "D. To hide the code from other developers" }
-            ],
-            "correctAnswerIndex": 1
-          }
-        }
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. What is an instance of a class called?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Method" }, { "type": "TEXT", "text": "B. Field" }, { "type": "TEXT", "text": "C. Object" }, { "type": "TEXT", "text": "D. Package" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Which keyword is used to create an object?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. create" }, { "type": "TEXT", "text": "B. new" }, { "type": "TEXT", "text": "C. build" }, { "type": "TEXT", "text": "D. spawn" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. A Class is the blueprint for an Object." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. Which keyword refers to the current object instance?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. super" }, { "type": "TEXT", "text": "B. that" }, { "type": "TEXT", "text": "C. current" }, { "type": "TEXT", "text": "D. this" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. What defines the behavior of an object?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Fields" }, { "type": "TEXT", "text": "B. Methods" }, { "type": "TEXT", "text": "C. Variables" }, { "type": "TEXT", "text": "D. Constructors" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Static members are shared by all instances of a class." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. What defines the state of an object?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Parameters" }, { "type": "TEXT", "text": "B. Packages" }, { "type": "TEXT", "text": "C. Fields" }, { "type": "TEXT", "text": "D. Loops" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. Which keyword is used to define a category of objects?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. object" }, { "type": "TEXT", "text": "B. entity" }, { "type": "TEXT", "text": "C. type" }, { "type": "TEXT", "text": "D. class" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Where are objects created in memory?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Stack" }, { "type": "TEXT", "text": "B. Heap" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Identity (==) and Equality (.equals) are the same thing for objects." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } }
+      ]
+    }
+  },
+  "A-006": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [ { "type": "TEXT", "text": "Assessment 6: Methods & Encapsulation" } ],
+      "questions": [
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. What is the return type of a method that doesn't return data?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. null" }, { "type": "TEXT", "text": "B. void" }, { "type": "TEXT", "text": "C. none" }, { "type": "TEXT", "text": "D. empty" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Which keyword is used to send a value back from a method?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. give" }, { "type": "TEXT", "text": "B. send" }, { "type": "TEXT", "text": "C. result" }, { "type": "TEXT", "text": "D. return" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. Encapsulation is achieved by making fields private." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. Method overloading requires methods to have different signatures." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. Which access modifier is the most restrictive?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. protected" }, { "type": "TEXT", "text": "B. private" }, { "type": "TEXT", "text": "C. public" }, { "type": "TEXT", "text": "D. default" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. What is a public method that retrieves a private field value?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Setter" }, { "type": "TEXT", "text": "B. Getter" }, { "type": "TEXT", "text": "C. Constructor" }, { "type": "TEXT", "text": "D. Adder" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. Static methods can access instance variables directly." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. What is the process of a method calling itself?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Inheritance" }, { "type": "TEXT", "text": "B. Overloading" }, { "type": "TEXT", "text": "C. Recursion" }, { "type": "TEXT", "text": "D. Loopback" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Which modifier allows access within the same package but not outside?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. public" }, { "type": "TEXT", "text": "B. private" }, { "type": "TEXT", "text": "C. protected" }, { "type": "TEXT", "text": "D. default" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Parameters are variables defined in the method signature." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } }
+      ]
+    }
+  },
+  "A-007": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [ { "type": "TEXT", "text": "Assessment 7: Constructors & Lifecycle" } ],
+      "questions": [
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. A constructor has a return type of void." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. When is a constructor called?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. When a method runs" }, { "type": "TEXT", "text": "B. When a variable is deleted" }, { "type": "TEXT", "text": "C. When a class is defined" }, { "type": "TEXT", "text": "D. When an object is created" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. The automatic constructor provided by Java is called the ___ constructor." } ], "values": { "options": [ { "type": "TEXT", "text": "A. static" }, { "type": "TEXT", "text": "B. final" }, { "type": "TEXT", "text": "C. default" }, { "type": "TEXT", "text": "D. basic" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. Which system reclaims memory from unreachable objects?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Garbage Collector" }, { "type": "TEXT", "text": "B. System Deletion" }, { "type": "TEXT", "text": "C. Heap Manager" }, { "type": "TEXT", "text": "D. Task Manager" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. You can call another constructor in the same class using this()." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. An object becomes eligible for garbage collection when it has no references." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. What must the name of a constructor be?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. start" }, { "type": "TEXT", "text": "B. Init" }, { "type": "TEXT", "text": "C. The class name" }, { "type": "TEXT", "text": "D. main" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. An object whose state cannot be changed after creation is ___." } ], "values": { "options": [ { "type": "TEXT", "text": "A. private" }, { "type": "TEXT", "text": "B. immutable" }, { "type": "TEXT", "text": "C. static" }, { "type": "TEXT", "text": "D. public" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. If you define a custom constructor, Java still provides the default one." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Which keyword is used to call the parent class constructor?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. parent" }, { "type": "TEXT", "text": "B. super" }, { "type": "TEXT", "text": "C. base" }, { "type": "TEXT", "text": "D. upper" } ], "correctAnswerIndex": 1 } }
+      ]
+    }
+  },
+  "A-008": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [ { "type": "TEXT", "text": "Assessment 8: Inheritance & Polymorphism" } ],
+      "questions": [
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. Which keyword is used to create a subclass?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. implements" }, { "type": "TEXT", "text": "B. extends" }, { "type": "TEXT", "text": "C. inherits" }, { "type": "TEXT", "text": "D. uses" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Inheritance represents an 'is-a' relationship." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. Which operator is used to check an object's type?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. isInstance" }, { "type": "TEXT", "text": "B. typeOf" }, { "type": "TEXT", "text": "C. instanceof" }, { "type": "TEXT", "text": "D. cast" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. What is assigning a subclass object to a superclass reference?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Upcasting" }, { "type": "TEXT", "text": "B. Downcasting" }, { "type": "TEXT", "text": "C. Crosscasting" }, { "type": "TEXT", "text": "D. Overriding" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. Which annotation is used when overriding a parent method?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. @Override" }, { "type": "TEXT", "text": "B. @Overload" }, { "type": "TEXT", "text": "C. @Inherit" }, { "type": "TEXT", "text": "D. @Static" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Java supports multiple inheritance for classes (one child, many parents)." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. What is the root class of all classes in Java?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Base" }, { "type": "TEXT", "text": "B. Root" }, { "type": "TEXT", "text": "C. Java" }, { "type": "TEXT", "text": "D. Object" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. Which keyword stops a class from being inherited?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. stop" }, { "type": "TEXT", "text": "B. final" }, { "type": "TEXT", "text": "C. static" }, { "type": "TEXT", "text": "D. private" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Polymorphism allows a parent variable to hold a child object." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Dynamic binding decides which method to run at ___?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Compile time" }, { "type": "TEXT", "text": "B. Design time" }, { "type": "TEXT", "text": "C. Runtime" }, { "type": "TEXT", "text": "D. Compile-time only" } ], "correctAnswerIndex": 2 } }
+      ]
+    }
+  },
+  "A-009": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [ { "type": "TEXT", "text": "Assessment 9: Abstraction & Interfaces" } ],
+      "questions": [
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. Can you create an object of an abstract class?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Yes" }, { "type": "TEXT", "text": "B. No" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Which keyword is used to implement an interface?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. implements" }, { "type": "TEXT", "text": "B. extends" }, { "type": "TEXT", "text": "C. inherits" }, { "type": "TEXT", "text": "D. using" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. A class can implement multiple interfaces." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. Variables in an interface are public, static, and final by default." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. What is a method with a signature but no body called?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Private method" }, { "type": "TEXT", "text": "B. Static method" }, { "type": "TEXT", "text": "C. Abstract method" }, { "type": "TEXT", "text": "D. Final method" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Which keyword allows an interface to have a method body (Java 8+)?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. static" }, { "type": "TEXT", "text": "B. default" }, { "type": "TEXT", "text": "C. abstract" }, { "type": "TEXT", "text": "D. protected" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. Abstract classes focus on 'what' an object is, not 'how' it works." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. Interfaces define a 'contract' that classes must follow." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Which type is used for 'can-do' relationships among unrelated classes?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Class" }, { "type": "TEXT", "text": "B. Package" }, { "type": "TEXT", "text": "C. Interface" }, { "type": "TEXT", "text": "D. Static block" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. An interface can extend another interface." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } }
+      ]
+    }
+  },
+  "A-010": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [ { "type": "TEXT", "text": "Assessment 10: Arrays" } ],
+      "questions": [
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. What is the index of the first element in a Java array?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. 1" }, { "type": "TEXT", "text": "B. 0" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. How do you access the length of an array named 'arr'?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. arr.size()" }, { "type": "TEXT", "text": "B. arr.count" }, { "type": "TEXT", "text": "C. arr.length" }, { "type": "TEXT", "text": "D. arr.total" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. The size of an array can be changed after it is created." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. What is the default value of an element in an int array?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. null" }, { "type": "TEXT", "text": "B. -1" }, { "type": "TEXT", "text": "C. 0" }, { "type": "TEXT", "text": "D. 1" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. Which exception occurs if you access an invalid array index?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. IndexException" }, { "type": "TEXT", "text": "B. ArrayIndexOutOfBoundsException" }, { "type": "TEXT", "text": "C. NullPointerException" }, { "type": "TEXT", "text": "D. MemoryException" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. A 2D array is essentially an array of arrays." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. How do you create an array of 5 integers?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. int[] arr = new int[5];" }, { "type": "TEXT", "text": "B. int[5] arr;" }, { "type": "TEXT", "text": "C. array int(5);" }, { "type": "TEXT", "text": "D. int arr = new int(5);" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. Which utility class provides sorting methods for arrays?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. java.util.Lists" }, { "type": "TEXT", "text": "B. java.util.Collections" }, { "type": "TEXT", "text": "C. java.util.Arrays" }, { "type": "TEXT", "text": "D. java.util.Sort" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Elements in an object array (e.g. String[]) default to null." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. In a grid[2][3] array, 2 usually represents the ___." } ], "values": { "options": [ { "type": "TEXT", "text": "A. Column" }, { "type": "TEXT", "text": "B. Value" }, { "type": "TEXT", "text": "C. Width" }, { "type": "TEXT", "text": "D. Row" } ], "correctAnswerIndex": 3 } }
+      ]
+    }
+  },
+  "A-011": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [ { "type": "TEXT", "text": "Assessment 11: Collections" } ],
+      "questions": [
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. Which collection implementation is best for fast index-based access?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. LinkedList" }, { "type": "TEXT", "text": "B. ArrayList" }, { "type": "TEXT", "text": "C. HashSet" }, { "type": "TEXT", "text": "D. TreeMap" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Which interface ensures that no duplicate elements are stored?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Set" }, { "type": "TEXT", "text": "B. List" }, { "type": "TEXT", "text": "C. Map" }, { "type": "TEXT", "text": "D. Queue" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. A Map stores data in key-value pairs." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. Which method is used to add an item to an ArrayList?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. put()" }, { "type": "TEXT", "text": "B. insert()" }, { "type": "TEXT", "text": "C. push()" }, { "type": "TEXT", "text": "D. add()" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. Generics (e.g. List<String>) provide compile-time type safety." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Which collection is ideal for a First-In-First-Out (FIFO) queue?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Set" }, { "type": "TEXT", "text": "B. Map" }, { "type": "TEXT", "text": "C. Queue" }, { "type": "TEXT", "text": "D. List" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. What does the .size() method return?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Index of the last item" }, { "type": "TEXT", "text": "B. Number of elements in the collection" }, { "type": "TEXT", "text": "C. Memory used by the collection" }, { "type": "TEXT", "text": "D. Capacity of the array" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. An Iterator allows you to safely remove items while looping." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Which Map implementation does NOT allow null keys?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. HashMap" }, { "type": "TEXT", "text": "B. Hashtable" }, { "type": "TEXT", "text": "C. LinkedHashMap" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. List, Set, and Queue all extend the Collection interface." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } }
+      ]
+    }
+  },
+  "A-012": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [ { "type": "TEXT", "text": "Assessment 12: Exceptions" } ],
+      "questions": [
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. Which block is used for code that might throw an exception?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. catch" }, { "type": "TEXT", "text": "B. throw" }, { "type": "TEXT", "text": "C. try" }, { "type": "TEXT", "text": "D. finally" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Which block is guaranteed to run even if an error occurs?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. try" }, { "type": "TEXT", "text": "B. catch" }, { "type": "TEXT", "text": "C. error" }, { "type": "TEXT", "text": "D. finally" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. Unchecked exceptions are subclasses of RuntimeException." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. Which keyword manually triggers an exception?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. throw" }, { "type": "TEXT", "text": "B. throws" }, { "type": "TEXT", "text": "C. error" }, { "type": "TEXT", "text": "D. signal" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. Which keyword declares that a method might throw a checked exception?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. throw" }, { "type": "TEXT", "text": "B. catch" }, { "type": "TEXT", "text": "C. final" }, { "type": "TEXT", "text": "D. throws" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. A try block must be followed by either a catch or a finally block." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. What is the root class for all Errors and Exceptions?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Object" }, { "type": "TEXT", "text": "B. Throwable" }, { "type": "TEXT", "text": "C. Error" }, { "type": "TEXT", "text": "D. Master" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. Catching 'Exception' will catch all its subclasses as well." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Which structure auto-closes resources like files?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. while loop" }, { "type": "TEXT", "text": "B. try-with-resources" }, { "type": "TEXT", "text": "C. static block" }, { "type": "TEXT", "text": "D. interface" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Checked exceptions are ignored by the compiler." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } }
+      ]
+    }
+  },
+  "A-013": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [ { "type": "TEXT", "text": "Assessment 13: Concurrency" } ],
+      "questions": [
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. Which method starts a new thread?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. run()" }, { "type": "TEXT", "text": "B. start()" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Which keyword prevents multiple threads from accessing code at once?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. volatile" }, { "type": "TEXT", "text": "B. synchronized" }, { "type": "TEXT", "text": "C. lock" }, { "type": "TEXT", "text": "D. static" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. Each thread has its own call stack." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. What occurs when two threads wait for each other forever?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Race Condition" }, { "type": "TEXT", "text": "B. Fast processing" }, { "type": "TEXT", "text": "C. Deadlock" }, { "type": "TEXT", "text": "D. Memory Leak" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. Marking a variable as 'volatile' ensures visibility across threads." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Which interface is preferred for defining a thread's task?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Thread" }, { "type": "TEXT", "text": "B. Logic" }, { "type": "TEXT", "text": "C. Executable" }, { "type": "TEXT", "text": "D. Runnable" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. What is the state of a thread that has finished executing?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Terminated" }, { "type": "TEXT", "text": "B. New" }, { "type": "TEXT", "text": "C. Blocked" }, { "type": "TEXT", "text": "D. Ready" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. Threads share the same heap memory space." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Which framework manages a pool of reusable threads?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. Collections" }, { "type": "TEXT", "text": "B. Streams" }, { "type": "TEXT", "text": "C. ExecutorService" }, { "type": "TEXT", "text": "D. FileSystem" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Atomic variables allow lock-free thread-safe updates." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } }
+      ]
+    }
+  },
+  "A-014": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [ { "type": "TEXT", "text": "Assessment 14: Lambdas & Streams" } ],
+      "questions": [
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "1. What is the syntax for a Lambda arrow?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. =>" }, { "type": "TEXT", "text": "B. ->" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "2. Which operation is considered 'Terminal'?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. filter()" }, { "type": "TEXT", "text": "B. map()" }, { "type": "TEXT", "text": "C. sorted()" }, { "type": "TEXT", "text": "D. collect()" } ], "correctAnswerIndex": 3 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "3. Streams modify the source collection." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "4. Which operation is used to transform elements in a stream?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. map()" }, { "type": "TEXT", "text": "B. filter()" }, { "type": "TEXT", "text": "C. peek()" }, { "type": "TEXT", "text": "D. distinct()" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "5. What is the symbol for a Method Reference?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. ->" }, { "type": "TEXT", "text": "B. ::" }, { "type": "TEXT", "text": "C. .." }, { "type": "TEXT", "text": "D. =>" } ], "correctAnswerIndex": 1 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "6. Intermediate operations are 'lazy' and don't run until a terminal op is called." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "7. How do you create a stream that runs on multiple cores?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. multiStream()" }, { "type": "TEXT", "text": "B. fastStream()" }, { "type": "TEXT", "text": "C. parallelStream()" }, { "type": "TEXT", "text": "D. threadStream()" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "8. Functional interfaces must have exactly one abstract method." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "9. Which class is used to safely handle potentially null results in streams?" } ], "values": { "options": [ { "type": "TEXT", "text": "A. SafeObject" }, { "type": "TEXT", "text": "B. NullWrapper" }, { "type": "TEXT", "text": "C. Optional" }, { "type": "TEXT", "text": "D. Checker" } ], "correctAnswerIndex": 2 } },
+        { "type": "MULTIPLE_CHOICE", "question": [ { "type": "TEXT", "text": "10. Lambda expressions were introduced in Java 8." } ], "values": { "options": [ { "type": "TEXT", "text": "A. True" }, { "type": "TEXT", "text": "B. False" } ], "correctAnswerIndex": 0 } }
       ]
     }
   }

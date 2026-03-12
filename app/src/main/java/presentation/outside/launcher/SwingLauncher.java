@@ -275,9 +275,12 @@ public class SwingLauncher extends Launcher {
             this, 
             () -> this.completedLessonItem(currentItem)
         );
-        lessonPanel.start();
-
+        
         switchPanel(lessonPanel);
+
+        SwingUtilities.invokeLater(() -> {
+            lessonPanel.start();
+        });
     }
 
     public void endChapter(String id) {

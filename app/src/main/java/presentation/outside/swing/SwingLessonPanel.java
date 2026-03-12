@@ -41,6 +41,7 @@ public class SwingLessonPanel extends JPanel {
         setLayout(new BorderLayout());
         setBackground(PAGE_BASE);
         setFocusable(true);
+        setUpGestureListener();
 
         // 1. Create a Header for the Counter
         JPanel header = new JPanel(new FlowLayout(FlowLayout.RIGHT, 30, 15));
@@ -64,7 +65,6 @@ public class SwingLessonPanel extends JPanel {
 
         add(pageContainer, BorderLayout.CENTER);
 
-        setUpGestureListener();
         updatePageCounter(); // Initial update
     }
 
@@ -111,14 +111,18 @@ public class SwingLessonPanel extends JPanel {
                 }
             }
         });
-        SwingUtilities.invokeLater(this::requestFocusInWindow);
     }
 
     private JScrollPane createPagePanel(LessonPageView pageView) {
         JPanel page = new SwingLessonPage(pageView, renderer);
-        page.setOpaque(false);
+        page.setFocusable(false); // <--- ADD THIS
+
         JScrollPane sp = new JScrollPane(page);
-        sp.setOpaque(false); sp.getViewport().setOpaque(false); sp.setBorder(null);
+        sp.setFocusable(false);   // <--- ADD THIS
+        sp.getVerticalScrollBar().setFocusable(false); 
+        sp.getViewport().setOpaque(false);
+        sp.getViewport().setFocusable(false); // Add this one too
+        sp.setBorder(null);
         sp.getVerticalScrollBar().setUnitIncrement(16);
         return sp;
     }
@@ -127,6 +131,12 @@ public class SwingLessonPanel extends JPanel {
         carousel.selectIndex(0);
         cardLayout.show(pageContainer, "PAGE_0");
         updatePageCounter();
-        SwingUtilities.invokeLater(this::requestFocusInWindow);
+        setFocusable(true);
+        
+        // Crucial: Request focus now that we are definitely attached to the frame
+        boolean success = requestFocusInWindow();
+        if (!success) {
+            requestFocus(); // The "Forceful" way
+        }
     }
 }

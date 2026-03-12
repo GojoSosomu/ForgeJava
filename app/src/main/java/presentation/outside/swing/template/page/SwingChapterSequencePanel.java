@@ -312,10 +312,10 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
         }
         System.out.println(service.getCurrentChapterIndex());
         if(service.getCurrentChapterIndex() > chapterNumber) {
-            nextLabel.setText("CHAPTER MASTERED!");
+            nextLabel.setText("CHAPTER MASTERED! Proceed Chapter " + service.getCurrentChapterIndex());
             setCompletedButtonVisible(true);
         } else if (service.getCurrentSequenceIndex() > chapterSequenceView.sequence().size() - 1) {
-            nextLabel.setText("CHAPTER MASTERED!");
+            nextLabel.setText("CHAPTER MASTERED! Proceed Chapter " + service.getCurrentChapterIndex());
             setCompletedButtonVisible(true);
         } else if(service.getCurrentSequenceIndex() == 0)
             nextLabel.setText(

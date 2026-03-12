@@ -65,7 +65,7 @@ public class ChapterService extends AService {
     private Set<String> availableChapterId() {
         List<String> allIds = getAllChapterID();
 
-        if(engine.getCurrentUser() == null) return new HashSet<>();
+        if(engine.getCurrentUser() == null || allIds.size() == 0) return new HashSet<>();
         int limit = Math.min(userProgressAssembler.from(engine.getCurrentUser()).progressInfo().completedChapters().size(), allIds.size() - 1);
         return new HashSet<>(allIds.subList(0, limit));
     }

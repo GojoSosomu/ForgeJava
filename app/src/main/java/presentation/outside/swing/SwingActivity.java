@@ -39,6 +39,6 @@ public class SwingActivity {
         };
     }
 
-    public void show() { launcher.switchPanel(activityUI); }
+    public void show() { launcher.switchPanel(activityUI, 1200, 820); }
     public void showResults() { launcher.switchPanel(resultUI); }
 }

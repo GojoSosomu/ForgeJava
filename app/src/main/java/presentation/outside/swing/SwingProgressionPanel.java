@@ -31,7 +31,7 @@ public class SwingProgressionPanel extends JPanel {
         if (!info.completedChapters().isEmpty()) {
             addCategoryHeader(listContainer, "PROCESSED CHAPTERS -> " + (info.currentChapter() >= info.completedChapters().size() ? "FINISHED! CHAPTER COMING SOON" : "CURRENT CHAPTER: " + info.currentChapter()));
             for (String chapter : info.completedChapters()) {
-                listContainer.add(createProgressCard(chapter, "CHAPTER MASTERED ✓", SUCCESS_GREEN));
+                listContainer.add(createProgressCard(chapter, "CHAPTER MASTERED", SUCCESS_GREEN));
                 listContainer.add(Box.createRigidArea(new Dimension(0, 12))); // Gap between cards
             }
         }

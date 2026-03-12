@@ -11,6 +11,8 @@ import core.model.view.content.VideoContentView;
 import core.model.view.lesson.LessonPageView;
 import presentation.outside.renderer.SwingRenderer;
 
+import static presentation.outside.library.LibraryOfColor.*;
+
 public class SwingLessonPage extends JPanel {
     private SwingRenderer renderer;
     private LessonPageView pageView;
@@ -21,6 +23,8 @@ public class SwingLessonPage extends JPanel {
     ) {
         this.pageView = pageView;
         this.renderer = renderer;
+
+        setBackground(PAGE_BASE);
     }
 
     @Override

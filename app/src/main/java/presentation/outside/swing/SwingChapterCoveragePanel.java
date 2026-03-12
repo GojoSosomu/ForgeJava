@@ -330,9 +330,13 @@ public final class SwingChapterCoveragePanel extends JPanel implements SwingSlid
 
     private void handleCardHover(Point point) {
         Point p = getRelativeCardPoint(point);
-        SwingChapterCardTemplate currentCard = cards.get(carousel.getCurrentIndex());
-        currentCard.hoverTest(p);
-        setCursor(new Cursor(currentCard.hitTest(p) ? Cursor.HAND_CURSOR : Cursor.DEFAULT_CURSOR));
+        try {
+            SwingChapterCardTemplate currentCard = cards.get(carousel.getCurrentIndex());
+            currentCard.hoverTest(p);
+            setCursor(new Cursor(currentCard.hitTest(p) ? Cursor.HAND_CURSOR : Cursor.DEFAULT_CURSOR));
+        } catch(IndexOutOfBoundsException e) {
+            return;
+        }
     }
 
     private Point getRelativeCardPoint(Point screenPoint) {
