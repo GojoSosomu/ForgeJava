@@ -31,6 +31,7 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
     private final int MAX_VISIBLE_HEIGHT = 235;
 
     private ChapterSequenceView chapterSequenceView;
+    private int chapterNumber;
 
     public SwingChapterSequencePanel(
         ChapterService service,
@@ -42,6 +43,7 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
     ) {
         this.service = service;
         this.currentChapter = id;
+        this.chapterNumber = service.parseId(id);
         this.chapterSequenceView = chapterSequenceView;
         
         setLayout(new BorderLayout());
@@ -308,8 +310,12 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
                 buttomItems.setEnabled(!service.isItemLocked(currentChapter, buttomItems.getText()));
             }
         }
-        if (service.getCurrentSequenceIndex() > chapterSequenceView.sequence().size() - 1) {
-            nextLabel.setText("CHAPTER MASTERED ✓");
+        System.out.println(service.getCurrentChapterIndex());
+        if(service.getCurrentChapterIndex() > chapterNumber) {
+            nextLabel.setText("CHAPTER MASTERED!");
+            setCompletedButtonVisible(true);
+        } else if (service.getCurrentSequenceIndex() > chapterSequenceView.sequence().size() - 1) {
+            nextLabel.setText("CHAPTER MASTERED!");
             setCompletedButtonVisible(true);
         } else if(service.getCurrentSequenceIndex() == 0)
             nextLabel.setText(

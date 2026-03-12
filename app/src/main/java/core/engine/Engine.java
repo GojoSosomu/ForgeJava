@@ -192,4 +192,9 @@ public class Engine {
              )
         );
     }
+
+    public byte getCurrentUserChapterIndex() {
+        UserProgressSnapshot user = getCurrentUser();
+        return (byte) ((Map<String, Object>)user.value().get("chapterProgress")).get("currentChapter");
+    }
 }

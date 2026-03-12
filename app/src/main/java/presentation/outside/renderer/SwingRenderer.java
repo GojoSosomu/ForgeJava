@@ -215,7 +215,7 @@ public class SwingRenderer implements ContentRenderer {
             case TINY -> 8;
             case SMALL -> 12;
             case MEDIUM -> 16;
-            case LARGE -> 20;
+            case LARGE -> 22;
             case HUGE -> 28;
             default -> throw new IllegalArgumentException("Unexpected value: " + style.size());
         };

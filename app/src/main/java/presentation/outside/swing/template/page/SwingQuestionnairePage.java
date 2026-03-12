@@ -106,11 +106,11 @@ public class SwingQuestionnairePage extends JPanel {
         List<String> answerOptions = options.stream()
                                         .map(TextContentView::text)
                                         .toList();
+        
         for (int i = 0; i < rowCount; i++) {
             final int index = i;
-            String choiceText = (String) options.get(i).text();
             
-            OptionButton opt = new OptionButton(choiceText);
+            OptionButton opt = new OptionButton(options.get(index));
             opt.addActionListener(e -> {
                 EvaulationView result = service.evaluate(id, questionIndex, index, answerOptions);
                 isCorrect = result.isCorrect();
@@ -232,84 +232,156 @@ public class SwingQuestionnairePage extends JPanel {
 
     // --- Updated OptionButton to be rigid ---
     private class OptionButton extends JRadioButton {
-        private Color highlight = BORDER_NORMAL;
-        private boolean isHovered = false; // NEW: For visual feedback
 
-        public OptionButton(String text) {
-            super(text);
+        private final TextContentView content;
+
+        private Color highlight = BORDER_NORMAL;
+        private boolean isHovered = false;
+
+        public OptionButton(TextContentView content) {
+            super(content.text());
+            this.content = content;
+
             setOpaque(false);
             setFocusPainted(false);
             setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-            // NEW: Hover Listener to match the "Living Machine" feel of the Main Menu
             addMouseListener(new java.awt.event.MouseAdapter() {
-                public void mouseEntered(java.awt.event.MouseEvent e) { if(isEnabled()) { isHovered = true; repaint(); } }
-                public void mouseExited(java.awt.event.MouseEvent e) { isHovered = false; repaint(); }
+
+                @Override
+                public void mouseEntered(java.awt.event.MouseEvent e) {
+                    if (isEnabled()) {
+                        isHovered = true;
+                        repaint();
+                    }
+                }
+
+                @Override
+                public void mouseExited(java.awt.event.MouseEvent e) {
+                    isHovered = false;
+                    repaint();
+                }
             });
         }
 
-        public void setHighlightColor(Color c) { this.highlight = c; repaint(); }
+        public void setHighlightColor(Color c) {
+            this.highlight = c;
+            repaint();
+        }
 
-        @Override 
-        public Dimension getPreferredSize() { 
-            return new Dimension(480, 60); // Rigid height for the "Fair Grid"
+        @Override
+        public Dimension getPreferredSize() {
+            return new Dimension(480, 60);
         }
 
         @Override
         protected void paintComponent(Graphics g) {
+
             Graphics2D g2 = (Graphics2D) g.create();
-            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            g2.setRenderingHint(
+                    RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON
+            );
 
             int w = getWidth() - 1;
             int h = getHeight() - 1;
-            int arc = 18; // CONSISTENCY: Matches the ChapterCard arc exactly
+            int arc = 18;
 
-            // 1. DYNAMIC BACKGROUND (The "Metal Plate")
+            /*
+            --------------------------------
+            Background
+            --------------------------------
+            */
+
             if (isEvaluated && highlight != BORDER_NORMAL) {
-                // Glow the whole card with the result color (Success/Error)
-                g2.setColor(withAlpha(highlight, 25)); 
-            } else if (isSelected()) {
+                g2.setColor(withAlpha(highlight, 25));
+            }
+            else if (isSelected()) {
                 g2.setColor(withAlpha(ORANGE_BASED, 20));
-            } else if (isHovered) {
-                g2.setColor(new Color(255, 255, 255, 200)); // Subtle highlight
-            } else {
+            }
+            else if (isHovered) {
+                g2.setColor(new Color(255,255,255,200));
+            }
+            else {
                 g2.setColor(Color.WHITE);
             }
-            g2.fillRoundRect(0, 0, w, h, arc, arc);
 
-            // 2. THE STATUS STRIPE (The "Industrial Seal")
-            // Logic: Correct? -> Green | Wrong? -> Red | Selected? -> Orange | Default -> Gray
-            Color stripeColor = isEvaluated ? highlight : (isSelected() ? ORANGE_BASED : (isHovered ? ORANGE_HOVER : BORDER_NORMAL));
+            g2.fillRoundRect(0,0,w,h,arc,arc);
+
+            /*
+            --------------------------------
+            Left Stripe
+            --------------------------------
+            */
+
+            Color stripeColor =
+                    isEvaluated
+                            ? highlight
+                            : (isSelected()
+                            ? ORANGE_BASED
+                            : (isHovered ? ORANGE_HOVER : BORDER_NORMAL));
+
             g2.setColor(stripeColor);
-            g2.fillRoundRect(12, 12, 8, h - 24, 4, 4); // Standard 8px width
+            g2.fillRoundRect(12,12,8,h-24,4,4);
 
-            // 3. THE BORDER (The "Structure")
-            // If evaluated, the border matches the result. If hovered, it glows orange.
-            g2.setStroke(new BasicStroke(isEvaluated || isSelected() || isHovered ? 2f : 1f));
-            g2.setColor(isEvaluated ? highlight : (isSelected() || isHovered ? ORANGE_BASED : BORDER_NORMAL));
-            g2.drawRoundRect(0, 0, w, h, arc, arc);
+            /*
+            --------------------------------
+            Border
+            --------------------------------
+            */
 
-            // 4. THE TEXT (The "Processed Info")
-            g2.setColor(INK_DARK);
-            g2.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 17));
-            
+            g2.setStroke(
+                    new BasicStroke(
+                            (isSelected() || isHovered || isEvaluated) ? 2f : 1f
+                    )
+            );
+
+            g2.setColor(
+                    isEvaluated
+                            ? highlight
+                            : (isSelected() || isHovered
+                            ? ORANGE_BASED
+                            : BORDER_NORMAL)
+            );
+
+            g2.drawRoundRect(0,0,w,h,arc,arc);
+
+            /*
+            --------------------------------
+            Styled Text using Renderer
+            --------------------------------
+            */
+
+            renderer.setGraphics2D(g2);
+            renderer.applyStyle(content.style());
+
             FontMetrics fm = g2.getFontMetrics();
-            // Text is always 45px from the left to clear the stripe
             int textY = (h - fm.getHeight()) / 2 + fm.getAscent();
-            g2.drawString(getText(), 45, textY);
 
-            // 5. THE STATUS ICON (Optional but Professional)
+            g2.setColor(INK_DARK);
+            g2.drawString(content.text(),45,textY);
+
+            /*
+            --------------------------------
+            Result Icon (Correct / Wrong)
+            --------------------------------
+            */
+
             if (isEvaluated) {
-                g2.setFont(new Font("Segoe UI Symbol", Font.PLAIN, 14));
+
+                g2.setFont(new Font("Segoe UI Symbol",Font.PLAIN,14));
+
                 if (highlight == SUCCESS_GREEN) {
                     g2.setColor(SUCCESS_GREEN);
                     g2.drawString("✓", w - 30, textY);
-                } else if (highlight == SCORCH_RED && isSelected()) {
+                }
+                else if (highlight == SCORCH_RED && isSelected()) {
                     g2.setColor(SCORCH_RED);
                     g2.drawString("✕", w - 30, textY);
                 }
             }
-            
+
             g2.dispose();
         }
     }

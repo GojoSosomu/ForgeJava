@@ -10,6 +10,7 @@ import java.util.TreeMap;
 import core.model.view.chapter.*;
 import core.engine.Engine;
 import core.model.snapshot.chapter.*;
+import core.model.snapshot.progress.UserProgressSnapshot;
 import presentation.service.assembler.ChapterViewAssembler;
 import presentation.service.assembler.UserProgressAssembler;
 
@@ -39,6 +40,10 @@ public class ChapterService extends AService {
             result.add(chapter.id());
 
         return result;
+    }
+
+    public int parseId(String id) {
+        return Integer.parseInt(id.replaceAll("[^0-9]", ""));
     }
 
     public List<ChapterView> getAllChapters() {
@@ -80,11 +85,20 @@ public class ChapterService extends AService {
         ChapterSnapshot snapshot = engine.getChapters().get(chapterId);
         Map<String, Object> value = snapshot.values();
         List<String> sequence = (List<String>)value.get("sequence");
+
+        UserProgressSnapshot userProgressSnapshot = engine.getCurrentUser();
+        Map<String, Object> userValue =  userProgressSnapshot.value();
+        List<String> completedLessons = (List<String>) ((Map<String, Object>)userValue.get("lessonProgress")).get("completedLessons");
+        Set<String> completedActivities = ((Map<String, Object>)((Map<String, Object>)userValue.get("activityProgress")).get("completedActivities")).keySet();
         
-        return !(sequenceIndex >= sequence.indexOf(id));
+        return !(sequenceIndex >= sequence.indexOf(id) || (completedLessons.contains(id) ||  completedActivities.contains(id)));
     }
 
     public int getCurrentSequenceIndex() {
         return (int)engine.getCurrentUserSequenceIndex();
+    }
+
+    public int getCurrentChapterIndex() {
+        return engine.getCurrentUserChapterIndex();
     }
 }

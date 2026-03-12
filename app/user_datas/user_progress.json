@@ -1,13 +1,6 @@
 {
   "goGowoTo" : {
     "users" : [ {
-      "version" : 22,
-      "id" : "howTodo",
-      "chapterProgress" : {
-        "currentSequenceIndex" : 2,
-        "currentChapter" : 0,
-        "completedChapters" : [ "C-001" ]
-      },
       "activityProgress" : {
         "completedActivities" : {
           "A-001" : {
@@ -25,38 +18,38 @@
         }
       },
       "userAccount" : {
-        "salt" : "M/2IW4VRf7bAs6F3E+/jCQ==",
-        "password" : "971953e1626defc0ccc0275bdee5ccb81fd86ee06d721ae02e4cb6dfeb486f5e"
+        "password" : "971953e1626defc0ccc0275bdee5ccb81fd86ee06d721ae02e4cb6dfeb486f5e",
+        "salt" : "M/2IW4VRf7bAs6F3E+/jCQ=="
       },
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003", "L-004" ]
+      },
+      "version" : 22,
+      "id" : "howTodo",
+      "chapterProgress" : {
+        "currentChapter" : 0,
+        "completedChapters" : [ "C-001" ],
+        "currentSequenceIndex" : 2
       }
     }, {
-      "version" : 1,
-      "id" : "toDO",
-      "chapterProgress" : {
-        "currentSequenceIndex" : 0,
-        "currentChapter" : 1,
-        "completedChapters" : [ ]
-      },
       "activityProgress" : {
         "completedActivities" : { }
       },
       "userAccount" : {
-        "salt" : "Ut4PID/xqA3x2lYEc70p6A==",
-        "password" : "9b24f4ea6bbae17a4c59e853c7cd84c15830223c477b3c925fa404526ff4890c"
+        "password" : "9b24f4ea6bbae17a4c59e853c7cd84c15830223c477b3c925fa404526ff4890c",
+        "salt" : "Ut4PID/xqA3x2lYEc70p6A=="
       },
       "lessonProgress" : {
         "completedLessons" : [ ]
+      },
+      "version" : 1,
+      "id" : "toDO",
+      "chapterProgress" : {
+        "currentChapter" : 1,
+        "completedChapters" : [ ],
+        "currentSequenceIndex" : 0
       }
     }, {
-      "version" : 16,
-      "id" : "goGowoTo",
-      "chapterProgress" : {
-        "currentSequenceIndex" : 0,
-        "currentChapter" : 0,
-        "completedChapters" : [ "C-001" ]
-      },
       "activityProgress" : {
         "completedActivities" : {
           "A-001" : {
@@ -74,11 +67,18 @@
         }
       },
       "userAccount" : {
-        "salt" : "9ZICnOoZd/OyOaU1Naexkg==",
-        "password" : "43fa9a4d793da7fb73e3df2a4ce4303c6158d58b7e2412e8d88e9dc1edfb422b"
+        "password" : "43fa9a4d793da7fb73e3df2a4ce4303c6158d58b7e2412e8d88e9dc1edfb422b",
+        "salt" : "9ZICnOoZd/OyOaU1Naexkg=="
       },
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003", "L-004" ]
+      },
+      "version" : 16,
+      "id" : "goGowoTo",
+      "chapterProgress" : {
+        "currentChapter" : 2,
+        "completedChapters" : [ "C-001" ],
+        "currentSequenceIndex" : 0
       }
     } ],
     "id" : "goGowoTo"
