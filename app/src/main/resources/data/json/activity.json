@@ -264,5 +264,65 @@
         }
       ]
     }
+  },
+  "A-004": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [
+        { "type": "TEXT", "text": "Object-Oriented Basics", "style": { "emphasis": "LABEL", "size": "SMALL" } },
+        { "type": "TEXT", "text": "Verify your understanding of Class architecture.", "style": { "emphasis": "INFO", "size": "TINY" } }
+      ],
+      "questions": [
+        {
+          "type": "MULTIPLE_CHOICE",
+          "question": [ { "type": "TEXT", "text": "1. What is an 'Instance' of a class called?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } } ],
+          "values": {
+            "options": [
+              { "type": "TEXT", "text": "A. A Blueprint" },
+              { "type": "TEXT", "text": "B. An Object", "style": { "emphasis": "HIGHLIGHT" } },
+              { "type": "TEXT", "text": "C. A Method" },
+              { "type": "TEXT", "text": "D. A Variable" }
+            ],
+            "correctAnswerIndex": 1
+          }
+        },
+        {
+          "type": "MULTIPLE_CHOICE",
+          "question": [ { "type": "TEXT", "text": "2. Which method is used to initialize an object at creation?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } } ],
+          "values": {
+            "options": [
+              { "type": "TEXT", "text": "A. Constructor", "style": { "emphasis": "HIGHLIGHT" } },
+              { "type": "TEXT", "text": "B. Main" },
+              { "type": "TEXT", "text": "C. Static" },
+              { "type": "TEXT", "text": "D. Void" }
+            ],
+            "correctAnswerIndex": 0
+          }
+        }
+      ]
+    }
+  },
+  "A-005": {
+    "problem": {
+      "type": "QUESTIONNAIRE",
+      "instructions": [
+        { "type": "TEXT", "text": "Encapsulation & Access", "style": { "emphasis": "LABEL", "size": "SMALL" } }
+      ],
+      "questions": [
+        {
+          "type": "MULTIPLE_CHOICE",
+          "question": [ { "type": "TEXT", "text": "1. Why do we make fields 'private'?", "style": { "emphasis": "TITLE", "size": "MEDIUM" } } ],
+          "values": {
+            "options": [
+              { "type": "TEXT", "text": "A. To make the code run faster" },
+              { "type": "TEXT", "text": "B. To protect data from direct external interference", "style": { "emphasis": "HIGHLIGHT" } },
+              { "type": "TEXT", "text": "C. Because Java requires it" },
+              { "type": "TEXT", "text": "D. To hide the code from other developers" }
+            ],
+            "correctAnswerIndex": 1
+          }
+        }
+      ]
+    }
   }
 }
