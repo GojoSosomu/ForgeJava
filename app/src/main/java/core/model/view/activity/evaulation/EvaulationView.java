@@ -4,8 +4,7 @@ import core.model.view.View;
 
 public record EvaulationView(
     String rightAnswer,
-    boolean isCorrect,
-    int correctIndex
+    boolean isCorrect
 ) implements View {
 
 }

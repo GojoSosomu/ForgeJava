@@ -25,7 +25,7 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
     }
 
     public record Evaulation(
-        int correctIndex,
+        String correctKey,
         String correctAnswer,
         boolean isCorrect
     ) {}
@@ -71,14 +71,14 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
             Question question = questionnaire.questions().get(questionIndex);
             
             // 1. Get the truth from the DTO (Basement)
-            int correctIndex = (int) question.values().get("correctAnswerIndex");
-            boolean isCorrect = userAnswer.equals(correctIndex);
+            String correctKey = (String) question.values().get("correctAnswerKey");
+            boolean isCorrect = userAnswer.equals(correctKey);
 
             // 2. Create the Evaluation Snapshot (The Report)
             // We put the results in the Map as you designed
             Map<String, Object> reportValues = new HashMap<>();
             reportValues.put("isCorrect", isCorrect);
-            reportValues.put("correctIndex", correctIndex); // Now the Service will know
+            reportValues.put("correctKey", correctKey); // Now the Service will know
 
             return new EvaulationSnapshot(reportValues);
         }

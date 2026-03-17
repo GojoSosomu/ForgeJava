@@ -29,6 +29,7 @@ public class UserService extends AService {
     }
 
     public void completedChapter(String id) {
-        engine.updatedChapterProgress(id);
+        if(!getCurrentProgressView().progressInfo().completedChapters().contains(id))
+            engine.updatedChapterProgress(id);
     }
 }

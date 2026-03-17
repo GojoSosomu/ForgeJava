@@ -14,4 +14,12 @@ public record QuestionPageView(
     Map<String, Object> extras
 ) implements View {
 
+    public QuestionPageView setQuestion(List<TextContentView> question) {
+        return new QuestionPageView(
+            this.questionNumber, 
+            this.type, 
+            question, 
+            this.extras
+        );
+    }
 }

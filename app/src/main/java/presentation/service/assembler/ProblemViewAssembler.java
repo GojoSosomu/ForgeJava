@@ -1,6 +1,7 @@
 package presentation.service.assembler;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,21 @@ public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, Prob
             result.add(this.assembleQuestion(question));
         }
 
+        Collections.shuffle(result);
+
+        for (int i = 0; i < result.size(); i++) {
+            int displayNum = i + 1;
+            QuestionPageView page = result.get(i);
+            
+            List<TextContentView> numberedContent = page.question().stream()
+                .map(textView -> {
+                    return textView.appendAtFirstText(displayNum + ". ");
+                })
+                .toList();
+            
+            result.set(i, page.setQuestion(numberedContent));
+        }
+
         return result;
     }
 
@@ -71,8 +87,10 @@ public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, Prob
 
         switch((QuestionType) question.get("type")) {
             case MULTIPLE_CHOICE -> {
-                extraInfo.put("options", 
-                    assembleOptions(question));
+                extraInfo.put("answerOptions", 
+                    assembleAnswerOptions(question));
+                extraInfo.put("descriptionOptions", 
+                    assembleDescriptionOptions(question));
             }
             default -> {
                 return extraInfo;
@@ -82,13 +100,23 @@ public class ProblemViewAssembler implements ViewAssembler<ProblemSnapshot, Prob
         return extraInfo;
     }
 
-    private List<TextContentView> assembleOptions(Map<String,Object> question) {
+    private List<String> assembleAnswerOptions(Map<String,Object> question) {
+        List<String> options = new ArrayList<>();
+
+        for(Map.Entry<String, ContentSnapshot> snapshot : ((Map<String, ContentSnapshot>)question.get("options")).entrySet())
+            options.add(snapshot.getKey());
+
+        return options;
+    }
+
+    private List<TextContentView> assembleDescriptionOptions(Map<String,Object> question) {
         List<TextContentView> options = new ArrayList<>();
 
-        for(ContentSnapshot snapshot : (List<ContentSnapshot>) question.get("options"))
-            if(snapshot.type() == ContentType.TEXT)
-                options.add((TextContentView) contentViewAssembler.from(snapshot));
+        for(Map.Entry<String, ContentSnapshot> snapshot : ((Map<String, ContentSnapshot>)question.get("options")).entrySet())
+            if(snapshot.getValue().type() == ContentType.TEXT)
+                options.add((TextContentView) contentViewAssembler.from(snapshot.getValue()));
 
+        Collections.shuffle(options);
         return options;
     }
 }

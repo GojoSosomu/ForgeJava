@@ -61,9 +61,9 @@ public class ProblemSnapshotAssembler implements ValueSnapshotAssembler<Problem,
             switch(question.type()) {
                 case MULTIPLE_CHOICE:
                     values.put("options",
-                        contentSnapshotAssembler.from((List<Content>)question.values().get("options")));
-                    values.put("correctedIndex",
-                        question.values().get("correctedIndex"));
+                        contentSnapshotAssembler.from((Map<String, Content>)question.values().get("options")));
+                    values.put("correctAnswerKey",
+                        question.values().get("correctAnswerKey"));
                     break;
             }
 

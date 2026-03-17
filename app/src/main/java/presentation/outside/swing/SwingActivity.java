@@ -15,7 +15,7 @@ public class SwingActivity {
     private final SwingActivityResultPanel resultUI;
     private final JPanel activityUI;
 
-    public SwingActivity(UserService userService, ActivityService service, ActivityView view, SwingLauncher launcher, Runnable onFinish) {
+    public SwingActivity(UserService userService, ActivityService service, ActivityView activityViewv, SwingLauncher launcher, Runnable onFinish) {
         this.launcher = launcher;
         
         // 1. Create the Channel (The Score Screen)
@@ -25,11 +25,11 @@ public class SwingActivity {
         ScoreReceiver receiver = new ScoreReceiver(this.resultUI);
 
         // 3. Create the Factory Floor (The Template)
-        this.activityUI = switch (view.problemView().type()) {
+        this.activityUI = switch (activityViewv.problemView().type()) {
             case QUESTIONNAIRE -> new SwingQuestionnaireTemplate(
-                service, view, launcher, 
+                service, activityViewv, launcher, 
                 (scoreView) -> {
-                    userService.completedActivityItem(view.id(), scoreView.score(), scoreView.total());
+                    userService.completedActivityItem(activityViewv.id(), scoreView.score(), scoreView.total());
                     // PNEUMATIC TUBE: Send score to receiver
                     receiver.onPulse(scoreView);
                     // SWITCH UI: Show the results now

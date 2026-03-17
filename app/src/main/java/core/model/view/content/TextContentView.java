@@ -13,4 +13,9 @@ public record TextContentView(
         return ContentType.TEXT;
     }
     
+    public TextContentView appendAtFirstText(String newString) {
+        return new TextContentView(
+            newString + text, 
+            style);
+    }
 }

@@ -1,8 +1,8 @@
 package presentation.service.assembler;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import core.model.snapshot.progress.ScoreSnapshot;
 import core.model.snapshot.progress.UserProgressSnapshot;
@@ -48,7 +48,7 @@ public class UserProgressAssembler implements ViewAssembler<UserProgressSnapshot
     }
 
     private Map<String, ScoreView> makeScores(Map<String, ScoreSnapshot> data) {
-        Map<String, ScoreView> scoreViews = new HashMap<>();
+        Map<String, ScoreView> scoreViews = new TreeMap<>();
         data.forEach((id, snap) -> {
             scoreViews.put(id, makeScore(snap));
         });

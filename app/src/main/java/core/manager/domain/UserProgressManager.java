@@ -163,12 +163,7 @@ public class UserProgressManager implements LoadTarget, SaveTarget, EntitySnapsh
 
     public boolean authenticate(String userName, String hashPassword) {
         UserAccount userAccount = userProgressRepository.get(userName).userAccount();
-        if(hashPassword.equals(userAccount.password())) {
-            System.out.println("Authentication successful for user: " + userName);
-            userProgressRepository.setCurrentUser(userName);
-        } else {
-            System.out.println("Authentication failed for user: " + userName);
-        }
+        
         return hashPassword.equals(userAccount.password());
     }
 

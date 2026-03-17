@@ -231,7 +231,7 @@ public class SwingLauncher extends Launcher {
                 signInPanel.errorShowMessage("Passwords do not match. Please try again.");
             }
             case FAILURE_USER_EXISTS -> {
-                signInPanel.errorShowMessage("An account with this email or username already exists.");
+                signInPanel.errorShowMessage("An account with this username already exists.");
             }
             case FAILURE_PASSWORD_TOO_SHORT ->  {
                 signInPanel.errorShowMessage("The passwords are too short. Please enter at least 8 characters.");

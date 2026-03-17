@@ -26,18 +26,20 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
     private final Pulse<ScoreView> onFinish;
     private final ActivityService service;
     private final SwingLauncher launcher; // Fixed: Needs to be final
+    private final String id;
 
     public SwingQuestionnaireTemplate(
         ActivityService service, 
-        ActivityView view, 
+        ActivityView activityView, 
         SwingLauncher launcher, 
         Pulse<ScoreView> onFinish
     ) {
         this.launcher = launcher; // FIX: Assign the launcher!
         this.service = service;
         this.onFinish = onFinish;
+        this.id = activityView.id();
         
-        QuestionnaireView questionnaire = (QuestionnaireView) view.problemView();
+        QuestionnaireView questionnaire = (QuestionnaireView) activityView.problemView();
         this.carousel = new CarouselUtility<>(questionnaire.questions());
         this.carousel.setWrapAround(false);
 
@@ -58,7 +60,7 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
         // Build Pages
         for (int i = 0; i < questionnaire.questions().size(); i++) {
             SwingQuestionnairePage page = new SwingQuestionnairePage(
-                view.id(),
+                activityView.id(),
                 questionnaire.questions().get(i),
                 service,
                 () -> moveToNext()
@@ -111,8 +113,13 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
             // 2. Wrap it into a ScoreView using your finalize method
             ScoreView result = scoreFinilize(finalScore, total);
 
+            if(result.score() == result.total()) {
+                onFinish.onPulse(result);
+            } else {
+                launcher.startActivity(id);
+            }
             // 3. Fire the Pulse!
-            onFinish.onPulse(result); 
+             
         }
     }
     private void updatePageCounter() {

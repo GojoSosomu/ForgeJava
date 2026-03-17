@@ -1,18 +1,48 @@
 package presentation.outside.swing.template.page;
 
-import javax.swing.*;
-import java.awt.*;
+import static presentation.outside.library.LibraryOfColor.BORDER_NORMAL;
+import static presentation.outside.library.LibraryOfColor.INK_DARK;
+import static presentation.outside.library.LibraryOfColor.ORANGE_BASED;
+import static presentation.outside.library.LibraryOfColor.ORANGE_HOVER;
+import static presentation.outside.library.LibraryOfColor.SCORCH_RED;
+import static presentation.outside.library.LibraryOfColor.SUCCESS_GREEN;
+import static presentation.outside.library.LibraryOfColor.withAlpha;
+
+import java.awt.BasicStroke;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import core.model.dto.activity.problem.question.QuestionType;
 import core.model.view.activity.evaulation.EvaulationView;
 import core.model.view.activity.problem.QuestionPageView;
 import core.model.view.content.TextContentView;
-import core.model.dto.activity.problem.question.QuestionType;
 import presentation.outside.renderer.SwingRenderer;
 import presentation.service.ActivityService;
-
-import static presentation.outside.library.LibraryOfColor.*;
 
 public class SwingQuestionnairePage extends JPanel {
     private final QuestionPageView data;
@@ -95,24 +125,22 @@ public class SwingQuestionnairePage extends JPanel {
 
     @SuppressWarnings("unchecked")
     private void setupMultipleChoice(JPanel container) {
-        List<TextContentView> options = (List<TextContentView>) data.extras().get("options");
-        int rowCount = options.size();
+        Map<String, Object> extras = (Map<String, Object>) data.extras();
+
+        ButtonGroup group = new ButtonGroup();
+        List<String> answerOptions = (List<String>)extras.get("answerOptions");
+        List<TextContentView> descriptionOptions = (List<TextContentView>)extras.get("descriptionOptions");
+        int rowCount = descriptionOptions.size();
 
         // 1. Create the Fair Grid (Rows = Count, Cols = 1, Gap = 12px)
         JPanel gridPanel = new JPanel(new GridLayout(rowCount, 1, 0, 12));
         gridPanel.setOpaque(false);
 
-        ButtonGroup group = new ButtonGroup();
-        List<String> answerOptions = options.stream()
-                                        .map(TextContentView::text)
-                                        .toList();
-        
         for (int i = 0; i < rowCount; i++) {
             final int index = i;
-            
-            OptionButton opt = new OptionButton(options.get(index));
+            OptionButton opt = new OptionButton(descriptionOptions.get(index));
             opt.addActionListener(e -> {
-                EvaulationView result = service.evaluate(id, questionIndex, index, answerOptions);
+                EvaulationView result = service.evaluate(id, questionIndex, answerOptions.get(index));
                 isCorrect = result.isCorrect();
                 if (result.isCorrect()) showCorrectFeedback(result);
                 else showErrorFeedback(result);
@@ -202,12 +230,6 @@ public class SwingQuestionnairePage extends JPanel {
         feedbackStatus.setForeground(SCORCH_RED);
         nextButton.setVisible(true); // SHOW THE NEXT STEP
         lockUI(SCORCH_RED);
-        
-        if (data.type() == QuestionType.MULTIPLE_CHOICE) {
-            if (evaulationView.correctIndex() < choices.size()) {
-                choices.get(evaulationView.correctIndex()).setHighlightColor(SUCCESS_GREEN);
-            }
-        }
     }
 
     private void lockUI(Color resultColor) {

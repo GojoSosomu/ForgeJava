@@ -95,8 +95,8 @@ public class SwingLessonPanel extends JPanel {
     private void setUpGestureListener() {
         addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
+            public void keyPressed(KeyEvent keyInput) {
+                switch (keyInput.getKeyCode()) {
                     case KeyEvent.VK_D: 
                     case KeyEvent.VK_RIGHT: 
                         showNext(); 

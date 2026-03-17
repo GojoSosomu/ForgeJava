@@ -1,6 +1,7 @@
 package infrastructure.importer.translation.mapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,18 @@ public final class ContentMapper implements Mapper<Map<String, Object>, Content>
 
         for(Map<String, Object> content : rawList) {
             contents.add(this.single(content));
+        }
+
+        return contents;
+    }
+
+    public Map<String, Content> map(Map<String, Map<String, Object>> rawMap) {
+        if (rawMap == null) return Map.of();
+
+        Map<String, Content> contents = new HashMap<>();
+
+        for(Map.Entry<String, Map<String, Object>> content : rawMap.entrySet()) {
+            contents.put(content.getKey(), this.single(content.getValue()));
         }
 
         return contents;

@@ -13,7 +13,7 @@ public class EvaluationSnapshotAssembler implements ValueSnapshotAssembler<Activ
         Map<String, Object> values = new HashMap<>();
 
         // Pack the evaluated truth into the Map
-        values.put("correctIndex", domainResult.correctIndex());
+        values.put("correctKey", domainResult.correctKey());
         values.put("correctAnswer", domainResult.correctAnswer());
         values.put("isCorrect", domainResult.isCorrect());
 

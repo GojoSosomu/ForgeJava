@@ -50,7 +50,8 @@ public class SwingProgressionPanel extends JPanel {
             addCategoryHeader(listContainer, "ACTIVITY EVALUATIONS");
             info.completedActivities().forEach((id, scoreView) -> {
                 String detail = "RESULT: " + scoreView.score() + "/" + scoreView.total() + " [" + scoreView.status() + "]";
-                Color statusColor = scoreView.status().contains("FAILED") ? SCORCH_RED : GLOW_YELLOW;
+                String status = scoreView.status();
+                Color statusColor = status.contains("FAILED") ? SCORCH_RED : status.contains("MASTERED!!") ? SUCCESS_GREEN : GLOW_YELLOW;
                 listContainer.add(createProgressCard(id, detail, statusColor));
                 listContainer.add(Box.createRigidArea(new Dimension(0, 12)));
             });
