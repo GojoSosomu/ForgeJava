@@ -3,7 +3,7 @@
 JLearning (ForgeJava)
 
 Overview
-JLearning, also known as ForgeJava, is an interactive desktop learning platform designed to help beginners learn programming concepts through structured lessons and activities.
+JLearning, also known as ForgeJava, is an interactive desktop learning platform designed to help beginners learn programming concepts through structured chapters,      lessons and activities.
 
 The system organizes educational content into chapters, lessons, and interactive exercises, allowing users to progressively learn programming topics while receiving immediate feedback through quizzes and activities.
 JLearning was built using Java and Swing, with custom rendering techniques using Graphics2D to create a flexible and visually controlled learning interface.
