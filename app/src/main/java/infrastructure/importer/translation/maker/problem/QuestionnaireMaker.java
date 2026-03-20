@@ -31,29 +31,29 @@ public final class QuestionnaireMaker extends ProblemMaker {
 
         List<TextContent> instructions = texts;
 
-        List<Question> questions =
+        Map<String, Question> questions =
             makeQuestions((List<Map<String, Object>>) raw.get("questions"));
 
         return new Questionnaire(instructions, questions);
     }
 
-    private List<Question> makeQuestions(List<Map<String, Object>> rawQuestions) {
-        List<Question> result = new ArrayList<>();
+    private Map<String, Question> makeQuestions(List<Map<String, Object>> rawQuestions) {
+        Map<String, Question> result = new HashMap<>();
         int i = 0;
-
+        
         for (Map<String, Object> raw : rawQuestions) {
 
             Map<String, Object> values = new HashMap<>();
 
-            values.put("questionNumber", 
-                "Q" + ++i);
             values.put("type", 
                 QuestionType.fromString((String) raw.get("type")));
             values.put("question", 
                 contentFilter.listByType(
                     contentMapper.list((List<Map<String, Object>>) raw.get("question")), 
                     ContentType.TEXT));
-            
+            i++;
+            values.put("questionNumber", 
+                "Q" + i);
             Map<String, Object> extraValues = new HashMap<>();
             Map<String, Object> rawValues = (Map<String, Object>) raw.get("values");
             
@@ -70,7 +70,7 @@ public final class QuestionnaireMaker extends ProblemMaker {
                     break;
             }
 
-            result.add(new Question(
+            result.put("Q" + i, new Question(
                 (String) values.get("questionNumber"),
                 (QuestionType) values.get("type"),
                 (List<TextContent>) values.get("question"),

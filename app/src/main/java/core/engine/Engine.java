@@ -176,8 +176,8 @@ public class Engine {
         return activityManager.from(ids);
     }
 
-    public EvaulationSnapshot evaluateActivityAnswer(String id, int questionIndex, Object answer) {
-        return activityManager.checkAnswer(id, questionIndex, answer);
+    public EvaulationSnapshot evaluateActivityAnswer(String id, String questionNumber, Object answer) {
+        return activityManager.checkAnswer(id, questionNumber, answer);
     }
 
     public void updatedChapterProgress(String id) {

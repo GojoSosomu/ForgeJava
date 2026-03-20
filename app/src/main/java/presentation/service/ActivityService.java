@@ -24,9 +24,9 @@ public class ActivityService extends AService {
         return viewAssembler.from(engine.getActivitys().get(id));
     }
 
-    public EvaulationView evaluate(String id, int qIndex, String userChoice) {
+    public EvaulationView evaluate(String id, String qNumber, String userChoice) {
         // 1. Ask the Brain to inspect the answer
-        EvaulationSnapshot snapshot = engine.evaluateActivityAnswer(id, qIndex, userChoice);
+        EvaulationSnapshot snapshot = engine.evaluateActivityAnswer(id, qNumber, userChoice);
         
         // 2. Translate Snapshot -> View (Protection logic)
         Map<String, Object> values = snapshot.values();

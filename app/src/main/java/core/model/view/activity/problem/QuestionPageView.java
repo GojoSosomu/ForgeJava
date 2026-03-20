@@ -16,7 +16,7 @@ public record QuestionPageView(
 
     public QuestionPageView setQuestion(List<TextContentView> question) {
         return new QuestionPageView(
-            this.questionNumber, 
+            this.questionNumber,
             this.type, 
             question, 
             this.extras

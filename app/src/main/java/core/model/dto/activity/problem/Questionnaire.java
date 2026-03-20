@@ -1,13 +1,14 @@
 package core.model.dto.activity.problem;
 
 import java.util.List;
+import java.util.Map;
 
 import core.model.dto.activity.problem.question.Question;
 import core.model.dto.content.TextContent;
 
 public record Questionnaire(
     List<TextContent> instructions, 
-    List<Question> questions
+    Map<String, Question> questions
 ) implements Problem {
     
     @Override

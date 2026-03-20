@@ -44,19 +44,18 @@ public class ProblemSnapshotAssembler implements ValueSnapshotAssembler<Problem,
 
     }
 
-    private List<Map<String, Object>> buildQuestions(List<Question> questions) {
+    private List<Map<String, Object>> buildQuestions(Map<String, Question> questions) {
         List<Map<String, Object>> result = new ArrayList<>();
 
-        for (Question question : questions) {
+        for (Question question : questions.values()) {
             Map<String,Object> values = new HashMap<>();
 
-            values.put("questionNumber", 
-                question.questionNumber());
             values.put("type", 
                 question.type());
             values.put("question", 
                 contentSnapshotAssembler.from(question.question())
                 );
+            values.put("questionNumber", question.questionNumber());
             
             switch(question.type()) {
                 case MULTIPLE_CHOICE:

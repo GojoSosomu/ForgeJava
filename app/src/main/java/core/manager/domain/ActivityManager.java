@@ -64,11 +64,13 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
     }
 
     // Inside ActivityManager.java
-    public EvaulationSnapshot checkAnswer(String activityId, int questionIndex, Object userAnswer) {
+    public EvaulationSnapshot checkAnswer(String activityId, String questionNumber, Object userAnswer) {
         ActivityDTO dto = activityRepository.get(activityId);
         
         if (dto.problem() instanceof Questionnaire questionnaire) {
-            Question question = questionnaire.questions().get(questionIndex);
+            Question question = questionnaire.questions().get(questionNumber);
+            System.out.println(userAnswer);
+            System.out.println(questionNumber + ": " + question);
             
             // 1. Get the truth from the DTO (Basement)
             String correctKey = (String) question.values().get("correctAnswerKey");

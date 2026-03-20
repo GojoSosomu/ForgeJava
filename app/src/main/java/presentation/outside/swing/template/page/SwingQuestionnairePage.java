@@ -38,6 +38,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import core.model.dto.activity.problem.question.QuestionType;
+import core.model.dto.content.enums.text.TextEmphasize;
+import core.model.dto.content.enums.text.TextSize;
+import core.model.dto.content.enums.text.TextStyle;
 import core.model.view.activity.evaulation.EvaulationView;
 import core.model.view.activity.problem.QuestionPageView;
 import core.model.view.content.TextContentView;
@@ -54,19 +57,20 @@ public class SwingQuestionnairePage extends JPanel {
     private boolean isEvaluated = false, isCorrect = false;
     private final ActivityService service;
     private final String id;
-    private final int questionIndex;
     private final Runnable onPressed;
+    private final String questionNumber;
 
     public SwingQuestionnairePage(
         String id,
+        String questionNumber,
         QuestionPageView data, 
         ActivityService service,
         Runnable onPressed
     ) {
         this.data = data;
         this.service = service;
-        this.questionIndex = Integer.parseInt(data.questionNumber().strip().substring(1)) - 1;
         this.id = id;
+        this.questionNumber = questionNumber;
         this.onPressed = onPressed;
 
         setOpaque(false);
@@ -115,9 +119,14 @@ public class SwingQuestionnairePage extends JPanel {
                 
                 renderer.setGraphics2D(g2);
 
-                int y = 30;
+                int currentY = 30;
+
+                String header = questionNumber;
+                renderer.applyStyle(new TextStyle(TextEmphasize.TITLE, TextSize.LARGE));
+                currentY = renderer.drawText(header, 0, currentY, (float) getWidth(), 15, 0, 5);
+
                 for (var text : data.question()) {
-                    y = renderer.drawText(text, 0, y, getWidth(), 10, 0, 0);
+                    currentY = renderer.drawText(text, 0, currentY, (float) getWidth(), 10, 0, 0);
                 }
             }
         };
@@ -140,7 +149,7 @@ public class SwingQuestionnairePage extends JPanel {
             final int index = i;
             OptionButton opt = new OptionButton(descriptionOptions.get(index));
             opt.addActionListener(e -> {
-                EvaulationView result = service.evaluate(id, questionIndex, answerOptions.get(index));
+                EvaulationView result = service.evaluate(id, data.questionNumber(), answerOptions.get(index));
                 isCorrect = result.isCorrect();
                 if (result.isCorrect()) showCorrectFeedback(result);
                 else showErrorFeedback(result);

@@ -2,7 +2,6 @@
   "angel" : {
     "id" : "angel",
     "users" : [ {
-      "version" : 22,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003", "L-004" ]
       },
@@ -31,9 +30,9 @@
         "currentChapter" : 0,
         "currentSequenceIndex" : 2
       },
-      "id" : "howTodo"
+      "id" : "howTodo",
+      "version" : 22
     }, {
-      "version" : 1,
       "lessonProgress" : {
         "completedLessons" : [ ]
       },
@@ -49,9 +48,9 @@
         "currentChapter" : 1,
         "currentSequenceIndex" : 0
       },
-      "id" : "toDO"
+      "id" : "toDO",
+      "version" : 1
     }, {
-      "version" : 26,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003", "L-004", "L-005", "L-006", "L-007" ]
       },
@@ -88,9 +87,9 @@
         "currentChapter" : 3,
         "currentSequenceIndex" : 0
       },
-      "id" : "daniel"
+      "id" : "daniel",
+      "version" : 26
     }, {
-      "version" : 11,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003" ]
       },
@@ -115,9 +114,9 @@
         "currentChapter" : 1,
         "currentSequenceIndex" : 5
       },
-      "id" : "kyle"
+      "id" : "kyle",
+      "version" : 11
     }, {
-      "version" : 16,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003", "L-004" ]
       },
@@ -146,9 +145,9 @@
         "currentChapter" : 2,
         "currentSequenceIndex" : 0
       },
-      "id" : "goGowoTo"
+      "id" : "goGowoTo",
+      "version" : 16
     }, {
-      "version" : 9,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003" ]
       },
@@ -161,15 +160,20 @@
           "A-001" : {
             "score" : 5,
             "total" : 10
+          },
+          "A-002" : {
+            "score" : 10,
+            "total" : 10
           }
         }
       },
       "chapterProgress" : {
         "completedChapters" : [ ],
         "currentChapter" : 1,
-        "currentSequenceIndex" : 4
+        "currentSequenceIndex" : 5
       },
-      "id" : "angel"
+      "id" : "angel",
+      "version" : 11
     } ]
   }
 }
