@@ -166,7 +166,7 @@ public class SwingQuestionnairePage extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
-        gbc.weighty = 0.0; // Do not stretch vertically
+        gbc.weighty = 1.0; // Do not stretch vertically
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.NORTH;
 
