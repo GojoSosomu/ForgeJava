@@ -6,6 +6,7 @@ import core.model.snapshot.loader.LoadingSnapshot;
 import core.model.view.loader.LoadingView;
 import presentation.service.*;
 import presentation.service.assembler.*;
+import presentation.utility.ActivitySession;
 import presentation.utility.IconPathImporter;
 
 public abstract class Launcher {
@@ -20,7 +21,7 @@ public abstract class Launcher {
         activityViewAssembler
     );
 
-    protected ActivityService activityService = new ActivityService(engine, activityViewAssembler);
+    protected ActivityService activityService = new ActivityService(engine, activityViewAssembler, new ActivitySession());
     protected UserProgressAssembler userProgressAssembler = new UserProgressAssembler(activityService);
     protected UserService userService = new UserService(userProgressAssembler, engine);
 
