@@ -33,7 +33,7 @@ public class SwingActivity {
                     // PNEUMATIC TUBE: Send score to receiver
                     receiver.onPulse(scoreView);
                     // SWITCH UI: Show the results now
-                    this.showResults(); 
+                    this.showResults();
                 }
             );
         };

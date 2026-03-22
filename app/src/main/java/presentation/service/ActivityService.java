@@ -7,21 +7,17 @@ import core.model.snapshot.activity.evaulation.EvaulationSnapshot;
 import core.model.view.activity.ActivityView;
 import core.model.view.activity.evaulation.EvaulationView;
 import presentation.service.assembler.ActivityViewAssembler;
-import presentation.utility.ActivitySession;
 
 public class ActivityService extends AService {
     private ActivityViewAssembler viewAssembler;
-    private ActivitySession activitySession;
 
     public ActivityService(
         Engine engine,
-        ActivityViewAssembler viewAssembler,
-        ActivitySession activitySession
+        ActivityViewAssembler viewAssembler
     ) {
         super(engine);
 
         this.viewAssembler = viewAssembler;
-        this.activitySession = activitySession;
     }
 
     public ActivityView getActivity(String id) {
@@ -45,9 +41,5 @@ public class ActivityService extends AService {
 
     public String checkStatus(int score, int total) {
         return (score == total) ? "MASTERED!!" : Math.floor(score * (3/4) * (100)) >= 75 ? "TRY AGAIN" : "FAILED" ;
-    }
-
-    public void attemptCountDown() {
-        activitySession.decrementAttempt();
     }
 }

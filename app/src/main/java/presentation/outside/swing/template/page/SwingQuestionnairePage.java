@@ -167,7 +167,7 @@ public class SwingQuestionnairePage extends JPanel {
         gbc.gridy = 0;
         gbc.weightx = 1.0;
         gbc.weighty = 0.0; // Do not stretch vertically
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.NORTH;
 
         container.add(gridPanel, gbc);
@@ -223,7 +223,7 @@ public class SwingQuestionnairePage extends JPanel {
         footer.add(nextButton);
 
         return footer;
-        }
+    }
 
     public void showCorrectFeedback(EvaulationView evaulationView) {
         isEvaluated = true;

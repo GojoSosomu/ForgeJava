@@ -13,6 +13,7 @@ import core.model.view.activity.problem.QuestionPageView;
 import presentation.outside.launcher.SwingLauncher;
 import presentation.outside.swing.template.page.SwingQuestionnairePage;
 import presentation.service.ActivityService;
+import presentation.utility.ActivitySession;
 import presentation.utility.CarouselUtility;
 
 import static presentation.outside.library.LibraryOfColor.*;
@@ -20,8 +21,10 @@ import static presentation.outside.library.LibraryOfColor.*;
 public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityTemplate {
     private final CardLayout cardLayout = new CardLayout();
     private final JPanel pageContainer = new JPanel(cardLayout);
+    private final JLabel attemptLabel;
     private final JLabel pageCounterLabel;
     private final CarouselUtility<QuestionPageView> carousel;
+    private final ActivitySession activitySession = new ActivitySession();
     private final List<SwingQuestionnairePage> questionPages = new ArrayList<>();
     private final Pulse<ScoreView> onFinish;
     private final ActivityService service;
@@ -34,7 +37,7 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
         SwingLauncher launcher, 
         Pulse<ScoreView> onFinish
     ) {
-        this.launcher = launcher; // FIX: Assign the launcher!
+        this.launcher = launcher; 
         this.service = service;
         this.onFinish = onFinish;
         this.id = activityView.id();
@@ -45,38 +48,42 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
 
         setLayout(new BorderLayout());
         setOpaque(false);
-        pageContainer.setOpaque(false);
 
-        // Footer for counter
+        // --- TOP HEADER (Attempt Counter) ---
+        JPanel header = new JPanel(new FlowLayout(FlowLayout.LEFT, 30, 10));
+        header.setOpaque(false);
+        attemptLabel = new JLabel("ATTEMPTS: " + activitySession.getAttempt());
+        attemptLabel.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
+        attemptLabel.setForeground(withAlpha(INK_MEDIUM, 150));
+        header.add(attemptLabel);
+        add(header, BorderLayout.NORTH); // Put it at the top
+
+        // --- CENTER (Pages) ---
+        pageContainer.setOpaque(false);
+        // (Building pages loop remains the same...)
+        for (int i = 0; i < questionnaire.questions().size(); i++) {
+            SwingQuestionnairePage page = new SwingQuestionnairePage(
+                activityView.id(), "Q" + (i + 1), questionnaire.questions().get(i), service, () -> moveToNext()
+            );
+            questionPages.add(page);
+            pageContainer.add(page, "Q" + i);
+        }
+        add(pageContainer, BorderLayout.CENTER);
+
+        // --- FOOTER (Page Counter) ---
         JPanel footer = new JPanel(new FlowLayout(FlowLayout.RIGHT, 30, 15));
         footer.setOpaque(false);
-        
         pageCounterLabel = new JLabel();
         pageCounterLabel.setFont(new Font("Segoe UI Black", Font.PLAIN, 14));
         pageCounterLabel.setForeground(withAlpha(INK_MEDIUM, 180));
         footer.add(pageCounterLabel);
         add(footer, BorderLayout.SOUTH);
 
-        // Build Pages
-        for (int i = 0; i < questionnaire.questions().size(); i++) {
-            SwingQuestionnairePage page = new SwingQuestionnairePage(
-                activityView.id(),
-                "Q" + (i + 1),
-                questionnaire.questions().get(i),
-                service,
-                () -> moveToNext()
-            );
-            questionPages.add(page);
-            pageContainer.add(page, "Q" + i);
-        }
-
-        add(pageContainer, BorderLayout.CENTER);
-
         if (!questionnaire.questions().isEmpty()) {
             cardLayout.show(pageContainer, "Q0");
         }
         
-        updatePageCounter(); // FIX: Initialize the label
+        updatePageCounter(); 
         setUpGestureListener();
     }
 
@@ -117,7 +124,11 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
             if(result.score() == result.total()) {
                 onFinish.onPulse(result);
             } else {
-                launcher.startActivity(id);
+                if(activitySession.shouldRetry())
+                    launcher.startActivity(id);
+                else
+                    onFinish.onPulse(result);
+                    launcher.returnChapterSequence();
             }
             // 3. Fire the Pulse!
              
@@ -127,6 +138,7 @@ public class SwingQuestionnaireTemplate extends JPanel implements SwingActivityT
         int current = carousel.getCurrentIndex() + 1;
         int total = carousel.size();
         pageCounterLabel.setText("DATA UNIT: " + current + " / " + total);
+        attemptLabel.setText("ATTEMPTS LEFT: " + activitySession.getAttempt());
     }
 
     @Override
