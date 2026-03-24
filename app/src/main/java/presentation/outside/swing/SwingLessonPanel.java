@@ -1,6 +1,8 @@
 package presentation.outside.swing;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -124,7 +126,31 @@ public class SwingLessonPanel extends JPanel {
         sp.getViewport().setFocusable(false); // Add this one too
         sp.setBorder(null);
         sp.getVerticalScrollBar().setUnitIncrement(16);
+
+        sp.getVerticalScrollBar().setUI(new ModernScrollBarUI());
+        sp.getVerticalScrollBar().setPreferredSize(new Dimension(8, 0));
+        sp.getVerticalScrollBar().setUnitIncrement(14);
+        sp.getVerticalScrollBar().setOpaque(false);
         return sp;
+    }
+
+    private static class ModernScrollBarUI extends BasicScrollBarUI {
+        @Override protected void configureScrollBarColors() { this.thumbColor = withAlpha(ORANGE_BASED, 80); }
+        @Override protected JButton createDecreaseButton(int orientation) { return createZeroButton(); }
+        @Override protected JButton createIncreaseButton(int orientation) { return createZeroButton(); }
+        @Override protected void paintTrack(Graphics g, JComponent c, Rectangle r) {}
+        @Override protected void paintThumb(Graphics g, JComponent c, Rectangle r) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(thumbColor);
+            g2.fillRoundRect(r.x, r.y, r.width, r.height, 8, 8);
+            g2.dispose();
+        }
+        private JButton createZeroButton() {
+            JButton b = new JButton();
+            b.setPreferredSize(new Dimension(0, 0));
+            return b;
+        }
     }
     
     public void start() {

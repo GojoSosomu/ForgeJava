@@ -24,6 +24,10 @@ public class UserService extends AService {
         engine.updatedActivityProgress(id, score, total);
     }
 
+    public void updateScore(String id, int score, int total) {
+        engine.updateActivityScore(id, score, total);
+    }
+
     public UserProgressView getCurrentProgressView() {
         return assembler.from(engine.getCurrentUser());
     }

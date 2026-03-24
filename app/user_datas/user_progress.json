@@ -2,12 +2,19 @@
   "angel" : {
     "id" : "angel",
     "users" : [ {
+      "chapterProgress" : {
+        "currentSequenceIndex" : 2,
+        "completedChapters" : [ "C-001" ],
+        "currentChapter" : 0
+      },
+      "id" : "howTodo",
+      "version" : 22,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003", "L-004" ]
       },
       "userAccount" : {
-        "password" : "971953e1626defc0ccc0275bdee5ccb81fd86ee06d721ae02e4cb6dfeb486f5e",
-        "salt" : "M/2IW4VRf7bAs6F3E+/jCQ=="
+        "salt" : "M/2IW4VRf7bAs6F3E+/jCQ==",
+        "password" : "971953e1626defc0ccc0275bdee5ccb81fd86ee06d721ae02e4cb6dfeb486f5e"
       },
       "activityProgress" : {
         "completedActivities" : {
@@ -24,39 +31,39 @@
             "total" : 3
           }
         }
-      },
-      "chapterProgress" : {
-        "completedChapters" : [ "C-001" ],
-        "currentChapter" : 0,
-        "currentSequenceIndex" : 2
-      },
-      "id" : "howTodo",
-      "version" : 22
+      }
     }, {
+      "chapterProgress" : {
+        "currentSequenceIndex" : 0,
+        "completedChapters" : [ ],
+        "currentChapter" : 1
+      },
+      "id" : "toDO",
+      "version" : 1,
       "lessonProgress" : {
         "completedLessons" : [ ]
       },
       "userAccount" : {
-        "password" : "9b24f4ea6bbae17a4c59e853c7cd84c15830223c477b3c925fa404526ff4890c",
-        "salt" : "Ut4PID/xqA3x2lYEc70p6A=="
+        "salt" : "Ut4PID/xqA3x2lYEc70p6A==",
+        "password" : "9b24f4ea6bbae17a4c59e853c7cd84c15830223c477b3c925fa404526ff4890c"
       },
       "activityProgress" : {
         "completedActivities" : { }
-      },
-      "chapterProgress" : {
-        "completedChapters" : [ ],
-        "currentChapter" : 1,
-        "currentSequenceIndex" : 0
-      },
-      "id" : "toDO",
-      "version" : 1
+      }
     }, {
+      "chapterProgress" : {
+        "currentSequenceIndex" : 0,
+        "completedChapters" : [ "C-001", "C-002" ],
+        "currentChapter" : 3
+      },
+      "id" : "daniel",
+      "version" : 26,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003", "L-004", "L-005", "L-006", "L-007" ]
       },
       "userAccount" : {
-        "password" : "2391a620b2bfc5ff4d150dc1791b7539b41e96adec01f706dff9c6519d786ef5",
-        "salt" : "vtGZ7tdnZV4igp2r1U/Nbw=="
+        "salt" : "vtGZ7tdnZV4igp2r1U/Nbw==",
+        "password" : "2391a620b2bfc5ff4d150dc1791b7539b41e96adec01f706dff9c6519d786ef5"
       },
       "activityProgress" : {
         "completedActivities" : {
@@ -81,21 +88,21 @@
             "total" : 10
           }
         }
-      },
-      "chapterProgress" : {
-        "completedChapters" : [ "C-001", "C-002" ],
-        "currentChapter" : 3,
-        "currentSequenceIndex" : 0
-      },
-      "id" : "daniel",
-      "version" : 26
+      }
     }, {
+      "chapterProgress" : {
+        "currentSequenceIndex" : 5,
+        "completedChapters" : [ ],
+        "currentChapter" : 1
+      },
+      "id" : "kyle",
+      "version" : 11,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003" ]
       },
       "userAccount" : {
-        "password" : "d97c82b3b20569a643af852b03dc4e323621f7f3181446870e1996bdc4474448",
-        "salt" : "n6VJ6Bxh2ZdZmkfq/pyPLg=="
+        "salt" : "n6VJ6Bxh2ZdZmkfq/pyPLg==",
+        "password" : "d97c82b3b20569a643af852b03dc4e323621f7f3181446870e1996bdc4474448"
       },
       "activityProgress" : {
         "completedActivities" : {
@@ -108,21 +115,21 @@
             "total" : 10
           }
         }
-      },
-      "chapterProgress" : {
-        "completedChapters" : [ ],
-        "currentChapter" : 1,
-        "currentSequenceIndex" : 5
-      },
-      "id" : "kyle",
-      "version" : 11
+      }
     }, {
+      "chapterProgress" : {
+        "currentSequenceIndex" : 0,
+        "completedChapters" : [ "C-001" ],
+        "currentChapter" : 2
+      },
+      "id" : "goGowoTo",
+      "version" : 16,
       "lessonProgress" : {
         "completedLessons" : [ "L-001", "L-002", "L-003", "L-004" ]
       },
       "userAccount" : {
-        "password" : "43fa9a4d793da7fb73e3df2a4ce4303c6158d58b7e2412e8d88e9dc1edfb422b",
-        "salt" : "9ZICnOoZd/OyOaU1Naexkg=="
+        "salt" : "9ZICnOoZd/OyOaU1Naexkg==",
+        "password" : "43fa9a4d793da7fb73e3df2a4ce4303c6158d58b7e2412e8d88e9dc1edfb422b"
       },
       "activityProgress" : {
         "completedActivities" : {
@@ -139,21 +146,21 @@
             "total" : 3
           }
         }
-      },
-      "chapterProgress" : {
-        "completedChapters" : [ "C-001" ],
-        "currentChapter" : 2,
-        "currentSequenceIndex" : 0
-      },
-      "id" : "goGowoTo",
-      "version" : 16
+      }
     }, {
+      "chapterProgress" : {
+        "currentSequenceIndex" : 6,
+        "completedChapters" : [ ],
+        "currentChapter" : 1
+      },
+      "id" : "angel",
+      "version" : 14,
       "lessonProgress" : {
-        "completedLessons" : [ "L-001", "L-002", "L-003" ]
+        "completedLessons" : [ "L-001", "L-002", "L-003", "L-004" ]
       },
       "userAccount" : {
-        "password" : "82615653ca06af9a46a8fb01e4fc93400233a70e80f6c658c4f54f80e0ce5328",
-        "salt" : "HTPNggsegwGdT1qZLvssUA=="
+        "salt" : "HTPNggsegwGdT1qZLvssUA==",
+        "password" : "82615653ca06af9a46a8fb01e4fc93400233a70e80f6c658c4f54f80e0ce5328"
       },
       "activityProgress" : {
         "completedActivities" : {
@@ -161,19 +168,16 @@
             "score" : 5,
             "total" : 10
           },
+          "A-003" : {
+            "score" : 8,
+            "total" : 10
+          },
           "A-002" : {
             "score" : 10,
             "total" : 10
           }
         }
-      },
-      "chapterProgress" : {
-        "completedChapters" : [ ],
-        "currentChapter" : 1,
-        "currentSequenceIndex" : 5
-      },
-      "id" : "angel",
-      "version" : 11
+      }
     } ]
   }
 }

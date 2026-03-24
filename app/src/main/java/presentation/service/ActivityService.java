@@ -33,8 +33,10 @@ public class ActivityService extends AService {
         boolean isCorrect = (boolean) values.get("isCorrect");
 
         // The Service produces the View that tells the GUI how to react
+        System.out.println((String)values.get("correctAnswer"));
         return new EvaulationView(
-            isCorrect ? "CORRECTED!" : "LOGICAL ERROR",
+            isCorrect ? "CORRECTED!" : "LOGIC INCORRECTED!",
+            isCorrect ? "CORRECTED!" : ((String)values.get("correctAnswer")),
             isCorrect
         );
     }

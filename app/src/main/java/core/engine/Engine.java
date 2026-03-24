@@ -141,11 +141,12 @@ public class Engine {
     }
 
     public void updatedLessonProgress(String id) {
-        // Create a NEW mutable list from the old immutable one
-        incrementSequence();
         List<String> lessons = new ArrayList<>(userProgressManager.getCurrentUser().lessonProgress().completedLessons());
-        lessons.add(id);
-
+        if(!userProgressManager.getCurrentUser().lessonProgress().completedLessons().contains(id)) {
+            incrementSequence();
+            lessons.add(id);
+        }
+        
         userProgressManager.updateProgress(
             getCurrentUserName(), 
             new LessonProgress(lessons)
@@ -154,14 +155,27 @@ public class Engine {
 
     public void updatedActivityProgress(String id, int score, int total) {
         Map<String, Score> activitys = new HashMap<>(userProgressManager.getCurrentUser().activityProgress().completedActivities());
-        if(!userProgressManager.getCurrentUser().activityProgress().completedActivities().containsKey(id)) {
+        if(!userProgressManager.getCurrentUser().activityProgress().completedActivities().containsKey(id))
             incrementSequence();
-        }
+        
+        activitys.put(id, new Score(
+                score,
+                total
+        ));
+        userProgressManager.updateProgress(
+            getCurrentUserName(), 
+            new ActivityProgress(activitys)
+        );
+    }
+
+    public void updateActivityScore(String id, int score, int total) {
+        Map<String, Score> activitys = new HashMap<>(userProgressManager.getCurrentUser().activityProgress().completedActivities());
 
         activitys.put(id, new Score(
                 score,
                 total
         ));
+        
         userProgressManager.updateProgress(
             getCurrentUserName(), 
             new ActivityProgress(activitys)

@@ -90,7 +90,7 @@ public class ChapterService extends AService {
         Map<String, Object> userValue =  userProgressSnapshot.value();
         List<String> completedLessons = (List<String>) ((Map<String, Object>)userValue.get("lessonProgress")).get("completedLessons");
         Set<String> completedActivities = ((Map<String, Object>)((Map<String, Object>)userValue.get("activityProgress")).get("completedActivities")).keySet();
-        
+
         return !(sequenceIndex >= sequence.indexOf(id) || (completedLessons.contains(id) ||  completedActivities.contains(id)));
     }
 

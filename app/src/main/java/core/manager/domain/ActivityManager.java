@@ -12,6 +12,7 @@ import core.model.dto.DTO;
 import core.model.dto.activity.ActivityDTO;
 import core.model.dto.activity.problem.Questionnaire;
 import core.model.dto.activity.problem.question.Question;
+import core.model.dto.content.TextContent;
 import core.model.snapshot.activity.ActivitySnapshot;
 import core.model.snapshot.activity.evaulation.EvaulationSnapshot;
 import core.repository.ActivityRepository;
@@ -69,9 +70,7 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
         
         if (dto.problem() instanceof Questionnaire questionnaire) {
             Question question = questionnaire.questions().get(questionNumber);
-            System.out.println(userAnswer);
-            System.out.println(questionNumber + ": " + question);
-            
+
             // 1. Get the truth from the DTO (Basement)
             String correctKey = (String) question.values().get("correctAnswerKey");
             boolean isCorrect = userAnswer.equals(correctKey);
@@ -80,7 +79,7 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
             // We put the results in the Map as you designed
             Map<String, Object> reportValues = new HashMap<>();
             reportValues.put("isCorrect", isCorrect);
-            reportValues.put("correctKey", correctKey); // Now the Service will know
+            reportValues.put("correctAnswer", ((TextContent)((Map<String, Object>)questionnaire.questions().get(questionNumber).values().get("options")).get(correctKey)).text()); // Now the Service will know
 
             return new EvaulationSnapshot(reportValues);
         }

@@ -59,6 +59,7 @@ public class SwingQuestionnairePage extends JPanel {
     private final String id;
     private final Runnable onPressed;
     private final String questionNumber;
+    private EvaulationView evaluationView;
 
     public SwingQuestionnairePage(
         String id,
@@ -150,9 +151,10 @@ public class SwingQuestionnairePage extends JPanel {
             OptionButton opt = new OptionButton(descriptionOptions.get(index));
             opt.addActionListener(e -> {
                 EvaulationView result = service.evaluate(id, data.questionNumber(), answerOptions.get(index));
-                isCorrect = result.isCorrect();
-                if (result.isCorrect()) showCorrectFeedback(result);
+                isCorrect = result.isUserCorrect();
+                if (result.isUserCorrect()) showCorrectFeedback(result);
                 else showErrorFeedback(result);
+                evaluationView = result;
             });
 
             group.add(opt);
@@ -166,7 +168,7 @@ public class SwingQuestionnairePage extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
-        gbc.weighty = 1.0; // Do not stretch vertically
+        gbc.weighty = 0.0; // Do not stretch vertically
         gbc.fill = GridBagConstraints.BOTH;
         gbc.anchor = GridBagConstraints.NORTH;
 
@@ -227,7 +229,7 @@ public class SwingQuestionnairePage extends JPanel {
 
     public void showCorrectFeedback(EvaulationView evaulationView) {
         isEvaluated = true;
-        feedbackStatus.setText(evaulationView.rightAnswer());
+        feedbackStatus.setText(evaulationView.message());
         feedbackStatus.setForeground(SUCCESS_GREEN);
         nextButton.setVisible(true); // SHOW THE NEXT STEP
         lockUI(SUCCESS_GREEN);
@@ -235,7 +237,7 @@ public class SwingQuestionnairePage extends JPanel {
 
     public void showErrorFeedback(EvaulationView evaulationView) {
         isEvaluated = true;
-        feedbackStatus.setText(evaulationView.rightAnswer());
+        feedbackStatus.setText(evaulationView.message());
         feedbackStatus.setForeground(SCORCH_RED);
         nextButton.setVisible(true); // SHOW THE NEXT STEP
         lockUI(SCORCH_RED);
@@ -302,7 +304,7 @@ public class SwingQuestionnairePage extends JPanel {
 
         @Override
         public Dimension getPreferredSize() {
-            return new Dimension(480, 60);
+            return new Dimension(480, 30);
         }
 
         @Override
@@ -402,14 +404,14 @@ public class SwingQuestionnairePage extends JPanel {
             if (isEvaluated) {
 
                 g2.setFont(new Font("Segoe UI Symbol",Font.PLAIN,14));
-
+                
                 if (highlight == SUCCESS_GREEN) {
                     g2.setColor(SUCCESS_GREEN);
-                    g2.drawString("✓", w - 30, textY);
+                    g2.drawString("✔", w - 30, textY);
                 }
                 else if (highlight == SCORCH_RED && isSelected()) {
                     g2.setColor(SCORCH_RED);
-                    g2.drawString("✕", w - 30, textY);
+                    g2.drawString("✖", w - 30, textY);
                 }
             }
 
@@ -417,7 +419,9 @@ public class SwingQuestionnairePage extends JPanel {
         }
     }
 
-    public boolean isCorrect() {
-        return this.isCorrect;
+    public EvaulationView getEvaulationView() {
+        return this.evaluationView;
     }
+
+    public boolean isCorrect() { return this.isCorrect; }
 }
