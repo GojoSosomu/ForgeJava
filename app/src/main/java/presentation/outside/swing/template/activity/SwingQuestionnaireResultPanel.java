@@ -9,7 +9,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import core.model.view.View;
-import core.model.view.activity.evaulation.EvaulationView;
+import core.model.view.activity.evaluation.EvaluationView;
 import core.model.view.activity.result.QuestionnaireResultView;
 import core.model.view.progress.info.ScoreView;
 import presentation.outside.interfaces.IActivityResult;
@@ -19,7 +19,7 @@ import static presentation.outside.library.LibraryOfColor.*;
 
 public class SwingQuestionnaireResultPanel extends JPanel implements IActivityResult {
     private final JLabel scoreLabel = new JLabel(), statusLabel = new JLabel();
-    private final JPanel detailsContainer = new JPanel(); // New container for individual results
+    private JPanel detailsContainer;
 
     private final Runnable onDismiss;
     private final SwingLauncher launcher;
@@ -66,6 +66,18 @@ public class SwingQuestionnaireResultPanel extends JPanel implements IActivityRe
     }
 
     private JScrollPane createScrollableDetails() {
+        detailsContainer = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(Color.WHITE);
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 25, 25);
+                g2.setColor(resultColor);
+                g2.fillRoundRect(15, 20, 10, getHeight() - 40, 5, 5);
+                g2.dispose();
+            }
+        };
         detailsContainer.setLayout(new BoxLayout(detailsContainer, BoxLayout.Y_AXIS));
         detailsContainer.setOpaque(false);
 
@@ -153,7 +165,7 @@ public class SwingQuestionnaireResultPanel extends JPanel implements IActivityRe
         detailsContainer.removeAll();
         if (view != null && view.result() != null) {
             int index = 1;
-            for (EvaulationView eval : view.result()) {
+            for (EvaluationView eval : view.result()) {
                 detailsContainer.add(createEvaluationRow(index++, eval));
                 detailsContainer.add(Box.createRigidArea(new Dimension(0, 5)));
             }
@@ -164,13 +176,13 @@ public class SwingQuestionnaireResultPanel extends JPanel implements IActivityRe
         requestFocusInWindow();
     }
 
-    private JPanel createEvaluationRow(int index, EvaulationView eval) {
+    private JPanel createEvaluationRow(int index, EvaluationView eval) {
         JPanel row = new JPanel(new BorderLayout());
         row.setOpaque(false);
         row.setMaximumSize(new Dimension(550, 50));
         row.setBorder(new EmptyBorder(5, 50, 5, 50));
 
-        String icon = eval.isUserCorrect() ? "✔" : "✖"; // Note: used slightly different Unicode
+        String icon = eval.isUserCorrect() ? "✔" : "✖";
         Color color = eval.isUserCorrect() ? SUCCESS_GREEN : SCORCH_RED;
 
         JLabel statusIcon = new JLabel(icon + "  Question " + index);

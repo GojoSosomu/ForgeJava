@@ -14,7 +14,7 @@ import core.model.dto.activity.problem.Questionnaire;
 import core.model.dto.activity.problem.question.Question;
 import core.model.dto.content.TextContent;
 import core.model.snapshot.activity.ActivitySnapshot;
-import core.model.snapshot.activity.evaulation.EvaulationSnapshot;
+import core.model.snapshot.activity.evaluation.EvaluationSnapshot;
 import core.repository.ActivityRepository;
 
 public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<ActivitySnapshot> {
@@ -25,7 +25,7 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
         this.activityRepository = activityRepository;
     }
 
-    public record Evaulation(
+    public record Evaluation(
         String correctKey,
         String correctAnswer,
         boolean isCorrect
@@ -57,15 +57,15 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
     }
 
     public List<String> findAll() {
-        Map<String, ActivityDTO> activitys = activityRepository.getAll();
+        Map<String, ActivityDTO> activities = activityRepository.getAll();
 
-        List<String> ids = new ArrayList<>(activitys.keySet());
+        List<String> ids = new ArrayList<>(activities.keySet());
 
         return ids;
     }
 
     // Inside ActivityManager.java
-    public EvaulationSnapshot checkAnswer(String activityId, String questionNumber, Object userAnswer) {
+    public EvaluationSnapshot checkAnswer(String activityId, String questionNumber, Object userAnswer) {
         ActivityDTO dto = activityRepository.get(activityId);
         
         if (dto.problem() instanceof Questionnaire questionnaire) {
@@ -81,7 +81,7 @@ public class ActivityManager implements LoadTarget, EntitySnapshotAssembler<Acti
             reportValues.put("isCorrect", isCorrect);
             reportValues.put("correctAnswer", ((TextContent)((Map<String, Object>)questionnaire.questions().get(questionNumber).values().get("options")).get(correctKey)).text()); // Now the Service will know
 
-            return new EvaulationSnapshot(reportValues);
+            return new EvaluationSnapshot(reportValues);
         }
         return null; 
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 import core.model.view.View;
 import core.model.view.activity.ActivityView;
-import core.model.view.activity.evaulation.EvaulationView;
+import core.model.view.activity.evaluation.EvaluationView;
 import core.model.view.activity.problem.QuestionnaireView;
 import core.model.view.activity.result.QuestionnaireResultView;
 import core.model.view.progress.info.ScoreView;
@@ -123,13 +123,13 @@ public class SwingQuestionnaireTemplate extends ASwingActivityTemplate {
             }
 
             // 2. Wrap it into a ScoreView using your finalize method
-            ScoreView result = scoreFinilize(finalScore, total);
+            ScoreView result = scoreFinalize(finalScore, total);
 
             // 3. Fire the Pulse!
             if (result.score() == result.total()) {
                 // SUCCESS: Clear the session memory
-                ActivitySessionManager.removeSession(id);
                 onFinish.onPulse(result);
+                ActivitySessionManager.removeSession(id);
             } else {
                 // FAIL: Check persistent session
                 if (activitySession.shouldRetry())
@@ -149,7 +149,7 @@ public class SwingQuestionnaireTemplate extends ASwingActivityTemplate {
     }
 
     @Override
-    public ScoreView scoreFinilize(int score, int total) {
+    public ScoreView scoreFinalize(int score, int total) {
         String status = service.checkStatus(score, total);
         return new ScoreView(
             score,
@@ -161,8 +161,8 @@ public class SwingQuestionnaireTemplate extends ASwingActivityTemplate {
     @Override
     public View getResultView() {
         // 1. Map each page to its evaluation and collect them into a List
-        List<EvaulationView> evaluations = questionPages.stream()
-                .map(e -> e.getEvaulationView())
+        List<EvaluationView> evaluations = questionPages.stream()
+                .map(e -> e.getEvaluationView())
                 .toList();
 
         // 2. Wrap the list in your QuestionnaireResultView record

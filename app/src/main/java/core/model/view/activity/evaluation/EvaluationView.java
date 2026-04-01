@@ -1,8 +1,8 @@
-package core.model.view.activity.evaulation;
+package core.model.view.activity.evaluation;
 
 import core.model.view.View;
 
-public record EvaulationView(
+public record EvaluationView(
     String message,
     String rightAnswer,
     boolean isUserCorrect

@@ -15,7 +15,7 @@ import core.model.dto.progress.attainment.ChapterProgress;
 import core.model.dto.progress.attainment.LessonProgress;
 import core.model.dto.progress.attainment.Score;
 import core.model.snapshot.activity.ActivitySnapshot;
-import core.model.snapshot.activity.evaulation.EvaulationSnapshot;
+import core.model.snapshot.activity.evaluation.EvaluationSnapshot;
 import core.model.snapshot.chapter.*;
 import core.model.snapshot.lesson.LessonSnapshot;
 import core.model.snapshot.progress.UserProgressSnapshot;
@@ -154,35 +154,35 @@ public class Engine {
     }
 
     public void updatedActivityProgress(String id, int score, int total) {
-        Map<String, Score> activitys = new HashMap<>(userProgressManager.getCurrentUser().activityProgress().completedActivities());
+        Map<String, Score> activities = new HashMap<>(userProgressManager.getCurrentUser().activityProgress().completedActivities());
         if(!userProgressManager.getCurrentUser().activityProgress().completedActivities().containsKey(id))
             incrementSequence();
         
-        activitys.put(id, new Score(
+        activities.put(id, new Score(
                 score,
                 total
         ));
         userProgressManager.updateProgress(
             getCurrentUserName(), 
-            new ActivityProgress(activitys)
+            new ActivityProgress(activities)
         );
     }
 
     public void updateActivityScore(String id, int score, int total) {
-        Map<String, Score> activitys = new HashMap<>(userProgressManager.getCurrentUser().activityProgress().completedActivities());
+        Map<String, Score> activities = new HashMap<>(userProgressManager.getCurrentUser().activityProgress().completedActivities());
 
-        activitys.put(id, new Score(
+        activities.put(id, new Score(
                 score,
                 total
         ));
         
         userProgressManager.updateProgress(
             getCurrentUserName(), 
-            new ActivityProgress(activitys)
+            new ActivityProgress(activities)
         );
     }
 
-    public Map<String, ActivitySnapshot> getActivitys() {
+    public Map<String, ActivitySnapshot> getActivities() {
         List<String> ids = activityManager.findAll();
 
         Collections.sort(ids);
@@ -190,7 +190,7 @@ public class Engine {
         return activityManager.from(ids);
     }
 
-    public EvaulationSnapshot evaluateActivityAnswer(String id, String questionNumber, Object answer) {
+    public EvaluationSnapshot evaluateActivityAnswer(String id, String questionNumber, Object answer) {
         return activityManager.checkAnswer(id, questionNumber, answer);
     }
 

@@ -3,9 +3,9 @@ package presentation.service;
 import java.util.Map;
 
 import core.engine.Engine;
-import core.model.snapshot.activity.evaulation.EvaulationSnapshot;
+import core.model.snapshot.activity.evaluation.EvaluationSnapshot;
 import core.model.view.activity.ActivityView;
-import core.model.view.activity.evaulation.EvaulationView;
+import core.model.view.activity.evaluation.EvaluationView;
 import presentation.service.assembler.ActivityViewAssembler;
 
 public class ActivityService extends AService {
@@ -21,12 +21,12 @@ public class ActivityService extends AService {
     }
 
     public ActivityView getActivity(String id) {
-        return viewAssembler.from(engine.getActivitys().get(id));
+        return viewAssembler.from(engine.getActivities().get(id));
     }
 
-    public EvaulationView evaluate(String id, String qNumber, String userChoice) {
+    public EvaluationView evaluate(String id, String qNumber, String userChoice) {
         // 1. Ask the Brain to inspect the answer
-        EvaulationSnapshot snapshot = engine.evaluateActivityAnswer(id, qNumber, userChoice);
+        EvaluationSnapshot snapshot = engine.evaluateActivityAnswer(id, qNumber, userChoice);
         
         // 2. Translate Snapshot -> View (Protection logic)
         Map<String, Object> values = snapshot.values();
@@ -34,9 +34,9 @@ public class ActivityService extends AService {
 
         // The Service produces the View that tells the GUI how to react
         System.out.println((String)values.get("correctAnswer"));
-        return new EvaulationView(
-            isCorrect ? "CORRECTED!" : "LOGIC INCORRECTED!",
-            isCorrect ? "CORRECTED!" : ((String)values.get("correctAnswer")),
+        return new EvaluationView(
+            isCorrect ? "CORRECT!" : "LOGIC INCORRECT!",
+            isCorrect ? "CORRECT!" : ((String)values.get("correctAnswer")),
             isCorrect
         );
     }

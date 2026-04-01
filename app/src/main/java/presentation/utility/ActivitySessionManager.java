@@ -8,7 +8,7 @@ public class ActivitySessionManager {
     private static final Map<String, ActivitySession> sessions = new HashMap<>();
     
     public static class ActivitySession {
-        private byte attemptLeft = 3;
+        private byte attemptLeft = 1;
 
         public boolean shouldRetry() {
             if (this.attemptLeft > 1) { // If we have more than 1, we can retry

@@ -300,21 +300,22 @@ public class SwingChapterSequencePanel extends JPanel implements ActionListener 
     public void updated() {
         for(Component component : lessonPanel.getComponents()) {
             if(component instanceof JButton) {
-                JButton buttomItems = ((JButton)component);
-                buttomItems.setEnabled(!service.isItemLocked(currentChapter, buttomItems.getText()));
+                JButton buttonItems = ((JButton)component);
+                buttonItems.setEnabled(!service.isItemLocked(currentChapter, buttonItems.getText()));
             }
         }
         for(Component component : activityPanel.getComponents()) {
             if(component instanceof JButton) {
-                JButton buttomItems = ((JButton)component);
-                buttomItems.setEnabled(!service.isItemLocked(currentChapter, buttomItems.getText()));
+                JButton buttonItems = ((JButton)component);
+                buttonItems.setEnabled(!service.isItemLocked(currentChapter, buttonItems.getText()));
             }
         }
+
         if(service.getCurrentChapterIndex() > chapterNumber) {
             nextLabel.setText("CHAPTER COMPLETED! Proceed Chapter " + service.getCurrentChapterIndex());
             setCompletedButtonVisible(true);
         } else if (service.getCurrentSequenceIndex() > chapterSequenceView.sequence().size() - 1) {
-            nextLabel.setText("You completed the CHAPTER " + chapterNumber +  "! Proceed to Chapter " + service.getCurrentChapterIndex());
+            nextLabel.setText("You completed the CHAPTER " + chapterNumber +  "! Proceed to Chapter " + (service.getCurrentChapterIndex() + 1));
             setCompletedButtonVisible(true);
         } else if(service.getCurrentSequenceIndex() == 0)
             nextLabel.setText(

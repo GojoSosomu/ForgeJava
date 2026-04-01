@@ -41,7 +41,7 @@ import core.model.dto.activity.problem.question.QuestionType;
 import core.model.dto.content.enums.text.TextEmphasize;
 import core.model.dto.content.enums.text.TextSize;
 import core.model.dto.content.enums.text.TextStyle;
-import core.model.view.activity.evaulation.EvaulationView;
+import core.model.view.activity.evaluation.EvaluationView;
 import core.model.view.activity.problem.QuestionPageView;
 import core.model.view.content.TextContentView;
 import presentation.outside.renderer.SwingRenderer;
@@ -59,7 +59,7 @@ public class SwingQuestionnairePage extends JPanel {
     private final String id;
     private final Runnable onPressed;
     private final String questionNumber;
-    private EvaulationView evaluationView;
+    private EvaluationView evaluationView;
 
     public SwingQuestionnairePage(
         String id,
@@ -150,7 +150,7 @@ public class SwingQuestionnairePage extends JPanel {
             final int index = i;
             OptionButton opt = new OptionButton(descriptionOptions.get(index));
             opt.addActionListener(e -> {
-                EvaulationView result = service.evaluate(id, data.questionNumber(), answerOptions.get(index));
+                EvaluationView result = service.evaluate(id, data.questionNumber(), answerOptions.get(index));
                 isCorrect = result.isUserCorrect();
                 if (result.isUserCorrect()) showCorrectFeedback(result);
                 else showErrorFeedback(result);
@@ -227,17 +227,17 @@ public class SwingQuestionnairePage extends JPanel {
         return footer;
     }
 
-    public void showCorrectFeedback(EvaulationView evaulationView) {
+    public void showCorrectFeedback(EvaluationView evaluationView) {
         isEvaluated = true;
-        feedbackStatus.setText(evaulationView.message());
+        feedbackStatus.setText(evaluationView.message());
         feedbackStatus.setForeground(SUCCESS_GREEN);
         nextButton.setVisible(true); // SHOW THE NEXT STEP
         lockUI(SUCCESS_GREEN);
     }
 
-    public void showErrorFeedback(EvaulationView evaulationView) {
+    public void showErrorFeedback(EvaluationView evaluationView) {
         isEvaluated = true;
-        feedbackStatus.setText(evaulationView.message());
+        feedbackStatus.setText(evaluationView.message());
         feedbackStatus.setForeground(SCORCH_RED);
         nextButton.setVisible(true); // SHOW THE NEXT STEP
         lockUI(SCORCH_RED);
@@ -419,7 +419,7 @@ public class SwingQuestionnairePage extends JPanel {
         }
     }
 
-    public EvaulationView getEvaulationView() {
+    public EvaluationView getEvaluationView() {
         return this.evaluationView;
     }
 

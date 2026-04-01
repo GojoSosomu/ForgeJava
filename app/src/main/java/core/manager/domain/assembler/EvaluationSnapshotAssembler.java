@@ -3,12 +3,12 @@ package core.manager.domain.assembler;
 import java.util.HashMap;
 import java.util.Map;
 import core.manager.domain.ActivityManager;
-import core.model.snapshot.activity.evaulation.EvaulationSnapshot;
+import core.model.snapshot.activity.evaluation.EvaluationSnapshot;
 
-public class EvaluationSnapshotAssembler implements ValueSnapshotAssembler<ActivityManager.Evaulation, EvaulationSnapshot> {
+public class EvaluationSnapshotAssembler implements ValueSnapshotAssembler<ActivityManager.Evaluation, EvaluationSnapshot> {
 
     @Override
-    public EvaulationSnapshot from(ActivityManager.Evaulation domainResult) {
+    public EvaluationSnapshot from(ActivityManager.Evaluation domainResult) {
         // Create the Map for the Snapshot
         Map<String, Object> values = new HashMap<>();
 
@@ -18,6 +18,6 @@ public class EvaluationSnapshotAssembler implements ValueSnapshotAssembler<Activ
         values.put("isCorrect", domainResult.isCorrect());
 
         // Return the standardized Snapshot
-        return new EvaulationSnapshot(values);
+        return new EvaluationSnapshot(values);
     }
 }
